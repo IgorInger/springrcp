@@ -7,9 +7,20 @@
     <version>1.1.1-SNAPSHOT</version>
   </parent>
   <artifactId>spring-richclient-archetype</artifactId>
-  <packaging>jar</packaging>
+  <packaging>maven-archetype</packaging>
   <name>Spring Rich Client archetype</name>
   <description>
         Archetype for creating new Rich Client projects.
     </description>
+	
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>2.1</version>
+			</extension>
+		</extensions>
+	</build>
+    
 </project>
