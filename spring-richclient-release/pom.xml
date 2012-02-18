@@ -22,7 +22,7 @@
         <version>2.0</version>
         <configuration>
           <descriptor>src/assembly/release.xml</descriptor>
-          <finalName>spring-richclient-${pom.version}</finalName>
+          <finalName>spring-richclient-${project.version}</finalName>
         </configuration>
         <executions>
           <execution>
@@ -57,13 +57,13 @@
     <dependency>
       <groupId>org.springframework.richclient</groupId>
       <artifactId>spring-richclient-full</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
       <type>jar</type>
     </dependency>
     <dependency>
       <groupId>org.springframework.richclient</groupId>
       <artifactId>spring-richclient-full</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
       <type>zip</type>
     </dependency>
     <!-- Samples dependencies -->
@@ -71,22 +71,22 @@
       <groupId>org.springframework.richclient.samples.petclinic</groupId>
       <artifactId>petclinic-server</artifactId>
       <type>war</type>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency-->
     <dependency>
       <groupId>org.springframework.richclient.samples.petclinic</groupId>
       <artifactId>petclinic-standalone</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.richclient.samples</groupId>
       <artifactId>spring-richclient-samples-simple</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.richclient.samples</groupId>
       <artifactId>spring-richclient-samples-vldocking</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 </project>

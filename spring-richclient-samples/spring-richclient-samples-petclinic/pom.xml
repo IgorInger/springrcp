@@ -53,32 +53,32 @@
       <dependency>
         <groupId>org.springframework.richclient.samples.petclinic</groupId>
         <artifactId>petclinic-common</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.richclient.samples.petclinic</groupId>
         <artifactId>petclinic-business</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.richclient.samples.petclinic</groupId>
         <artifactId>petclinic-gui</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.richclient.samples.petclinic</groupId>
         <artifactId>petclinic-server</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.richclient.samples.petclinic</groupId>
         <artifactId>petclinic-client</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.richclient.samples.petclinic</groupId>
         <artifactId>petclinic-standalone</artifactId>
-        <version>${pom.version}</version>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
