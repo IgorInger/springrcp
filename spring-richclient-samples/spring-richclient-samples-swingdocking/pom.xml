@@ -45,12 +45,12 @@
     <dependency>
       <groupId>org.springframework.richclient.samples</groupId>
       <artifactId>spring-richclient-samples-simple</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.richclient</groupId>
       <artifactId>spring-richclient-swingdocking</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>net.sf.swingdocking</groupId>

@@ -16,6 +16,7 @@
             <plugin>
                 <groupId>com.agilejava.docbkx</groupId>
                 <artifactId>docbkx-maven-plugin</artifactId>
+				<version>2.0.13</version>
                 <executions>
                     <execution>
                         <goals>
@@ -44,7 +45,7 @@
                     <entities>
                         <entity>
                             <name>version</name>
-                            <value>${version}</value>
+                            <value>${project.version}</value>
                         </entity>
                     </entities>
                     <postProcess>
