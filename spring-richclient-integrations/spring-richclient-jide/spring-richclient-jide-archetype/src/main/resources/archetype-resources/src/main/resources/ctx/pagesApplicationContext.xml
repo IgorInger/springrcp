@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
-    "http://www.springframework.org/dtd/spring-beans.dtd">
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-
   <bean id="stringEditor" class="com.jidesoft.spring.richclient.docking.editor.EditorDescriptor">
     <property name="editorClass">
       <value>editor.StringEditor</value>
     </property>
   </bean>
-
   <!--
      Example of an editor factory that chooses an editor based on the Class of the
      object to be opened in that editor
@@ -24,7 +21,6 @@
       </map>
     </property>
   </bean>
-
   <!--
      JIDE specific page descriptor. Give a unique page id and a list of views
      for the page. This page contains one workspace and one other view.
@@ -40,13 +36,10 @@
     <property name="editorFactory">
       <ref bean="editorFactory"/>
     </property>
-
     <property name="initialEditorContents">
       <value type="java.lang.String">Hello World</value>
     </property>
   </bean>
-
-
   <bean id="workspaceView" class="com.jidesoft.spring.richclient.docking.view.JideViewDescriptor">
     <property name="isWorkspace">
       <value>true</value>
@@ -67,7 +60,6 @@
       </map>
     </property>
   </bean>
-
   <bean id="initialView" class="com.jidesoft.spring.richclient.docking.view.JideViewDescriptor">
     <property name="initMode">
       <ref bean="com.jidesoft.docking.DockContext.STATE_FRAMEDOCKED"/>
@@ -82,7 +74,6 @@
       <value>view.InitialView</value>
     </property>
   </bean>
-
   <bean id="otherView" class="com.jidesoft.spring.richclient.docking.view.JideViewDescriptor">
     <property name="initMode">
       <ref bean="com.jidesoft.docking.DockContext.STATE_FRAMEDOCKED"/>
@@ -97,23 +88,12 @@
       <value>view.OtherView</value>
     </property>
   </bean>
-
-
-  <bean id="com.jidesoft.docking.DockContext.STATE_FRAMEDOCKED"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-  <bean id="com.jidesoft.docking.DockContext.STATE_AUTOHIDE"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-  <bean id="com.jidesoft.docking.DockContext.STATE_HIDDEN"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-  <bean id="com.jidesoft.docking.DockContext.STATE_FLOATING"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_NORTH"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_SOUTH"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_EAST"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_WEST"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.STATE_FRAMEDOCKED" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.STATE_AUTOHIDE" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.STATE_HIDDEN" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.STATE_FLOATING" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_NORTH" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_SOUTH" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_EAST" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockContext.DOCK_SIDE_WEST" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
 </beans>

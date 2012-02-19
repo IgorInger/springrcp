@@ -15,7 +15,6 @@
       <href>http://www.springframework.org</href>
   </bannerRight>-->
   <publishDate format="yyyy-MM-dd HH:mm"/>
-
   <body>
     <links>
       <item name="Blog" href="http://spring-rich.blogspot.com/"/>
@@ -24,16 +23,13 @@
       <item name="SF project" href="http://sourceforge.net/projects/spring-rich-c"/>
       <item name="Spring framework" href="http://www.springframework.org/"/>
     </links>
-
     <menu ref="parent" inherit="top"/>
-
     <menu name="Overview">
       <item name="Home" href="/index.html"/>
       <item name="Download" href="/download.html"/>
       <item name="Getting started" href="/gettingStarted.html"/>
       <item name="Screenshots" href="/screenshots.html"/>
     </menu>
-
     <menu name="User">
       <item name="Upgrading" href="/user/upgrading/index.html" collapse="true">
         <item name="To 1.1.x (svn)" href="/user/upgrading/upgradingTo1.1.x.html"/>
@@ -49,7 +45,6 @@
       <item name="Blog" href="http://spring-rich.blogspot.com/"/>
       <item name="Forum" href="http://forum.springframework.org/forumdisplay.php?f=28"/>
     </menu>
-
     <menu name="Development">
       <item name="Development setup" href="/development/developmentSetup.html"/>
       <item name="Architecture" href="/development/architecture.html"/>
@@ -59,14 +54,10 @@
       <item name="FAQ" href="/development/faq.html"/>
       <item name="JIRA" href="http://jira.springframework.org/browse/RCP"/>
     </menu>
-
     <!--<menu name="Archived website">-->
     <!--<item name="0.1.0" href="/archive/0.1.0/index.html"/>-->
     <!--</menu>-->
-
     <menu ref="modules" inherit="bottom"/>
-
     <menu ref="reports" inherit="bottom"/>
   </body>
-
 </project>
