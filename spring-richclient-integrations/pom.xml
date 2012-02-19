@@ -8,12 +8,10 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>spring-richclient-integrations</artifactId>
   <packaging>pom</packaging>
-
   <name>Spring Rich Client integrations</name>
   <description>
     Spring Rich Client integration projects
   </description>
-
   <modules>
     <module>spring-richclient-vldocking</module>
     <module>spring-richclient-flexdock</module>
@@ -22,7 +20,6 @@
     <!-- JIDE integration isn't built automatically due to licensing  -->
     <!--<module>spring-richclient-jide</module>-->
   </modules>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.richclient</groupId>

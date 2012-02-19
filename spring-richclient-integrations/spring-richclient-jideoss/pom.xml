@@ -8,12 +8,10 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>spring-richclient-jideoss</artifactId>
   <packaging>jar</packaging>
-
   <name>Spring Rich Client Jide OSS integration</name>
   <description>
     Spring Rich Client JIDE OSS integration
   </description>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.richclient</groupId>

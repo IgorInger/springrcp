@@ -7,18 +7,15 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>spring-richclient-flexdock</artifactId>
-
   <packaging>jar</packaging>
   <name>Spring Rich Client integrations : FlexDock</name>
   <description>
     Spring Rich Client integration for FlexDock
   </description>
-
   <dependencies>
     <dependency>
       <groupId>net.java.dev.flexdock</groupId>
       <artifactId>flexdock</artifactId>
     </dependency>
   </dependencies>
-
 </project>

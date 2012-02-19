@@ -7,20 +7,17 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>spring-richclient-vldocking</artifactId>
-
   <packaging>jar</packaging>
   <name>Spring Rich Client integrations : VLDocking</name>
   <description>
     Spring Rich Client integration for VLDocking
   </description>
-
   <licenses>
     <license>
       <name>CeCILL</name>
       <url>http://www.cecill.info/licences/Licence_CeCILL_V1.1-US.html</url>
     </license>
   </licenses>
-
   <dependencies>
     <!-- IMPORTANT! This library has a GPL/CeCil license.
       If you want to use this in a commercial app please visit
