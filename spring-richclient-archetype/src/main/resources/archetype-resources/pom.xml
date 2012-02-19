@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
   <packaging>jar</packaging>
   <version>${version}</version>
   <name>Spring RCP Project Archetype</name>
-
   <properties>
     <springrich.version>1.1.0-SNAPSHOT</springrich.version>
     <spring.version>2.5.5</spring.version>
   </properties>
-
   <repositories>
     <repository>
       <id>springRichClientRepository</id>
@@ -20,7 +17,6 @@
       <url>http://spring-rich-c.sourceforge.net/maven2repository</url>
     </repository>
   </repositories>
-
   <build>
     <plugins>
       <plugin>
@@ -33,13 +29,12 @@
               <!-- specify the main class for your application -->
               <mainClass>${groupId}.SimpleApp</mainClass>
               <addClasspath>true</addClasspath>
-              <addExtensions />
+              <addExtensions/>
               <classpathPrefix>lib</classpathPrefix>
             </manifest>
           </archive>
         </configuration>
       </plugin>
-
       <!-- This plugin copies the runtime dependencies into target/lib -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -60,7 +55,6 @@
       </plugin>
     </plugins>
   </build>
-
   <dependencies>
     <!-- Spring rich -->
     <dependency>
@@ -87,7 +81,6 @@
       <version>${springrich.version}</version>
       </dependency>
     -->
-
     <!-- spring dependency injection-->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -110,7 +103,6 @@
       <artifactId>spring-beans</artifactId>
       <version>${spring.version}</version>
     </dependency>
-
     <!-- Components -->
     <dependency>
       <groupId>com.jgoodies</groupId>

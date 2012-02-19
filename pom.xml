@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>org.springframework.richclient</groupId>
   <artifactId>spring-richclient</artifactId>
   <packaging>pom</packaging>
@@ -17,7 +15,6 @@
     and a limited number of design best practices. The goal of spring-richclient is to provide that.
   </description>
   <url>http://spring-rich-c.sf.net/</url>
-
   <prerequisites>
     <maven>3.0.4</maven>
   </prerequisites>
@@ -65,23 +62,23 @@
       <!-- TODO verify and complete -->
       <id>ohutchison</id>
       <name>Oliver Hutchison</name>
-      <email />
+      <email/>
       <roles>
         <role>Former project leader</role>
         <role>Java developer</role>
       </roles>
-      <timezone />
+      <timezone/>
     </developer>
     <developer>
       <!-- TODO verify and complete -->
       <id>kdonald</id>
       <name>Keith Donald</name>
-      <email />
+      <email/>
       <roles>
         <role>Former project leader</role>
         <role>Java developer</role>
       </roles>
-      <timezone />
+      <timezone/>
     </developer>
     <developer>
       <id>lstreepy</id>
@@ -106,11 +103,11 @@
       <!-- TODO verify and complete -->
       <id>benalex</id>
       <name>Ben Alex</name>
-      <email />
+      <email/>
       <roles>
         <role>Java developer</role>
       </roles>
-      <timezone />
+      <timezone/>
     </developer>
     <developer>
       <id>anodos</id>
@@ -154,11 +151,11 @@
       <!-- TODO verify and complete -->
       <id>scottdelap</id>
       <name>Scott Delap</name>
-      <email />
+      <email/>
       <roles>
         <role>Java developer</role>
       </roles>
-      <timezone />
+      <timezone/>
     </developer>
     <developer>
       <id>ge0ffrey</id>
@@ -209,7 +206,6 @@
       </roles>
     </contributor>
   </contributors>
-
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -226,7 +222,6 @@
     <name>The Spring Framework</name>
     <url>http://www.springframework.org</url>
   </organization>
-
   <repositories>
     <repository>
       <id>springRichclientRepository</id>
@@ -252,7 +247,6 @@
       </snapshots>
     </repository>
   </repositories>
-
   <pluginRepositories>
     <!-- currently only needed to use jdepend report -->
     <pluginRepository>
@@ -271,7 +265,6 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
-
   <build>
     <pluginManagement>
       <plugins>
@@ -318,7 +311,6 @@
             </excludes>
           </configuration>
         </plugin>
-
         <!-- Packaging -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -394,7 +386,6 @@
             <tagBase>https://spring-rich-c.svn.sourceforge.net/svnroot/spring-rich-c/tags</tagBase>
           </configuration>
         </plugin>
-
         <!-- IDE -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -414,7 +405,6 @@
             <dependenciesAsLibraries>true</dependenciesAsLibraries>
           </configuration>
         </plugin>
-
         <!--Site -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -467,7 +457,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-		<version>2.8</version>
+        <version>2.8</version>
         <configuration>
           <source>1.5</source>
           <aggregate>true</aggregate>
@@ -494,11 +484,9 @@
       </plugin>
     </plugins>
   </reporting>
-
   <properties>
     <spring.version>2.5.5</spring.version>
   </properties>
-
   <profiles>
     <profile>
       <id>fast</id>
@@ -538,7 +526,6 @@
       </build>
     </profile>
   </profiles>
-
   <modules>
     <module>spring-richclient-resources</module>
     <module>spring-richclient-core</module>
@@ -557,7 +544,6 @@
     <module>spring-richclient-integrations</module>
     <!-- Module release is delibertly skipped -->
   </modules>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -579,7 +565,6 @@
         Declare all dependency versions and default scopes here, but not optional.
         Each module should declare it's direct dependency and possibily overwrite scope/optional.
       -->
-
       <!-- Internal -->
       <dependency>
         <groupId>org.springframework.richclient</groupId>
@@ -635,14 +620,12 @@
         <version>${project.version}</version>
         <type>pom</type>
       </dependency-->
-
       <!-- Lang -->
       <dependency>
         <groupId>commons-lang</groupId>
         <artifactId>commons-lang</artifactId>
         <version>2.1</version>
       </dependency>
-
       <!-- Testing -->
       <dependency>
         <groupId>junit</groupId>
@@ -656,7 +639,6 @@
         <version>2.0</version>
         <scope>test</scope>
       </dependency>
-
       <!-- Binding and validation -->
       <dependency>
         <groupId>org.springframework</groupId>
@@ -674,21 +656,18 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <!-- Collections -->
       <dependency>
         <groupId>commons-collections</groupId>
         <artifactId>commons-collections</artifactId>
         <version>3.2.1</version>
       </dependency>
-
       <!-- Codec -->
       <dependency>
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.3</version>
       </dependency>
-
       <!-- Logging -->
       <dependency>
         <groupId>commons-logging</groupId>
@@ -726,14 +705,13 @@
             <groupId>com.sun.jmx</groupId>
             <artifactId>jmxri</artifactId>
           </exclusion>
-		  <exclusion>
-			<groupId>javax.jms</groupId>
-			<artifactId>jms</artifactId>
-		  </exclusion>
+          <exclusion>
+            <groupId>javax.jms</groupId>
+            <artifactId>jms</artifactId>
+          </exclusion>
         </exclusions>
         <scope>runtime</scope>
       </dependency>
-
       <!-- Dependency injection -->
       <dependency>
         <groupId>org.springframework</groupId>
@@ -785,13 +763,11 @@
         <artifactId>spring-orm</artifactId>
         <version>${spring.version}</version>
       </dependency>
-
       <dependency>
         <groupId>aopalliance</groupId>
         <artifactId>aopalliance</artifactId>
         <version>1.0</version>
       </dependency>
-
       <!-- Security -->
       <dependency>
         <groupId>org.springframework.security</groupId>
@@ -805,7 +781,6 @@
         <type>test-jar</type>
         <scope>test</scope>
       </dependency>
-
       <!-- Components -->
       <dependency>
         <groupId>com.jgoodies</groupId>
@@ -858,7 +833,6 @@
         <artifactId>jcalendar</artifactId>
         <version>1.3.2</version>
       </dependency>
-
       <!-- Utils -->
       <dependency>
         <groupId>concurrent</groupId>
@@ -870,7 +844,6 @@
         <artifactId>jhelp</artifactId>
         <version>2.0</version>
       </dependency>
-
       <!-- Docking -->
       <dependency>
         <groupId>net.java.dev.flexdock</groupId>
@@ -887,7 +860,6 @@
         <artifactId>swingdocking-mustang</artifactId>
         <version>1.0.0</version>
       </dependency>
-
       <!-- JNLP -->
       <dependency>
         <groupId>javax.jnlp</groupId>
@@ -895,7 +867,6 @@
         <version>1.5</version>
         <scope>provided</scope>
       </dependency>
-
       <!-- Persistence (for samples) -->
       <dependency>
         <!-- TODO once hibernate's validator doesn't need persistence-api, exclude it -->
@@ -924,7 +895,6 @@
         <artifactId>hibernate-validator</artifactId>
         <version>3.0.0.ga</version>
       </dependency>
-
       <dependency>
         <groupId>hsqldb</groupId>
         <artifactId>hsqldb</artifactId>
@@ -937,7 +907,6 @@
         <version>5.1.6</version>
         <scope>runtime</scope>
       </dependency>
-
       <!-- Remoting -->
       <dependency>
         <groupId>commons-httpclient</groupId>
@@ -956,7 +925,6 @@
         <version>2.1.12</version>
         <scope>runtime</scope>
       </dependency>
-
       <!-- VLDocking -->
       <!-- IMPORTANT! This library has a GPL/CeCil license.
       If you want to use this in a commercial app please visit
@@ -966,7 +934,6 @@
         <artifactId>vldocking</artifactId>
         <version>2.1.4</version>
       </dependency>
-
       <dependency>
         <groupId>org.jdesktop.xswingx</groupId>
         <artifactId>xswingx</artifactId>
@@ -983,22 +950,18 @@
           </exclusion>
         </exclusions>
       </dependency>
-
       <dependency>
         <groupId>org.swinglabs</groupId>
         <artifactId>swing-worker</artifactId>
         <version>1.1</version>
       </dependency>
-
       <dependency>
         <groupId>com.l2fprod</groupId>
         <artifactId>l2fprod-common-all</artifactId>
         <version>7.3</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
-
   <distributionManagement>
     <repository>
       <id>shell.sourceforge.net</id>
@@ -1020,5 +983,4 @@
     <!--</url>-->
     <!--</site>-->
   </distributionManagement>
-
 </project>

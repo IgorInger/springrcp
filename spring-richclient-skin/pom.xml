@@ -1,8 +1,9 @@
+<?xml version="1.0"?>
 <project>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.springframework.richclient</groupId>
-	<artifactId>spring-richclient-skin</artifactId>
-	<version>1.0.0</version>
-	<name>Spring Rich Client maven skin</name>
-	<url>http://spring-rich-c.sf.net</url>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.springframework.richclient</groupId>
+  <artifactId>spring-richclient-skin</artifactId>
+  <version>1.0.0</version>
+  <name>Spring Rich Client maven skin</name>
+  <url>http://spring-rich-c.sf.net</url>
 </project>

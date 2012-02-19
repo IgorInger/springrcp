@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.richclient.samples.petclinic</groupId>
     <artifactId>petclinic</artifactId>
     <version>1.0.2-SNAPSHOT</version>
   </parent>
-
   <artifactId>petclinic-business</artifactId>
   <packaging>jar</packaging>
   <name>Spring richclient petclinic sample business</name>
@@ -15,14 +13,12 @@
     The business logic and persistence layer which reside on the server and in standalone, but NOT in the
     client.
   </description>
-
   <dependencies>
     <!-- Internal -->
     <dependency>
       <groupId>org.springframework.richclient.samples.petclinic</groupId>
       <artifactId>petclinic-common</artifactId>
     </dependency>
-
     <!-- Dependency injection -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -48,7 +44,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
     </dependency>
-
     <!-- Spring's petclinic -->
     <dependency>
       <groupId>org.springframework.samples</groupId>
@@ -58,7 +53,6 @@
       <groupId>org.springframework.samples</groupId>
       <artifactId>spring-petclinic-domain</artifactId>
     </dependency>
-
     <!-- JDBC -->
     <dependency>
       <groupId>hsqldb</groupId>
@@ -68,18 +62,15 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
     </dependency>
-
     <!-- Security -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
     </dependency>
-
     <!-- Logging -->
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
     </dependency>
   </dependencies>
-
 </project>

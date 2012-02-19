@@ -1,17 +1,15 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.richclient</groupId>
     <artifactId>spring-richclient</artifactId>
     <version>1.1.0</version>
   </parent>
-
   <artifactId>spring-richclient-core</artifactId>
   <packaging>jar</packaging>
   <name>Spring Rich Client core</name>
   <description>Core and basic classes.</description>
-
   <dependencies>
     <!-- Internal -->
     <dependency>
@@ -24,7 +22,6 @@
       <artifactId>spring-richclient-resources</artifactId>
       <type>test-jar</type>
     </dependency>
-
     <!-- Dependency injection -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -47,33 +44,28 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
     </dependency>
-
     <!-- AOP -->
     <dependency>
       <groupId>aopalliance</groupId>
       <artifactId>aopalliance</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Binding and validation -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-binding</artifactId>
     </dependency>
-
     <!-- Logging -->
     <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
     </dependency>
-
     <!-- Lang -->
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Validation with Hibernate validator -->
     <dependency>
       <groupId>javax.persistence</groupId>
@@ -95,14 +87,12 @@
       <artifactId>hibernate-validator</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- JNLP -->
     <dependency>
       <groupId>javax.jnlp</groupId>
       <artifactId>jnlp-api</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Swingx lib -->
     <dependency>
       <groupId>org.swinglabs</groupId>
@@ -114,7 +104,6 @@
       <artifactId>jdic-shared</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Security -->
     <dependency>
       <groupId>org.springframework.security</groupId>
@@ -127,14 +116,12 @@
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
-
     <!-- Codec -->
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Components -->
     <dependency>
       <groupId>com.jgoodies</groupId>
@@ -160,7 +147,6 @@
       <artifactId>glazedlists_java15</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Utils -->
     <dependency>
       <groupId>concurrent</groupId>
@@ -172,14 +158,12 @@
       <artifactId>jhelp</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Remoting -->
     <dependency>
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
       <optional>true</optional>
     </dependency>
-
     <!-- Needed for SortedListModel to work
       Is actually added by spring-modules-validation in
       a transitive way, but when not using validation,
@@ -188,32 +172,27 @@
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
     </dependency>
-
     <!-- only required when ValangRichValidator is used -->
     <dependency>
       <groupId>org.springmodules</groupId>
       <artifactId>spring-modules-validation</artifactId>
       <optional>true</optional>
     </dependency>
-
     <dependency>
       <groupId>org.swinglabs</groupId>
       <artifactId>swing-worker</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.jdesktop.xswingx</groupId>
       <artifactId>xswingx</artifactId>
       <optional>true</optional>
     </dependency>
-
     <dependency>
       <groupId>com.l2fprod</groupId>
       <artifactId>l2fprod-common-all</artifactId>
       <optional>true</optional>
     </dependency>
   </dependencies>
-
   <profiles>
     <profile>
       <id>nix</id>
@@ -256,5 +235,4 @@
       </dependencies>
     </profile>
   </profiles>
-
 </project>

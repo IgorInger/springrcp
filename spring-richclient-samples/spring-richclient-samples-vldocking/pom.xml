@@ -14,7 +14,6 @@
     This application provides a example of how to use the vldocking features of the Spring Rich Client
     platform.
   </description>
-
   <build>
     <plugins>
       <plugin>
@@ -25,7 +24,7 @@
             <manifest>
               <mainClass>org.springframework.richclient.samples.vldocking.app.SimpleVLDockingApp</mainClass>
               <addClasspath>true</addClasspath>
-              <addExtensions />
+              <addExtensions/>
               <classpathPrefix>../lib</classpathPrefix>
             </manifest>
           </archive>
@@ -33,7 +32,6 @@
       </plugin>
     </plugins>
   </build>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.richclient.samples</groupId>
