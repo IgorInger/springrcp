@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-        "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-
-<chapter id="validation" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="validation">
   <title>Validation</title>
-
   <toc/>
-  
   <section id="validation:why">
     <title>Why validation</title>
     <para>
@@ -64,7 +60,9 @@
         A rule source contains different rules for a certain object type. If, for example, we want to validate that the
         field1 property of the TestObject class is never empty, we can create a RulesSource like this:
       </para>
-      <programlisting language="java:nogutter"><xi:include href="../codesamples/validation/java/sample1.java" parse="text"/></programlisting>
+      <programlisting language="java:nogutter">
+        <xi:include href="../codesamples/validation/java/sample1.java" parse="text"/>
+      </programlisting>
     </section>
     <section id="validation:rule:contraints">
       <title>Constraints</title>
@@ -99,7 +97,9 @@
       <para>
         Creating your own constraint is done by implementing the Constraint interface, which consists of one method
       </para>
-      <programlisting language="java:nogutter"><xi:include href="../codesamples/validation/java/sample2.java" parse="text"/></programlisting>
+      <programlisting language="java:nogutter">
+        <xi:include href="../codesamples/validation/java/sample2.java" parse="text"/>
+      </programlisting>
       <para>
         This constraint will test any object. Most of the time, we’ll want to split up functionality to check individual
         properties, so that we can reuse this logic elsewhere.
@@ -112,7 +112,9 @@
         Say we want to create a constraint that checks whether a String property’s value equals “RCP” (silly, but a good
         example). We’ll end up with something like this:
       </para>
-      <programlisting language="java:nogutter"><xi:include href="../codesamples/validation/java/sample3.java" parse="text"/></programlisting>
+      <programlisting language="java:nogutter">
+        <xi:include href="../codesamples/validation/java/sample3.java" parse="text"/>
+      </programlisting>
       <para>
         This constraint you can then add to your RulesSource for a specific property.
       </para>
@@ -138,7 +140,9 @@
         another PropertyConstraint. For example, you want the driver’s license number required if the age of the person
         is over 21. Creating a constraint for this would be something like this:
       </para>
-      <programlisting language="java:nogutter"><xi:include href="../codesamples/validation/java/sample4.java" parse="text"/></programlisting>
+      <programlisting language="java:nogutter">
+        <xi:include href="../codesamples/validation/java/sample4.java" parse="text"/>
+      </programlisting>
       <para>
         This constraint will be fired if the value of driverLicenseNumber or age is fired. Mind you though, the
         validation error will only be reported on the ‘main’ property, which is driverLicenseNumber.
@@ -176,7 +180,9 @@
       For more information on the Valang validation framework, see the Valang documentation. Converting the rules source
       example to Valang would result in something like this (I’ll show the bean definition):
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/validation/xml/sample1.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/validation/xml/sample1.xml" parse="text"/>
+    </programlisting>
     <para>
        You can then make a ValangRichValidator for a certain formmodel with that validator.
     </para>
@@ -192,7 +198,9 @@
     <para>
       Building a composite validator can be done by the following snippet
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/validation/java/sample5.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/validation/java/sample5.java" parse="text"/>
+    </programlisting>
   </section>
   <section id="validation:own">
     <title>Integrating your own or another third-party validation framework</title>

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-        "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-
-<chapter id="commands" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="commands">
   <title>Commands</title>
-
   <toc/>
-  
   <section id="commands:abtraction-why">
     <title>Why the abstraction</title>
     <para>
@@ -19,18 +15,18 @@
       decoupled from the visual representation, reusing that behavior is a lot easier to achieve.
     </para>
   </section>
-
   <section id="commands:simple-create">
     <title>How to create a simple command</title>
     <para>
       Let’s make a simple command that shows a messagebox when executed:
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/commands/java/sample1.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/commands/java/sample1.java" parse="text"/>
+    </programlisting>
     <para>Creating a new command can be done by extending ActionCommand. This class mandates that you implement the
       doExecuteCommand method, which represents the behavior of the command.
     </para>
   </section>
-
   <section id="commands:configure-command">
     <title>Configure a programmatically created command</title>
     <para>
@@ -39,12 +35,13 @@
       yourself.
     </para>
     <para>This can be done by calling the command configurer through the service locator in Spring Rich Client:</para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/commands/java/sample2.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/commands/java/sample2.java" parse="text"/>
+    </programlisting>
     <para>
       After the command has been configured, it can be used to create components.
     </para>
   </section>
-
   <section id="commands:change-visual">
     <title>Transforming the command to a visual component</title>
     <para>
@@ -66,15 +63,18 @@
       with the command’s behavior coupled to it.
     </para>
     <para>For buttons this is</para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/commands/java/sample3.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/commands/java/sample3.java" parse="text"/>
+    </programlisting>
     <para>For menu items this is</para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/commands/java/sample4.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/commands/java/sample4.java" parse="text"/>
+    </programlisting>
     <para>
       Both methods have various parameter configurations, for more information on which to use in your scenario, refer
       to the JavaDoc documentation.
     </para>
   </section>
-
   <section id="commands:i18n">
     <title>Commands i18n and images</title>
     <para>
@@ -91,18 +91,23 @@
       configured for the Spring Rich Client application. To find the label of a command, Spring Rich Client searches
       for:
     </para>
-    <programlisting language="text"><xi:include href="../codesamples/commands/text/sample1.txt" parse="text"/></programlisting>
+    <programlisting language="text">
+      <xi:include href="../codesamples/commands/text/sample1.txt" parse="text"/>
+    </programlisting>
     <para>Similarly, you can put a caption on a command. In the case of a JButton, this will translate itself into a
       tooltip message:
     </para>
-    <programlisting language="text"><xi:include href="../codesamples/commands/text/sample2.txt" parse="text"/></programlisting>
+    <programlisting language="text">
+      <xi:include href="../codesamples/commands/text/sample2.txt" parse="text"/>
+    </programlisting>
     <para>Commands can also have icons coupled to them. Spring Rich Client will look for the message keys and images in
       the image source configured for the application. To find the icon for a command, Spring Rich client will search
       for:
     </para>
-    <programlisting language="text"><xi:include href="../codesamples/commands/text/sample3.txt" parse="text"/></programlisting>
+    <programlisting language="text">
+      <xi:include href="../codesamples/commands/text/sample3.txt" parse="text"/>
+    </programlisting>
   </section>
-
   <section id="commands:grouping">
     <title>Grouping commands</title>
     <para>
@@ -150,13 +155,14 @@
       can even make trees, taskpanes or outlook-bar style grouping.
     </para>
   </section>
-
   <section id="commands:building-group">
     <title>Building a command group in a Spring context</title>
     <para>
         Given our hands-dirty example, we’ll look at a command group configured there:
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/commands/xml/sample1.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/commands/xml/sample1.xml" parse="text"/>
+    </programlisting>
     <para>
       As you can see, creating a command group is straightforward. You create a command group through a factory bean and
       set the members.
@@ -170,19 +176,16 @@
     </para>
     <itemizedlist>
       <listitem>
-        <para>
-          <literal>glue</literal> : Add a glue between commands
+        <para><literal>glue</literal> : Add a glue between commands
         </para>
       </listitem>
       <listitem>
-        <para>
-          <literal>command:xyz</literal> : Add a command with id xyz to the group. You could use this instead of bean
+        <para><literal>command:xyz</literal> : Add a command with id xyz to the group. You could use this instead of bean
           references
         </para>
       </listitem>
       <listitem>
-        <para>
-          <literal>group:abc</literal> : Add a command group with id abc to the group. You could use this instead of bean
+        <para><literal>group:abc</literal> : Add a command group with id abc to the group. You could use this instead of bean
           references
         </para>
       </listitem>
@@ -196,19 +199,19 @@
       menu bar, tool bar or other navigation you might have implemented.
     </para>
   </section>
-
   <section id="commands:get-command">
     <title>Getting a Spring configured command in code</title>
     <para>
       Getting a command that you have configured in a Spring context can be done by searching for it based on its id:
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/commands/java/sample5.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/commands/java/sample5.java" parse="text"/>
+    </programlisting>
     <para>
       This will return the command if it can find a command with that id, or null otherwise. You don’t need to configure
       this command after you’ve found it, Spring Rich Client has already handled this for you.
     </para>
   </section>
-
   <section id="commands:global-commands">
     <title>Defining global commands</title>
     <para>
@@ -217,13 +220,16 @@
     <para>
       Spring Rich Client handles these occurrences by using shared commands. Adding a shared command is done by adding the ids to the command manager, like this:
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/commands/xml/sample2.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/commands/xml/sample2.xml" parse="text"/>
+    </programlisting>
     <para>
       These commands can also be added in a command group:
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/commands/xml/sample3.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/commands/xml/sample3.xml" parse="text"/>
+    </programlisting>
   </section>
-
   <section id="commands:shortcuts">
     <title>Addding shortcuts to commands</title>
     <para>
@@ -235,18 +241,24 @@
     <para>
       A command configured like this
     </para>
-    <programlisting language="text"><xi:include href="../codesamples/commands/text/sample4.txt" parse="text"/></programlisting>
+    <programlisting language="text">
+      <xi:include href="../codesamples/commands/text/sample4.txt" parse="text"/>
+    </programlisting>
     <para>
       can be enriched with a shortcut, for example Ctrl + N, by changing the message to
     </para>
-    <programlisting language="text"><xi:include href="../codesamples/commands/text/sample5.txt" parse="text"/></programlisting>
+    <programlisting language="text">
+      <xi:include href="../codesamples/commands/text/sample5.txt" parse="text"/>
+    </programlisting>
     <para>
       In a menu, for example, you’ll also see the shortcut when adding it to a command.
     </para>
     <para>
       Shortcuts that can be used are compliant to the Keystroke class in standard Java, which amount to      
     </para>
-    <programlisting language="text"><xi:include href="../codesamples/commands/text/sample6.txt" parse="text"/></programlisting>
+    <programlisting language="text">
+      <xi:include href="../codesamples/commands/text/sample6.txt" parse="text"/>
+    </programlisting>
     <para>
       For example, you can use F1, ctrl A, ctrl alt X, alt INSERT, … Currently, only Windows shortcuts are supported, support for Mac commands is underway and currently being developed.
     </para>

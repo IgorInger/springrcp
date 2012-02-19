@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-        "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-
-<chapter id="introduction" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="introduction">
   <title>Introduction</title>
-
   <toc/>
-
   <section id="introduction:overview">
     <title>Overview</title>
     <para>
@@ -77,7 +73,6 @@
       with a Spring Rich Client application.
     </para>
   </section>
-
   <section id="introduction:dirty">
     <title>Hitting the ground running</title>
     <para>
@@ -89,7 +84,9 @@
       component-scanning abilities, it should be possible to narrow your configuration down to the essentials. This is
       something that will possibly be improved in future releases.
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/introduction/xml/sample2.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/introduction/xml/sample2.xml" parse="text"/>
+    </programlisting>
     <para>
       This sample is in fact one of the Spring Rich Client samples included in the sources, some minor adjustments not
       taken into account. When running the simple project, the output will look something like this:
@@ -100,7 +97,6 @@
       </imageobject>
     </mediaobject>
   </section>
-
   <section id="introduction:dissection">
     <title>A quick dissection</title>
     <section id="introduction:anatomy">
@@ -190,7 +186,9 @@
       <para>
         Implementing a view is quite simple. When viewing the example view, you’ll see this:
       </para>
-      <programlisting language="java:nogutter"><xi:include href="../codesamples/introduction/java/sample1.java" parse="text"/></programlisting>
+      <programlisting language="java:nogutter">
+        <xi:include href="../codesamples/introduction/java/sample1.java" parse="text"/>
+      </programlisting>
       <para>
         AbstractView mandates that you implement the createControl method. This method can deliver any JComponent to
         show its contents. In most cases, this will be some sort of container or panel.
@@ -212,7 +210,9 @@
       <para>
         In our example, the command context looks like this:
       </para>
-      <programlisting language="xml"><xi:include href="../codesamples/introduction/xml/sample1.xml" parse="text"/></programlisting>
+      <programlisting language="xml">
+        <xi:include href="../codesamples/introduction/xml/sample1.xml" parse="text"/>
+      </programlisting>
       <para>
         As you can see, no Swing-like components are being used to create the menu.
       </para>

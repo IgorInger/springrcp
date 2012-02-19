@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-
-
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
   <!-- 
     Bean: windowCommandManager
     Type: magic
@@ -13,8 +9,7 @@
     are "shared" among views.  This indicates to the manager that they
     will have different target executors in each view.
   -->
-  <bean id="windowCommandManager"
-    class="org.springframework.richclient.application.support.ApplicationWindowCommandManager">
+  <bean id="windowCommandManager" class="org.springframework.richclient.application.support.ApplicationWindowCommandManager">
     <property name="sharedCommandIds">
       <list>
         <value>newContactCommand</value>
@@ -23,7 +18,6 @@
       </list>
     </property>
   </bean>
-
   <!-- 
     Bean: menuBar
     Type: magic
@@ -36,13 +30,12 @@
   <bean id="menuBar" class="org.springframework.richclient.command.CommandGroupFactoryBean">
     <property name="members">
       <list>
-        <ref bean="fileMenu" />
-        <ref bean="windowMenu" />
-        <ref bean="helpMenu" />
+        <ref bean="fileMenu"/>
+        <ref bean="windowMenu"/>
+        <ref bean="helpMenu"/>
       </list>
     </property>
   </bean>
-
   <!-- 
     Bean: toolBar
     Type: magic
@@ -63,7 +56,6 @@
       </list>
     </property>
   </bean>
-
   <!-- 
     Bean: fileMenu
     Type: user named
@@ -75,17 +67,16 @@
   <bean id="fileMenu" class="org.springframework.richclient.command.CommandGroupFactoryBean">
     <property name="members">
       <list>
-        <ref bean="newMenu" />
+        <ref bean="newMenu"/>
         <value>separator</value>
         <value>propertiesCommand</value>
         <value>separator</value>
         <value>deleteCommand</value>
         <value>separator</value>
-        <bean class="org.springframework.richclient.command.support.ExitCommand" />
+        <bean class="org.springframework.richclient.command.support.ExitCommand"/>
       </list>
     </property>
   </bean>
-
   <!-- 
     Bean: newMenu
     Type: user named
@@ -99,7 +90,6 @@
       </list>
     </property>
   </bean>
-
   <!-- 
     Bean: windowMenu
     Type: user named
@@ -109,13 +99,12 @@
   <bean id="windowMenu" class="org.springframework.richclient.command.CommandGroupFactoryBean">
     <property name="members">
       <list>
-        <bean class="org.springframework.richclient.command.support.NewWindowCommand" />
+        <bean class="org.springframework.richclient.command.support.NewWindowCommand"/>
         <value>separator</value>
-        <bean class="org.springframework.richclient.command.support.ShowViewMenu" />
+        <bean class="org.springframework.richclient.command.support.ShowViewMenu"/>
       </list>
     </property>
   </bean>
-
   <!-- 
     Bean: helpMenu
     Type: user named
@@ -125,17 +114,15 @@
   <bean id="helpMenu" class="org.springframework.richclient.command.CommandGroupFactoryBean">
     <property name="members">
       <list>
-        <ref bean="helpContentsCommand" />
+        <ref bean="helpContentsCommand"/>
         <value>separator</value>
-        <ref bean="aboutCommand" />
+        <ref bean="aboutCommand"/>
       </list>
     </property>
   </bean>
-
   <bean id="helpContentsCommand" class="org.springframework.richclient.command.support.HelpContentsCommand">
-    <property name="helpSetPath" value="help/simple.hs" />
+    <property name="helpSetPath" value="help/simple.hs"/>
   </bean>
-
   <!-- 
     Bean: aboutCommand
     Type: user named
@@ -144,6 +131,5 @@
     a platform class to generate an about box from the configured application
     data in the application context.
   -->
-  <bean id="aboutCommand" class="org.springframework.richclient.command.support.AboutCommand" />
-
+  <bean id="aboutCommand" class="org.springframework.richclient.command.support.AboutCommand"/>
 </beans>

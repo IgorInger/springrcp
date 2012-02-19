@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-        "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-
-<chapter id="applications" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="applications">
   <title>Applications</title>
-
   <toc/>
-
   <section id="applications:lifecycle">
     <title>Application lifecycle</title>
     <para>
@@ -20,7 +16,6 @@
       command bean should be used for the menu, etc…
     </para>
   </section>
-
   <section id="applications:hooking">
     <title>Hooking into a lifecycle</title>
     <para>
@@ -32,7 +27,6 @@
       You could also stop an application from exiting (by asking a confirmation for example).
     </para>
   </section>
-
   <section id="applications:application">
     <title>Application</title>
     <para>
@@ -44,7 +38,6 @@
       the initial window and view.
     </para>
   </section>
-
   <section id="applications:example-login">
     <title>Example: adding login functionality</title>
     <para>
@@ -59,34 +52,40 @@
     <para>Assuming our handler will show a login screen and handle the login logic, we only need to hook it into the
       application lifecycle advisor:
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample1.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample1.java" parse="text"/>
+    </programlisting>
     <para>
       As you can see, this is quite easy. Of course you’d want to know when a user is already logged in and just creates
       a new application window (which also triggers this method), so it doesn’t show this login window again, something
       like holding a security context within your application.
     </para>
   </section>
-
   <section id="applications:other-uses">
     <title>Other possible uses</title>
     <para>
       Lifecycle advisor subclassing can also be handy in other aspects. Any Spring Rich Client application knows which
       lifecycle advisor is used for its execution. You can obtain this by calling
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample2.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample2.java" parse="text"/>
+    </programlisting>
     <para>
       You could for example create an application window factory that delivers different application window applications
       based on which lifecycle advisor was used:
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample3.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample3.java" parse="text"/>
+    </programlisting>
   </section>
-
   <section id="applications:statusbar">
     <title>Playing with the status bar</title>
     <para>
       Changing the status bar can be done by calling the statusbar through the lifecycle advisor:
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample4.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample4.java" parse="text"/>
+    </programlisting>
     <para>
       Again, if you’re creating your own lifecycle advisor, you’re able to override this method and perhaps supply your
       own status bar implementation.
@@ -113,7 +112,9 @@
       For example, if you’d want to add a clock to your status bar, you could create your own status bar implementation
       like this:
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample5.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample5.java" parse="text"/>
+    </programlisting>
     <para>
       This will result in a status bar like this:
     </para>
@@ -123,7 +124,6 @@
       </imageobject>
     </mediaobject>
   </section>
-
   <section id="applications:elaborate-example">
     <title>Elaborate example: Adding multiple toolbars to the screen</title>
     <para>
@@ -154,19 +154,31 @@
     <para>First, we’re going to extend the default lifecycle advisor with the ability to enter multiple toolbars, while
       maintaining backwards compatibility.
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample6.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample6.java" parse="text"/>
+    </programlisting>
     <para>Next, we’re going to create an application window that is able to show the multiple toolbars</para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample7.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample7.java" parse="text"/>
+    </programlisting>
     <para>Finally, a factory to create the new application window</para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/applications/java/sample8.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/applications/java/sample8.java" parse="text"/>
+    </programlisting>
     <para>Now, to configure the multiple toolbars, here are the beans you need to configure. First the application
       lifecycle in the main application context
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/applications/xml/sample1.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/applications/xml/sample1.xml" parse="text"/>
+    </programlisting>
     <para>You also need to define the application window factory in your context, so it’ll use that one.</para>
-    <programlisting language="xml"><xi:include href="../codesamples/applications/xml/sample2.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/applications/xml/sample2.xml" parse="text"/>
+    </programlisting>
     <para>And then the toolbars in the command context</para>
-    <programlisting language="xml"><xi:include href="../codesamples/applications/xml/sample3.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/applications/xml/sample3.xml" parse="text"/>
+    </programlisting>
     <para>That’s all there is to it. I’ve started from a project created with the maven archetype, so you can try it out
       if you want. The result will be something like this:
     </para>
@@ -176,7 +188,6 @@
       </imageobject>
     </mediaobject>
   </section>
-
   <section id="applications:lookandfeel">
     <title>Changing the look and feel of you application</title>
     <para>
@@ -184,11 +195,15 @@
       Swing based framework, changing the default look-and-feel should be straightforward. Which it is. It’s as simple
       as defining a single bean in your context. In this example, we’ll change it to one of JGoodies’ Plastic themes.
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/applications/xml/sample4.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/applications/xml/sample4.xml" parse="text"/>
+    </programlisting>
     <para>
       Say we would like it to Metal, one of the standard look-and-feels in Java
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/applications/xml/sample5.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/applications/xml/sample5.xml" parse="text"/>
+    </programlisting>
     <para>
       That's all there is to it. 
     </para>

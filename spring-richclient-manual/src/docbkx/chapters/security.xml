@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-        "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-
-<chapter id="security" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="security">
   <title>Security</title>
-
   <toc/>
-  
   <section id="security:integrating">
     <title>Integration security in a GUI application</title>
     <para>
@@ -35,8 +31,12 @@
       Simply integrating login functionality is easy: provide a login command in your commands context and make your
       lifecycle advisor runs this command before showing the screen.
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/security/xml/sample1.xml" parse="text"/></programlisting>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/security/java/sample1.java" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/security/xml/sample1.xml" parse="text"/>
+    </programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/security/java/sample1.java" parse="text"/>
+    </programlisting>
     <para>
       The login command uses service location to find the application security manager. If no security manager is found
       in the context, the default implementation will be used.
@@ -53,7 +53,9 @@
       Spring Rich Client has a bean post processor that can enable any class to be notified of security changes. You can
       define this post processor as
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/security/xml/sample2.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/security/xml/sample2.xml" parse="text"/>
+    </programlisting>
     <para>
       If your classes implement either the AuthenticationAware or LoginAware interface, this bean postprocessor will
       make sure these get notified of login changes.
@@ -68,7 +70,9 @@
     <para>
       For example, a secured command bean in the commands context may look like this:
     </para>
-    <programlisting language="xml"><xi:include href="../codesamples/security/xml/sample3.xml" parse="text"/></programlisting>
+    <programlisting language="xml">
+      <xi:include href="../codesamples/security/xml/sample3.xml" parse="text"/>
+    </programlisting>
     <para>
       This assumes you have a security controller named mySecurityController defined in your application context.
     </para>

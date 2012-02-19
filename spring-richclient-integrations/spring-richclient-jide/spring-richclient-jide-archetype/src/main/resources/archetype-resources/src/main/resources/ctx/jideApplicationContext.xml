@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
-    "http://www.springframework.org/dtd/spring-beans.dtd">
-    
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-
-  <bean id="application"
-        class="org.springframework.richclient.application.Application">
+  <bean id="application" class="org.springframework.richclient.application.Application">
     <constructor-arg index="0" ref="applicationDescriptor"/>
     <constructor-arg index="1" ref="lifecycleAdvisor"/>
   </bean>
-
-
-  <bean id="applicationDescriptor"
-        class="org.springframework.richclient.application.support.DefaultApplicationDescriptor">
+  <bean id="applicationDescriptor" class="org.springframework.richclient.application.support.DefaultApplicationDescriptor">
     <property name="version" value="0.2"/>
     <property name="buildId" value="2006-10"/>
   </bean>
-
   <!--
      JIDE specific replacement of the ApplicationLifecycleAdvisor.
 
@@ -24,20 +16,15 @@
      needed (ie use the Spring version) unless the JIDE status bar is
      required.
    -->
-  <bean id="lifecycleAdvisor"
-        class="com.jidesoft.spring.richclient.docking.JideApplicationLifecycleAdvisor">
-    <property name="windowCommandBarDefinitions"
-              value="ui/commandsContext.xml"/>
+  <bean id="lifecycleAdvisor" class="com.jidesoft.spring.richclient.docking.JideApplicationLifecycleAdvisor">
+    <property name="windowCommandBarDefinitions" value="ui/commandsContext.xml"/>
     <property name="startingPageId" value="mainPage"/>
     <property name="statusBar" ref="statusBar"/>
   </bean>
-
   <!--
      Event multicaster used in Spring
     -->
-  <bean id="applicationEventMulticaster"
-        class="org.springframework.context.event.SimpleApplicationEventMulticaster"/>
-
+  <bean id="applicationEventMulticaster" class="org.springframework.context.event.SimpleApplicationEventMulticaster"/>
   <!--
      Replacement of the Spring RCP status bar by the JIDE version. In addition to
      replacing the message and progress parts of the Spring RCP status bar, it also
@@ -47,9 +34,7 @@
      Note that is dependent on the JIDE look and feel configurer for static init
      reasons.
     -->
-  <bean name="statusBar"
-        class="com.jidesoft.spring.richclient.components.JideStatusBarCommandGroup"
-        depends-on="lookAndFeelConfigurer">
+  <bean name="statusBar" class="com.jidesoft.spring.richclient.components.JideStatusBarCommandGroup" depends-on="lookAndFeelConfigurer">
     <property name="statusBarItems">
       <list>
         <ref bean="memoryStatusBarItem"/>
@@ -58,8 +43,6 @@
     </property>
     <property name="displayCancelButton" value="false"/>
   </bean>
-
-
   <!--
      Definition of some provided status bar items that are added to the status bar
      in the statusBar definition
@@ -67,45 +50,28 @@
   <bean name="memoryStatusBarItem" class="com.jidesoft.status.MemoryStatusBarItem"/>
   <bean name="timeStatusBarItem" class="com.jidesoft.status.TimeStatusBarItem"/>
   <bean name="resizeStatusBarItem" class="com.jidesoft.status.ResizeStatusBarItem"/>
-
   <!--<bean name="statusBarListener" class="com.jidesoft.spring.richclient.googledemo.view.StatusBarListener">-->
   <!--<property name="statusBarCommandGroup" ref="statusBar"/>-->
   <!--</bean>-->
-
   <!--
      Look and feel configurator that allows the specification of different
      look and feels for different platforms.
    -->
-  <bean id="com.jidesoft.plaf.LookAndFeelFactory.OFFICE2003_STYLE"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="com.jidesoft.plaf.LookAndFeelFactory.XERTO_STYLE"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="com.jidesoft.plaf.LookAndFeelFactory.WINDOWS_LNF"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="com.jidesoft.plaf.LookAndFeelFactory.PLASTIC3D_LNF"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="com.jidesoft.plaf.LookAndFeelFactory.PLASTIC3D_LNF_1_3"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="lookAndFeelConfigurer"
-        class="com.jidesoft.spring.richclient.components.JideLookAndFeelConfigurer">
-
+  <bean id="com.jidesoft.plaf.LookAndFeelFactory.OFFICE2003_STYLE" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.plaf.LookAndFeelFactory.XERTO_STYLE" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.plaf.LookAndFeelFactory.WINDOWS_LNF" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.plaf.LookAndFeelFactory.PLASTIC3D_LNF" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.plaf.LookAndFeelFactory.PLASTIC3D_LNF_1_3" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="lookAndFeelConfigurer" class="com.jidesoft.spring.richclient.components.JideLookAndFeelConfigurer">
     <property name="linuxLNF" ref="com.jidesoft.plaf.LookAndFeelFactory.PLASTIC3D_LNF_1_3"/>
     <property name="windowsLNF" ref="com.jidesoft.plaf.LookAndFeelFactory.WINDOWS_LNF"/>
     <property name="windowsStyle" ref="com.jidesoft.plaf.LookAndFeelFactory.XERTO_STYLE"/>
     <property name="windowsXPStyle" ref="com.jidesoft.plaf.LookAndFeelFactory.OFFICE2003_STYLE"/>
   </bean>
-
   <bean id="serviceLocator" class="org.springframework.richclient.application.ApplicationServicesLocator">
     <property name="applicationServices" ref="applicationServices"/>
   </bean>
-
-  <bean id="applicationServices"
-        class="org.springframework.richclient.application.support.DefaultApplicationServices">
+  <bean id="applicationServices" class="org.springframework.richclient.application.support.DefaultApplicationServices">
     <property name="applicationObjectConfigurerId">
       <idref bean="applicationObjectConfigurer"/>
     </property>
@@ -136,12 +102,8 @@
     <!--</map>-->
     <!--</property>-->
   </bean>
-
-  <bean id="applicationObjectConfigurer" depends-on="serviceLocator"
-        class="org.springframework.richclient.application.config.DefaultApplicationObjectConfigurer"/>
-
-  <bean id="messageSource"
-        class="org.springframework.context.support.ResourceBundleMessageSource">
+  <bean id="applicationObjectConfigurer" depends-on="serviceLocator" class="org.springframework.richclient.application.config.DefaultApplicationObjectConfigurer"/>
+  <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
     <property name="basenames">
       <list>
         <value>ui.messages</value>
@@ -149,9 +111,7 @@
       </list>
     </property>
   </bean>
-
-  <bean id="imageResourcesFactory"
-        class="org.springframework.context.support.ResourceMapFactoryBean">
+  <bean id="imageResourcesFactory" class="org.springframework.context.support.ResourceMapFactoryBean">
     <property name="locations">
       <list>
         <value>classpath:ui/images.properties</value>
@@ -159,18 +119,13 @@
     </property>
     <property name="resourceBasePath" value="/images/"/>
   </bean>
-
-  <bean id="imageSource"
-        class="org.springframework.richclient.image.DefaultImageSource">
+  <bean id="imageSource" class="org.springframework.richclient.image.DefaultImageSource">
     <constructor-arg index="0" ref="imageResourcesFactory"/>
     <property name="brokenImageIndicator" value="images/alert/error_obj.gif"/>
   </bean>
-
-  <bean id="iconSource"
-        class="org.springframework.richclient.image.DefaultIconSource">
+  <bean id="iconSource" class="org.springframework.richclient.image.DefaultIconSource">
     <constructor-arg index="0" ref="imageSource"/>
   </bean>
-
   <bean id="applicationWindowFactory" class="com.jidesoft.spring.richclient.docking.JideApplicationWindowFactory">
     <property name="profileKey" value="Spring RCP based on JIDE"/>
     <property name="saveLayoutOnClose" value="true"/>
@@ -179,21 +134,11 @@
     <property name="showWorkspace" value="true"/>
     <property name="layoutVersion" value="1"/>
   </bean>
-
   <bean id="applicationPageFactory" class="com.jidesoft.spring.richclient.docking.JideApplicationPageFactory"/>
-
-  <bean id="com.jidesoft.docking.DockingManager.DOUBLE_CLICK_NONE"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="com.jidesoft.docking.DockingManager.DOUBLE_CLICK_TO_FLOAT"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-  <bean id="com.jidesoft.docking.DockingManager.DOUBLE_CLICK_TO_MAXIMIZE"
-        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
-
-
-  <bean id="formComponentInterceptorFactory"
-        class="org.springframework.richclient.form.builder.support.ChainedInterceptorFactory">
+  <bean id="com.jidesoft.docking.DockingManager.DOUBLE_CLICK_NONE" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockingManager.DOUBLE_CLICK_TO_FLOAT" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="com.jidesoft.docking.DockingManager.DOUBLE_CLICK_TO_MAXIMIZE" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+  <bean id="formComponentInterceptorFactory" class="org.springframework.richclient.form.builder.support.ChainedInterceptorFactory">
     <property name="interceptorFactories">
       <list>
         <bean class="org.springframework.richclient.form.builder.support.ColorValidationInterceptorFactory">
@@ -207,6 +152,5 @@
       </list>
     </property>
   </bean>
-
   <bean name="workspaceListener" class="com.jidesoft.spring.richclient.docking.editor.WorkspaceListener"/>
 </beans>

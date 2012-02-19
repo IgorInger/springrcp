@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-    "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
 <book xmlns:xi="http://www.w3.org/2001/XInclude">
   <bookinfo>
     <title>Spring Richclient Reference Guide</title>
-
-
     <releaseinfo>&version;</releaseinfo>
-
     <authorgroup>
       <author>
         <othername>The Spring RCP team</othername>
       </author>
     </authorgroup>
-
     <legalnotice>
       <para>
         Copies of this document may be made for your own use and for
@@ -24,11 +18,8 @@
       </para>
     </legalnotice>
   </bookinfo>
-
   <toc/>
-
   <xi:include href="preface.xml"/>
-
   <xi:include href="chapters/introduction.xml"/>
   <xi:include href="chapters/applications.xml"/>
   <xi:include href="chapters/commands.xml"/>

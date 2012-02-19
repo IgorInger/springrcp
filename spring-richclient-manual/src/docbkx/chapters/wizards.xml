@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-"http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
-
-<chapter id="wizards" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd">
+<chapter xmlns:xi="http://www.w3.org/2001/XInclude" id="wizards">
   <title>Wizards</title>
-
   <toc/>
-  
   <section id="wizards:why">
     <title>Why use wizards</title>
     <para>
@@ -31,7 +27,9 @@
       Creating wizard will most of the time mean subclassing the AbstractWizard class and building a wizard as a
       separate component.
     </para>
-    <programlisting language="java:nogutter"><xi:include href="../codesamples/wizards/java/sample1.java" parse="text"/></programlisting>
+    <programlisting language="java:nogutter">
+      <xi:include href="../codesamples/wizards/java/sample1.java" parse="text"/>
+    </programlisting>
     <para>
       This wizard will make 2 forms and when the wizard completes (the user presses finish), it’ll do some logic.
     </para>
