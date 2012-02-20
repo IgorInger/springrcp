@@ -13,11 +13,11 @@
     Spring Rich Client integration projects
   </description>
   <modules>
-    <module>spring-richclient-vldocking</module>
-    <module>spring-richclient-flexdock</module>
-    <module>spring-richclient-swingdocking</module>
+    <module>vldocking</module>
+    <module>flexdock</module>
+    <module>swingdocking</module>
     <!-- JIDE integration isn't built automatically due to licensing  -->
-    <!--<module>spring-richclient-jide</module>-->
+    <!--<module>jide</module>-->
   </modules>
   <dependencies>
     <dependency>
