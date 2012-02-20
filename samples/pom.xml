@@ -12,12 +12,12 @@
   <name>Spring Rich Client samples</name>
   <description>Spring Rich Client samples</description>
   <modules>
-    <!--<module>spring-richclient-samples-petclinic</module>-->
-    <module>spring-richclient-samples-simple</module>
-    <module>spring-richclient-samples-vldocking</module>
-    <module>spring-richclient-samples-swingdocking</module>
-    <module>spring-richclient-samples-showcase</module>
-    <module>spring-richclient-samples-dataeditor</module>
+    <!--<module>petclinic</module>-->
+    <module>simple</module>
+    <module>vldocking</module>
+    <module>swingdocking</module>
+    <module>showcase</module>
+    <module>dataeditor</module>
   </modules>
   <dependencies/>
 </project>
