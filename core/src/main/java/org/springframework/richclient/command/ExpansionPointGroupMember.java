@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,7 +24,7 @@ import org.springframework.richclient.command.config.CommandButtonConfigurer;
 import org.springframework.richclient.util.Assert;
 
 /**
- * A collection of {@link GroupMember}s that represent a subsection of a {@link CommandGroup}. 
+ * A collection of {@link GroupMember}s that represent a subsection of a {@link CommandGroup}.
  *
  */
 public class ExpansionPointGroupMember extends GroupMember {
@@ -50,7 +50,7 @@ public class ExpansionPointGroupMember extends GroupMember {
      * Creates a new {@code ExpansionPointGroupMember} with the given name.
      *
      * @param expansionPointName The name of the expansion point. Must not be null.
-     * 
+     *
      * @throws IllegalArgumentException if {@code expansionPointName} is null.
      */
     protected ExpansionPointGroupMember(String expansionPointName) {
@@ -113,22 +113,22 @@ public class ExpansionPointGroupMember extends GroupMember {
      * {@link GroupMember#onAdded()} method will be called.
      *
      * @param member The member to be added. Must not be null.
-     * 
+     *
      * @throws IllegalArgumentException if {@code member} is null.
      */
     protected void add(GroupMember member) {
-        
+
         Assert.required(member, "member");
-        
+
         if (members.add(member)) {
             member.onAdded();
         }
-        
+
     }
 
     /**
-     * If the given member belongs to this exponsion point, it will be removed. Its 
-     * {@link GroupMember#onRemoved()} method will be called.  
+     * If the given member belongs to this exponsion point, it will be removed. Its
+     * {@link GroupMember#onRemoved()} method will be called.
      *
      * @param member The member that is to be removed.
      */
@@ -146,21 +146,21 @@ public class ExpansionPointGroupMember extends GroupMember {
     }
 
     /**
-     * Adds each member of this expansion point to a GUI container using the given container 
-     * populator. Leading and trailing separators will also be added as determined by the 
+     * Adds each member of this expansion point to a GUI container using the given container
+     * populator. Leading and trailing separators will also be added as determined by the
      * appropriate flags set on this instance.
-     * 
+     *
      * {@inheritDoc}
      */
-    protected void fill(GroupContainerPopulator containerPopulator, 
-                        Object controlFactory, 
+    protected void fill(GroupContainerPopulator containerPopulator,
+                        Object controlFactory,
                         CommandButtonConfigurer configurer,
                         List previousButtons) {
-        
+
         Assert.required(containerPopulator, "containerPopulator");
         Assert.required(controlFactory, "controlFactory");
         Assert.required(configurer, "configurer");
-        
+
         if (members.size() > 0 && isLeadingSeparator()) {
             containerPopulator.addSeparator();
         }
@@ -173,13 +173,13 @@ public class ExpansionPointGroupMember extends GroupMember {
         if (members.size() > 0 && isEndingSeparator()) {
             containerPopulator.addSeparator();
         }
-        
+
     }
 
     /**
      * Returns the group member that manages the command with the given id, or null if none of the
      * members in this expansion point manage a command with that id.
-     * 
+     *
      * @param commandId The id of the command whose managing member is to be returned.
      * @return The group member that manages the command with the given id, or null.
      */

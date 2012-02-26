@@ -36,9 +36,9 @@ import org.springframework.util.StringUtils;
  * <code>fieldcontext.field</code> - without a contextId and no suffix<br>
  * <code>field</code> - without a contextId and no suffix<br>
  * <p>
- * 
+ *
  * @author Mathias Broekelmann
- * 
+ *
  */
 public class DefaultMessageCodeStrategy implements MessageCodeStrategy {
 
@@ -46,7 +46,7 @@ public class DefaultMessageCodeStrategy implements MessageCodeStrategy {
         boolean hasContextId = StringUtils.hasText(contextId);
         String[] fieldPathElements = StringUtils.delimitedListToStringArray(field, ".");
         Collection keys = new ArrayList((hasContextId ? 2 * fieldPathElements.length : fieldPathElements.length)
-                * (suffixes == null ? 1 : suffixes.length));
+                                        * (suffixes == null ? 1 : suffixes.length));
         if (hasContextId) {
             String prefix = contextId + '.';
             addKeys(keys, prefix, fieldPathElements, suffixes);

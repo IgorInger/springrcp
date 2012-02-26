@@ -53,7 +53,7 @@ public class SetupWizard extends AbstractWizard implements ActionCommandExecutor
 
     protected boolean cancelConfirmed() {
         return JOptionPane.showConfirmDialog(wizardDialog.getDialog(), getCancelMessage(), getCancelTitle(),
-                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.NO_OPTION;
+                                             JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) != JOptionPane.NO_OPTION;
     }
 
     protected String getCancelTitle() {

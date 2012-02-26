@@ -24,14 +24,14 @@ package org.springframework.binding.validation;
  */
 public interface RichValidator extends Validator {
 
-	/**
-	 * Validates the given property of the provided object.
-	 *
-	 * @param object the object to validate (may be an implementation of
-	 * @link org.springframework.binding.PropertyAccessStrategy)
-	 * @param property the name of the only property that has changed since the
-	 * last call to validate.
-	 * @return the results on the validation
-	 */
-	ValidationResults validate(Object object, String property);
+    /**
+     * Validates the given property of the provided object.
+     *
+     * @param object the object to validate (may be an implementation of
+     * @link org.springframework.binding.PropertyAccessStrategy)
+     * @param property the name of the only property that has changed since the
+     * last call to validate.
+     * @return the results on the validation
+     */
+    ValidationResults validate(Object object, String property);
 }

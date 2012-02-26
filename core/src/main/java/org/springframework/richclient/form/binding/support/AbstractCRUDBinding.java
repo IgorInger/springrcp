@@ -6,8 +6,7 @@ import org.springframework.richclient.command.AbstractCommand;
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract class AbstractCRUDBinding extends CustomBinding
-{
+public abstract class AbstractCRUDBinding extends CustomBinding {
 
     private AbstractCommand removeCommand;
 
@@ -27,20 +26,17 @@ public abstract class AbstractCRUDBinding extends CustomBinding
 
     private boolean showDetailSupported;
 
-    protected AbstractCRUDBinding(FormModel formModel, String formPropertyPath, Class requiredSourceClass)
-    {
+    protected AbstractCRUDBinding(FormModel formModel, String formPropertyPath, Class requiredSourceClass) {
         super(formModel, formPropertyPath, requiredSourceClass);
     }
 
-    protected List<AbstractCommand> getCommands()
-    {
+    protected List<AbstractCommand> getCommands() {
         if (this.commands == null)
             this.commands = createCommands();
         return this.commands;
     }
 
-    protected List<AbstractCommand> createCommands()
-    {
+    protected List<AbstractCommand> createCommands() {
         int i = isAddSupported() ? 1 : 0;
         i = isRemoveSupported() ? i + 1 : i;
         i = isShowDetailSupported() ? i + 1 : i;
@@ -57,8 +53,7 @@ public abstract class AbstractCRUDBinding extends CustomBinding
         return this.commands;
     }
 
-    protected AbstractCommand getAddCommand()
-    {
+    protected AbstractCommand getAddCommand() {
         if (this.addCommand == null)
             this.addCommand = createAddCommand();
         return this.addCommand;
@@ -66,8 +61,7 @@ public abstract class AbstractCRUDBinding extends CustomBinding
 
     abstract protected AbstractCommand createAddCommand();
 
-    protected AbstractCommand getRemoveCommand()
-    {
+    protected AbstractCommand getRemoveCommand() {
         if (this.removeCommand == null)
             this.removeCommand = createRemoveCommand();
         return this.removeCommand;
@@ -75,8 +69,7 @@ public abstract class AbstractCRUDBinding extends CustomBinding
 
     abstract protected AbstractCommand createRemoveCommand();
 
-    protected AbstractCommand getDetailCommand()
-    {
+    protected AbstractCommand getDetailCommand() {
         if (this.detailCommand == null)
             this.detailCommand = createDetailCommand();
         return this.detailCommand;
@@ -84,8 +77,7 @@ public abstract class AbstractCRUDBinding extends CustomBinding
 
     abstract protected AbstractCommand createDetailCommand();
 
-    protected AbstractCommand getEditCommand()
-    {
+    protected AbstractCommand getEditCommand() {
         if (this.editCommand == null)
             this.editCommand = createEditCommand();
         return this.editCommand;
@@ -93,43 +85,35 @@ public abstract class AbstractCRUDBinding extends CustomBinding
 
     abstract protected AbstractCommand createEditCommand();
 
-    public boolean isAddSupported()
-    {
+    public boolean isAddSupported() {
         return addSupported;
     }
 
-    public void setAddSupported(boolean addSupported)
-    {
+    public void setAddSupported(boolean addSupported) {
         this.addSupported = addSupported;
     }
 
-    public boolean isEditSupported()
-    {
+    public boolean isEditSupported() {
         return editSupported;
     }
 
-    public void setEditSupported(boolean editSupported)
-    {
+    public void setEditSupported(boolean editSupported) {
         this.editSupported = editSupported;
     }
 
-    public boolean isRemoveSupported()
-    {
+    public boolean isRemoveSupported() {
         return removeSupported;
     }
 
-    public void setRemoveSupported(boolean removeSupported)
-    {
+    public void setRemoveSupported(boolean removeSupported) {
         this.removeSupported = removeSupported;
     }
 
-    public boolean isShowDetailSupported()
-    {
+    public boolean isShowDetailSupported() {
         return showDetailSupported;
     }
 
-    public void setShowDetailSupported(boolean showDetailSupported)
-    {
+    public void setShowDetailSupported(boolean showDetailSupported) {
         this.showDetailSupported = showDetailSupported;
     }
 }

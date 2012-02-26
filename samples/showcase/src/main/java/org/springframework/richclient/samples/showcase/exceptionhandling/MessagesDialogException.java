@@ -10,15 +10,15 @@ import org.springframework.richclient.exceptionhandling.MessagesDialogExceptionH
  */
 public class MessagesDialogException extends RuntimeException {
 
-	public MessagesDialogException() {
-		this("Some message");
-	}
+    public MessagesDialogException() {
+        this("Some message");
+    }
 
-	public MessagesDialogException(String message) {
-		this(message, new UnsupportedOperationException("Something is not supported."));
-	}
+    public MessagesDialogException(String message) {
+        this(message, new UnsupportedOperationException("Something is not supported."));
+    }
 
-	public MessagesDialogException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public MessagesDialogException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

@@ -33,12 +33,12 @@ public class MultiViewPageDescriptorTests extends TestCase {
 
         EasyMock.verify(mockBuilder);
     }
-    
+
     public void testBeanAware() {
         MultiViewPageDescriptor pageDescriptor = new MultiViewPageDescriptor();
-        
+
         pageDescriptor.setBeanName("bean name");
-        
+
         assertEquals("the bean name must be set as id", "bean name", pageDescriptor.getId());
     }
 }

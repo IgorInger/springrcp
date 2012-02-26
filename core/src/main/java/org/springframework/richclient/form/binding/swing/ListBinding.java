@@ -63,11 +63,11 @@ public class ListBinding extends AbstractListBinding {
 
     /**
      * Returns a conversion executor which converts a value of the given sourceType into the fieldType
-     * 
+     *
      * @param sourceType
      *            the sourceType
      * @return true if a converter is available, otherwise false
-     * 
+     *
      * @see #getPropertyType()
      */
     protected ConversionExecutor getPropertyConversionExecutor() {
@@ -103,7 +103,7 @@ public class ListBinding extends AbstractListBinding {
 
     /**
      * Converts the given values into a type that matches the fieldType
-     * 
+     *
      * @param selectedValues
      *            the selected values
      * @return the value which can be assigned to the type of the field
@@ -120,9 +120,9 @@ public class ListBinding extends AbstractListBinding {
         if (!isPropertyConversionExecutorAvailable() && getSelectionMode() != ListSelectionModel.SINGLE_SELECTION) {
             if (logger.isWarnEnabled()) {
                 logger.warn("Selection mode for list field " + getProperty() + " forced to single selection."
-                        + " If multiple selection is needed use a collection type (List, Collection, Object[])"
-                        + " or provide a suitable converter to convert Object[] instances to property type "
-                        + getPropertyType());
+                            + " If multiple selection is needed use a collection type (List, Collection, Object[])"
+                            + " or provide a suitable converter to convert Object[] instances to property type "
+                            + getPropertyType());
             }
             setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         }

@@ -265,7 +265,7 @@ public class ComboBoxBindingTests extends BindingAbstractTests {
         cb.setSelectedItem(null);
         assertEquals(emptyValue, model.getSelectedItem());
         assertEquals(null, vm.getValue());
-        
+
         cb.setSelectedItem(emptyValue);
         testListener.contentsChanged = null;
         testListener.intervalAdded = null;

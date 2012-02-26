@@ -26,7 +26,7 @@ import org.springframework.richclient.form.binding.support.CustomBinding;
 
 /**
  * @author Mathias Broekelmann
- * 
+ *
  */
 public class ToggleButtonBinding extends CustomBinding {
 
@@ -49,11 +49,11 @@ public class ToggleButtonBinding extends CustomBinding {
         toggleButton.setSelected(Boolean.TRUE.equals(getValue()));
         return toggleButton;
     }
-    
+
     void setConfigureFace(boolean configureFace) {
-        this.configureFace = configureFace;        
+        this.configureFace = configureFace;
     }
-    
+
     protected void readOnlyChanged() {
         toggleButton.setEnabled(isEnabled() && !isReadOnly());
     }

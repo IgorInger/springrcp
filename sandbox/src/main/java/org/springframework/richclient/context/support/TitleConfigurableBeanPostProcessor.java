@@ -12,36 +12,35 @@ import org.springframework.richclient.core.TitleConfigurable;
 import org.springframework.util.StringUtils;
 
 public class TitleConfigurableBeanPostProcessor implements BeanPostProcessor {
-	/** The key fragment used to retrieve the title for a given object. */
-	public static final String TITLE_KEY = "title";
+    /** The key fragment used to retrieve the title for a given object. */
+    public static final String TITLE_KEY = "title";
 
-	private MessageSource messageSource;
+    private MessageSource messageSource;
 
-	public TitleConfigurableBeanPostProcessor(MessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
+    public TitleConfigurableBeanPostProcessor(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
-	public Object postProcessAfterInitialization(Object bean, String name) throws BeansException {
-		if (bean instanceof TitleConfigurable) {
-			TitleConfigurable configurable = (TitleConfigurable) bean;
+    public Object postProcessAfterInitialization(Object bean, String name) throws BeansException {
+        if (bean instanceof TitleConfigurable) {
+            TitleConfigurable configurable = (TitleConfigurable) bean;
 
-			try {
-				String title = messageSource.getMessage(new DefaultMessageSourceResolvable(name + "." + TITLE_KEY),
-						Locale.getDefault());
+            try {
+                String title = messageSource.getMessage(new DefaultMessageSourceResolvable(name + "." + TITLE_KEY),
+                                                        Locale.getDefault());
 
-				if (StringUtils.hasText(title)) {
-					configurable.setTitle(title);
-				}
-			}
-			catch (NoSuchMessageException e) {
-				throw new BeanInitializationException("Unable to initialize bean " + name, e);
-			}
-		}
+                if (StringUtils.hasText(title)) {
+                    configurable.setTitle(title);
+                }
+            } catch (NoSuchMessageException e) {
+                throw new BeanInitializationException("Unable to initialize bean " + name, e);
+            }
+        }
 
-		return bean;
-	}
+        return bean;
+    }
 
-	public Object postProcessBeforeInitialization(Object bean, String name) throws BeansException {
-		return bean;
-	}
+    public Object postProcessBeforeInitialization(Object bean, String name) throws BeansException {
+        return bean;
+    }
 }

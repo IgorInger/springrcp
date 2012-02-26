@@ -23,24 +23,24 @@ import net.sf.nachocalendar.components.DateField;
 
 /**
  * Tests for NachoCalendarDateFieldBinder and NachoCalendarDateFieldBinding
- * 
+ *
  * @author Peter De Bruycker
  */
 public class NachoCalendarDateFieldBinderTests extends AbstractDateFieldBindingTestCase {
 
-	protected AbstractDateFieldBinder createBinder() {
-		return new NachoCalendarDateFieldBinder();
-	}
+    protected AbstractDateFieldBinder createBinder() {
+        return new NachoCalendarDateFieldBinder();
+    }
 
-	protected Date getValue(JComponent dateField) {
-		return (Date) ((DateField) dateField).getValue();
-	}
+    protected Date getValue(JComponent dateField) {
+        return (Date) ((DateField) dateField).getValue();
+    }
 
-	protected void setValue(JComponent dateField, Date date) {
-		((DateField) dateField).setValue(date);
-	}
+    protected void setValue(JComponent dateField, Date date) {
+        ((DateField) dateField).setValue(date);
+    }
 
-	protected boolean isReadOnly(JComponent dateField) {
-		return !dateField.isEnabled();
-	}
+    protected boolean isReadOnly(JComponent dateField) {
+        return !dateField.isEnabled();
+    }
 }

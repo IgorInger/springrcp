@@ -37,7 +37,7 @@ public class DefaultExceptionPurgerTests extends TestCase {
         assertEquals(b1, checkIncluded(BException.class, DException.class));
         assertEquals(b1, checkIncluded(DException.class, BException.class));
     }
-    
+
     public Throwable checkIncluded(Class ... includedThrowableClasses) {
         return new DefaultExceptionPurger(Arrays.asList(includedThrowableClasses), null).purge(a1);
     }
@@ -60,11 +60,11 @@ public class DefaultExceptionPurgerTests extends TestCase {
         assertEquals(d1, checkExcluded(CException.class, DException.class));
         assertEquals(d1, checkExcluded(DException.class, CException.class));
     }
-    
+
     public Throwable checkExcluded(Class ... excludedThrowableClasses) {
         return new DefaultExceptionPurger(null, Arrays.asList(excludedThrowableClasses)).purge(a1);
     }
-    
+
     private class AException extends RuntimeException {
         private AException(Throwable cause) {
             super(cause);
@@ -84,5 +84,5 @@ public class DefaultExceptionPurgerTests extends TestCase {
     }
     private class ZException extends RuntimeException {
     }
-    
+
 }

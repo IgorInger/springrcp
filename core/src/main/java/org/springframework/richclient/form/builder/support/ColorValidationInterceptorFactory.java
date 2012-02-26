@@ -39,8 +39,7 @@ import java.util.Map;
  *
  * @author oliverh
  */
-public class ColorValidationInterceptorFactory implements FormComponentInterceptorFactory
-{
+public class ColorValidationInterceptorFactory implements FormComponentInterceptorFactory {
 
     private static final Color DEFAULT_ERROR_COLOR = new Color(255, 220, 220);
 
@@ -48,37 +47,30 @@ public class ColorValidationInterceptorFactory implements FormComponentIntercept
 
     private Map<Severity, Color> colorMap = new HashMap<Severity, Color>();
 
-    public ColorValidationInterceptorFactory()
-    {
+    public ColorValidationInterceptorFactory() {
         colorMap.put(Severity.ERROR, DEFAULT_ERROR_COLOR);
         colorMap.put(Severity.WARNING, DEFAULT_WARNING_COLOR);
     }
 
-    public void setColorMap(Map<Severity, Color> colorMap)
-    {
+    public void setColorMap(Map<Severity, Color> colorMap) {
         this.colorMap = colorMap;
     }
 
-    public void setErrorColor(Color color)
-    {
+    public void setErrorColor(Color color) {
         colorMap.put(Severity.ERROR, color);
     }
 
-    public void setWarningColor(Color color)
-    {
+    public void setWarningColor(Color color) {
         colorMap.put(Severity.WARNING, color);
     }
 
-    public FormComponentInterceptor getInterceptor(FormModel formModel)
-    {
+    public FormComponentInterceptor getInterceptor(FormModel formModel) {
         return new ColorValidationInterceptor(formModel);
     }
 
-    private class ColorValidationInterceptor extends ValidationInterceptor
-    {
+    private class ColorValidationInterceptor extends ValidationInterceptor {
 
-        public ColorValidationInterceptor(FormModel formModel)
-        {
+        public ColorValidationInterceptor(FormModel formModel) {
             super(formModel);
         }
 
@@ -91,8 +83,7 @@ public class ColorValidationInterceptorFactory implements FormComponentIntercept
         }
 
         @Override
-        protected JComponent getInnerComponent(JComponent component)
-        {
+        protected JComponent getInnerComponent(JComponent component) {
             if (component instanceof JXDatePicker)
                 return ((JXDatePicker)component).getEditor();
             if (component instanceof HasValidationComponent)
@@ -121,8 +112,7 @@ public class ColorValidationInterceptorFactory implements FormComponentIntercept
      * @author jh
      *
      */
-    private class ColorChanger implements Messagable
-    {
+    private class ColorChanger implements Messagable {
         /**
          * Reference to the component to switch colors.
          */
@@ -134,8 +124,7 @@ public class ColorValidationInterceptorFactory implements FormComponentIntercept
          * @param component
          *            component on which to change color.
          */
-        public ColorChanger(JTextComponent component)
-        {
+        public ColorChanger(JTextComponent component) {
             this.component = component;
         }
 
@@ -144,8 +133,7 @@ public class ColorValidationInterceptorFactory implements FormComponentIntercept
          * Set the color according to the enabled state. When enabled, check
          * component's enabled and editable state for correct background color.
          */
-        public void setMessage(Message message)
-        {
+        public void setMessage(Message message) {
             Color colorToSet = message == null ? null : colorMap.get(message.getSeverity());
             if (colorToSet != null)
                 component.setBackground(colorToSet);
@@ -157,20 +145,16 @@ public class ColorValidationInterceptorFactory implements FormComponentIntercept
                 component.setBackground( UIManager.getColor("TextField.background"));
         }
 
-        public void addPropertyChangeListener(PropertyChangeListener listener)
-        {
+        public void addPropertyChangeListener(PropertyChangeListener listener) {
         }
 
-        public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener)
-        {
+        public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         }
 
-        public void removePropertyChangeListener(PropertyChangeListener listener)
-        {
+        public void removePropertyChangeListener(PropertyChangeListener listener) {
         }
 
-        public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener)
-        {
+        public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         }
     }
 }

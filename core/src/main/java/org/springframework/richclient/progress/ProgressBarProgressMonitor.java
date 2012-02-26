@@ -22,7 +22,7 @@ import org.springframework.util.Assert;
 /**
  * <code>ProgressMonitor</code> implementation that delegates to a
  * <code>JProgressBar</code>.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class ProgressBarProgressMonitor implements ProgressMonitor {

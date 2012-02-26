@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -43,33 +43,32 @@ import org.springframework.richclient.application.ApplicationLauncher;
  */
 public class SimpleVLDockingApp {
 
-	private static final Log logger = LogFactory.getLog(SimpleVLDockingApp.class);
+    private static final Log logger = LogFactory.getLog(SimpleVLDockingApp.class);
 
-	/**
-	 * Main routine for the simple sample application.
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		logger.info("SimpleVLDockingApp starting up");
+    /**
+     * Main routine for the simple sample application.
+     * @param args
+     */
+    public static void main(String[] args) {
+        logger.info("SimpleVLDockingApp starting up");
 
-		// The startup context defines elements that should be available
-		// quickly such as a splash screen image.
+        // The startup context defines elements that should be available
+        // quickly such as a splash screen image.
 
-		String startupContextPath = "/org/springframework/richclient/samples/simple/ctx" + "/richclient-startup-context.xml";
+        String startupContextPath = "/org/springframework/richclient/samples/simple/ctx" + "/richclient-startup-context.xml";
 
-		String richclientApplicationContextPath = "/org/springframework/richclient/samples/vldocking/ctx" + "/richclient-application-context.xml";
+        String richclientApplicationContextPath = "/org/springframework/richclient/samples/vldocking/ctx" + "/richclient-application-context.xml";
 
-		// The ApplicationLauncher is responsible for loading the contexts,
-		// presenting the splash screen, initializing the Application
-		// singleton instance, creating the application window to display
-		// the initial page.
+        // The ApplicationLauncher is responsible for loading the contexts,
+        // presenting the splash screen, initializing the Application
+        // singleton instance, creating the application window to display
+        // the initial page.
 
-		try {
-			new ApplicationLauncher(startupContextPath, new String[] { richclientApplicationContextPath });
-		}
-		catch (RuntimeException e) {
-			logger.error("RuntimeException during startup", e);
-		}
-	}
+        try {
+            new ApplicationLauncher(startupContextPath, new String[] { richclientApplicationContextPath });
+        } catch (RuntimeException e) {
+            logger.error("RuntimeException during startup", e);
+        }
+    }
 
 }

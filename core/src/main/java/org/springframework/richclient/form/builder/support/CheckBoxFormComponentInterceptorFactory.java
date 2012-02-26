@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2007 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -23,58 +23,58 @@ import org.springframework.richclient.form.builder.FormComponentInterceptorFacto
 
 /**
  * Factory for <code>CheckBoxFormComponentInterceptorFactory</code> instances.
- * 
+ *
  * <ul>
  * <li>The label can be hidden using the <code>showLabel</code> property (default is <code>true</code>)</li>
  * <li>extra descriptive text can be shown using the <code>showText</code> property (default is <code>false</code>)</li>
  * <li>The key used to fetch the extra text (default is <code>text</code>) can be changed using the
  * <code>textKey</code> property</li>
  * </ul>
- * 
+ *
  * @author Peter De Bruycker
- * 
+ *
  */
 public class CheckBoxFormComponentInterceptorFactory implements FormComponentInterceptorFactory, MessageSourceAware {
 
-	private boolean showLabel = true;
-	private boolean showText = false;
+    private boolean showLabel = true;
+    private boolean showText = false;
 
-	private String textKey = "text";
-	private MessageSource messageSource;
+    private String textKey = "text";
+    private MessageSource messageSource;
 
-	public FormComponentInterceptor getInterceptor(FormModel formModel) {
-		return new CheckBoxFormComponentInterceptor(formModel, messageSource, showLabel, showText, textKey);
-	}
+    public FormComponentInterceptor getInterceptor(FormModel formModel) {
+        return new CheckBoxFormComponentInterceptor(formModel, messageSource, showLabel, showText, textKey);
+    }
 
-	public boolean isShowLabel() {
-		return showLabel;
-	}
+    public boolean isShowLabel() {
+        return showLabel;
+    }
 
-	public void setShowLabel(boolean showLabel) {
-		this.showLabel = showLabel;
-	}
+    public void setShowLabel(boolean showLabel) {
+        this.showLabel = showLabel;
+    }
 
-	public boolean isShowText() {
-		return showText;
-	}
+    public boolean isShowText() {
+        return showText;
+    }
 
-	public void setShowText(boolean showText) {
-		this.showText = showText;
-	}
+    public void setShowText(boolean showText) {
+        this.showText = showText;
+    }
 
-	public String getTextKey() {
-		return textKey;
-	}
+    public String getTextKey() {
+        return textKey;
+    }
 
-	public void setTextKey(String textKey) {
-		this.textKey = textKey;
-	}
+    public void setTextKey(String textKey) {
+        this.textKey = textKey;
+    }
 
-	public MessageSource getMessageSource() {
-		return messageSource;
-	}
+    public MessageSource getMessageSource() {
+        return messageSource;
+    }
 
-	public void setMessageSource(MessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 }

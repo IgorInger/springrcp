@@ -44,13 +44,13 @@ import org.springframework.util.Assert;
 
 /**
  * Abstract "convenience" implementation of <code>ApplicationPage</code>.
- * 
+ *
  * @author Peter De Bruycker
  */
 public abstract class AbstractApplicationPage extends AbstractControlFactory implements ApplicationPage {
 
     private final EventListenerListHelper pageComponentListeners = new EventListenerListHelper(
-            PageComponentListener.class);
+        PageComponentListener.class);
 
     private ViewDescriptorRegistry viewDescriptorRegistry;
 
@@ -91,7 +91,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
      * Called when the <code>PageComponent</code> changes any of its properties (display name, caption, icon, ...).
      * <p>
      * This method should be overridden when these changes must be reflected in the ui.
-     * 
+     *
      * @param pageComponent
      *            the <code>PageComponent</code> that has changed
      */
@@ -147,7 +147,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
 
     /**
      * Returns the active <code>PageComponent</code>, or <code>null</code> if none.
-     * 
+     *
      * @return the active <code>PageComponent</code>
      */
     public PageComponent getActiveComponent() {
@@ -158,7 +158,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
      * Activates the given <code>PageComponent</code>. Does nothing if it is already the active one.
      * <p>
      * Does nothing if this <code>ApplicationPage</code> doesn't contain the given <code>PageComponent</code>.
-     * 
+     *
      * @param pageComponent
      *            the <code>PageComponent</code>
      */
@@ -194,7 +194,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
      * <p>
      * Implementors may choose to add the <code>PageComponent</code>'s control directly, or add the
      * <code>PageComponentPane</code>'s control.
-     * 
+     *
      * @param pageComponent
      *            the <code>PageComponent</code> to add
      */
@@ -202,7 +202,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
 
     /**
      * This method must remove the given <code>PageComponent</code> from the ui.
-     * 
+     *
      * @param pageComponent
      *            the <code>PageComponent</code> to remove
      */
@@ -211,7 +211,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
     /**
      * This method must transfer the focus to the given <code>PageComponent</code>. This could involve making an
      * internal frame visible, selecting a tab in a tabbed pane, ...
-     * 
+     *
      * @param pageComponent
      *            the <code>PageComponent</code>
      * @return <code>true</code> if the operation was successful, <code>false</code> otherwise
@@ -242,7 +242,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
      * <p>
      * Returns <code>false</code> if this <code>ApplicationPage</code> doesn't contain the given
      * <code>PageComponent</code>.
-     * 
+     *
      * @param pageComponent
      *            the <code>PageComponent</code>
      * @return boolean <code>true</code> if pageComponent was successfully closed.
@@ -279,7 +279,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
     /**
      * Closes this <code>ApplicationPage</code>. This method calls {@link #close(PageComponent)} for each open
      * <code>PageComponent</code>.
-     * 
+     *
      * @return <code>true</code> if the operation was successful, <code>false</code> otherwise.
      */
     public boolean close() {
@@ -313,7 +313,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
             if (setInput) {
                 // trigger control creation before input is set to avoid npe
                 view.getControl();
-                
+
                 view.setInput(input);
             }
 
@@ -324,7 +324,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
             }
         }
         setActiveComponent(view);
-        
+
         return view;
     }
 
@@ -340,7 +340,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
     /**
      * Adds the pageComponent to the components list while registering listeners and firing appropriate events. (not yet
      * setting the component as the active one)
-     * 
+     *
      * @param pageComponent
      *            the pageComponent to add.
      */
@@ -354,7 +354,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
 
     /**
      * Creates a PageComponent for the given PageComponentDescriptor.
-     * 
+     *
      * @param descriptor
      *            the descriptor
      * @return the created PageComponent
@@ -384,7 +384,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
     public final void setDescriptor(PageDescriptor descriptor) {
         Assert.notNull(descriptor, "The page's descriptor is required");
         Assert.state(this.descriptor == null,
-                "Page descriptor already set: it should only be set once, during initialization");
+                     "Page descriptor already set: it should only be set once, during initialization");
         this.descriptor = descriptor;
     }
 
@@ -409,7 +409,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
     public ViewDescriptorRegistry getViewDescriptorRegistry() {
         if (viewDescriptorRegistry == null) {
             viewDescriptorRegistry = (ViewDescriptorRegistry) ApplicationServicesLocator.services().getService(
-                    ViewDescriptorRegistry.class);
+                                         ViewDescriptorRegistry.class);
         }
 
         return viewDescriptorRegistry;
@@ -422,7 +422,7 @@ public abstract class AbstractApplicationPage extends AbstractControlFactory imp
     public PageComponentPaneFactory getPageComponentPaneFactory() {
         if (pageComponentPaneFactory == null) {
             pageComponentPaneFactory = (PageComponentPaneFactory) ApplicationServicesLocator.services().getService(
-                    PageComponentPaneFactory.class);
+                                           PageComponentPaneFactory.class);
         }
 
         return pageComponentPaneFactory;

@@ -14,21 +14,18 @@ import java.util.Map;
  * @author ldo
  * @since 0.4.4
  */
-public class DataEditorWidgetViewCommand extends WidgetViewCommand
-{
+public class DataEditorWidgetViewCommand extends WidgetViewCommand {
     /**
      * {@inheritDoc}
      *
      * Open de dataeditor.
      */
-    protected void doExecuteCommand()
-    {
+    protected void doExecuteCommand() {
         Widget widget = super.getWidget();
         Assert.isInstanceOf(AbstractDataEditorWidget.class, widget);
         AbstractDataEditorWidget dataEditorWidget = (AbstractDataEditorWidget)widget;
         Object dataEditorParameters = getParameter(DefaultDataEditorWidget.PARAMETER_MAP);
-        if(dataEditorParameters != null)
-        {
+        if(dataEditorParameters != null) {
             dataEditorWidget.executeFilter((Map<String, Object>)dataEditorParameters);
         }
 

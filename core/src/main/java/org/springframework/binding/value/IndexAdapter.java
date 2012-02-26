@@ -22,18 +22,18 @@ package org.springframework.binding.value;
  */
 public interface IndexAdapter extends ValueModel {
 
-	/**
-	 * Returns the index of the item which is currently being manipulated.
-	 */
-	public int getIndex();
+    /**
+     * Returns the index of the item which is currently being manipulated.
+     */
+    public int getIndex();
 
-	/**
-	 * Set the index of the item to manipulate.
-	 */
-	public void setIndex(int index);
+    /**
+     * Set the index of the item to manipulate.
+     */
+    public void setIndex(int index);
 
-	/**
-	 * Code to be executed when the index has changed.
-	 */
-	public void fireIndexedObjectChanged();
+    /**
+     * Code to be executed when the index has changed.
+     */
+    public void fireIndexedObjectChanged();
 }

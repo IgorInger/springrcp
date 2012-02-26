@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -39,7 +39,7 @@ import com.jgoodies.forms.layout.Sizes;
 /**
  * Utility functions that help enforce a standard look and feel in accordance
  * with the Java Look and Feel Design Guidelines.
- * 
+ *
  * @author Keith Donald
  */
 public class GuiStandardUtils {
@@ -59,8 +59,7 @@ public class GuiStandardUtils {
     public static JComponent attachDialogBorder(JComponent c) {
         if (c instanceof JTabbedPane) {
             c.setBorder(Borders.TABBED_DIALOG_BORDER);
-        }
-        else {
+        } else {
             c.setBorder(Borders.DIALOG_BORDER);
         }
         return c;
@@ -98,7 +97,7 @@ public class GuiStandardUtils {
      * Return text which conforms to the Look and Feel Design Guidelines for the
      * title of a dialog : the application name, a colon, then the name of the
      * specific dialog.
-     * 
+     *
      * @param dialogName
      *            the short name of the dialog.
      */
@@ -116,13 +115,13 @@ public class GuiStandardUtils {
     /**
      * Make a horizontal row of buttons of equal size, whch are equally spaced,
      * and aligned on the right.
-     * 
+     *
      * <P>
      * The returned component has border spacing only on the top (of the size
      * recommended by the Look and Feel Design Guidelines). All other spacing
      * must be applied elsewhere ; usually, this will only mean that the
      * dialog's top-level panel should use {@link #buildStandardBorder}.
-     * 
+     *
      * @param buttons
      *            contains <code>JButton</code> objects.
      * @return A row displaying the buttons horizontally.
@@ -134,13 +133,13 @@ public class GuiStandardUtils {
     /**
      * Make a vertical row of buttons of equal size, whch are equally spaced,
      * and aligned on the right.
-     * 
+     *
      * <P>
      * The returned component has border spacing only on the left (of the size
      * recommended by the Look and Feel Design Guidelines). All other spacing
      * must be applied elsewhere ; usually, this will only mean that the
      * dialog's top-level panel should use {@link #buildStandardBorder}.
-     * 
+     *
      * @param buttons
      *            contains <code>JButton</code> objects.
      * @return A column displaying the buttons vertically.
@@ -159,13 +158,13 @@ public class GuiStandardUtils {
 
     /**
      * Sets the items in <code>aComponents</code> to the same size.
-     * 
+     *
      * Sets each component's preferred and maximum sizes. The actual size is
      * determined by the layout manager, which adjusts for locale-specific
      * strings and customized fonts. (See this <a
      * href="http://java.sun.com/products/jlf/ed2/samcode/prefere.html">Sun doc
      * </a> for more information.)
-     * 
+     *
      * @param components
      *            contains <code>JComponent</code> objects.
      */
@@ -201,7 +200,7 @@ public class GuiStandardUtils {
      * An alternative to multi-line labels, for the presentation of several
      * lines of text, and for which the line breaks are determined solely by the
      * control.
-     * 
+     *
      * @param text
      *            text that does not contain newline characters or html.
      * @return <code>JTextArea</code> which is not editable, has improved
@@ -226,7 +225,7 @@ public class GuiStandardUtils {
      * An alternative to multi-line labels, for the presentation of several
      * lines of text, and for which line breaks are determined solely by
      * <code>aText</code>, and not by the control.
-     * 
+     *
      * @param text
      *            the text to be placed in the text area.
      * @return <code>JTextArea</code> which is not editable and has improved
@@ -244,10 +243,10 @@ public class GuiStandardUtils {
      * If aLabel has text which is longer than MAX_LABEL_LENGTH, then truncate
      * the label text and place an ellipsis at the end; the original text is
      * placed in a tooltip.
-     * 
+     *
      * This is particularly useful for displaying file names, whose length can
      * vary widely between deployments.
-     * 
+     *
      * @param label
      *            The label to truncate if length() > MAX_LABEL_LENGTH.
      */
@@ -290,7 +289,7 @@ public class GuiStandardUtils {
     /**
      * Useful debug function to place a colored, line border around a component
      * for layout management debugging.
-     * 
+     *
      * @param c
      *            the component
      * @param color

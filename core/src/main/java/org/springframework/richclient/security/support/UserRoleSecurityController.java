@@ -41,22 +41,22 @@ import org.springframework.security.vote.RoleVoter;
  * <code>accessDecisionManager</code> property.
  * <p>
  * Below is an example configuration for this class:
- * 
+ *
  * <pre>
  *   &lt;bean id=&quot;adminController&quot;
  *         class=&quot;org.springframework.richclient.security.support.UserRoleSecurityController&quot;&gt;
  *       &lt;property name=&quot;authorizingRoles&quot; value=&quot;ROLE_ADMIN&quot; /&gt;
  *   &lt;/bean&gt;
- * 
+ *
  *   &lt;bean id=&quot;writeController&quot;
  *         class=&quot;org.springframework.richclient.security.support.UserRoleSecurityController&quot;&gt;
  *       &lt;property name=&quot;authorizingRoles&quot; value=&quot;ROLE_WRITE,ROLE_ADMIN&quot; /&gt;
  *   &lt;/bean&gt;
- * 
+ *
  * </pre>
- * 
+ *
  * @author Larry Streepy
- * 
+ *
  */
 public class UserRoleSecurityController extends AbstractSecurityController {
 

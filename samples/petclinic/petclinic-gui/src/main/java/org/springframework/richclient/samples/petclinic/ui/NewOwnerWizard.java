@@ -61,7 +61,7 @@ public class NewOwnerWizard extends AbstractWizard implements ActionCommandExecu
         Owner newOwner = getNewOwner();
         clinic.storeOwner(newOwner);
         getApplicationContext()
-                .publishEvent(new LifecycleApplicationEvent(LifecycleApplicationEvent.CREATED, newOwner));
+        .publishEvent(new LifecycleApplicationEvent(LifecycleApplicationEvent.CREATED, newOwner));
         return true;
     }
 

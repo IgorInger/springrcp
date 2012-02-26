@@ -14,36 +14,36 @@ import org.springframework.context.MessageSourceResolvable;
  * @author Keith Donald
  */
 public class TypeResolvableSupport implements TypeResolvable,
-		MessageSourceResolvable {
+    MessageSourceResolvable {
 
-	private String type;
+    private String type;
 
-	public TypeResolvableSupport() {
+    public TypeResolvableSupport() {
 
-	}
+    }
 
-	public TypeResolvableSupport(String type) {
-		setType(type);
-	}
+    public TypeResolvableSupport(String type) {
+        setType(type);
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public Object[] getArguments() {
-		return null;
-	}
+    public Object[] getArguments() {
+        return null;
+    }
 
-	public String[] getCodes() {
-		return new String[]{type};
-	}
+    public String[] getCodes() {
+        return new String[] {type};
+    }
 
-	public String getDefaultMessage() {
-		return type;
-	}
+    public String getDefaultMessage() {
+        return type;
+    }
 
 }

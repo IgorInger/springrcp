@@ -20,8 +20,7 @@ public class ScriptedViewTests extends TestCase {
         try {
             scriptedView.afterPropertiesSet();
             fail("Must throw exception");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // test passes
         }
     }
@@ -71,8 +70,7 @@ public class ScriptedViewTests extends TestCase {
         try {
             scriptedView.createControl();
             fail("must throw ScriptExecutionException");
-        }
-        catch (ScriptExecutionException e) {
+        } catch (ScriptExecutionException e) {
             // test passes
         }
 

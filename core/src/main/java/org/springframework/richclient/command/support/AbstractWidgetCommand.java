@@ -12,9 +12,8 @@ import javax.swing.*;
  * Base class for commands that use widgets. The widget can be injected or found in the context through its id.
  */
 public abstract class AbstractWidgetCommand extends ApplicationWindowAwareCommand
-        implements
-        ApplicationContextAware
-{
+    implements
+    ApplicationContextAware {
 
     private String widgetBeanId = null;
 
@@ -22,42 +21,35 @@ public abstract class AbstractWidgetCommand extends ApplicationWindowAwareComman
 
     private ApplicationContext applicationContext;
 
-    public void setWidget(Widget widget)
-    {
+    public void setWidget(Widget widget) {
         this.widget = widget;
     }
 
-    protected Widget getWidget()
-    {
+    protected Widget getWidget() {
         if (this.widget == null && this.widgetBeanId != null)
             this.widget = RcpSupport.getBean(widgetBeanId);
         return this.widget;
     }
 
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
-    {
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
 
-    public ApplicationContext getApplicationContext()
-    {
+    public ApplicationContext getApplicationContext() {
         return applicationContext;
     }
 
-    protected final JComponent getWidgetComponent()
-    {
+    protected final JComponent getWidgetComponent() {
         if (getWidget() == null)
             return RcpSupport.createDummyPanel("No widget set for command:" + getId());
         return getWidget().getComponent();
     }
 
-    public String getWidgetBeanId()
-    {
+    public String getWidgetBeanId() {
         return widgetBeanId;
     }
 
-    public void setWidgetBeanId(String widgetBeanId)
-    {
+    public void setWidgetBeanId(String widgetBeanId) {
         this.widgetBeanId = widgetBeanId;
     }
 }

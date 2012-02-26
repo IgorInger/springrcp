@@ -28,7 +28,7 @@ import org.springframework.rules.factory.Constraints;
 
 /**
  * A convenience constraints factory accessor for easy subclassing.
- * 
+ *
  * @author Keith Donald
  */
 public class ConstraintsAccessor extends AlgorithmsAccessor {

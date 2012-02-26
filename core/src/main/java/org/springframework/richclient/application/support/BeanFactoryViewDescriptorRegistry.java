@@ -28,10 +28,10 @@ import org.springframework.richclient.util.Assert;
 /**
  * A simple {@link ViewDescriptorRegistry} implementation that pulls singleton view definitions out
  * of a spring application context. This class is intended to be managed by a Spring IoC container.
- * If being created programatically, be sure to call the 
+ * If being created programatically, be sure to call the
  * {@link #setApplicationContext(org.springframework.context.ApplicationContext)} method.
- * 
- * 
+ *
+ *
  * @author Keith Donald
  * @author Kevin Stembridge
  */
@@ -46,28 +46,27 @@ public class BeanFactoryViewDescriptorRegistry extends ApplicationObjectSupport 
     }
 
     /**
-     * Returns the view descriptor with the given identifier, or null if no such bean definition 
+     * Returns the view descriptor with the given identifier, or null if no such bean definition
      * with the given name exists in the current application context.
-     * 
-     * @param viewName The bean name of the view descriptor that is to be retrieved from the 
+     *
+     * @param viewName The bean name of the view descriptor that is to be retrieved from the
      * underlying application context. Must not be null.
-     * 
+     *
      * @throws IllegalArgumentException if {@code viewName} is null.
      * @throws BeanNotOfRequiredTypeException if the bean retrieved from the underlying application
      * context is not of type {@link ViewDescriptor}.
-     * 
+     *
      */
     public ViewDescriptor getViewDescriptor(String viewName) {
-        
+
         Assert.required(viewName, "viewName");
-        
+
         try {
             return (ViewDescriptor) getApplicationContext().getBean(viewName, ViewDescriptor.class);
-        }
-        catch (NoSuchBeanDefinitionException e) {
+        } catch (NoSuchBeanDefinitionException e) {
             return null;
         }
-        
+
     }
 
 }

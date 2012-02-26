@@ -22,7 +22,7 @@ import org.springframework.binding.value.ValueModel;
 import org.springframework.richclient.test.SpringRichTestCase;
 
 public abstract class BindingAbstractTests extends SpringRichTestCase {
-    
+
     protected ConfigurableFormModel fm;
 
     protected ValueModel vm;
@@ -30,7 +30,7 @@ public abstract class BindingAbstractTests extends SpringRichTestCase {
     protected String property;
 
     public void doSetUp() {
-        fm = new DefaultFormModel(createTestBean());        
+        fm = new DefaultFormModel(createTestBean());
         property = setUpBinding();
         vm = fm.getValueModel(property);
     }

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -58,13 +58,13 @@ import org.springmodules.validation.valang.predicates.GenericTestPredicate;
 /**
  * Implementation of <code>RichValidator</code> that delegates to a
  * <code>ValangValidator</code> for validation.
- *   
+ *
  * @author Oliver Hutchison
  * @see ValangValidator
  */
 public class ValangRichValidator implements RichValidator {
 
-    //  map to lists of rules effecting a given property 
+    //  map to lists of rules effecting a given property
     private final Map propertyRules = new CachingMapDecorator(false) {
         protected Object create(Object key) {
             return new ArrayList();
@@ -133,8 +133,7 @@ public class ValangRichValidator implements RichValidator {
     private void checkRule(BasicValidationRule rule) {
         if (rule.getPredicate().evaluate(getSourceObject())) {
             ruleSatisfied(rule);
-        }
-        else {
+        } else {
             ruleViolated(rule);
         }
     }
@@ -169,12 +168,10 @@ public class ValangRichValidator implements RichValidator {
                     arguments.add(((Function)iter.next()).getResult(getSourceObject()));
                 }
                 translatedMessage = getMessageSourceAccessor().getMessage(errorKey, arguments.toArray(), errorMessage);
-            }
-            else {
+            } else {
                 translatedMessage = getMessageSourceAccessor().getMessage(errorKey, errorMessage);
             }
-        }
-        else {
+        } else {
             translatedMessage = getMessageSourceAccessor().getMessage(field, errorMessage);
         }
         return new DefaultValidationMessage(field, Severity.ERROR, translatedMessage);
@@ -184,9 +181,9 @@ public class ValangRichValidator implements RichValidator {
         return new FormModel2BeanWrapperAdapter();
     }
 
-    /** 
+    /**
      *  Visitor that collects the names of all properties that are used by a single Valang
-     *  validation rule. 
+     *  validation rule.
      */
     private static class PropertiesUsedByRuleCollector {
 
@@ -270,7 +267,7 @@ public class ValangRichValidator implements RichValidator {
 
     /**
      * Adapts the FormModel interface to the BeanWrapper interface
-     * so that the Valang rules evaluator can access the form models 
+     * so that the Valang rules evaluator can access the form models
      * properties.
      */
     private class FormModel2BeanWrapperAdapter implements BeanWrapper {
@@ -344,11 +341,11 @@ public class ValangRichValidator implements RichValidator {
         }
 
         public void setPropertyValues(PropertyValues propertyValues, boolean ignoreUnknown, boolean ignoreInvalid)
-                throws BeansException {
+        throws BeansException {
             throw new UnsupportedOperationException("Not implemented");
         }
 
-        public void setExtractOldValueForEditor(boolean extractOldValueForEditor){
+        public void setExtractOldValueForEditor(boolean extractOldValueForEditor) {
             throw new UnsupportedOperationException("Not implemented");
         }
 
@@ -361,7 +358,7 @@ public class ValangRichValidator implements RichValidator {
         }
 
         public Object convertIfNecessary(Object object, Class aClass, MethodParameter methodParameter)
-                throws TypeMismatchException {
+        throws TypeMismatchException {
             throw new UnsupportedOperationException("Not implemented");
         }
     }

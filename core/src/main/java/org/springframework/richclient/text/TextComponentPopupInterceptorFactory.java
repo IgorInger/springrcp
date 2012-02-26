@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -41,7 +41,7 @@ public class TextComponentPopupInterceptorFactory implements FormComponentInterc
     }
 
     private class TextComponentPopupInterceptor extends AbstractFormComponentInterceptor implements
-            PropertyChangeListener, CommitListener {
+        PropertyChangeListener, CommitListener {
 
         private CommitTrigger resetTrigger;
 
@@ -53,8 +53,7 @@ public class TextComponentPopupInterceptorFactory implements FormComponentInterc
             JComponent innerComp = getInnerComponent(component);
             if (innerComp instanceof JTextComponent) {
                 TextComponentPopup.attachPopup((JTextComponent)innerComp, getResetTrigger());
-            }
-            else if (innerComp instanceof TextComponentContainer) {
+            } else if (innerComp instanceof TextComponentContainer) {
                 TextComponentPopup.attachPopup(((TextComponentContainer)innerComp).getComponent(), getResetTrigger());
             }
         }
@@ -74,7 +73,7 @@ public class TextComponentPopupInterceptorFactory implements FormComponentInterc
         }
 
         public void preCommit(FormModel formModel) {
-            // do nothing            
+            // do nothing
         }
 
         public void postCommit(FormModel formModel) {

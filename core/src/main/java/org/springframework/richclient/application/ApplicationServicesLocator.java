@@ -32,76 +32,76 @@ import org.springframework.util.Assert;
  */
 public class ApplicationServicesLocator {
 
-	private static final Log logger = LogFactory.getLog(ApplicationServicesLocator.class);
+    private static final Log logger = LogFactory.getLog(ApplicationServicesLocator.class);
 
-	/** The singleton instance. */
-	private static ApplicationServicesLocator INSTANCE;
+    /** The singleton instance. */
+    private static ApplicationServicesLocator INSTANCE;
 
-	/** The configured ApplicationServices. */
-	private ApplicationServices applicationServices;
+    /** The configured ApplicationServices. */
+    private ApplicationServices applicationServices;
 
-	/**
-	 * Default Constructor.
-	 */
-	public ApplicationServicesLocator() {
-		load(this);
-	}
+    /**
+     * Default Constructor.
+     */
+    public ApplicationServicesLocator() {
+        load(this);
+    }
 
-	/**
-	 * Convenience constructor to add ApplicationServices at construction time.
-	 */
-	public ApplicationServicesLocator(ApplicationServices applicationServices) {
-		setApplicationServices(applicationServices);
-		load(this);
-	}
+    /**
+     * Convenience constructor to add ApplicationServices at construction time.
+     */
+    public ApplicationServicesLocator(ApplicationServices applicationServices) {
+        setApplicationServices(applicationServices);
+        load(this);
+    }
 
-	/**
-	 * Return the single ApplicationServicesLocator instance.
-	 */
-	public static ApplicationServicesLocator instance() {
-		Assert.state(INSTANCE != null, "The application services locator instance has not yet been initialized.");
-		return INSTANCE;
-	}
+    /**
+     * Return the single ApplicationServicesLocator instance.
+     */
+    public static ApplicationServicesLocator instance() {
+        Assert.state(INSTANCE != null, "The application services locator instance has not yet been initialized.");
+        return INSTANCE;
+    }
 
-	/**
-	 * Check if an instance is available.
-	 *
-	 * @return <code>true</code> if an ApplicationServicesLocator is loaded.
-	 */
-	public static boolean isLoaded() {
-		return INSTANCE != null;
-	}
+    /**
+     * Check if an instance is available.
+     *
+     * @return <code>true</code> if an ApplicationServicesLocator is loaded.
+     */
+    public static boolean isLoaded() {
+        return INSTANCE != null;
+    }
 
-	/**
-	 * Load the single ApplicationServicesLocator instance.
-	 */
-	public static void load(ApplicationServicesLocator instance) {
-		if (INSTANCE != null) {
-			logger.info("Replacing existing ApplicationServicesLocator instance with: " + instance);
-		}
-		INSTANCE = instance;
-	}
+    /**
+     * Load the single ApplicationServicesLocator instance.
+     */
+    public static void load(ApplicationServicesLocator instance) {
+        if (INSTANCE != null) {
+            logger.info("Replacing existing ApplicationServicesLocator instance with: " + instance);
+        }
+        INSTANCE = instance;
+    }
 
-	/**
-	 * Convenience method to get the ApplicationServices by querying the
-	 * currently loaded ApplicationServicesLocator.
-	 */
-	public static ApplicationServices services() {
-		return instance().getApplicationServices();
-	}
+    /**
+     * Convenience method to get the ApplicationServices by querying the
+     * currently loaded ApplicationServicesLocator.
+     */
+    public static ApplicationServices services() {
+        return instance().getApplicationServices();
+    }
 
-	/**
-	 * Set the ApplicationServices instance.
-	 */
-	public void setApplicationServices(ApplicationServices applicationServices) {
-		this.applicationServices = applicationServices;
-	}
+    /**
+     * Set the ApplicationServices instance.
+     */
+    public void setApplicationServices(ApplicationServices applicationServices) {
+        this.applicationServices = applicationServices;
+    }
 
-	/**
-	 * Return the ApplicationServices instance.
-	 */
-	public ApplicationServices getApplicationServices() {
-		return applicationServices;
-	}
+    /**
+     * Return the ApplicationServices instance.
+     */
+    public ApplicationServices getApplicationServices() {
+        return applicationServices;
+    }
 
 }

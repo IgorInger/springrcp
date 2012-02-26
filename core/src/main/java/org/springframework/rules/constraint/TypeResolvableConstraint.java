@@ -25,13 +25,13 @@ import org.springframework.rules.reporting.TypeResolvableSupport;
  * @author Keith Donald
  */
 public abstract class TypeResolvableConstraint extends
-		TypeResolvableSupport implements Constraint {
+    TypeResolvableSupport implements Constraint {
 
-	public TypeResolvableConstraint() {
-		super();
-	}
+    public TypeResolvableConstraint() {
+        super();
+    }
 
-	public TypeResolvableConstraint(String type) {
-		super(type);
-	}
+    public TypeResolvableConstraint(String type) {
+        super(type);
+    }
 }

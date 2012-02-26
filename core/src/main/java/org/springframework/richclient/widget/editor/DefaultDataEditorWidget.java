@@ -36,10 +36,9 @@ import java.util.concurrent.ExecutionException;
  * {@link org.springframework.richclient.widget.editor.AbstractDataEditorWidget}.
  */
 public class DefaultDataEditorWidget extends AbstractDataEditorWidget
-        implements
-        DataProviderListener,
-        PropertyChangeListener
-{
+    implements
+    DataProviderListener,
+    PropertyChangeListener {
 
     private static Log log = LogFactory.getLog(DefaultDataEditorWidget.class);
 
@@ -87,24 +86,20 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
 
     private final MaximumRowsExceededMessage maximumRowsExceededMessage = new MaximumRowsExceededMessage();
 
-    protected static class MaximumRowsExceededMessage extends DefaultValidationMessage
-    {
+    protected static class MaximumRowsExceededMessage extends DefaultValidationMessage {
 
         private String message;
 
-        public MaximumRowsExceededMessage()
-        {
+        public MaximumRowsExceededMessage() {
             super("maximumRowsExceeded", Severity.WARNING, "maximumRowsExceeded");
         }
 
         @Override
-        public String getMessage()
-        {
+        public String getMessage() {
             return message;
         }
 
-        public void setMessage(String message)
-        {
+        public void setMessage(String message) {
             this.message = message;
         }
 
@@ -115,8 +110,7 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * <p/>
      * Remember to set criteria and launch this class in a synchronised block.
      */
-    private class ListRetrievingWorker extends SwingWorker<List<Object>, String>
-    {
+    private class ListRetrievingWorker extends SwingWorker<List<Object>, String> {
 
         /**
          * The filter criteria to use.
@@ -129,8 +123,7 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
         protected Map<String, Object> parameters;
 
         @Override
-        protected List<Object> doInBackground() throws Exception
-        {
+        protected List<Object> doInBackground() throws Exception {
             return getDataProvider().getList(filterCriteria);
         }
 
@@ -138,37 +131,25 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
          * Set the rows in the table.
          */
         @Override
-        protected void done()
-        {
-            try
-            {
+        protected void done() {
+            try {
                 listWorkerDone(get(), parameters);
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 // someone cancelled the retrieval?
-            }
-            catch (ExecutionException e)
-            {
-                if (e.getCause() instanceof MaximumRowsExceededException)
-                {
+            } catch (ExecutionException e) {
+                if (e.getCause() instanceof MaximumRowsExceededException) {
                     MaximumRowsExceededException mre = (MaximumRowsExceededException) e.getCause();
                     setRows(Collections.EMPTY_LIST);
                     validationResultsModel.removeMessage(maximumRowsExceededMessage);
                     maximumRowsExceededMessage.setMessage(getMessage("MaximumRowsExceededException.notice", new Object[] {mre.getNumberOfRows(), mre.getMaxRows()}));
                     validationResultsModel.addMessage(maximumRowsExceededMessage);
-                    if (getToggleFilterCommand() != null)
-                    {
+                    if (getToggleFilterCommand() != null) {
                         getToggleFilterCommand().doShow();
                     }
-                }
-                else
-                {
+                } else {
                     throw new RuntimeException(e);
                 }
-            }
-            finally
-            {
+            } finally {
                 Application.instance().getActiveWindow().getStatusBar().getProgressMonitor().done();
                 //                getFilterForm().getCommitCommand().setEnabled(true);
                 //                getRefreshCommand().setEnabled(true);
@@ -184,28 +165,22 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * @param rows       fetched by the listWorker.
      * @param parameters a map of parameters specific to this listWorker instance.
      */
-    protected void listWorkerDone(List<Object> rows, Map<String, Object> parameters)
-    {
+    protected void listWorkerDone(List<Object> rows, Map<String, Object> parameters) {
         setRows(rows);
         // remove maximumRowsExceededMessages if needed
         validationResultsModel.removeMessage(maximumRowsExceededMessage);
-        if ((rows == null) || (rows.size() == 0))
-        {
+        if ((rows == null) || (rows.size() == 0)) {
             return;
         }
 
         Object defaultSelectedObject = null;
-        if (parameters.containsKey(PARAMETER_DEFAULT_SELECTED_OBJECT))
-        {
+        if (parameters.containsKey(PARAMETER_DEFAULT_SELECTED_OBJECT)) {
             defaultSelectedObject = parameters.get(PARAMETER_DEFAULT_SELECTED_OBJECT);
         }
 
-        if (defaultSelectedObject == null)
-        {
+        if (defaultSelectedObject == null) {
             tableWidget.selectRowObject(0, null);
-        }
-        else
-        {
+        } else {
             tableWidget.selectRowObject(defaultSelectedObject, null);
         }
     }
@@ -220,8 +195,7 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * @see #setTableWidget(TableDescription)
      * @see #setTableWidget(TableWidget)
      */
-    public DefaultDataEditorWidget()
-    {
+    public DefaultDataEditorWidget() {
     }
 
     /**
@@ -234,14 +208,12 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * @see #setTableWidget(TableDescription)
      * @see #setTableWidget(TableWidget)
      */
-    public DefaultDataEditorWidget(String id, DataProvider provider)
-    {
+    public DefaultDataEditorWidget(String id, DataProvider provider) {
         this(id, provider, null, null, null);
     }
 
     public DefaultDataEditorWidget(DataProvider provider, AbstractForm form, TableDescription tableDesc,
-                                   FilterForm filterForm)
-    {
+                                   FilterForm filterForm) {
         this(null, provider, form, tableDesc, filterForm);
     }
 
@@ -255,8 +227,7 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * @param filterForm optional form used to filter the data.
      */
     public DefaultDataEditorWidget(String id, DataProvider provider, AbstractForm form,
-                                   TableDescription tableDesc, FilterForm filterForm)
-    {
+                                   TableDescription tableDesc, FilterForm filterForm) {
         setId(id);
         setDataProvider(provider);
         setDetailForm(form);
@@ -265,8 +236,7 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
     }
 
     @Override
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         super.setTitle(title);
         tableWidget.getTable().setName(title);
     }
@@ -275,31 +245,25 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * Returns only the detail form widget
      */
     @Override
-    public Widget createDetailWidget()
-    {
-        return new AbstractWidget()
-        {
+    public Widget createDetailWidget() {
+        return new AbstractWidget() {
 
             @Override
-            public void onAboutToShow()
-            {
+            public void onAboutToShow() {
                 DefaultDataEditorWidget.this.onAboutToShow();
             }
 
             @Override
-            public void onAboutToHide()
-            {
+            public void onAboutToHide() {
                 DefaultDataEditorWidget.this.onAboutToHide();
             }
 
-            public JComponent getComponent()
-            {
+            public JComponent getComponent() {
                 return getDetailForm().getControl();
             }
 
             @Override
-            public List<? extends AbstractCommand> getCommands()
-            {
+            public List<? extends AbstractCommand> getCommands() {
                 return Arrays.asList(getDetailForm().getCommitCommand());
             }
         };
@@ -308,24 +272,20 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
     /**
      * Set the form that will handle one detail item.
      */
-    protected void setDetailForm(AbstractForm detailForm)
-    {
-        if (this.detailForm != null)
-        {
+    protected void setDetailForm(AbstractForm detailForm) {
+        if (this.detailForm != null) {
             validationResultsModel.remove(this.detailForm.getFormModel().getValidationResults());
         }
 
         this.detailForm = detailForm;
 
-        if (this.detailForm != null)
-        {
+        if (this.detailForm != null) {
             validationResultsModel.add(this.detailForm.getFormModel().getValidationResults());
         }
     }
 
     @Override
-    public AbstractForm getDetailForm()
-    {
+    public AbstractForm getDetailForm() {
         return this.detailForm;
     }
 
@@ -334,29 +294,24 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      *
      * @see DataProvider#supportsFiltering()
      */
-    protected void setFilterForm(FilterForm filterForm)
-    {
-        if (this.filterForm != null)
-        {
+    protected void setFilterForm(FilterForm filterForm) {
+        if (this.filterForm != null) {
             validationResultsModel.remove(this.filterForm.getFormModel().getValidationResults());
         }
 
         this.filterForm = filterForm;
 
-        if (this.filterForm != null)
-        {
+        if (this.filterForm != null) {
             validationResultsModel.add(filterForm.getFormModel().getValidationResults());
         }
     }
 
     @Override
-    public FilterForm getFilterForm()
-    {
+    public FilterForm getFilterForm() {
         return this.filterForm;
     }
 
-    public void setFilterModel(Object model)
-    {
+    public void setFilterModel(Object model) {
         getFilterForm().setFormObject(model);
     }
 
@@ -366,10 +321,8 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      *
      * @param tableDescription description of columns used to create the table.
      */
-    protected void setTableWidget(TableDescription tableDescription)
-    {
-        if (tableDescription != null)
-        {
+    protected void setTableWidget(TableDescription tableDescription) {
+        if (tableDescription != null) {
             TableWidget tableWidget = new GlazedListTableWidget(null, tableDescription);
             setTableWidget(tableWidget);
         }
@@ -378,79 +331,66 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
     /**
      * Set the listView of this dataEditor.
      */
-    protected void setTableWidget(TableWidget tableWidget)
-    {
-        if (this.tableWidget != null)
-        {
+    protected void setTableWidget(TableWidget tableWidget) {
+        if (this.tableWidget != null) {
             this.tableWidget.removeSelectionObserver(tableSelectionObserver);
         }
 
         this.tableWidget = tableWidget;
 
-        if (this.tableWidget != null)
-        {
+        if (this.tableWidget != null) {
             this.tableWidget.addSelectionObserver(tableSelectionObserver);
         }
     }
 
     @Override
-    public TableWidget getTableWidget()
-    {
+    public TableWidget getTableWidget() {
         return this.tableWidget;
     }
 
     /**
      * Set the provider to use for data manipulation.
      */
-    protected void setDataProvider(DataProvider provider)
-    {
+    protected void setDataProvider(DataProvider provider) {
         if ((this.dataProvider != null)
-                && (this.dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ON_USER_SWITCH))
-        {
+                && (this.dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ON_USER_SWITCH)) {
             ApplicationSession.getSession().removePropertyChangeListener(ApplicationSession.USER, this);
         }
 
         this.dataProvider = provider;
 
         if ((this.dataProvider != null)
-                && (this.dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ON_USER_SWITCH))
-        {
+                && (this.dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ON_USER_SWITCH)) {
             ApplicationSession.getSession().addPropertyChangeListener(ApplicationSession.USER, this);
         }
     }
 
-    public DataProvider getDataProvider()
-    {
+    public DataProvider getDataProvider() {
         return dataProvider;
     }
 
     @Override
-    protected boolean isUpdateRowSupported()
-    {
+    protected boolean isUpdateRowSupported() {
         return this.dataProvider.supportsUpdate();
     }
 
     @Override
-    protected boolean isAddRowSupported()
-    {
+    protected boolean isAddRowSupported() {
         return this.dataProvider.supportsCreate();
     }
 
     @Override
-    protected boolean isCloneRowSupported()
-    {
+    protected boolean isCloneRowSupported() {
         return this.dataProvider.supportsClone() && this.dataProvider.supportsCreate();
     }
 
     @Override
-    protected boolean isFilterSupported()
-    {
+    protected boolean isFilterSupported() {
         return this.dataProvider.supportsFiltering();
     }
 
     @Override
-    protected boolean isRemoveRowsSupported()
-    {
+    protected boolean isRemoveRowsSupported() {
         return this.dataProvider.supportsDelete();
     }
 
@@ -470,27 +410,22 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      *                   specific instance.
      */
     @Override
-    public synchronized void executeFilter(Map<String, Object> parameters)
-    {
-        if (listWorker == null)
-        {
-            if (dataProvider.supportsBaseCriteria())
-            {
+    public synchronized void executeFilter(Map<String, Object> parameters) {
+        if (listWorker == null) {
+            if (dataProvider.supportsBaseCriteria()) {
                 dataProvider.setBaseCriteria(getBaseCriteria());
             }
 
             StatusBar statusBar = Application.instance().getActiveWindow().getStatusBar();
             statusBar.getProgressMonitor().taskStarted(
-                    RcpSupport.getMessage("statusBar", "loadTable", RcpSupport.LABEL),
-                    StatusBarProgressMonitor.UNKNOWN);
+                RcpSupport.getMessage("statusBar", "loadTable", RcpSupport.LABEL),
+                StatusBarProgressMonitor.UNKNOWN);
             //            getFilterForm().getCommitCommand().setEnabled(false);
             //            getRefreshCommand().setEnabled(false);
 
             listWorker = new ListRetrievingWorker();
-            if (dataProvider.supportsFiltering())
-            {
-                if (parameters.containsKey(PARAMETER_FILTER))
-                {
+            if (dataProvider.supportsFiltering()) {
+                if (parameters.containsKey(PARAMETER_FILTER)) {
                     setFilterModel(parameters.get(PARAMETER_FILTER));
                 }
 
@@ -499,7 +434,7 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
 
             listWorker.parameters = parameters;
             log.debug("Execute Filter with criteria: " + listWorker.filterCriteria + " and parameters: "
-                    + parameters);
+                      + parameters);
             listWorker.execute();
         }
     }
@@ -508,8 +443,7 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * @see #executeFilter(Map)
      */
     @Override
-    public void executeFilter()
-    {
+    public void executeFilter() {
         executeFilter(Collections.EMPTY_MAP);
     }
 
@@ -523,25 +457,19 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * @param criteria
      * @return
      */
-    protected List getList(Object criteria)
-    {
-        if (this.dataProvider.supportsBaseCriteria())
-        {
+    protected List getList(Object criteria) {
+        if (this.dataProvider.supportsBaseCriteria()) {
             this.dataProvider.setBaseCriteria(getBaseCriteria());
         }
-        try
-        {
+        try {
             List dataSet = this.dataProvider.getList(criteria);
             setRows(dataSet);
             setMessage(null);
             return dataSet;
-        }
-        catch (MaximumRowsExceededException mre)
-        {
+        } catch (MaximumRowsExceededException mre) {
             setRows(Collections.EMPTY_LIST);
             setMessage(new DefaultMessage(getMessage("MaximumRowsExceededException.notice", new Object[] {mre.getNumberOfRows(), mre.getMaxRows()}), Severity.WARNING));
-            if (getToggleFilterCommand() != null)
-            {
+            if (getToggleFilterCommand() != null) {
                 getToggleFilterCommand().doShow();
             }
             return null;
@@ -553,102 +481,78 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * <p/>
      * WARNING: not threadsafe, please call me on the EDT!
      */
-    protected void setRows(List dataSet)
-    {
+    protected void setRows(List dataSet) {
         tableWidget.setRows(dataSet);
     }
 
-    protected Object getBaseCriteria()
-    {
+    protected Object getBaseCriteria() {
         return null;
     }
 
     @Override
-    protected Object loadEntityDetails(Object baseObject, boolean forceLoad)
-    {
+    protected Object loadEntityDetails(Object baseObject, boolean forceLoad) {
         return this.dataProvider.getDetailObject(baseObject, forceLoad);
     }
 
-    public Object loadSimpleEntity(Object baseObject)
-    {
+    public Object loadSimpleEntity(Object baseObject) {
         Object returnValue = this.dataProvider.getSimpleObject(baseObject);
-        if (returnValue == null)
-        {
+        if (returnValue == null) {
             throw new NullPointerException("Returnvalue for dataprovider simple was null");
         }
         return returnValue;
     }
 
     @Override
-    protected Object saveEntity(Object dirtyObject)
-    {
-        if (!this.dataProvider.supportsUpdate())
-        {
+    protected Object saveEntity(Object dirtyObject) {
+        if (!this.dataProvider.supportsUpdate()) {
             return null;
         }
         return this.dataProvider.update(dirtyObject);
     }
 
     @Override
-    protected void newRow(Object newClone)
-    {
-        if (newClone == null)
-        {
+    protected void newRow(Object newClone) {
+        if (newClone == null) {
             super.newRow(getDataProvider().newInstance(
-                    getFilterForm() == null ? null : getFilterForm().getFormObject()));
-        }
-        else
-        {
+                             getFilterForm() == null ? null : getFilterForm().getFormObject()));
+        } else {
             super.newRow(newClone);
         }
     }
 
     @Override
-    protected Object createNewEntity(Object newObject)
-    {
-        if (!this.dataProvider.supportsCreate())
-        {
+    protected Object createNewEntity(Object newObject) {
+        if (!this.dataProvider.supportsCreate()) {
             return null;
         }
         return this.dataProvider.create(newObject);
     }
 
     @Override
-    protected Object cloneEntity(Object sampleObject)
-    {
-        if (!this.dataProvider.supportsClone())
-        {
+    protected Object cloneEntity(Object sampleObject) {
+        if (!this.dataProvider.supportsClone()) {
             return null;
         }
         return this.dataProvider.clone(sampleObject);
     }
 
     @Override
-    protected void removeEntity(Object objectToRemove)
-    {
-        if (!this.dataProvider.supportsDelete())
-        {
+    protected void removeEntity(Object objectToRemove) {
+        if (!this.dataProvider.supportsDelete()) {
             return;
         }
         this.dataProvider.delete(objectToRemove);
     }
 
-    public void update(Observable o, Object arg)
-    {
-        if (arg instanceof DataProviderEvent)
-        {
+    public void update(Observable o, Object arg) {
+        if (arg instanceof DataProviderEvent) {
             DataProviderEvent obsAct = (DataProviderEvent) arg;
             int act = obsAct.getEventType();
-            if (act == DataProviderEvent.EVENT_TYPE_NEW)
-            {
+            if (act == DataProviderEvent.EVENT_TYPE_NEW) {
                 this.tableWidget.addRowObject(obsAct.getNewEntity());
-            }
-            else if (act == DataProviderEvent.EVENT_TYPE_UPDATE)
-            {
+            } else if (act == DataProviderEvent.EVENT_TYPE_UPDATE) {
                 replaceRowObject(obsAct.getOldEntity(), obsAct.getNewEntity());
-            }
-            else if (act == DataProviderEvent.EVENT_TYPE_DELETE)
-            {
+            } else if (act == DataProviderEvent.EVENT_TYPE_DELETE) {
                 this.tableWidget.removeRowObject(obsAct.getOldEntity());
             }
         }
@@ -658,27 +562,22 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * {@inheritDoc}
      */
     @Override
-    public void onAboutToShow()
-    {
+    public void onAboutToShow() {
         log.debug(getId() + ": onAboutToShow with refreshPolicy: " + dataProvider.getRefreshPolicy());
         super.onAboutToShow();
 
         dataProvider.addDataProviderListener(this);
         registerListeners();
-        if (detailForm instanceof Widget)
-        {
+        if (detailForm instanceof Widget) {
             ((Widget) detailForm).onAboutToShow();
         }
 
         tableWidget.onAboutToShow();
         // lazy loading, if no list is present, load when widget is shown
         // include RefreshPolicy given by DataProvider
-        if ((dataProvider.getRefreshPolicy() != DataProvider.RefreshPolicy.NEVER) && (tableWidget.isEmpty()))
-        {
+        if ((dataProvider.getRefreshPolicy() != DataProvider.RefreshPolicy.NEVER) && (tableWidget.isEmpty())) {
             executeFilter();
-        }
-        else if (!tableWidget.hasSelection())
-        {
+        } else if (!tableWidget.hasSelection()) {
             tableWidget.selectRowObject(0, this);
         }
     }
@@ -687,30 +586,25 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * {@inheritDoc}
      */
     @Override
-    public void onAboutToHide()
-    {
+    public void onAboutToHide() {
         log.debug(getId() + ": onAboutToHide with refreshPolicy: " + dataProvider.getRefreshPolicy());
         super.onAboutToHide();
 
         this.dataProvider.removeDataProviderListener(this);
         unRegisterListeners();
-        if (detailForm instanceof Widget)
-        {
+        if (detailForm instanceof Widget) {
             ((Widget) detailForm).onAboutToHide();
         }
 
-        if (dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ALLWAYS)
-        {
+        if (dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ALLWAYS) {
             getTableWidget().setRows(Collections.EMPTY_LIST);
         }
     }
 
-    protected void registerListeners()
-    {
+    protected void registerListeners() {
     }
 
-    protected void unRegisterListeners()
-    {
+    protected void unRegisterListeners() {
     }
 
     /**
@@ -720,39 +614,31 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
      * @param criteria formObject to set on FilterForm.
      * @return
      */
-    public Object setSelectedSearch(Object criteria)
-    {
+    public Object setSelectedSearch(Object criteria) {
         // filterField leegmaken
-        if (tableWidget.getTextFilterField() != null)
-        {
+        if (tableWidget.getTextFilterField() != null) {
             tableWidget.getTextFilterField().setText("");
         }
         // if Referable == null, empty filterForm and execute filter
-        if (criteria == null)
-        {
-            if (dataProvider.supportsFiltering())
-            {
+        if (criteria == null) {
+            if (dataProvider.supportsFiltering()) {
                 getFilterForm().getNewFormObjectCommand().execute();
             }
             executeFilter();
             return null;
         }
         List resultList = getList(criteria);
-        if (dataProvider.supportsFiltering())
-        {
+        if (dataProvider.supportsFiltering()) {
             // adapt filterForm to reflect referable criteria
-            if ((resultList == null) || (resultList.size() > 0)) // fill in referable
-            {
+            if ((resultList == null) || (resultList.size() > 0)) { // fill in referable
                 getFilterForm().setFormObject(criteria);
-            }
-            else
-            { // empty filterForm and execute
+            } else {
+                // empty filterForm and execute
                 getFilterForm().getNewFormObjectCommand().execute();
                 executeFilter();
             }
         }
-        if (resultList != null && resultList.size() == 1)
-        {
+        if (resultList != null && resultList.size() == 1) {
             // return the detailObject
             //            return loadEntityDetails(resultList.get(0));
             return loadSimpleEntity(resultList.get(0));
@@ -760,34 +646,27 @@ public class DefaultDataEditorWidget extends AbstractDataEditorWidget
         return resultList;
     }
 
-    public void refreshSelectedObject()
-    {
+    public void refreshSelectedObject() {
         Object selected = getSelectedRowObject();
         getTableWidget().selectRowObject(-1, null);
         getTableWidget().selectRowObject(selected, null);
     }
 
-    public void propertyChange(PropertyChangeEvent evt)
-    {
+    public void propertyChange(PropertyChangeEvent evt) {
         if ((dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ALLWAYS)
-                || (dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ON_USER_SWITCH))
-        {
+                || (dataProvider.getRefreshPolicy() == DataProvider.RefreshPolicy.ON_USER_SWITCH)) {
             log.debug("USER changed event, refreshPolicy= " + dataProvider.getRefreshPolicy());
 
-            if ((evt.getNewValue() == null))
-            {
+            if ((evt.getNewValue() == null)) {
                 setRows(Collections.EMPTY_LIST);
-            }
-            else if (isShowing())
-            {
+            } else if (isShowing()) {
                 executeFilter();
             }
         }
     }
 
     @Override
-    protected final DefaultValidationResultsModel getValidationResults()
-    {
+    protected final DefaultValidationResultsModel getValidationResults() {
         return validationResultsModel;
     }
 }

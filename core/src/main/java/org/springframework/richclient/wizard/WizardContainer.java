@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -35,7 +35,7 @@ public interface WizardContainer {
 
     /**
      * Returns the current wizard page for this container.
-     * 
+     *
      * @return the current wizard page, or <code>null</code> if the container
      *         is not yet showing the wizard
      * @see #showPage
@@ -50,7 +50,7 @@ public interface WizardContainer {
      * move to another page in response to some custom action such as double
      * clicking in a list.
      * </p>
-     * 
+     *
      * @param page
      *            the page to show
      * @see #getCurrentPage

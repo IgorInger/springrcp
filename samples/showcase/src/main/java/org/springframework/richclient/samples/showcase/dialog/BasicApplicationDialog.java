@@ -25,15 +25,15 @@ import org.springframework.richclient.dialog.ApplicationDialog;
  */
 public class BasicApplicationDialog extends ApplicationDialog {
 
-	protected JComponent createDialogContentPane() {
-		JPanel contentPane = new JPanel();
-		JLabel label = new JLabel(getMessage("basicApplicationDialog.content.label"));
-		contentPane.add(label);
-		return contentPane;
-	}
+    protected JComponent createDialogContentPane() {
+        JPanel contentPane = new JPanel();
+        JLabel label = new JLabel(getMessage("basicApplicationDialog.content.label"));
+        contentPane.add(label);
+        return contentPane;
+    }
 
-	protected boolean onFinish() {
-		return true;
-	}
+    protected boolean onFinish() {
+        return true;
+    }
 
 }

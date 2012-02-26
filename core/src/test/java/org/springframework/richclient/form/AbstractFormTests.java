@@ -27,7 +27,7 @@ import javax.swing.*;
 
 /**
  * @author Mathias Broekelmann
- * 
+ *
  */
 public abstract class AbstractFormTests extends SpringRichTestCase {
 

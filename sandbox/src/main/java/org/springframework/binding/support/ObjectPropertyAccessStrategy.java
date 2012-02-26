@@ -54,7 +54,7 @@ public class ObjectPropertyAccessStrategy extends AbstractPropertyAccessStrategy
      *                           to be accessed through this class
      */
     public ObjectPropertyAccessStrategy(final ValueModel domainObjectHolder) {
-       this(domainObjectHolder, false);
+        this(domainObjectHolder, false);
     }
 
     /**
@@ -68,7 +68,7 @@ public class ObjectPropertyAccessStrategy extends AbstractPropertyAccessStrategy
      *                           instead of using methods
      */
     public ObjectPropertyAccessStrategy(final ValueModel domainObjectHolder, boolean fieldAccessEnabled) {
-       this(domainObjectHolder, fieldAccessEnabled, true);
+        this(domainObjectHolder, fieldAccessEnabled, true);
     }
 
     /**
@@ -84,7 +84,7 @@ public class ObjectPropertyAccessStrategy extends AbstractPropertyAccessStrategy
      *                           should be thrown on nested null-values or <tt>null</tt> should be returned
      */
     public ObjectPropertyAccessStrategy(final ValueModel domainObjectHolder, boolean fieldAccessEnabled, boolean strictNullValueHandling) {
-       super(domainObjectHolder);
+        super(domainObjectHolder);
         propertyAccessor = new DefaultMemberPropertyAccessor(domainObjectHolder.getValue(), fieldAccessEnabled, strictNullValueHandling);
     }
 
@@ -97,15 +97,15 @@ public class ObjectPropertyAccessStrategy extends AbstractPropertyAccessStrategy
      *                         the parent <tt>ObjectPropertyAccessStrategy</tt>
      */
     protected ObjectPropertyAccessStrategy(ObjectPropertyAccessStrategy parent, String basePropertyPath) {
-       super(parent, basePropertyPath);
+        super(parent, basePropertyPath);
         propertyAccessor = parent.propertyAccessor;
-   }
+    }
 
     /**
      * Provides <code>DefaultMemberPropertyAccessor</code> access to subclasses.
      */
     protected PropertyAccessor getPropertyAccessor() {
-       return propertyAccessor;
+        return propertyAccessor;
     }
 
     public MutablePropertyAccessStrategy getPropertyAccessStrategyForPath(String propertyPath) throws BeansException {
@@ -117,6 +117,6 @@ public class ObjectPropertyAccessStrategy extends AbstractPropertyAccessStrategy
     }
 
     protected void domainObjectChanged() {
-       propertyAccessor.setTarget(getDomainObject());
+        propertyAccessor.setTarget(getDomainObject());
     }
 }

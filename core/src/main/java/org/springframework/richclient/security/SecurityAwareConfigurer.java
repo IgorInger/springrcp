@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2002-2005 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -43,21 +43,21 @@ import org.springframework.security.Authentication;
  * </ol>
  * In order for all this to take place, a singleton, non-lazy instance of this class must
  * be defined in the Spring ApplicationContext. This would be done like this:
- * 
+ *
  * <pre>
  *              &lt;bean id=&quot;securityAwareConfigurer&quot;
  *                   class=&quot;org.springframework.richclient.security.SecurityAwareConfigurer&quot;
  *                   lazy-init=&quot;false&quot;/&gt;
  * </pre>
- * 
+ *
  * @author Larry Streepy
  * @author Andy Depue
  * @author Inspiration from Ben Alex
- * 
+ *
  * @see org.springframework.richclient.security.AuthenticationAware
  * @see org.springframework.richclient.security.LoginAware
  * @see org.springframework.richclient.security.ClientSecurityEvent
- * 
+ *
  */
 public class SecurityAwareConfigurer implements ApplicationListener, ApplicationContextAware, BeanPostProcessor {
 
@@ -266,7 +266,7 @@ public class SecurityAwareConfigurer implements ApplicationListener, Application
             if( bean instanceof AuthenticationAware ) {
                 if( logger.isDebugEnabled() )
                     logger.debug( "NOTIFY bean '" + bean + "' of new authorization for '" + currentAuthentication
-                            + "'" );
+                                  + "'" );
 
                 AuthenticationAware aab = (AuthenticationAware) bean;
                 aab.setAuthenticationToken(currentAuthentication);

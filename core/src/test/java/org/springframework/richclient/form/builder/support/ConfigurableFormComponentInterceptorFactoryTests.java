@@ -26,7 +26,7 @@ import org.springframework.richclient.form.builder.FormComponentInterceptor;
 
 /**
  * Tests for <code>ConfigurableFormComponentInterceptorFactory</code>.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class ConfigurableFormComponentInterceptorFactoryTests extends TestCase {
@@ -79,7 +79,7 @@ public class ConfigurableFormComponentInterceptorFactoryTests extends TestCase {
         assertNotNull( "FormModel should be included", factory.getInterceptor( included ) );
         assertNull( "FormModel is not included", factory.getInterceptor( excluded ) );
     }
-    
+
     private class TestableConfigurableFormComponentInterceptorFactory extends ConfigurableFormComponentInterceptorFactory {
         private FormComponentInterceptor createThis;
         private FormModel lastFormModel;

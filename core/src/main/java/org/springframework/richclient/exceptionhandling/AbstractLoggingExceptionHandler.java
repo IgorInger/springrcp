@@ -28,7 +28,7 @@ public abstract class AbstractLoggingExceptionHandler extends AbstractRegisterab
     public void setLogLevel(LogLevel logLevel) {
         this.logLevel = logLevel;
     }
-    
+
     /**
      * If set the throwable will first be purged before handling it.
      * @param exceptionPurger
@@ -60,26 +60,26 @@ public abstract class AbstractLoggingExceptionHandler extends AbstractRegisterab
      */
     public void logException(Thread thread, Throwable throwable) {
         switch (logLevel) {
-            case TRACE:
-                logger.trace(LOG_MESSAGE, throwable);
-                break;
-            case DEBUG:
-                logger.debug(LOG_MESSAGE, throwable);
-                break;
-            case INFO:
-                logger.info(LOG_MESSAGE, throwable);
-                break;
-            case WARN:
-                logger.warn(LOG_MESSAGE, throwable);
-                break;
-            case ERROR:
-                logger.error(LOG_MESSAGE, throwable);
-                break;
-            case FATAL:
-                logger.fatal(LOG_MESSAGE, throwable);
-                break;
-            default:
-                logger.error("Unrecognized log level (" + logLevel + ") for throwable", throwable);
+        case TRACE:
+            logger.trace(LOG_MESSAGE, throwable);
+            break;
+        case DEBUG:
+            logger.debug(LOG_MESSAGE, throwable);
+            break;
+        case INFO:
+            logger.info(LOG_MESSAGE, throwable);
+            break;
+        case WARN:
+            logger.warn(LOG_MESSAGE, throwable);
+            break;
+        case ERROR:
+            logger.error(LOG_MESSAGE, throwable);
+            break;
+        case FATAL:
+            logger.fatal(LOG_MESSAGE, throwable);
+            break;
+        default:
+            logger.error("Unrecognized log level (" + logLevel + ") for throwable", throwable);
         }
     }
 

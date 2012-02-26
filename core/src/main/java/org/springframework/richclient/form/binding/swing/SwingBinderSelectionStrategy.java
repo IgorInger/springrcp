@@ -27,16 +27,14 @@ import java.util.Map;
 /**
  * @author Oliver Hutchison
  */
-public class SwingBinderSelectionStrategy extends AbstractBinderSelectionStrategy
-{
+public class SwingBinderSelectionStrategy extends AbstractBinderSelectionStrategy {
 
     private Map<String, Binder> idBoundBinders = new HashMap<String, Binder>();
 
     /*
     * Default constructor.
     */
-    public SwingBinderSelectionStrategy()
-    {
+    public SwingBinderSelectionStrategy() {
         super(JTextField.class);
     }
 
@@ -45,8 +43,7 @@ public class SwingBinderSelectionStrategy extends AbstractBinderSelectionStrateg
      *
      * @param binders
      */
-    public void setIdBoundBinders(Map binders)
-    {
+    public void setIdBoundBinders(Map binders) {
         this.idBoundBinders = binders;
     }
 
@@ -55,8 +52,7 @@ public class SwingBinderSelectionStrategy extends AbstractBinderSelectionStrateg
      *
      * @param binders
      */
-    public void registerIdBoundBinders(Map<String, Binder> binders)
-    {
+    public void registerIdBoundBinders(Map<String, Binder> binders) {
         idBoundBinders.putAll(binders);
     }
 
@@ -68,22 +64,16 @@ public class SwingBinderSelectionStrategy extends AbstractBinderSelectionStrateg
      * @param id Id of the binder
      * @return Binder or <code>null</code> if not found.
      */
-    public Binder getIdBoundBinder(String id)
-    {
+    public Binder getIdBoundBinder(String id) {
         Binder binder = idBoundBinders.get(id);
-        if (binder == null) //  try to locate the binder bean
-        {
+        if (binder == null) { //  try to locate the binder bean
             Object binderBean = getApplicationContext().getBean(id);
-            if (binderBean instanceof Binder)
-            {
-                if (binderBean != null)
-                {
+            if (binderBean instanceof Binder) {
+                if (binderBean != null) {
                     idBoundBinders.put(id, (Binder) binderBean);
                     binder = (Binder) binderBean;
                 }
-            }
-            else
-            {
+            } else {
                 throw new IllegalArgumentException("Bean '" + id + "' was found, but was not a binder");
             }
         }
@@ -96,13 +86,11 @@ public class SwingBinderSelectionStrategy extends AbstractBinderSelectionStrateg
      * @param controlType Type of control
      * @return  The binder for that control
      */
-    public Binder selectBinder(Class controlType)
-    {
+    public Binder selectBinder(Class controlType) {
         return findBinderByControlType(controlType);
     }
 
-    protected void registerDefaultBinders()
-    {
+    protected void registerDefaultBinders() {
         registerBinderForPropertyType(String.class, new TextComponentBinder());
         registerBinderForPropertyType(boolean.class, new CheckBoxBinder());
         registerBinderForPropertyType(Boolean.class, new CheckBoxBinder());

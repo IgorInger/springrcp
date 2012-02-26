@@ -24,7 +24,7 @@ import org.springframework.richclient.command.ActionCommand;
 
 /**
  * Minimizes all <code>JInternalFrame</code>s in a given <code>JDesktopPane</code>.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class MinimizeAllCommand extends ActionCommand {

@@ -15,39 +15,39 @@ import org.springframework.richclient.util.Assert;
  */
 public class CompositeRichValidator implements RichValidator {
 
-	private RichValidator[] validators;
+    private RichValidator[] validators;
 
-	/**
-	 * Convenient creation of {@link CompositeRichValidator} using two
-	 * validators.
-	 */
-	public CompositeRichValidator(RichValidator validator1, RichValidator validator2) {
-		this(new RichValidator[] { validator1, validator2 });
-	}
+    /**
+     * Convenient creation of {@link CompositeRichValidator} using two
+     * validators.
+     */
+    public CompositeRichValidator(RichValidator validator1, RichValidator validator2) {
+        this(new RichValidator[] { validator1, validator2 });
+    }
 
-	/**
-	 * Create a {@link CompositeRichValidator} that combines all the results
-	 * from the given validators.
-	 */
-	public CompositeRichValidator(RichValidator[] validators) {
-		Assert.notNull(validators);
-		this.validators = validators;
-	}
+    /**
+     * Create a {@link CompositeRichValidator} that combines all the results
+     * from the given validators.
+     */
+    public CompositeRichValidator(RichValidator[] validators) {
+        Assert.notNull(validators);
+        this.validators = validators;
+    }
 
-	public ValidationResults validate(Object object, String property) {
-		DefaultValidationResults results = new DefaultValidationResults();
-		for (int i = 0; i < validators.length; ++i) {
-			results.addAllMessages(validators[i].validate(object, property));
-		}
-		return results;
-	}
+    public ValidationResults validate(Object object, String property) {
+        DefaultValidationResults results = new DefaultValidationResults();
+        for (int i = 0; i < validators.length; ++i) {
+            results.addAllMessages(validators[i].validate(object, property));
+        }
+        return results;
+    }
 
-	public ValidationResults validate(Object object) {
-		DefaultValidationResults results = new DefaultValidationResults();
-		for (int i = 0; i < validators.length; ++i) {
-			results.addAllMessages(validators[i].validate(object));
-		}
-		return results;
-	}
+    public ValidationResults validate(Object object) {
+        DefaultValidationResults results = new DefaultValidationResults();
+        for (int i = 0; i < validators.length; ++i) {
+            results.addAllMessages(validators[i].validate(object));
+        }
+        return results;
+    }
 
 }

@@ -8,8 +8,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
-public class SliderBinding extends CustomBinding
-{
+public class SliderBinding extends CustomBinding {
 
     private JSlider slider;
     private boolean readOnly;
@@ -23,37 +22,29 @@ public class SliderBinding extends CustomBinding
      * @param formModel
      * @param formPropertyPath
      */
-    public SliderBinding(FormModel formModel, String formPropertyPath)
-    {
+    public SliderBinding(FormModel formModel, String formPropertyPath) {
         super(formModel, formPropertyPath, Integer.class);
         slider = new JSlider();
-        slider.addChangeListener(new ChangeListener()
-        {
+        slider.addChangeListener(new ChangeListener() {
 
-            public void stateChanged(ChangeEvent e)
-            {
+            public void stateChanged(ChangeEvent e) {
                 controlValueChanged(slider.getValue());
             }
         });
     }
 
     @Override
-    protected void valueModelChanged(Object newValue)
-    {
+    protected void valueModelChanged(Object newValue) {
         slider.setValue((Integer) newValue);
         readOnlyChanged();
 
     }
 
     @Override
-    protected JComponent doBindControl()
-    {
-        if (sliderLabelFactory == null)
-        {
+    protected JComponent doBindControl() {
+        if (sliderLabelFactory == null) {
             slider.createStandardLabels(maxSpacing);
-        }
-        else
-        {
+        } else {
             slider.setLabelTable(sliderLabelFactory.getSliderLabels());
         }
         slider.setPaintLabels(true);
@@ -62,48 +53,41 @@ public class SliderBinding extends CustomBinding
     }
 
     @Override
-    protected void enabledChanged()
-    {
+    protected void enabledChanged() {
         this.slider.setEnabled(isEnabled());
         readOnlyChanged();
 
     }
 
     @Override
-    protected void readOnlyChanged()
-    {
+    protected void readOnlyChanged() {
         this.slider.setEnabled(isEnabled() && !isReadOnly() && !readOnly);
     }
 
     /** Set the maximum value of the slider */
-    public void setMaxValue(int maxValue)
-    {
+    public void setMaxValue(int maxValue) {
         slider.setMaximum(maxValue);
     }
 
     /** Set the minimum value of the slider */
-    public void setMinValue(int minValue)
-    {
+    public void setMinValue(int minValue) {
         slider.setMinimum(minValue);
     }
 
     /** Set the major tick spacing of the slider */
-    public void setMajorTickSpacing(int spacing)
-    {
+    public void setMajorTickSpacing(int spacing) {
         this.maxSpacing = spacing;
         slider.setMajorTickSpacing(spacing);
 
     }
 
     /** Set the minor tick spacing of the slider */
-    public void setMinorTickSpacing(int spacing)
-    {
+    public void setMinorTickSpacing(int spacing) {
         slider.setMinorTickSpacing(spacing);
     }
 
     /** Set the factory for the custom labels */
-    public void setSliderLabelFactory(SliderLabelFactory sliderLabelFactory)
-    {
+    public void setSliderLabelFactory(SliderLabelFactory sliderLabelFactory) {
         this.sliderLabelFactory = sliderLabelFactory;
     }
 

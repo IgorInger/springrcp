@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -40,7 +40,7 @@ import org.springframework.util.Assert;
  * model. <br>
  * Based on code contributed to the public domain by Thomas Bierhance
  * (http://www.orbital-computer.de/JComboBox/)
- * 
+ *
  * @author Peter De Bruycker
  * @author Thomas Bierhance
  */
@@ -64,7 +64,7 @@ public class ComboBoxAutoCompletion extends PlainDocument {
 
     /**
      * Adds autocompletion support to the given <code>JComboBox</code>.
-     * 
+     *
      * @param comboBox
      *            the combobox
      */
@@ -72,7 +72,7 @@ public class ComboBoxAutoCompletion extends PlainDocument {
         Assert.notNull(comboBox, "The ComboBox cannot be null.");
         Assert.isTrue(!comboBox.isEditable(), "The ComboBox must not be editable.");
         Assert.isTrue(comboBox.getEditor().getEditorComponent() instanceof JTextComponent,
-                "Only ComboBoxes with JTextComponent as editor are supported.");
+                      "Only ComboBoxes with JTextComponent as editor are supported.");
 
         this.comboBox = comboBox;
         comboBox.setEditable(true);
@@ -144,14 +144,13 @@ public class ComboBoxAutoCompletion extends PlainDocument {
         // lookup and select a matching item
         Object item = lookupItem(futureText);
         if (item != null) {
-            selectingValue = true; 
+            selectingValue = true;
             try {
                 comboBox.setSelectedItem(item);
             } finally {
                 selectingValue = false;
-            }            
-        }
-        else {
+            }
+        } else {
             // keep old item selected if there is no match
             item = comboBox.getSelectedItem();
             // imitate no insert (later on offs will be incremented by
@@ -174,8 +173,7 @@ public class ComboBoxAutoCompletion extends PlainDocument {
         if (itemString != null) {
             if (itemString.equals(str) && offs == 0) {
                 highlightCompletedText(0);
-            }
-            else {
+            } else {
                 highlightCompletedText(offs + str.length());
                 // show popup when the user types
                 if (comboBox.isShowing()) {
@@ -223,8 +221,7 @@ public class ComboBoxAutoCompletion extends PlainDocument {
             if (offs > 0) {
                 if (hitBackspaceOnSelection)
                     offs--;
-            }
-            else {
+            } else {
                 // User hit backspace with the cursor positioned on the start =>
                 // beep
                 comboBox.getToolkit().beep();
@@ -235,8 +232,7 @@ public class ComboBoxAutoCompletion extends PlainDocument {
             // show popup when the user types
             if (comboBox.isShowing())
                 comboBox.setPopupVisible(true);
-        }
-        else {
+        } else {
             super.remove(offs, length);
         }
     }
@@ -262,13 +258,13 @@ public class ComboBoxAutoCompletion extends PlainDocument {
             case KeyEvent.VK_ENTER:
                 highlightCompletedText(0);
                 break;
-            // determine if the pressed key is backspace (needed by the remove
-            // method)
+                // determine if the pressed key is backspace (needed by the remove
+                // method)
             case KeyEvent.VK_BACK_SPACE:
                 hitBackspace = true;
                 hitBackspaceOnSelection = editor.getSelectionStart() != editor.getSelectionEnd();
                 break;
-            // ignore delete key
+                // ignore delete key
             case KeyEvent.VK_DELETE:
                 e.consume();
                 ComboBoxAutoCompletion.this.comboBox.getToolkit().beep();

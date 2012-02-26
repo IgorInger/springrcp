@@ -48,7 +48,8 @@ public class ComboBoxBinder extends AbstractListBinder {
 
     public ComboBoxBinder() {
         this(null, new String[] { SELECTABLE_ITEMS_KEY, COMPARATOR_KEY, RENDERER_KEY, EDITOR_KEY, FILTER_KEY,
-                EMPTY_SELECTION_VALUE });
+                                  EMPTY_SELECTION_VALUE
+                                });
     }
 
     public ComboBoxBinder(String[] supportedContextKeys) {
@@ -69,7 +70,7 @@ public class ComboBoxBinder extends AbstractListBinder {
         ComboBoxBinding comboBoxBinding = (ComboBoxBinding) binding;
         if (context.containsKey(RENDERER_KEY)) {
             comboBoxBinding.setRenderer((ListCellRenderer) decorate(context.get(RENDERER_KEY), comboBoxBinding
-                    .getRenderer()));
+                                        .getRenderer()));
         } else if (renderer != null) {
             comboBoxBinding.setRenderer((ListCellRenderer) decorate(renderer, comboBoxBinding.getRenderer()));
         }
@@ -97,7 +98,7 @@ public class ComboBoxBinder extends AbstractListBinder {
      * Defines a closure which is called to create the renderer. The argument for the closure will be the default
      * renderer (see {@link JComboBox#getRenderer()} of the combobox. The closure must create an instance of
      * {@link ListCellRenderer}
-     * 
+     *
      * @param rendererClosure
      *            the closure which is used to create the renderer
      */
@@ -112,7 +113,7 @@ public class ComboBoxBinder extends AbstractListBinder {
     /**
      * Defines a closure which is called to create the editor. The argument for the closure will be the default editor
      * (see {@link JComboBox#getEditor()} of the combobox. The closure must create an instance of {@link ComboBoxEditor}
-     * 
+     *
      * @param editorClosure
      *            the closure which is used to create the editor
      */

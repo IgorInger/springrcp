@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -32,7 +32,7 @@ public class AnnotationAwareBeanPropertyAccessStrategyTests extends SpringRichTe
     public void testBeanWithNoAnnotations() {
         final AnnotationAwareBeanPropertyAccessStrategy pas = new AnnotationAwareBeanPropertyAccessStrategy(new NoAnnotationTestBean());
         final PropertyMetadataAccessStrategy mas = pas.getMetadataAccessStrategy();
-        
+
         Map<String,Object> um = mas.getAllUserMetadata("name");
         assertTrue(um == null || um.size() == 0);
         um = mas.getAllUserMetadata("age");
@@ -40,18 +40,18 @@ public class AnnotationAwareBeanPropertyAccessStrategyTests extends SpringRichTe
         um = mas.getAllUserMetadata("rank");
         assertTrue(um == null || um.size() == 0);
     }
-    
+
     public void testBeanWithAnnotations() throws Exception {
         final AnnotationAwareBeanPropertyAccessStrategy pas = new AnnotationAwareBeanPropertyAccessStrategy(new TestBean());
         final PropertyMetadataAccessStrategy mas = pas.getMetadataAccessStrategy();
-        
+
         Map<String,Object> um = mas.getAllUserMetadata("name");
         assertNotNull(um);
         assertEquals(2, um.size());
         assertEquals(Boolean.TRUE, um.get("org.springframework.binding.support.NoValueAnnotation"));
         NoValueAnnotation nva = (NoValueAnnotation)um.get("@" + NoValueAnnotation.class.getName());
         assertNotNull(nva);
-        
+
         um = mas.getAllUserMetadata("age");
         assertNotNull(um);
         assertEquals(4, um.size());
@@ -62,7 +62,7 @@ public class AnnotationAwareBeanPropertyAccessStrategyTests extends SpringRichTe
         SingleValueAnnotation sva = (SingleValueAnnotation)um.get("@" + SingleValueAnnotation.class.getName());
         assertNotNull(sva);
         assertEquals("The Age Method", sva.value());
-        
+
         um = mas.getAllUserMetadata("rank");
         assertNotNull(um);
         assertEquals(9, um.size());
@@ -82,22 +82,22 @@ public class AnnotationAwareBeanPropertyAccessStrategyTests extends SpringRichTe
         assertEquals("First Test Name", mva.name());
         assertEquals(24.5, mva.age());
         assertEquals(10, mva.rank());
-        
+
         um = mas.getAllUserMetadata("description");
         assertTrue(um == null || um.size() == 0);
     }
-    
+
     public void testInFormModel() {
         final AnnotationAwareBeanPropertyAccessStrategy pas = new AnnotationAwareBeanPropertyAccessStrategy(new TestBean());
         final FormModel fm = new DefaultFormModel(pas);
-        
-        FieldMetadata pm = fm.getFieldMetadata("name"); 
+
+        FieldMetadata pm = fm.getFieldMetadata("name");
         assertNotNull(pm);
         assertEquals(Boolean.TRUE, pm.getUserMetadata("org.springframework.binding.support.NoValueAnnotation"));
         NoValueAnnotation nva = (NoValueAnnotation)pm.getUserMetadata("@" + NoValueAnnotation.class.getName());
         assertNotNull(nva);
         assertEquals(2, pm.getAllUserMetadata().size());
-        
+
         pm = fm.getFieldMetadata("age");
         assertNotNull(pm);
         assertEquals(Boolean.TRUE, pm.getUserMetadata("org.springframework.binding.support.NoValueAnnotation"));
@@ -108,7 +108,7 @@ public class AnnotationAwareBeanPropertyAccessStrategyTests extends SpringRichTe
         assertNotNull(sva);
         assertEquals("The Age Method", sva.value());
         assertEquals(4, pm.getAllUserMetadata().size());
-        
+
         pm = fm.getFieldMetadata("rank");
         assertNotNull(pm);
         assertEquals(Boolean.TRUE, pm.getUserMetadata("org.springframework.binding.support.NoValueAnnotation"));
@@ -128,18 +128,18 @@ public class AnnotationAwareBeanPropertyAccessStrategyTests extends SpringRichTe
         assertEquals(24.5, mva.age());
         assertEquals(10, mva.rank());
         assertEquals(9, pm.getAllUserMetadata().size());
-        
+
         pm = fm.getFieldMetadata("description");
         assertNotNull(pm);
         assertTrue(pm.getAllUserMetadata() == null || pm.getAllUserMetadata().size() == 0);
     }
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     public static class NoAnnotationTestBean {
         private String name;
         private double age;
@@ -169,27 +169,27 @@ public class AnnotationAwareBeanPropertyAccessStrategyTests extends SpringRichTe
             this.rank = rank;
         }
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     public static class TestBean {
         private String name;
         private double age;
         private int rank;
         private String description;
-        
+
         @NoValueAnnotation
         public String getName() {
             return name;
         }
-        
+
         public void setName(final String name) {
             this.name = name;
         }
-        
+
         @SingleValueAnnotation("The Age Method")
         public double getAge() {
             return age;

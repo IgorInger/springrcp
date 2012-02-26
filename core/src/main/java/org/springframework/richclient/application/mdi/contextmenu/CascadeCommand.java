@@ -24,7 +24,7 @@ import org.springframework.richclient.command.ActionCommand;
 
 /**
  * Cascades all <code>JInternalFrame</code>s in a given <code>JDesktopPane</code>.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class CascadeCommand extends ActionCommand {

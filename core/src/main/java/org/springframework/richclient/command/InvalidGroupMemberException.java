@@ -17,10 +17,10 @@ package org.springframework.richclient.command;
 
 
 /**
- * Indicates that an object is not a valid member of a {@link CommandGroup}. 
- * 
+ * Indicates that an object is not a valid member of a {@link CommandGroup}.
+ *
  * <p>
- * Usually, a command group member will be a subclass of {@link AbstractCommand}, however some 
+ * Usually, a command group member will be a subclass of {@link AbstractCommand}, however some
  * command group implementations may define more specific rules about what types of members they
  * will accept.
  * </p>
@@ -30,20 +30,20 @@ package org.springframework.richclient.command;
  *
  */
 public class InvalidGroupMemberException extends CommandException {
-    
+
     private static final long serialVersionUID = 7891614557214887191L;
-    
+
     private final Class invalidMemberClass;
     private final Class commandGroupClass;
 
     private static String createDefaultMessage(Class invalidMemberClass, Class commandGroupClass) {
-        
+
         return "An object of type ["
                + invalidMemberClass
                + "] is not a valid member for a group of type ["
                + commandGroupClass
                + "]";
-        
+
     }
 
     /**
@@ -77,15 +77,15 @@ public class InvalidGroupMemberException extends CommandException {
      * @param commandGroupClass The class of the command group that the member is invalid for.
      * @param cause The nested exception.
      */
-    public InvalidGroupMemberException(String message, 
-                                       Class invalidMemberClass, 
-                                       Class commandGroupClass, 
+    public InvalidGroupMemberException(String message,
+                                       Class invalidMemberClass,
+                                       Class commandGroupClass,
                                        Throwable cause) {
-        
+
         super(message, cause);
         this.invalidMemberClass = invalidMemberClass;
         this.commandGroupClass = commandGroupClass;
-        
+
     }
 
     /**
@@ -95,7 +95,7 @@ public class InvalidGroupMemberException extends CommandException {
     public Class getCommandGroupClass() {
         return this.commandGroupClass;
     }
-    
+
     /**
      * Returns the class of the invalid member.
      * @return Returns the value of the invalidMemberClass field, possibly null.

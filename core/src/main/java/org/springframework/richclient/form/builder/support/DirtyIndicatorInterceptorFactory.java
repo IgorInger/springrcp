@@ -20,7 +20,7 @@ import org.springframework.richclient.form.builder.FormComponentInterceptor;
 
 /**
  * Factory for <code>DirtyIndicatorInterceptor</code> instances.
- * 
+ *
  * @author Peter De Bruycker
  */
 

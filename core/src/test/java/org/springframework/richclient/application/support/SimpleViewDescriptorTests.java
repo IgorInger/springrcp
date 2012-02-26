@@ -22,7 +22,7 @@ import junit.framework.TestCase;
 
 /**
  * testcase for {@link SimpleViewDescriptor}
- * 
+ *
  * @author Peter De Bruycker
  */
 public class SimpleViewDescriptorTests extends TestCase {

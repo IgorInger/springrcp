@@ -20,9 +20,9 @@ import org.springframework.binding.form.FormModel;
 
 /**
  * Class which holds keys for user metadata used in spring rich
- * 
+ *
  * @author Mathias Broekelmann
- * 
+ *
  */
 public abstract class UserMetadata {
     /**
@@ -36,7 +36,7 @@ public abstract class UserMetadata {
 
     /**
      * tests if the usermetadata of the field has a boolean value true for the key {@value #PROTECTED_FIELD}
-     * 
+     *
      * @param fieldName
      *            the fieldname
      * @return true if the field is protected, otherwise false
@@ -48,7 +48,7 @@ public abstract class UserMetadata {
 
     /**
      * defines the protectable state for a field
-     * 
+     *
      * @param formModel the formmodel
      * @param fieldName the field to protect
      * @param protectedField if true the field will be defined as protectable otherwise false

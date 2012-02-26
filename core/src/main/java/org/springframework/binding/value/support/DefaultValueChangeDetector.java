@@ -46,7 +46,8 @@ public class DefaultValueChangeDetector implements ValueChangeDetector {
      */
     protected final Set classesWithSafeEquals = new HashSet( Arrays.asList( new Class[] { Boolean.class, Byte.class,
             Short.class, Integer.class, Long.class, Float.class, Double.class, String.class, Character.class,
-            BigDecimal.class, BigInteger.class, Date.class, Calendar.class } ) );
+            BigDecimal.class, BigInteger.class, Date.class, Calendar.class
+                                                                                        } ) );
 
     /**
      * Determines if there has been a change in value between the provided arguments. As

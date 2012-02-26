@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,13 +27,13 @@ import org.springframework.binding.value.support.ValueHolder;
 
 /**
  * A combobox whose contents are dynamically refreshable.
- * 
+ *
  * @author Keith Donald
  */
 public class DynamicComboBoxListModel extends ComboBoxListModel implements PropertyChangeListener {
-    
+
     private static final Log logger = LogFactory.getLog(DynamicComboBoxListModel.class);
-    
+
     private final SelectedItemChangeHandler selectedItemChangeHandler = new SelectedItemChangeHandler();
 
     private final ValueModel selectedItemHolder;
@@ -87,8 +87,7 @@ public class DynamicComboBoxListModel extends ComboBoxListModel implements Prope
                 logger.debug("Setting newly selected item on value holder to " + selectedItem);
             }
             selectedItemHolder.setValue(selectedItem);
-        }
-        else {
+        } else {
             super.setSelectedItem(selectedItem);
         }
     }
@@ -96,7 +95,7 @@ public class DynamicComboBoxListModel extends ComboBoxListModel implements Prope
     public void propertyChange(PropertyChangeEvent evt) {
         if (logger.isDebugEnabled()) {
             logger.debug("Backing collection of selectable items changed; "
-                    + "refreshing combo box with contents of new collection.");
+                         + "refreshing combo box with contents of new collection.");
         }
         doAdd(selectableItemsHolder.getValue());
     }
@@ -106,26 +105,24 @@ public class DynamicComboBoxListModel extends ComboBoxListModel implements Prope
         if (items != null) {
             if (items instanceof Collection) {
                 addAll((Collection)items);
-            }
-            else if (items instanceof Object[]) {
+            } else if (items instanceof Object[]) {
                 Object[] itemsArray = (Object[])items;
                 for (int i = 0; i < itemsArray.length; i++) {
                     add(itemsArray[i]);
                 }
-            }
-            else {
+            } else {
                 throw new IllegalArgumentException("selectableItemsHolder must hold a Collection or array");
             }
         }
         sort();
     }
-    
+
     private class SelectedItemChangeHandler implements PropertyChangeListener {
 
         public void propertyChange(PropertyChangeEvent evt) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Notifying combo box view selected value changed; new value is '"
-                        + selectedItemHolder.getValue() + "'");
+                             + selectedItemHolder.getValue() + "'");
             }
             /*
             if (selectedItemHolder.getValue() == null) {
@@ -140,13 +137,13 @@ public class DynamicComboBoxListModel extends ComboBoxListModel implements Prope
             }
             else {
             */
-                if (logger.isDebugEnabled()) {
-                    logger.debug("Firing contents change event; selected item may have changed");
-                }
-                fireContentsChanged(this, -1, -1);
-                if (logger.isDebugEnabled()) {
-                    logger.debug("Fired contents change event!");
-                }
+            if (logger.isDebugEnabled()) {
+                logger.debug("Firing contents change event; selected item may have changed");
+            }
+            fireContentsChanged(this, -1, -1);
+            if (logger.isDebugEnabled()) {
+                logger.debug("Fired contents change event!");
+            }
             //}
         }
     }

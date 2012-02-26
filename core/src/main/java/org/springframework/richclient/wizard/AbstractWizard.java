@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -28,9 +28,9 @@ import org.springframework.richclient.util.EventListenerListHelper;
 import org.springframework.util.Assert;
 
 /**
- * A convenience implementation of the {@link Wizard} interface. This abstract class provides the 
+ * A convenience implementation of the {@link Wizard} interface. This abstract class provides the
  * following basic wizard functionaliy:
- * 
+ *
  * <ul>
  * <li>Adding and removing pages from the wizard.</li>
  * <li>Stepping forward and back through the wizard pages.</li>
@@ -38,12 +38,12 @@ import org.springframework.util.Assert;
  * <li>Notifying listeners of events such as {@code cancel} and {@code finish}.</li>
  * <li>Provides access to application services via its superclass, {@link ApplicationServicesAccessor}.</li>
  * </ul>
- * 
- * 
+ *
+ *
  * @author Keith Donald
  */
 public abstract class AbstractWizard extends ApplicationServicesAccessor implements Wizard, TitleConfigurable {
-    
+
     /** The key that will be used to retrieve the default page image icon for the wizard. */
     public static final String DEFAULT_IMAGE_KEY = "wizard.pageIcon";
 
@@ -71,7 +71,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     /**
      * Creates a new {@code AbstractWizard} with the given identifier.
      *
-     * @param wizardId The id used to identify this wizard. 
+     * @param wizardId The id used to identify this wizard.
      */
     public AbstractWizard(String wizardId) {
         this.wizardId = wizardId;
@@ -79,7 +79,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
 
     /**
      * Returns this wizard's identifier.
-     * 
+     *
      * @return the identifier of this wizard, may be null.
      */
     public String getId() {
@@ -87,7 +87,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     }
 
     /**
-     * Sets the flag that determines whether or not wizard pages will be configured as they are 
+     * Sets the flag that determines whether or not wizard pages will be configured as they are
      * added to this wizard.
      *
      * @param autoConfigure
@@ -103,7 +103,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
      * This flag should be set on wizards where the first wizard page adds
      * follow-on wizard pages based on user input.
      * </p>
-     * 
+     *
      * @param b
      *            <code>true</code> to always show Next and Previous buttons,
      *            and <code>false</code> to suppress Next and Previous buttons
@@ -115,7 +115,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
 
     /**
      * Returns the window title for the container that host this wizard.
-     * 
+     *
      * @return the wizard title, may be null.
      */
     public String getTitle() {
@@ -125,7 +125,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     /**
      * Sets the window title for the container that hosts this page to the given
      * string.
-     * 
+     *
      * @param newTitle
      *            the window title for the container
      */
@@ -135,7 +135,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
 
     /**
      * Returns the component that contains this wizard.
-     * 
+     *
      * @return the wizard container.
      */
     public WizardContainer getContainer() {
@@ -144,7 +144,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
 
     /**
      * Sets the component that contains this wizard.
-     * 
+     *
      * @param container the container to set
      */
     public void setContainer(WizardContainer container) {
@@ -154,7 +154,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     /**
      * Adds a new page to this wizard. The page is inserted at the end of the
      * page list.
-     * 
+     *
      * @param page
      *            the new page
      */
@@ -165,7 +165,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     /**
      * Adds a new page to this wizard. The page is inserted at the end of the
      * page list.
-     * 
+     *
      * @param wizardConfigurationKey
      *            the parent configuration key of the page, used for
      *            configuration, by default this wizard's id *
@@ -182,12 +182,12 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     }
 
     /**
-     * Adds a new page to this wizard. The page is created by wrapping the form in a 
+     * Adds a new page to this wizard. The page is created by wrapping the form in a
      * {@link FormBackedWizardPage} and appending it to the end of the page list.
-     * 
+     *
      * @param formPage The form page to be added to the wizard.
-     * @return the newly created wizard page that wraps the given form. 
-     * 
+     * @return the newly created wizard page that wraps the given form.
+     *
      * @throws IllegalArgumentException if {@code formPage} is null.
      */
     public WizardPage addForm(Form formPage) {
@@ -199,7 +199,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
 
     /**
      * Removes the given page from this wizard.
-     * 
+     *
      * @param page The page to be removed.
      */
     public void removePage(WizardPage page) {
@@ -209,8 +209,8 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     }
 
     /**
-     * This implementation of {@link Wizard#addPages()} does nothing. Subclasses should override 
-     * this method if extra pages need to be added before the wizard is displayed. New pages should 
+     * This implementation of {@link Wizard#addPages()} does nothing. Subclasses should override
+     * this method if extra pages need to be added before the wizard is displayed. New pages should
      * be added by calling {@link #addPage(WizardPage)}.
      */
     public void addPages() {
@@ -219,7 +219,7 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
 
     /**
      * Returns true if all the pages of this wizard have been completed.
-     * 
+     *
      */
     public boolean canFinish() {
         // Default implementation is to check if all pages are complete.
@@ -341,8 +341,8 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     /**
      * Performs any required processing when the wizard receives a finish request, and then fires
      * an appropriate event to any wizard listeners listening to this wizard.
-     * 
-     * @return {@code true} to indicate that the finish request was accepted, {@code false} to 
+     *
+     * @return {@code true} to indicate that the finish request was accepted, {@code false} to
      * indicate that it was refused.
      */
     public boolean performFinish() {
@@ -352,10 +352,10 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     }
 
     /**
-     * Performs any required processing when the wizard is cancelled, and then fires an appropriate 
+     * Performs any required processing when the wizard is cancelled, and then fires an appropriate
      * event to any wizard listeners listening to this wizard.
-     * 
-     * @return {@code true} to indicate that the cancel request was accepted, {@code false} to 
+     *
+     * @return {@code true} to indicate that the cancel request was accepted, {@code false} to
      * indicate that it was refused.
      */
     public boolean performCancel() {
@@ -365,10 +365,10 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     }
 
     /**
-     * Subclasses must implement this method to perform any processing when the wizard receives a 
+     * Subclasses must implement this method to perform any processing when the wizard receives a
      * finish request.
-     * 
-     * @return {@code true} to indicate that the finish request was accepted, {@code false} to 
+     *
+     * @return {@code true} to indicate that the finish request was accepted, {@code false} to
      * indicate that it was refused.
      */
     protected abstract boolean onFinish();
@@ -376,8 +376,8 @@ public abstract class AbstractWizard extends ApplicationServicesAccessor impleme
     /**
      * Subclasses can override this method to perform processing when the wizard receives a cancel
      * request. This default implementation always returns true.
-     * 
-     * @returrn {@code true} to indicate that the cancel request was accepted, {@code false} to 
+     *
+     * @returrn {@code true} to indicate that the cancel request was accepted, {@code false} to
      * indicate that it was refused.
      */
     protected boolean onCancel() {

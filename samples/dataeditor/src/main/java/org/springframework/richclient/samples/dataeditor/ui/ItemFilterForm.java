@@ -7,21 +7,17 @@ import org.springframework.richclient.samples.dataeditor.domain.ItemFilter;
 
 import javax.swing.*;
 
-public class ItemFilterForm extends FilterForm
-{
-    public ItemFilterForm()
-    {
+public class ItemFilterForm extends FilterForm {
+    public ItemFilterForm() {
         super("itemFilterForm");
     }
 
     @Override
-    protected Object newFormObject()
-    {
+    protected Object newFormObject() {
         return new ItemFilter();
     }
 
-    protected JComponent createFormControl()
-    {
+    protected JComponent createFormControl() {
         FormLayout layout = new FormLayout("default, 3dlu, fill:pref:nogrow", "default");
         FormLayoutFormBuilder builder = new FormLayoutFormBuilder(getBindingFactory(), layout);
         builder.addHorizontalSeparator("Quick search", 3);

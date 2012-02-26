@@ -27,8 +27,7 @@ public class ProgressBarProgressMonitorTests extends TestCase {
         try {
             new ProgressBarProgressMonitor(null);
             fail("Should throw IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // test passes
         }
     }

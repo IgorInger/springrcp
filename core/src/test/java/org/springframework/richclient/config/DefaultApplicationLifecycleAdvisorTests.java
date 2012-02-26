@@ -64,7 +64,7 @@ public class DefaultApplicationLifecycleAdvisorTests extends TestCase {
             ApplicationWindow window = (ApplicationWindow) EasyMock.createMock(ApplicationWindow.class);
             setOpeningWindow(window);
         }
-        
+
 
         public void testInit() {
             initNewWindowCommandBarFactory();
@@ -73,8 +73,8 @@ public class DefaultApplicationLifecycleAdvisorTests extends TestCase {
         public BeanFactory getBeanFactory() {
             return getCommandBarFactory();
         }
-        
-        
+
+
     }
 
     public static class TestCommand implements ApplicationListener {

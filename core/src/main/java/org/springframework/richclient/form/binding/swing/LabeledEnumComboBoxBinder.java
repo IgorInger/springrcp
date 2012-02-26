@@ -49,16 +49,16 @@ public class LabeledEnumComboBoxBinder extends ComboBoxBinder {
 
     protected Collection createEnumSelectableItemsHolder(FormModel formModel, String formPropertyPath) {
         Collection enumCollection = getLabeledEnumResolver().getLabeledEnumSet(
-                getPropertyType(formModel, formPropertyPath));
+                                        getPropertyType(formModel, formPropertyPath));
         Assert.notNull(enumCollection, "Unable to resolve enums for class '"
-                + getPropertyType(formModel, formPropertyPath).getName() + "'.");
+                       + getPropertyType(formModel, formPropertyPath).getName() + "'.");
         return enumCollection;
     }
 
     public LabeledEnumResolver getLabeledEnumResolver() {
         if (enumResolver == null) {
             enumResolver = (LabeledEnumResolver) ApplicationServicesLocator.services().getService(
-                    LabeledEnumResolver.class);
+                               LabeledEnumResolver.class);
         }
         return enumResolver;
     }

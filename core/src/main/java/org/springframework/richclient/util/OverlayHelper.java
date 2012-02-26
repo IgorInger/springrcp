@@ -47,8 +47,7 @@ import javax.swing.JRootPane;
  *
  * @author oliverh
  */
-public class OverlayHelper implements SwingConstants
-{
+public class OverlayHelper implements SwingConstants {
     private final OverlayTargetChangeHandler overlayTargetChangeHandler = new OverlayTargetChangeHandler();
 
     private final OverlayChangeHandler overlayChangeHandler = new OverlayChangeHandler();
@@ -81,13 +80,11 @@ public class OverlayHelper implements SwingConstants
      * @param yOffset       y offset from center
      * @see SwingConstants
      */
-    public static void attachOverlay(JComponent overlay, JComponent overlayTarget, int center, int xOffset, int yOffset)
-    {
+    public static void attachOverlay(JComponent overlay, JComponent overlayTarget, int center, int xOffset, int yOffset) {
         new OverlayHelper(overlay, overlayTarget, center, xOffset, yOffset);
     }
 
-    protected OverlayHelper(JComponent overlay, JComponent overlayTarget, int center, int xOffset, int yOffset)
-    {
+    protected OverlayHelper(JComponent overlay, JComponent overlayTarget, int center, int xOffset, int yOffset) {
         this.overlay = overlay;
         this.overlayTarget = overlayTarget;
         this.center = center;
@@ -100,78 +97,62 @@ public class OverlayHelper implements SwingConstants
         installListeners();
     }
 
-    final class OverlayChangeHandler implements ComponentListener, PropertyChangeListener
-    {
-        public void componentHidden(ComponentEvent e)
-        {
+    final class OverlayChangeHandler implements ComponentListener, PropertyChangeListener {
+        public void componentHidden(ComponentEvent e) {
             hideOverlay();
         }
 
-        public void componentMoved(ComponentEvent e)
-        {
+        public void componentMoved(ComponentEvent e) {
             // ignore
         }
 
-        public void componentResized(ComponentEvent e)
-        {
+        public void componentResized(ComponentEvent e) {
             // ignore
         }
 
-        public void componentShown(ComponentEvent e)
-        {
+        public void componentShown(ComponentEvent e) {
             updateOverlay();
         }
 
-        public void propertyChange(PropertyChangeEvent e)
-        {
-            if ("ancestor".equals(e.getPropertyName()) || "layeredContainerLayer".equals(e.getPropertyName()))
-            {
+        public void propertyChange(PropertyChangeEvent e) {
+            if ("ancestor".equals(e.getPropertyName()) || "layeredContainerLayer".equals(e.getPropertyName())) {
                 return;
             }
             updateOverlay();
         }
     }
 
-    class OverlayTargetChangeHandler implements HierarchyListener, HierarchyBoundsListener, ComponentListener
-    {
-        public void hierarchyChanged(HierarchyEvent e)
-        {
+    class OverlayTargetChangeHandler implements HierarchyListener, HierarchyBoundsListener, ComponentListener {
+        public void hierarchyChanged(HierarchyEvent e) {
             updateOverlay();
         }
 
-        public void ancestorMoved(HierarchyEvent e)
-        {
+        public void ancestorMoved(HierarchyEvent e) {
             updateOverlay();
         }
 
-        public void ancestorResized(HierarchyEvent e)
-        {
+        public void ancestorResized(HierarchyEvent e) {
             updateOverlay();
         }
 
-        public void componentHidden(ComponentEvent e)
-        {
+        public void componentHidden(ComponentEvent e) {
             hideOverlay();
         }
 
-        public void componentMoved(ComponentEvent e)
-        {
+        public void componentMoved(ComponentEvent e) {
             updateOverlay();
         }
 
-        public void componentResized(ComponentEvent e)
-        {
+        public void componentResized(ComponentEvent e) {
             updateOverlay();
         }
 
-        public void componentShown(ComponentEvent e)
-        {
+        public void componentShown(ComponentEvent e) {
             updateOverlay();
         }
     }
 
-    private void installListeners()
-    {
+    private void installListeners() {
         overlayTarget.addHierarchyListener(overlayTargetChangeHandler);
         overlayTarget.addHierarchyBoundsListener(overlayTargetChangeHandler);
         overlayTarget.addComponentListener(overlayTargetChangeHandler);
@@ -179,34 +160,27 @@ public class OverlayHelper implements SwingConstants
         overlay.addPropertyChangeListener(overlayChangeHandler);
     }
 
-    void updateOverlay()
-    {
-        if (isUpdating)
-        {
+    void updateOverlay() {
+        if (isUpdating) {
             return;
         }
         isUpdating = true;
-        // updating the overlay at the end of the event queue to avoid race conditions 
+        // updating the overlay at the end of the event queue to avoid race conditions
         // see RCP-126 (http://opensource.atlassian.com/projects/spring/browse/RCP-216)
         SwingUtilities.invokeLater(overlayUpdater);
     }
 
-    void putOverlay(final JLayeredPane layeredPane)
-    {
-        if (overlay.getParent() != overlayClipper)
-        {
+    void putOverlay(final JLayeredPane layeredPane) {
+        if (overlay.getParent() != overlayClipper) {
             JComponent parent = (JComponent) overlay.getParent();
-            if (parent != null)
-            {
+            if (parent != null) {
                 parent.remove(overlay);
             }
             overlayClipper.add(overlay);
         }
-        if (overlayClipper.getParent() != layeredPane)
-        {
+        if (overlayClipper.getParent() != layeredPane) {
             JComponent parent = (JComponent) overlayClipper.getParent();
-            if (parent != null)
-            {
+            if (parent != null) {
                 parent.remove(overlayClipper);
             }
             layeredPane.add(overlayClipper);
@@ -214,73 +188,65 @@ public class OverlayHelper implements SwingConstants
         }
     }
 
-    void positionOverlay(JLayeredPane layeredPane)
-    {
+    void positionOverlay(JLayeredPane layeredPane) {
         int centerX = xOffset;
         int centerY = yOffset;
         Rectangle overlayTargetBounds = new Rectangle(0, 0, overlayTarget.getWidth(), overlayTarget.getHeight());
-        switch (center)
-        {
-            case SwingConstants.NORTH:
-            case SwingConstants.NORTH_WEST:
-            case SwingConstants.NORTH_EAST:
-                centerY += overlayTargetBounds.y;
-                break;
-            case SwingConstants.CENTER:
-            case SwingConstants.EAST:
-            case SwingConstants.WEST:
-                centerY += overlayTargetBounds.y + (overlayTargetBounds.height / 2);
-                break;
-            case SwingConstants.SOUTH:
-            case SwingConstants.SOUTH_EAST:
-            case SwingConstants.SOUTH_WEST:
-                centerY += overlayTargetBounds.y + overlayTargetBounds.height;
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown value for center [" + center + "]");
+        switch (center) {
+        case SwingConstants.NORTH:
+        case SwingConstants.NORTH_WEST:
+        case SwingConstants.NORTH_EAST:
+            centerY += overlayTargetBounds.y;
+            break;
+        case SwingConstants.CENTER:
+        case SwingConstants.EAST:
+        case SwingConstants.WEST:
+            centerY += overlayTargetBounds.y + (overlayTargetBounds.height / 2);
+            break;
+        case SwingConstants.SOUTH:
+        case SwingConstants.SOUTH_EAST:
+        case SwingConstants.SOUTH_WEST:
+            centerY += overlayTargetBounds.y + overlayTargetBounds.height;
+            break;
+        default:
+            throw new IllegalArgumentException("Unknown value for center [" + center + "]");
         }
-        switch (center)
-        {
-            case SwingConstants.WEST:
-            case SwingConstants.NORTH_WEST:
-            case SwingConstants.SOUTH_WEST:
-                centerX += overlayTargetBounds.x;
-                break;
-            case SwingConstants.CENTER:
-            case SwingConstants.NORTH:
-            case SwingConstants.SOUTH:
-                centerX += overlayTargetBounds.x + (overlayTargetBounds.width / 2);
-                break;
-            case SwingConstants.EAST:
-            case SwingConstants.NORTH_EAST:
-            case SwingConstants.SOUTH_EAST:
-                centerX += overlayTargetBounds.x + overlayTargetBounds.width;
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown value for center [" + center + "]");
+        switch (center) {
+        case SwingConstants.WEST:
+        case SwingConstants.NORTH_WEST:
+        case SwingConstants.SOUTH_WEST:
+            centerX += overlayTargetBounds.x;
+            break;
+        case SwingConstants.CENTER:
+        case SwingConstants.NORTH:
+        case SwingConstants.SOUTH:
+            centerX += overlayTargetBounds.x + (overlayTargetBounds.width / 2);
+            break;
+        case SwingConstants.EAST:
+        case SwingConstants.NORTH_EAST:
+        case SwingConstants.SOUTH_EAST:
+            centerX += overlayTargetBounds.x + overlayTargetBounds.width;
+            break;
+        default:
+            throw new IllegalArgumentException("Unknown value for center [" + center + "]");
         }
         Dimension size = overlay.getPreferredSize();
         Rectangle newBound = new Rectangle(centerX - (size.width / 2), centerY - (size.height / 2), size.width,
-                size.height);
+                                           size.height);
         Rectangle visibleRect = findLargestVisibleRectFor(newBound);
 
         int offsetx = 0;
         int offsety = 0;
 
-        if (visibleRect != null)
-        {
-            if (newBound.y < visibleRect.y)
-            {
+        if (visibleRect != null) {
+            if (newBound.y < visibleRect.y) {
                 offsety += visibleRect.y - newBound.y;
             }
-            if (newBound.x < visibleRect.x)
-            {
+            if (newBound.x < visibleRect.x) {
                 offsetx += visibleRect.x - newBound.x;
             }
             newBound = newBound.intersection(visibleRect);
-        }
-        else
-        {
+        } else {
             newBound.width = newBound.height = 0;
         }
         Point pt = SwingUtilities.convertPoint(overlayTarget, newBound.x, newBound.y, layeredPane);
@@ -296,84 +262,68 @@ public class OverlayHelper implements SwingConstants
      * @param overlayRect rectangle whose largest enclosing visible rect to find
      * @return largest enclosing visible rect for the specified rectangle
      */
-    private Rectangle findLargestVisibleRectFor(final Rectangle overlayRect)
-    {
+    private Rectangle findLargestVisibleRectFor(final Rectangle overlayRect) {
         Rectangle visibleRect = null;
         int curxoffset = 0;
         int curyoffset = 0;
-        if (overlayTarget == null)
-        {
+        if (overlayTarget == null) {
             return null;
         }
 
         JComponent comp = overlayTarget;
-        do
-        {
+        do {
 
             visibleRect = comp.getVisibleRect();
             visibleRect.x -= curxoffset;
             visibleRect.y -= curyoffset;
-            if (visibleRect.contains(overlayRect))
-            {
+            if (visibleRect.contains(overlayRect)) {
                 return visibleRect;
             }
             curxoffset += comp.getX();
             curyoffset += comp.getY();
 
             comp = comp.getParent() instanceof JComponent ? (JComponent) comp.getParent() : null;
-        }
-        while (comp != null && !(comp instanceof JViewport) && !(comp instanceof JScrollPane));
+        } while (comp != null && !(comp instanceof JViewport) && !(comp instanceof JScrollPane));
 
 
         return visibleRect;
     }
 
-    private void setOverlayBounds(Rectangle newBounds, int xoffset, int yoffset)
-    {
+    private void setOverlayBounds(Rectangle newBounds, int xoffset, int yoffset) {
         final Dimension preferred = overlay.getPreferredSize();
         final Rectangle overlayBounds = new Rectangle(-xoffset, -yoffset, preferred.width, preferred.height);
-        if (!overlayBounds.equals(overlay.getBounds()))
-        {
+        if (!overlayBounds.equals(overlay.getBounds())) {
             overlay.setBounds(overlayBounds);
         }
-        if (!newBounds.equals(overlayClipper.getBounds()))
-        {
+        if (!newBounds.equals(overlayClipper.getBounds())) {
             overlayClipper.setBounds(newBounds);
         }
     }
 
-    void hideOverlay()
-    {
+    void hideOverlay() {
         setOverlayBounds(new Rectangle(0, 0, 0, 0), 0, 0);
     }
 
-    void removeOverlay()
-    {
-        if (overlay.getParent() != overlayClipper && overlay.getParent() != null)
-        {
+    void removeOverlay() {
+        if (overlay.getParent() != overlayClipper && overlay.getParent() != null) {
             overlay.getParent().remove(overlay);
         }
-        if (overlayClipper.getParent() != null)
-        {
+        if (overlayClipper.getParent() != null) {
             overlayClipper.getParent().remove(overlayClipper);
         }
     }
 
     private Container overlayCapableParent;
 
-    protected Container getOverlayCapableParent(JComponent component)
-    {
+    protected Container getOverlayCapableParent(JComponent component) {
         //if (overlayCapableParent != null)
         //    return overlayCapableParent;
         Component overlayChild = component;
         overlayCapableParent = component.getParent();
-        if (overlay instanceof MayHaveMessagableTab)
-        {
+        if (overlay instanceof MayHaveMessagableTab) {
             MessagableTabbedPane tabbedPane;
-            while (overlayCapableParent != null && !(overlayCapableParent instanceof JRootPane))
-            {
-                if (overlayCapableParent instanceof MessagableTabbedPane)
-                {
+            while (overlayCapableParent != null && !(overlayCapableParent instanceof JRootPane)) {
+                if (overlayCapableParent instanceof MessagableTabbedPane) {
                     tabbedPane = (MessagableTabbedPane) overlayCapableParent;
                     int tabIndex = tabbedPane.indexOfComponent(overlayChild);
                     ((MayHaveMessagableTab) overlay).setMessagableTab(tabbedPane, tabIndex);
@@ -382,50 +332,38 @@ public class OverlayHelper implements SwingConstants
                 overlayChild = overlayCapableParent;
                 overlayCapableParent = overlayCapableParent.getParent();
             }
-        }
-        else
-        {
-            while (overlayCapableParent != null && !(overlayCapableParent instanceof JRootPane))
-            {
+        } else {
+            while (overlayCapableParent != null && !(overlayCapableParent instanceof JRootPane)) {
                 overlayCapableParent = overlayCapableParent.getParent();
             }
         }
         return overlayCapableParent;
     }
 
-    protected JLayeredPane getLayeredPane(Container overlayCapableParent)
-    {
-        if (overlayCapableParent instanceof JRootPane)
-        {
+    protected JLayeredPane getLayeredPane(Container overlayCapableParent) {
+        if (overlayCapableParent instanceof JRootPane) {
             return ((JRootPane) overlayCapableParent).getLayeredPane();
-        }
-        else
-        {
+        } else {
             throw new IllegalArgumentException("Don't know how to handle parent of type ["
-                    + overlayCapableParent.getClass().getName() + "].");
+                                               + overlayCapableParent.getClass().getName() + "].");
         }
     }
 
 
-    public static class SingleComponentLayoutManager implements LayoutManager
-    {
+    public static class SingleComponentLayoutManager implements LayoutManager {
         private Component singleComponent;
 
-        public SingleComponentLayoutManager(Component singleComponent)
-        {
+        public SingleComponentLayoutManager(Component singleComponent) {
             this.singleComponent = singleComponent;
         }
 
-        public void removeLayoutComponent(Component comp)
-        {
+        public void removeLayoutComponent(Component comp) {
         }
 
-        public void addLayoutComponent(String name, Component comp)
-        {
+        public void addLayoutComponent(String name, Component comp) {
         }
 
-        public void layoutContainer(Container parent)
-        {
+        public void layoutContainer(Container parent) {
             // Fix 5/12/06 AlD: we don't need to base this on the
             // preferred size of the singleComponent or the extentSize
             // of the viewport because the viewport will have already resized
@@ -435,45 +373,32 @@ public class OverlayHelper implements SwingConstants
             singleComponent.setBounds(0, 0, parent.getWidth(), parent.getHeight());
         }
 
-        public Dimension minimumLayoutSize(Container parent)
-        {
+        public Dimension minimumLayoutSize(Container parent) {
             return singleComponent.getMinimumSize();
         }
 
-        public Dimension preferredLayoutSize(Container parent)
-        {
+        public Dimension preferredLayoutSize(Container parent) {
             return singleComponent.getPreferredSize();
         }
     }
 
-    class OverlayUpdater implements Runnable
-    {
+    class OverlayUpdater implements Runnable {
 
-        public void run()
-        {
-            try
-            {
+        public void run() {
+            try {
                 Container overlayCapableParent = getOverlayCapableParent(overlayTarget);
-                if (overlayCapableParent == null)
-                {
+                if (overlayCapableParent == null) {
                     removeOverlay();
-                }
-                else if (!overlayTarget.isShowing() || !overlay.isVisible())
-                {
+                } else if (!overlayTarget.isShowing() || !overlay.isVisible()) {
                     hideOverlay();
-                }
-                else
-                {
+                } else {
                     JLayeredPane layeredPane = getLayeredPane(overlayCapableParent);
-                    if (layeredPane.isVisible() && layeredPane.isShowing())
-                    {
+                    if (layeredPane.isVisible() && layeredPane.isShowing()) {
                         putOverlay(layeredPane);
                         positionOverlay(layeredPane);
                     }
                 }
-            }
-            finally
-            {
+            } finally {
                 isUpdating = false;
             }
         }

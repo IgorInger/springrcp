@@ -16,14 +16,13 @@ import com.jgoodies.forms.layout.Size;
 
 /**
  * Creates a buttonstack: a panel with buttons that are vertically positioned.
- * 
+ *
  * @see org.springframework.richclient.command.support.ButtonBarGroupContainerPopulator
  * @see com.jgoodies.forms.builder.ButtonStackBuilder
- * 
+ *
  * @author jh
  */
-public class ButtonStackGroupContainerPopulator extends SimpleGroupContainerPopulator
-{
+public class ButtonStackGroupContainerPopulator extends SimpleGroupContainerPopulator {
     private RowSpec rowSpec;
 
     private ButtonStackBuilder builder;
@@ -31,7 +30,7 @@ public class ButtonStackGroupContainerPopulator extends SimpleGroupContainerPopu
     private List buttons = new ArrayList();
 
     /**
-     * Constructor. 
+     * Constructor.
      */
     public ButtonStackGroupContainerPopulator() {
         super(new JPanel());
@@ -40,37 +39,34 @@ public class ButtonStackGroupContainerPopulator extends SimpleGroupContainerPopu
 
     /**
      * Define the minimum buttonsize of the buttonStack. This will actually
-     * replace the rowSpec with a new one. 
-     * 
+     * replace the rowSpec with a new one.
+     *
      * @param minimumSize
      * @see #setRowSpec(RowSpec)
      */
-    public void setMinimumButtonSize(Size minimumSize) 
-    {
+    public void setMinimumButtonSize(Size minimumSize) {
         this.rowSpec = new RowSpec(minimumSize);
     }
 
     /**
      * This allows to completely customize the rowspec.
-     * 
+     *
      * @param rowSpec
      */
-    public void setRowSpec(RowSpec rowSpec)
-    {
+    public void setRowSpec(RowSpec rowSpec) {
         this.rowSpec = rowSpec;
     }
 
     /**
      * Set a custom columnSpec for the buttonstack.
-     * 
+     *
      * @param columnSpec
      */
-    public void setColumnSpec(ColumnSpec columnSpec)
-    {
+    public void setColumnSpec(ColumnSpec columnSpec) {
         if (columnSpec != null)
             builder.getLayout().setColumnSpec(1, columnSpec);
-    }    
-    
+    }
+
     /**
      * @return the created ButtonStack panel
      */
@@ -101,13 +97,11 @@ public class ButtonStackGroupContainerPopulator extends SimpleGroupContainerPopu
             Object o = buttons.get(i);
             if (o instanceof String && o == CommandGroupFactoryBean.SEPARATOR_MEMBER_CODE) {
                 builder.addUnrelatedGap();
-            }
-            else if (o instanceof AbstractButton) {
+            } else if (o instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton)o;
                 if (this.rowSpec != null) {
                     addCustomGridded(button);
-                }
-                else {
+                } else {
                     builder.addGridded(button);
                 }
                 if (i < buttons.size() - 1) {
@@ -120,7 +114,7 @@ public class ButtonStackGroupContainerPopulator extends SimpleGroupContainerPopu
 
     /**
      * Handle the custom RowSpec.
-     * 
+     *
      * @param button
      */
     private void addCustomGridded(AbstractButton button) {

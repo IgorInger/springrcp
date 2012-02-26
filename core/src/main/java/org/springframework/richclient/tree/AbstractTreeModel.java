@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,7 +26,7 @@ import javax.swing.tree.TreeModel;
 import org.springframework.binding.value.ValueModel;
 
 /**
- * 
+ *
  * @author Keith Donald
  */
 public abstract class AbstractTreeModel implements TreeModel {
@@ -62,7 +62,7 @@ public abstract class AbstractTreeModel implements TreeModel {
 
     /**
      * Adds a listener for the TreeModelEvent posted after the tree changes.
-     * 
+     *
      * @see #removeTreeModelListener
      * @param l
      *            the listener to add
@@ -73,7 +73,7 @@ public abstract class AbstractTreeModel implements TreeModel {
 
     /**
      * Removes a listener previously added with <B>addTreeModelListener() </B>.
-     * 
+     *
      * @see #addTreeModelListener
      * @param l
      *            the listener to remove
@@ -85,10 +85,10 @@ public abstract class AbstractTreeModel implements TreeModel {
     /**
      * Returns an array of all the tree model listeners registered on this
      * model.
-     * 
+     *
      * @return all of this model's <code>TreeModelListener</code> s or an
      *         empty array if no tree model listeners are currently registered
-     * 
+     *
      * @see #addTreeModelListener
      * @see #removeTreeModelListener
      */
@@ -100,7 +100,7 @@ public abstract class AbstractTreeModel implements TreeModel {
      * Notifies all listeners that have registered interest for notification on
      * this event type. The event instance is lazily created using the
      * parameters passed into the fire method.
-     * 
+     *
      * @param source
      *            the node being changed
      * @param path
@@ -132,7 +132,7 @@ public abstract class AbstractTreeModel implements TreeModel {
      * Notifies all listeners that have registered interest for notification on
      * this event type. The event instance is lazily created using the
      * parameters passed into the fire method.
-     * 
+     *
      * @param source
      *            the node where new elements are being inserted
      * @param path
@@ -164,7 +164,7 @@ public abstract class AbstractTreeModel implements TreeModel {
      * Notifies all listeners that have registered interest for notification on
      * this event type. The event instance is lazily created using the
      * parameters passed into the fire method.
-     * 
+     *
      * @param source
      *            the node where elements are being removed
      * @param path
@@ -196,7 +196,7 @@ public abstract class AbstractTreeModel implements TreeModel {
      * Notifies all listeners that have registered interest for notification on
      * this event type. The event instance is lazily created using the
      * parameters passed into the fire method.
-     * 
+     *
      * @param source
      *            the node where the tree model has changed
      * @param path

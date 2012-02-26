@@ -51,8 +51,7 @@ import java.util.List;
  * exclusive to the addXXX methods.
  *
  */
-public class PropertyColumnTableDescription implements TableDescription
-{
+public class PropertyColumnTableDescription implements TableDescription {
 
     /** Logging facility. */
     static Log log = LogFactory.getLog(PropertyColumnTableDescription.class);
@@ -81,40 +80,35 @@ public class PropertyColumnTableDescription implements TableDescription
     /**
      * @see #PropertyColumnTableDescription(String, Class, int, Comparator)
      */
-    public PropertyColumnTableDescription(Class forEntityType)
-    {
+    public PropertyColumnTableDescription(Class forEntityType) {
         this(null, forEntityType);
     }
 
     /**
      * @see #PropertyColumnTableDescription(String, Class, int, Comparator)
      */
-    public PropertyColumnTableDescription(Class forEntityType, Comparator defaultComparator)
-    {
+    public PropertyColumnTableDescription(Class forEntityType, Comparator defaultComparator) {
         this(null, forEntityType, defaultComparator);
     }
 
     /**
      * @see #PropertyColumnTableDescription(String, Class, int, Comparator)
      */
-    public PropertyColumnTableDescription(final String id, Class forEntityType, Comparator defaultComparator)
-    {
+    public PropertyColumnTableDescription(final String id, Class forEntityType, Comparator defaultComparator) {
         this(id, forEntityType, DEFAULT_SIZE, defaultComparator);
     }
 
     /**
      * @see #PropertyColumnTableDescription(String, Class, int, Comparator)
      */
-    public PropertyColumnTableDescription(final String id, Class forEntityType)
-    {
+    public PropertyColumnTableDescription(final String id, Class forEntityType) {
         this(id, forEntityType, new ComparableComparator());
     }
 
     /**
      * @see #PropertyColumnTableDescription(String, Class, int, Comparator)
      */
-    public PropertyColumnTableDescription(final String id, Class forEntityType, int numberOfColumns)
-    {
+    public PropertyColumnTableDescription(final String id, Class forEntityType, int numberOfColumns) {
         this(id, forEntityType, numberOfColumns, new ComparableComparator());
     }
 
@@ -134,8 +128,7 @@ public class PropertyColumnTableDescription implements TableDescription
      *
      */
     public PropertyColumnTableDescription(final String id, Class forEntityType, int numberOfColumns,
-            Comparator defaultComparator)
-    {
+                                          Comparator defaultComparator) {
         this.id = id;
         this.entityClass = forEntityType;
         this.defaultComparator = defaultComparator;
@@ -145,8 +138,7 @@ public class PropertyColumnTableDescription implements TableDescription
     /**
      * @see #addPropertyColumn(String, Class)
      */
-    public PropertyColumn addPropertyColumn(String propertyName)
-    {
+    public PropertyColumn addPropertyColumn(String propertyName) {
         return addPropertyColumn(propertyName, (Class<?>) null);
     }
 
@@ -161,8 +153,7 @@ public class PropertyColumnTableDescription implements TableDescription
      *            type of the property. If <code>null</code> a type will be determined by examining the
      *            accessor method.
      */
-    public PropertyColumn addPropertyColumn(String propertyName, Class<?> propertyType)
-    {
+    public PropertyColumn addPropertyColumn(String propertyName, Class<?> propertyType) {
         String[] headerKeys = RcpSupport.getMessageKeys(this.id, propertyName, RcpSupport.HEADER);
         Accessor accessor = ClassUtils.getAccessorForProperty(entityClass, propertyName);
         if (propertyType == null)
@@ -175,11 +166,9 @@ public class PropertyColumnTableDescription implements TableDescription
         return propertyColumn;
     }
 
-    public void setPropertyColumns(Collection<PropertyColumn> propertyColumns)
-    {
+    public void setPropertyColumns(Collection<PropertyColumn> propertyColumns) {
         this.columns = new ArrayList<PropertyColumn>(propertyColumns);
-        for (PropertyColumn propertyColumn : columns)
-        {
+        for (PropertyColumn propertyColumn : columns) {
             Accessor accessorForProperty = ClassUtils.getAccessorForProperty(entityClass, propertyColumn.getPropertyName());
             propertyColumn.setAccessor(accessorForProperty);
             if(propertyColumn.getComparator() == null)
@@ -194,8 +183,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withComparator(Comparator)
      * @see PropertyColumn#withFixedWidth(int)
      */
-    public PropertyColumn addPropertyColumn(String propertyName, int width, Comparator comparator)
-    {
+    public PropertyColumn addPropertyColumn(String propertyName, int width, Comparator comparator) {
         return addPropertyColumn(propertyName).withFixedWidth(width).withComparator(comparator);
     }
 
@@ -204,8 +192,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see #addPropertyColumn(String)
      * @see PropertyColumn#withRenderer(javax.swing.table.TableCellRenderer)
      */
-    public PropertyColumn addPropertyColumn(String propertyName, TableCellRenderer renderer)
-    {
+    public PropertyColumn addPropertyColumn(String propertyName, TableCellRenderer renderer) {
         return addPropertyColumn(propertyName).withRenderer(renderer);
     }
 
@@ -216,8 +203,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see #addPropertyColumn(String)
      * @see PropertyColumn#withEditor(javax.swing.table.TableCellEditor)
      */
-    public void addPropertyColumn(String propertyName, Class propertyType, TableCellEditor editor)
-    {
+    public void addPropertyColumn(String propertyName, Class propertyType, TableCellEditor editor) {
         addPropertyColumn(propertyName).withEditor(editor);
     }
 
@@ -228,8 +214,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see #addPropertyColumn(String)
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      */
-    public void addPropertyColumn(String propertyName, Class propertyType, TableCellRenderer renderer)
-    {
+    public void addPropertyColumn(String propertyName, Class propertyType, TableCellRenderer renderer) {
         addPropertyColumn(propertyName).withRenderer(renderer);
     }
 
@@ -241,8 +226,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withMinWidth(int)
      * @see PropertyColumn#withMaxWidth(int)
      */
-    public void addPropertyColumn(String propertyName, Class propertyType, int minWidth, int maxWidth)
-    {
+    public void addPropertyColumn(String propertyName, Class propertyType, int minWidth, int maxWidth) {
         addPropertyColumn(propertyName).withMinWidth(minWidth).withMaxWidth(maxWidth);
     }
 
@@ -251,8 +235,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see #addPropertyColumn(String)
      * @see PropertyColumn#withFixedWidth(int)
      */
-    public void addPropertyColumn(String propertyName, int width)
-    {
+    public void addPropertyColumn(String propertyName, int width) {
         addPropertyColumn(propertyName).withFixedWidth(width);
     }
 
@@ -262,8 +245,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withFixedWidth(int)
      * @see PropertyColumn#withVisible(boolean)
      */
-    public void addPropertyColumn(String propertyName, int width, boolean visible)
-    {
+    public void addPropertyColumn(String propertyName, int width, boolean visible) {
         addPropertyColumn(propertyName).withFixedWidth(width).withVisible(visible);
     }
 
@@ -274,8 +256,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      * @see PropertyColumn#withVisible(boolean)
      */
-    public void addPropertyColumn(String propertyName, int width, TableCellRenderer renderer, boolean visible)
-    {
+    public void addPropertyColumn(String propertyName, int width, TableCellRenderer renderer, boolean visible) {
         addPropertyColumn(propertyName).withFixedWidth(width).withRenderer(renderer).withVisible(visible);
     }
 
@@ -289,8 +270,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withVisible(boolean)
      */
     public void addPropertyColumn(String propertyName, Class propertyType, int width,
-            TableCellRenderer renderer, boolean visible)
-    {
+                                  TableCellRenderer renderer, boolean visible) {
         addPropertyColumn(propertyName).withFixedWidth(width).withRenderer(renderer).withVisible(visible);
     }
 
@@ -300,8 +280,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withFixedWidth(int)
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      */
-    public void addPropertyColumn(String propertyName, int width, TableCellRenderer renderer)
-    {
+    public void addPropertyColumn(String propertyName, int width, TableCellRenderer renderer) {
         addPropertyColumn(propertyName).withFixedWidth(width).withRenderer(renderer);
     }
 
@@ -311,8 +290,7 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withMinWidth(int)
      * @see PropertyColumn#withMaxWidth(int)
      */
-    public void addPropertyColumn(String propertyName, int minWidth, int maxWidth)
-    {
+    public void addPropertyColumn(String propertyName, int minWidth, int maxWidth) {
         addPropertyColumn(propertyName).withMinWidth(minWidth).withMaxWidth(maxWidth);
     }
 
@@ -325,10 +303,9 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      */
     public void addPropertyColumn(String propertyName, int minWidth, int maxWidth, boolean resizable,
-            TableCellRenderer renderer)
-    {
+                                  TableCellRenderer renderer) {
         addPropertyColumn(propertyName).withMinWidth(minWidth).withMaxWidth(maxWidth).withResizable(resizable)
-                .withRenderer(renderer);
+        .withRenderer(renderer);
     }
 
     /**
@@ -341,10 +318,9 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withComparator(Comparator)
      */
     public void addPropertyColumn(String propertyName, int minWidth, int maxWidth, boolean resizable,
-            TableCellRenderer renderer, Comparator comparator)
-    {
+                                  TableCellRenderer renderer, Comparator comparator) {
         addPropertyColumn(propertyName).withMinWidth(minWidth).withMaxWidth(maxWidth).withResizable(resizable)
-                .withRenderer(renderer).withComparator(comparator);
+        .withRenderer(renderer).withComparator(comparator);
     }
 
     /**
@@ -358,10 +334,9 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      */
     public void addPropertyColumn(String propertyName, Class propertyType, int minWidth, int maxWidth,
-            boolean resizable, TableCellRenderer renderer)
-    {
+                                  boolean resizable, TableCellRenderer renderer) {
         addPropertyColumn(propertyName).withMinWidth(minWidth).withMaxWidth(maxWidth).withResizable(resizable)
-                .withRenderer(renderer);
+        .withRenderer(renderer);
     }
 
     /**
@@ -376,10 +351,9 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      */
     public void addPropertyColumn(String propertyName, Class propertyType, int minWidth, int maxWidth,
-            boolean resizable, TableCellRenderer renderer, Comparator comparator)
-    {
+                                  boolean resizable, TableCellRenderer renderer, Comparator comparator) {
         addPropertyColumn(propertyName).withMinWidth(minWidth).withMaxWidth(maxWidth).withResizable(resizable)
-                .withRenderer(renderer).withComparator(comparator);
+        .withRenderer(renderer).withComparator(comparator);
     }
 
     /**
@@ -392,10 +366,9 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withResizable(boolean)
      */
     public void addPropertyColumn(String propertyName, Class propertyType, String[] headerKeys, int minWidth,
-            int maxWidth, boolean resizable, Boolean isInTextFilter)
-    {
+                                  int maxWidth, boolean resizable, Boolean isInTextFilter) {
         addPropertyColumn(propertyName).withHeaderKeys(headerKeys).withMinWidth(minWidth).withMaxWidth(maxWidth)
-                .withResizable(resizable).withFilterColumn(isInTextFilter);
+        .withResizable(resizable).withFilterColumn(isInTextFilter);
     }
 
     /**
@@ -409,10 +382,9 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      */
     public void addPropertyColumn(String propertyName, Class propertyType, String[] headerKeys, int minWidth,
-            int maxWidth, boolean resizable, TableCellRenderer renderer, Boolean isInTextFilter)
-    {
+                                  int maxWidth, boolean resizable, TableCellRenderer renderer, Boolean isInTextFilter) {
         addPropertyColumn(propertyName).withHeaderKeys(headerKeys).withMinWidth(minWidth).withMaxWidth(maxWidth)
-                .withResizable(resizable).withRenderer(renderer).withFilterColumn(isInTextFilter);
+        .withResizable(resizable).withRenderer(renderer).withFilterColumn(isInTextFilter);
     }
 
     /**
@@ -427,111 +399,97 @@ public class PropertyColumnTableDescription implements TableDescription
      * @see PropertyColumn#withRenderer(TableCellRenderer)
      */
     public void addPropertyColumn(String propertyName, Class propertyType, String[] headerKeys, int minWidth,
-            int maxWidth, boolean resizable, TableCellRenderer renderer, Boolean isInTextFilter,
-            Comparator comparator)
-    {
+                                  int maxWidth, boolean resizable, TableCellRenderer renderer, Boolean isInTextFilter,
+                                  Comparator comparator) {
         addPropertyColumn(propertyName).withHeaderKeys(headerKeys).withMinWidth(minWidth).withMaxWidth(maxWidth)
-                .withResizable(resizable).withRenderer(renderer).withComparator(comparator).withFilterColumn(
-                        isInTextFilter);
+        .withResizable(resizable).withRenderer(renderer).withComparator(comparator).withFilterColumn(
+            isInTextFilter);
     }
 
-    public void addSelectPropertyColumn(String propertyName)
-    {
+    public void addSelectPropertyColumn(String propertyName) {
         addSelectPropertyColumn(propertyName, PropertyColumn.UNSPECIFIED_WIDTH);
     }
 
-    public void addSelectPropertyColumn(String propertyName, Comparator<?> comparator)
-    {
+    public void addSelectPropertyColumn(String propertyName, Comparator<?> comparator) {
         addSelectPropertyColumn(propertyName, PropertyColumn.UNSPECIFIED_WIDTH,
-                PropertyColumn.UNSPECIFIED_WIDTH, comparator);
+                                PropertyColumn.UNSPECIFIED_WIDTH, comparator);
     }
 
-    public void addSelectPropertyColumn(String propertyName, int width)
-    {
+    public void addSelectPropertyColumn(String propertyName, int width) {
         addSelectPropertyColumn(propertyName, width, width);
     }
 
-    public void addSelectPropertyColumn(String propertyName, int minWidth, int maxWidth)
-    {
+    public void addSelectPropertyColumn(String propertyName, int minWidth, int maxWidth) {
         addSelectPropertyColumn(propertyName, minWidth, maxWidth, null);
     }
 
-    public void addSelectPropertyColumn(String propertyName, int minWidth, int maxWidth, Comparator comparator)
-    {
+    public void addSelectPropertyColumn(String propertyName, int minWidth, int maxWidth, Comparator comparator) {
         addSelectPropertyColumn(propertyName, RcpSupport.getMessageKeys(this.id, propertyName,
-                RcpSupport.HEADER), minWidth, maxWidth, true, comparator);
+                                RcpSupport.HEADER), minWidth, maxWidth, true, comparator);
     }
 
     public void addSelectPropertyColumn(String propertyName, String[] headerKeys, int minWidth, int maxWidth,
-            boolean resizable, Comparator comparator)
-    {
+                                        boolean resizable, Comparator comparator) {
         if (hasSelectColumn)
             throw new IllegalArgumentException("Already a selectColumn specified, cannot set " + propertyName
-                    + " as selectColumn");
+                                               + " as selectColumn");
         this.hasSelectColumn = true;
         Accessor propertyAccessor = ClassUtils.getWriterForProperty(entityClass, propertyName);
         JCheckBox cellEditorComponent = new JCheckBox();
         cellEditorComponent.setHorizontalAlignment(SwingConstants.CENTER);
         columns.add(0, new PropertyColumn(Boolean.class, propertyAccessor, propertyName, headerKeys,
-                minWidth, maxWidth, resizable, null, new DefaultCellEditor(cellEditorComponent), comparator,
-                true, true));
+                                          minWidth, maxWidth, resizable, null, new DefaultCellEditor(cellEditorComponent), comparator,
+                                          true, true));
     }
 
     public void addSelectPropertyColumn(String propertyName, String[] headerKeys, int minWidth, int maxWidth,
-            boolean resizable, Comparator comparator, boolean visible)
-    {
+                                        boolean resizable, Comparator comparator, boolean visible) {
         if (hasSelectColumn)
             throw new IllegalArgumentException("Already a selectColumn specified, cannot set " + propertyName
-                    + " as selectColumn");
+                                               + " as selectColumn");
         this.hasSelectColumn = true;
         Accessor propertyAccessor = ClassUtils.getWriterForProperty(entityClass, propertyName);
         JCheckBox cellEditorComponent = new JCheckBox();
         cellEditorComponent.setHorizontalAlignment(SwingConstants.CENTER);
         columns.add(0, new PropertyColumn(Boolean.class, propertyAccessor, propertyName, headerKeys,
-                minWidth, maxWidth, resizable, null, new DefaultCellEditor(cellEditorComponent), comparator,
-                true, visible));
+                                          minWidth, maxWidth, resizable, null, new DefaultCellEditor(cellEditorComponent), comparator,
+                                          true, visible));
     }
 
     /**
      * @inheritDoc
      */
-    public Class<?> getDataType()
-    {
+    public Class<?> getDataType() {
         return entityClass;
     }
 
     /**
      * @inheritDoc
      */
-    public Comparator<?> getDefaultComparator()
-    {
+    public Comparator<?> getDefaultComparator() {
         return defaultComparator;
     }
 
     /**
      * Set the comparator to use as default (when table is filled or other specific sorting is removed).
      */
-    public void setDefaultComparator(Comparator<?> defaultComparator)
-    {
+    public void setDefaultComparator(Comparator<?> defaultComparator) {
         this.defaultComparator = defaultComparator;
     }
 
     /**
      * @inheritDoc
      */
-    public boolean hasSelectColumn()
-    {
+    public boolean hasSelectColumn() {
         return hasSelectColumn;
     }
 
     /**
      * {@inheritDoc}
      */
-    public String[] getPropertiesInTextFilter()
-    {
+    public String[] getPropertiesInTextFilter() {
         List<String> filterProperties = new ArrayList<String>(getColumnCount());
-        for (PropertyColumn column : columns)
-        {
+        for (PropertyColumn column : columns) {
             if (column.isFilterColumn())
                 filterProperties.add(column.getPropertyName());
         }
@@ -541,8 +499,7 @@ public class PropertyColumnTableDescription implements TableDescription
     /**
      * {@inheritDoc}
      */
-    public int getColumnCount()
-    {
+    public int getColumnCount() {
         return this.columns.size();
     }
 
@@ -553,122 +510,103 @@ public class PropertyColumnTableDescription implements TableDescription
      *            column index.
      * @return PropertyColumn the corresponding column.
      */
-    private PropertyColumn getPropertyColumn(int propertyIndex)
-    {
+    private PropertyColumn getPropertyColumn(int propertyIndex) {
         return this.columns.get(propertyIndex);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Object getValue(Object rowObject, int propertyIndex)
-    {
-        try
-        {
+    public Object getValue(Object rowObject, int propertyIndex) {
+        try {
             return getPropertyColumn(propertyIndex).getAccessor().getValue(rowObject);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             log.warn("Error reading property " + propertyIndex + " from object " + rowObject, e);
             throw new RuntimeException("Error reading property " + propertyIndex + " from object "
-                    + rowObject, e);
+                                       + rowObject, e);
         }
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setValue(Object rowObject, int propertyIndex, Object newValue)
-    {
-        try
-        {
+    public void setValue(Object rowObject, int propertyIndex, Object newValue) {
+        try {
             Accessor accessor = getPropertyColumn(propertyIndex).getAccessor();
             if (accessor instanceof Writer)
                 ((Writer) accessor).setValue(rowObject, newValue);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             log.warn("Error writing property " + propertyIndex + " to object " + rowObject
-                    + " new value: " + newValue, e);
+                     + " new value: " + newValue, e);
             throw new RuntimeException("Error writing property " + propertyIndex + " to object " + rowObject
-                    + " new value: " + newValue, e);
+                                       + " new value: " + newValue, e);
         }
     }
 
-    public String getHeader(int propertyIndex)
-    {
+    public String getHeader(int propertyIndex) {
         return getPropertyColumn(propertyIndex).getHeader();
     }
 
     /**
      * {@inheritDoc}
      */
-    public Class getType(int propertyIndex)
-    {
+    public Class getType(int propertyIndex) {
         return getPropertyColumn(propertyIndex).getType();
     }
 
     /**
      * @inheritDoc
      */
-    public int getMinColumnWidth(int propertyIndex)
-    {
+    public int getMinColumnWidth(int propertyIndex) {
         return getPropertyColumn(propertyIndex).getMinWidth();
     }
 
     /**
      * @inheritDoc
      */
-    public int getMaxColumnWidth(int propertyIndex)
-    {
+    public int getMaxColumnWidth(int propertyIndex) {
         return getPropertyColumn(propertyIndex).getMaxWidth();
     }
 
     /**
      * @inheritDoc
      */
-    public boolean isResizable(int propertyIndex)
-    {
+    public boolean isResizable(int propertyIndex) {
         return getPropertyColumn(propertyIndex).isResizable();
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean isVisible(int propertyIndex)
-    {
+    public boolean isVisible(int propertyIndex) {
         return getPropertyColumn(propertyIndex).isVisible();
     }
 
     /**
      * @inheritDoc
      */
-    public TableCellRenderer getColumnRenderer(int propertyIndex)
-    {
+    public TableCellRenderer getColumnRenderer(int propertyIndex) {
         return getPropertyColumn(propertyIndex).getRenderer();
     }
 
     /**
      * @inheritDoc
      */
-    public TableCellEditor getColumnEditor(int propertyIndex)
-    {
+    public TableCellEditor getColumnEditor(int propertyIndex) {
         return getPropertyColumn(propertyIndex).getEditor();
     }
 
     /**
      * @inheritDoc
      */
-    public boolean isSelectColumn(int propertyIndex)
-    {
+    public boolean isSelectColumn(int propertyIndex) {
         return getPropertyColumn(propertyIndex).isSelectColumn();
     }
 
     /**
      * @inheritDoc
      */
-    public Comparator getColumnComparator(int propertyIndex)
-    {
+    public Comparator getColumnComparator(int propertyIndex) {
         return getPropertyColumn(propertyIndex).getComparator();
     }
 }

@@ -25,7 +25,7 @@ import junit.framework.TestCase;
 
 /**
  * testcase for {@link DefaultViewDescriptor}
- * 
+ *
  * @author Peter De Bruycker
  */
 public class DefaultViewDescriptorTests extends TestCase {

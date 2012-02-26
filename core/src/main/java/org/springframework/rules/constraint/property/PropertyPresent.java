@@ -27,22 +27,22 @@ import org.springframework.rules.constraint.Required;
  */
 public class PropertyPresent extends AbstractPropertyConstraint {
 
-	/**
-	 * Constructs a property present predicate for the specified property.
-	 *
-	 * @param propertyName
-	 *            The bean property name.
-	 */
-	public PropertyPresent(String propertyName) {
-		super(propertyName);
-	}
+    /**
+     * Constructs a property present predicate for the specified property.
+     *
+     * @param propertyName
+     *            The bean property name.
+     */
+    public PropertyPresent(String propertyName) {
+        super(propertyName);
+    }
 
-	protected boolean test(PropertyAccessStrategy domainObjectAccessStrategy) {
-		return Required.instance().test(domainObjectAccessStrategy.getPropertyValue(getPropertyName()));
-	}
+    protected boolean test(PropertyAccessStrategy domainObjectAccessStrategy) {
+        return Required.instance().test(domainObjectAccessStrategy.getPropertyValue(getPropertyName()));
+    }
 
-	public String toString() {
-		return "required if '" + getPropertyName() + "' present";
-	}
+    public String toString() {
+        return "required if '" + getPropertyName() + "' present";
+    }
 
 }

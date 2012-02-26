@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -30,14 +30,14 @@ import org.springframework.util.Assert;
 /**
  * A {@code BeanFactoryPostProcessor} that notifies a specified
  * {@link ProgressMonitor} of progress made while loading a bean factory.
- * 
+ *
  * <p>
  * The messages sent to the progress monitor can be internationalized by
  * providing a {@link MessageSource} to the constructor of this class. Note that
  * if a {@link MessageSource} is provided it must already be initialized in
  * order for it to successfully retrieve messages.
  * </p>
- * 
+ *
  * <p>
  * The progress monitor will be notified once prior to initializing the beans in
  * the bean factory and once for each singleton bean before it is initialized.
@@ -47,154 +47,154 @@ import org.springframework.util.Assert;
  * message source is provided, default messages (in English) will be used
  * instead.
  * </p>
- * 
+ *
  * @author Kevin Stembridge
  * @since 0.3.0
- * 
+ *
  * @see ProgressMonitor
- * 
+ *
  */
 public class ProgressMonitoringBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
-	/**
-	 * The message key used to retrieve the message to be sent to the progress
-	 * monitor when the application context begins loading.
-	 */
-	public static final String LOADING_APP_CONTEXT_KEY = "progress.loading.applicationContext";
+    /**
+     * The message key used to retrieve the message to be sent to the progress
+     * monitor when the application context begins loading.
+     */
+    public static final String LOADING_APP_CONTEXT_KEY = "progress.loading.applicationContext";
 
-	/**
-	 * The message key used to retrieve the message to be sent to the progress
-	 * monitor for each bean that is loaded.
-	 */
-	public static final String LOADING_BEAN_KEY = "progress.loading.bean";
+    /**
+     * The message key used to retrieve the message to be sent to the progress
+     * monitor for each bean that is loaded.
+     */
+    public static final String LOADING_BEAN_KEY = "progress.loading.bean";
 
-	private static final Log logger = LogFactory.getLog(ProgressMonitoringBeanFactoryPostProcessor.class);
+    private static final Log logger = LogFactory.getLog(ProgressMonitoringBeanFactoryPostProcessor.class);
 
-	private final ProgressMonitor progressMonitor;
+    private final ProgressMonitor progressMonitor;
 
-	private final MessageSource messageSource;
+    private final MessageSource messageSource;
 
-	private final String loadingAppContextMessage;
+    private final String loadingAppContextMessage;
 
-	/**
-	 * Creates a new {@code ProgressMonitoringBeanFactoryPostProcessor} that
-	 * will report the progress of loading the beans in a bean factory to the
-	 * given progress monitor, optionally providing internationalized messages.
-	 * 
-	 * @param progressMonitor The progress monitor that will be notified of
-	 * progress while processing the bean factory.
-	 * @param messageSource The message source that will be used to resolve
-	 * messages to be displayed by the progress monitor. May be null.
-	 * 
-	 * @throws IllegalArgumentException if {@code progressMonitor} is null.
-	 */
-	public ProgressMonitoringBeanFactoryPostProcessor(ProgressMonitor progressMonitor, MessageSource messageSource) {
+    /**
+     * Creates a new {@code ProgressMonitoringBeanFactoryPostProcessor} that
+     * will report the progress of loading the beans in a bean factory to the
+     * given progress monitor, optionally providing internationalized messages.
+     *
+     * @param progressMonitor The progress monitor that will be notified of
+     * progress while processing the bean factory.
+     * @param messageSource The message source that will be used to resolve
+     * messages to be displayed by the progress monitor. May be null.
+     *
+     * @throws IllegalArgumentException if {@code progressMonitor} is null.
+     */
+    public ProgressMonitoringBeanFactoryPostProcessor(ProgressMonitor progressMonitor, MessageSource messageSource) {
 
-		Assert.notNull(progressMonitor, "The ProgressMonitor cannot be null");
+        Assert.notNull(progressMonitor, "The ProgressMonitor cannot be null");
 
-		this.progressMonitor = progressMonitor;
-		this.messageSource = messageSource;
-		this.loadingAppContextMessage = getLoadingAppContextMessage();
+        this.progressMonitor = progressMonitor;
+        this.messageSource = messageSource;
+        this.loadingAppContextMessage = getLoadingAppContextMessage();
 
-	}
+    }
 
-	/**
-	 * Notifies this instance's associated progress monitor of progress made
-	 * while processing the given bean factory.
-	 * 
-	 * @param beanFactory the bean factory that is to be processed.
-	 */
-	public void postProcessBeanFactory(final ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    /**
+     * Notifies this instance's associated progress monitor of progress made
+     * while processing the given bean factory.
+     *
+     * @param beanFactory the bean factory that is to be processed.
+     */
+    public void postProcessBeanFactory(final ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
-		if (beanFactory == null) {
-			return;
-		}
+        if (beanFactory == null) {
+            return;
+        }
 
-		String[] beanNames = beanFactory.getBeanDefinitionNames();
-		int singletonBeanCount = 0;
+        String[] beanNames = beanFactory.getBeanDefinitionNames();
+        int singletonBeanCount = 0;
 
-		for (int i = 0; i < beanNames.length; i++) {
-			// using beanDefinition to check singleton property because when
-			// accessing through
-			// context (applicationContext.isSingleton(beanName)), bean will be
-			// created already,
-			// possibly bypassing other BeanFactoryPostProcessors
-			BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanNames[i]);
+        for (int i = 0; i < beanNames.length; i++) {
+            // using beanDefinition to check singleton property because when
+            // accessing through
+            // context (applicationContext.isSingleton(beanName)), bean will be
+            // created already,
+            // possibly bypassing other BeanFactoryPostProcessors
+            BeanDefinition beanDefinition = beanFactory.getBeanDefinition(beanNames[i]);
 
-			if (beanDefinition.isSingleton()) {
-				singletonBeanCount++;
-			}
+            if (beanDefinition.isSingleton()) {
+                singletonBeanCount++;
+            }
 
-		}
+        }
 
-		this.progressMonitor.taskStarted(this.loadingAppContextMessage, singletonBeanCount);
+        this.progressMonitor.taskStarted(this.loadingAppContextMessage, singletonBeanCount);
 
-		beanFactory.addBeanPostProcessor(new ProgressMonitoringBeanPostProcessor(beanFactory));
+        beanFactory.addBeanPostProcessor(new ProgressMonitoringBeanPostProcessor(beanFactory));
 
-	}
+    }
 
-	private String getLoadingAppContextMessage() {
+    private String getLoadingAppContextMessage() {
 
-		String defaultMessage = "Loading Application Context ...";
+        String defaultMessage = "Loading Application Context ...";
 
-		if (this.messageSource == null) {
-			return defaultMessage;
-		}
+        if (this.messageSource == null) {
+            return defaultMessage;
+        }
 
-		return this.messageSource.getMessage(LOADING_APP_CONTEXT_KEY, null, defaultMessage, null);
+        return this.messageSource.getMessage(LOADING_APP_CONTEXT_KEY, null, defaultMessage, null);
 
-	}
+    }
 
-	private class ProgressMonitoringBeanPostProcessor implements BeanPostProcessor {
+    private class ProgressMonitoringBeanPostProcessor implements BeanPostProcessor {
 
-		private final ConfigurableBeanFactory beanFactory;
+        private final ConfigurableBeanFactory beanFactory;
 
-		private ProgressMonitoringBeanPostProcessor(ConfigurableBeanFactory beanFactory) {
-			Assert.notNull(beanFactory, "The bean factory cannot be null");
-			this.beanFactory = beanFactory;
-		}
+        private ProgressMonitoringBeanPostProcessor(ConfigurableBeanFactory beanFactory) {
+            Assert.notNull(beanFactory, "The bean factory cannot be null");
+            this.beanFactory = beanFactory;
+        }
 
-		/**
-		 * A default implementation that performs no operation on the bean.
-		 */
-		public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-			return bean;
-		}
+        /**
+         * A default implementation that performs no operation on the bean.
+         */
+        public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+            return bean;
+        }
 
-		/**
-		 * {@inheritDoc}
-		 */
-		public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        /**
+         * {@inheritDoc}
+         */
+        public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
-			if (logger.isTraceEnabled()) {
-				logger.trace("BEGIN: postProcessBeforeInitialization(" + beanName + ")");
-			}
+            if (logger.isTraceEnabled()) {
+                logger.trace("BEGIN: postProcessBeforeInitialization(" + beanName + ")");
+            }
 
-			if (this.beanFactory.containsLocalBean(beanName)) {
-				String loadingBeanMessage = getLoadingBeanMessage(beanName);
-				progressMonitor.subTaskStarted(loadingBeanMessage);
-				progressMonitor.worked(1);
-			}
+            if (this.beanFactory.containsLocalBean(beanName)) {
+                String loadingBeanMessage = getLoadingBeanMessage(beanName);
+                progressMonitor.subTaskStarted(loadingBeanMessage);
+                progressMonitor.worked(1);
+            }
 
-			logger.trace("END: postProcessBeforeInitialization()");
-			return bean;
+            logger.trace("END: postProcessBeforeInitialization()");
+            return bean;
 
-		}
+        }
 
-		private String getLoadingBeanMessage(String beanName) {
+        private String getLoadingBeanMessage(String beanName) {
 
-			String defaultMessage = "Loading " + beanName + " ...";
+            String defaultMessage = "Loading " + beanName + " ...";
 
-			if (messageSource == null) {
-				return defaultMessage;
-			}
+            if (messageSource == null) {
+                return defaultMessage;
+            }
 
-			Object[] args = { beanName };
+            Object[] args = { beanName };
 
-			return messageSource.getMessage(LOADING_BEAN_KEY, args, defaultMessage, null);
+            return messageSource.getMessage(LOADING_BEAN_KEY, args, defaultMessage, null);
 
-		}
+        }
 
-	}
+    }
 
 }

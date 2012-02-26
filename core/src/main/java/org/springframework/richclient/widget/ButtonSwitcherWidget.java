@@ -11,8 +11,7 @@ import java.awt.*;
  *
  * This makes it easy to switch between 2 faces.
  */
-public class ButtonSwitcherWidget extends AbstractWidget
-{
+public class ButtonSwitcherWidget extends AbstractWidget {
 
     private final CardLayout switcher;
     private final JPanel panel;
@@ -20,8 +19,7 @@ public class ButtonSwitcherWidget extends AbstractWidget
     public static final String DEFAULT = "default";
     public static final String ALTERNATIVE = "alternative";
 
-    public ButtonSwitcherWidget(AbstractCommand command, String alternativeFaceId)
-    {
+    public ButtonSwitcherWidget(AbstractCommand command, String alternativeFaceId) {
         AbstractButton defaultButton = command.createButton();
         AbstractButton alternButton = command.createButton(alternativeFaceId);
         this.switcher = new CardLayout();
@@ -30,23 +28,19 @@ public class ButtonSwitcherWidget extends AbstractWidget
         this.panel.add(alternButton, ALTERNATIVE);
     }
 
-    public JComponent getComponent()
-    {
+    public JComponent getComponent() {
         return this.panel;
     }
 
-    public void showDefault()
-    {
+    public void showDefault() {
         this.switcher.first(this.panel);
     }
 
-    public void showAlternative()
-    {
+    public void showAlternative() {
         this.switcher.last(this.panel);
     }
 
-    public void show(String mode)
-    {
+    public void show(String mode) {
         this.switcher.show(this.panel, mode);
 
     }

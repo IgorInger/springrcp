@@ -20,7 +20,7 @@ import org.springframework.richclient.application.PageLayoutBuilder;
 
 /**
  * Empty {@link PageDescriptor}.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class EmptyPageDescriptor extends AbstractPageDescriptor {

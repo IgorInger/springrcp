@@ -27,28 +27,28 @@ import org.springframework.rules.constraint.property.PropertyConstraint;
  */
 public interface RulesSource {
 
-	/**
-	 * Return the validation rules for the provided bean.
-	 *
-	 * @param bean
-	 *            the bean class
-	 * @return The validation rules, or <code>null</code> if none exist.
-	 */
-	public Rules getRules(Class bean);
+    /**
+     * Return the validation rules for the provided bean.
+     *
+     * @param bean
+     *            the bean class
+     * @return The validation rules, or <code>null</code> if none exist.
+     */
+    public Rules getRules(Class bean);
 
-	public Rules getRules(Class bean, String contextId);
+    public Rules getRules(Class bean, String contextId);
 
-	/**
-	 * Return the validation rules for the provided bean property.
-	 *
-	 * @param beanClass
-	 *            the bean class
-	 * @param propertyName
-	 *            the bean propertyName
-	 * @return The validation rules, or <code>null</code> if none exist.
-	 */
-	public PropertyConstraint getPropertyConstraint(Class beanClass, String propertyName);
+    /**
+     * Return the validation rules for the provided bean property.
+     *
+     * @param beanClass
+     *            the bean class
+     * @param propertyName
+     *            the bean propertyName
+     * @return The validation rules, or <code>null</code> if none exist.
+     */
+    public PropertyConstraint getPropertyConstraint(Class beanClass, String propertyName);
 
-	public PropertyConstraint getPropertyConstraint(Class beanClass, String propertyName, String contextId);
+    public PropertyConstraint getPropertyConstraint(Class beanClass, String propertyName, String contextId);
 
 }

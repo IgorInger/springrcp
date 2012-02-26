@@ -36,34 +36,34 @@ package org.springframework.binding.form;
  */
 public interface HierarchicalFormModel extends FormModel {
 
-	/**
-	 * Returns the parent form model or null of there is none.
-	 */
-	HierarchicalFormModel getParent();
+    /**
+     * Returns the parent form model or null of there is none.
+     */
+    HierarchicalFormModel getParent();
 
-	/**
-	 * Returns an array of child form models.
-	 */
-	FormModel[] getChildren();
+    /**
+     * Returns an array of child form models.
+     */
+    FormModel[] getChildren();
 
-	/**
-	 * Sets the parent form model.
-	 */
-	void setParent(HierarchicalFormModel parent);
+    /**
+     * Sets the parent form model.
+     */
+    void setParent(HierarchicalFormModel parent);
 
-	/**
-	 * Remove the parent form model
-	 */
-	void removeParent();
+    /**
+     * Remove the parent form model
+     */
+    void removeParent();
 
-	/**
-	 * Adds a new child to the form model. The child form model will have it's
-	 * parent set to this.
-	 */
-	void addChild(HierarchicalFormModel child);
+    /**
+     * Adds a new child to the form model. The child form model will have it's
+     * parent set to this.
+     */
+    void addChild(HierarchicalFormModel child);
 
-	/**
-	 * Removes a child from this form model.
-	 */
-	void removeChild(HierarchicalFormModel child);
+    /**
+     * Removes a child from this form model.
+     */
+    void removeChild(HierarchicalFormModel child);
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.springframework.richclient.security.support;
 
@@ -30,7 +30,7 @@ public class TestAuthorizable implements Authorizable {
     public boolean isAuthorized() {
         return authorized;
     }
-    
+
     public int getAuthCount() {
         return authCount;
     }

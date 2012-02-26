@@ -1,31 +1,31 @@
 /*
  * Copyright (c) 2003 JGoodies Karsten Lentzsch. All Rights Reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
- * 
- *  o Redistributions of source code must retain the above copyright notice, 
- *    this list of conditions and the following disclaimer. 
- *     
- *  o Redistributions in binary form must reproduce the above copyright notice, 
- *    this list of conditions and the following disclaimer in the documentation 
- *    and/or other materials provided with the distribution. 
- *     
- *  o Neither the name of JGoodies Karsten Lentzsch nor the names of 
- *    its contributors may be used to endorse or promote products derived 
- *    from this software without specific prior written permission. 
- *     
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, 
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR 
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; 
- * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
- * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *
+ *  o Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ *
+ *  o Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ *  o Neither the name of JGoodies Karsten Lentzsch nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.springframework.richclient.components;
 
@@ -53,7 +53,7 @@ import javax.swing.border.AbstractBorder;
  * A <code>JPanel</code> subclass that has a drop shadow border and that
  * provides a header with icon, title and tool bar.
  * <p>
- * 
+ *
  * This class can be used to replace the <code>JInternalFrame</code>, for use
  * outside of a <code>JDesktopPane</code>. The
  * <code>SimpleInternalFrame</code> is less flexible but often more usable; it
@@ -61,17 +61,17 @@ import javax.swing.border.AbstractBorder;
  * have reported that they and their clients feel much better with both the
  * appearance and the UI feel.
  * <p>
- * 
+ *
  * The SimpleInternalFrame provides the following bound properties:
  * <i>frameIcon, title, toolBar, content, selected. </i>
  * <p>
- * 
+ *
  * By default the SimpleInternalFrame is in <i>selected </i> state. If you don't
  * do anything, multiple simple internal frames will be displayed as selected.
- * 
+ *
  * @author Karsten Lentzsch
  * @version $Revision$
- * 
+ *
  * @see javax.swing.JInternalFrame
  * @see javax.swing.JDesktopPane
  */
@@ -96,7 +96,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Constructs a <code>SimpleInternalFrame</code> with the specified title.
-     * 
+     *
      * @param title
      *            the initial title
      */
@@ -107,7 +107,7 @@ public class SimpleInternalFrame extends JPanel {
     /**
      * Constructs a <code>SimpleInternalFrame</code> with the specified icon,
      * and title.
-     * 
+     *
      * @param icon
      *            the initial icon
      * @param title
@@ -120,7 +120,7 @@ public class SimpleInternalFrame extends JPanel {
     /**
      * Constructs a <code>SimpleInternalFrame</code> with the specified title,
      * tool bar, and content panel.
-     * 
+     *
      * @param title
      *            the initial title
      * @param bar
@@ -135,7 +135,7 @@ public class SimpleInternalFrame extends JPanel {
     /**
      * Constructs a <code>SimpleInternalFrame</code> with the specified icon,
      * title, tool bar, and content panel.
-     * 
+     *
      * @param icon
      *            the initial icon
      * @param title
@@ -164,7 +164,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Returns the frame's icon.
-     * 
+     *
      * @return the frame's icon
      */
     public Icon getFrameIcon() {
@@ -173,7 +173,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Sets a new frame icon.
-     * 
+     *
      * @param newIcon
      *            the icon to be set
      */
@@ -185,7 +185,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Returns the frame's title text.
-     * 
+     *
      * @return String the current title text
      */
     public String getTitle() {
@@ -194,7 +194,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Sets a new title text.
-     * 
+     *
      * @param newText
      *            the title text tp be set
      */
@@ -206,7 +206,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Returns the current toolbar, null if none has been set before.
-     * 
+     *
      * @return the current toolbar - if any
      */
     public JToolBar getToolBar() {
@@ -215,7 +215,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Sets a new tool bar in the header.
-     * 
+     *
      * @param newToolBar
      *            the tool bar to be set in the header
      */
@@ -237,7 +237,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Returns the content - null, if none has been set.
-     * 
+     *
      * @return the current content
      */
     public Component getContent() {
@@ -246,7 +246,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Sets a new panel content; replaces any existing content, if existing.
-     * 
+     *
      * @param newContent
      *            the panel's new content
      */
@@ -263,7 +263,7 @@ public class SimpleInternalFrame extends JPanel {
      * Answers if the panel is currently selected (or in other words active) or
      * not. In the selected state, the header background will be rendered
      * differently.
-     * 
+     *
      * @return boolean a boolean, where true means the frame is selected
      *         (currently active) and false means it is not
      */
@@ -275,7 +275,7 @@ public class SimpleInternalFrame extends JPanel {
      * This panel draws its title bar differently if it is selected, which may
      * be used to indicate to the user that this panel has the focus, or should
      * get more attention than other simple internal frames.
-     * 
+     *
      * @param newValue
      *            a boolean, where true means the frame is selected (currently
      *            active) and false means it is not
@@ -292,7 +292,7 @@ public class SimpleInternalFrame extends JPanel {
     /**
      * Creates and answers the header panel, that consists of: an icon, a title
      * label, a tool bar, and a gradient background.
-     * 
+     *
      * @param label
      *            the label to paint the icon and text
      * @param bar
@@ -339,7 +339,7 @@ public class SimpleInternalFrame extends JPanel {
 
     /**
      * Checks and answers if the panel has a content component set.
-     * 
+     *
      * @return true if the panel has a content, false if it's empty
      */
     private boolean hasContent() {
@@ -350,14 +350,14 @@ public class SimpleInternalFrame extends JPanel {
      * Determines and answers the header's text foreground color. Tries to
      * lookup a special color from the L&amp;F. In case it is absent, it uses
      * the standard internal frame forground.
-     * 
+     *
      * @param selected
      *            true to lookup the active color, false for the inactive
      * @return the color of the foreground text
      */
     protected Color getTextForeground(boolean selected) {
         Color c = UIManager.getColor(selected ? "SimpleInternalFrame.activeTitleForeground"
-                : "SimpleInternalFrame.inactiveTitleForeground");
+                                     : "SimpleInternalFrame.inactiveTitleForeground");
         if (c != null) {
             return c;
         }
@@ -369,12 +369,12 @@ public class SimpleInternalFrame extends JPanel {
      * Determines and answers the header's background color. Tries to lookup a
      * special color from the L&amp;F. In case it is absent, it uses the
      * standard internal frame background.
-     * 
+     *
      * @return the color of the header's background
      */
     protected Color getHeaderBackground() {
         Color c = UIManager.getColor("SimpleInternalFrame.activeTitleBackground");
-        
+
         return c != null ? c : UIManager.getColor("InternalFrame.activeTitleBackground");
     }
 

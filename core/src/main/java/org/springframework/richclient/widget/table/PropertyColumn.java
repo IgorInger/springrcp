@@ -16,12 +16,11 @@ import java.util.Comparator;
  * {@link Accessor}. Other features can be set using the normal bean setters and getters or through a number
  * of chaining methods. The latter is particularly useful to create columns by instantiating the column with
  * the minimum requirements and then adding all settings in one go.
- * 
+ *
  * @author Jan Hoskens
  * @since 0.5.0
  */
-public class PropertyColumn
-{
+public class PropertyColumn {
 
     /** No specific width set. */
     public static final int UNSPECIFIED_WIDTH = -1;
@@ -68,21 +67,19 @@ public class PropertyColumn
     /** Header title fetched from header keys or manually set. */
     private String header = null;
 
-    public PropertyColumn(final String propertyName)
-    {
+    public PropertyColumn(final String propertyName) {
         this.propertyName = propertyName;
     }
-    
+
     /**
      * Minimal construction requires a propertyName and an {@link Accessor}.
-     * 
+     *
      * @param propertyName
      *            name of the property.
      * @param accessor
      *            read-access for the property.
      */
-    public PropertyColumn(final String propertyName, final Accessor accessor, final Class<?> propertyType)
-    {
+    public PropertyColumn(final String propertyName, final Accessor accessor, final Class<?> propertyType) {
         this.propertyName = propertyName;
         this.accessor = accessor;
         this.type = propertyType;
@@ -90,14 +87,13 @@ public class PropertyColumn
 
     /**
      * Constructor taking all possible arguments.
-     * 
+     *
      * @deprecated Please use the other system (minimal constructor + adding necessary elements)
      */
     public PropertyColumn(final Class<?> type, final Accessor accessor, final String propertyName,
-            final String[] headerKeys, final int minWidth, final int maxWidth, final boolean resizable,
-            TableCellRenderer renderer, TableCellEditor editor, final Comparator<?> comparator,
-            final boolean isSelectColumn, final boolean visible)
-    {
+                          final String[] headerKeys, final int minWidth, final int maxWidth, final boolean resizable,
+                          TableCellRenderer renderer, TableCellEditor editor, final Comparator<?> comparator,
+                          final boolean isSelectColumn, final boolean visible) {
         this.type = type;
         this.accessor = accessor;
         this.propertyName = propertyName;
@@ -114,43 +110,38 @@ public class PropertyColumn
 
     /**
      * Set the accessor to use when retrieving the property value.
-     * 
+     *
      * @param accessor the {@link Accessor} to read the property value.
      */
-    public void setAccessor(Accessor accessor)
-    {
+    public void setAccessor(Accessor accessor) {
         this.accessor = accessor;
     }
-    
+
     /**
      * The type of the property.
-     * 
+     *
      * @param type the type of the property.
      */
-    public void setType(Class<?> type)
-    {
+    public void setType(Class<?> type) {
         this.type = type;
     }
-    
+
     /**
      * Returns the header to be used as column title. If no explicit header was set, the headerKeys are used
      * to fetch a message from the available resources.
      */
-    public String getHeader()
-    {
-        if (this.header == null)
-        {
-            if (this.headerKeys == null)
-            {
+    public String getHeader() {
+        if (this.header == null) {
+            if (this.headerKeys == null) {
                 this.headerKeys = new String[2];
                 this.headerKeys[0] = getPropertyName() + ".header";
                 this.headerKeys[1] = getPropertyName();
             }
             this.header = RcpSupport.getMessage(new DefaultMessageSourceResolvable(this.headerKeys, null,
-                    this.headerKeys[this.headerKeys.length - 1]));
+                                                this.headerKeys[this.headerKeys.length - 1]));
         }
         // JTableHeader has a reusable defaultHeaderRenderer on which the default height must be correct.
-        // when painting, the columns headers are processed in order and height is being calculated, 
+        // when painting, the columns headers are processed in order and height is being calculated,
         // if label is null or empty string header height is 4 and thus leaves us with a very small
         // table-header, fix this by returning a space (-> font-size is incorporated)
         return "".equals(this.header) ? " " : this.header;
@@ -159,20 +150,18 @@ public class PropertyColumn
     /**
      * Returns the header keys that are used to fetch the column title if the header property is not set.
      */
-    public String[] getHeaderKeys()
-    {
+    public String[] getHeaderKeys() {
         return headerKeys == null ? null : headerKeys.clone();
     }
 
     /**
      * Chaining method to set header keys.
-     * 
+     *
      * @param headerKeys
      *            keys used to fetch the column title from the resources if no header is explicitly set.
      * @return <code>this</code>
      */
-    public PropertyColumn withHeaderKeys(String[] headerKeys)
-    {
+    public PropertyColumn withHeaderKeys(String[] headerKeys) {
         setHeaderKeys(headerKeys);
         return this;
     }
@@ -180,28 +169,25 @@ public class PropertyColumn
     /**
      * Set the keys used to fetch the column title from the resources if no header is explicitly set.
      */
-    public void setHeaderKeys(String[] headerKeys)
-    {
+    public void setHeaderKeys(String[] headerKeys) {
         this.headerKeys = headerKeys;
     }
 
     /**
      * Returns the maximum width for this column.
      */
-    public int getMaxWidth()
-    {
+    public int getMaxWidth() {
         return maxWidth;
     }
 
     /**
      * Chaining method to set the maximum width.
-     * 
+     *
      * @param maxWidth
      *            maximum width for this column
      * @return <code>this</code>
      */
-    public PropertyColumn withMaxWidth(int maxWidth)
-    {
+    public PropertyColumn withMaxWidth(int maxWidth) {
         setMaxWidth(maxWidth);
         return this;
     }
@@ -209,28 +195,25 @@ public class PropertyColumn
     /**
      * Set the maximum width of this column.
      */
-    public void setMaxWidth(int maxWidth)
-    {
+    public void setMaxWidth(int maxWidth) {
         this.maxWidth = maxWidth;
     }
 
     /**
      * Returns the minimum width for this column.
      */
-    public int getMinWidth()
-    {
+    public int getMinWidth() {
         return minWidth;
     }
 
     /**
      * Chaining method to set the minimum width.
-     * 
+     *
      * @param minWidth
      *            minimum width for this column
      * @return <code>this</code>
      */
-    public PropertyColumn withMinWidth(int minWidth)
-    {
+    public PropertyColumn withMinWidth(int minWidth) {
         setMinWidth(minWidth);
         return this;
     }
@@ -238,174 +221,144 @@ public class PropertyColumn
     /**
      * Set the minimum width for this column.
      */
-    public void setMinWidth(int minWidth)
-    {
+    public void setMinWidth(int minWidth) {
         this.minWidth = minWidth;
     }
 
     /**
      * Chaining method to set the minimum and maximum width to the same value. This will create a fixed width
      * column.
-     * 
+     *
      * @param width
      *            fixed width for this column
      * @return <code>this</code>
      */
-    public PropertyColumn withFixedWidth(int width)
-    {
+    public PropertyColumn withFixedWidth(int width) {
         setMinWidth(width);
         setMaxWidth(width);
         return this;
     }
 
-    public boolean isResizable()
-    {
+    public boolean isResizable() {
         return resizable;
     }
 
-    public PropertyColumn withResizable(boolean resizable)
-    {
+    public PropertyColumn withResizable(boolean resizable) {
         setResizable(resizable);
         return this;
     }
 
-    public void setResizable(boolean resizable)
-    {
+    public void setResizable(boolean resizable) {
         this.resizable = resizable;
     }
 
-    public PropertyColumn withFilterColumn(boolean isFilterColumn)
-    {
+    public PropertyColumn withFilterColumn(boolean isFilterColumn) {
         setFilterColumn(isFilterColumn);
         return this;
     }
 
-    public void setFilterColumn(boolean isFilterColumn)
-    {
+    public void setFilterColumn(boolean isFilterColumn) {
         this.isFilterColumn = isFilterColumn;
     }
 
-    public boolean isFilterColumn()
-    {
+    public boolean isFilterColumn() {
         return isFilterColumn;
     }
 
-    public TableCellRenderer getRenderer()
-    {
+    public TableCellRenderer getRenderer() {
         return renderer;
     }
 
-    public PropertyColumn withRenderer(TableCellRenderer renderer)
-    {
+    public PropertyColumn withRenderer(TableCellRenderer renderer) {
         setRenderer(renderer);
         return this;
     }
 
-    public void setRenderer(TableCellRenderer renderer)
-    {
+    public void setRenderer(TableCellRenderer renderer) {
         this.renderer = renderer;
     }
 
-    public TableCellEditor getEditor()
-    {
+    public TableCellEditor getEditor() {
         return editor;
     }
 
-    public PropertyColumn withEditor(TableCellEditor editor)
-    {
+    public PropertyColumn withEditor(TableCellEditor editor) {
         setEditor(editor);
         return this;
     }
 
-    public PropertyColumn withEditor(BindingFactory bindingFactory)
-    {
+    public PropertyColumn withEditor(BindingFactory bindingFactory) {
         return withEditor(new ValueModelTableCellEditor(bindingFactory.getFormModel(), getPropertyName(),
-                bindingFactory.createBinding(getType(), getPropertyName()).getControl()));
+                          bindingFactory.createBinding(getType(), getPropertyName()).getControl()));
     }
 
-    public PropertyColumn withEditor(FormModel formModel)
-    {
+    public PropertyColumn withEditor(FormModel formModel) {
         return withEditor(new SwingBindingFactory(formModel));
     }
-    
-    public PropertyColumn withEditor(AbstractDataEditorWidget dataEditor)
-    {
+
+    public PropertyColumn withEditor(AbstractDataEditorWidget dataEditor) {
         FormModel formModel = dataEditor.getDetailForm().getFormModel();
         BindingFactory bindingFactory = dataEditor.getDetailForm().getBindingFactory();
         return withEditor(new ValueModelTableCellEditor(formModel, getPropertyName(),
-                bindingFactory.createBinding(getType(), getPropertyName()).getControl(), dataEditor.getUpdateCommand()));
+                          bindingFactory.createBinding(getType(), getPropertyName()).getControl(), dataEditor.getUpdateCommand()));
     }
-    
-    public void setEditor(TableCellEditor editor)
-    {
+
+    public void setEditor(TableCellEditor editor) {
         this.editor = editor;
     }
 
-    public Comparator<?> getComparator()
-    {
+    public Comparator<?> getComparator() {
         return comparator;
     }
 
-    public PropertyColumn withComparator(Comparator<?> comparator)
-    {
+    public PropertyColumn withComparator(Comparator<?> comparator) {
         setComparator(comparator);
         return this;
     }
 
-    public void setComparator(Comparator<?> comparator)
-    {
+    public void setComparator(Comparator<?> comparator) {
         this.comparator = comparator;
     }
 
-    public PropertyColumn withSelectColumn(boolean isSelectColumn)
-    {
+    public PropertyColumn withSelectColumn(boolean isSelectColumn) {
         setSelectColumn(isSelectColumn);
         return this;
     }
 
-    public boolean isSelectColumn()
-    {
+    public boolean isSelectColumn() {
         return isSelectColumn;
     }
 
-    public void setSelectColumn(boolean isSelectColumn)
-    {
+    public void setSelectColumn(boolean isSelectColumn) {
         this.isSelectColumn = isSelectColumn;
     }
 
-    public boolean isVisible()
-    {
+    public boolean isVisible() {
         return visible;
     }
 
-    public PropertyColumn withVisible(boolean visible)
-    {
+    public PropertyColumn withVisible(boolean visible) {
         setVisible(visible);
         return this;
     }
 
-    public void setVisible(boolean visible)
-    {
+    public void setVisible(boolean visible) {
         this.visible = visible;
     }
 
-    public Class<?> getType()
-    {
+    public Class<?> getType() {
         return type;
     }
 
-    public Accessor getAccessor()
-    {
+    public Accessor getAccessor() {
         return accessor;
     }
 
-    public String getPropertyName()
-    {
+    public String getPropertyName() {
         return propertyName;
     }
 
-    public void setHeader(String header)
-    {
+    public void setHeader(String header) {
         this.header = header;
     }
 

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -17,7 +17,7 @@ package org.springframework.richclient.text;
 
 /**
  * A text formatter that formats time periods (durations.)
- * 
+ *
  * @author Keith Donald
  */
 public abstract class TimeFormat {
@@ -99,7 +99,7 @@ public abstract class TimeFormat {
      * and seconds.
      * <p>
      * The format looks like: 5d 23h 12m 52s.
-     * 
+     *
      * @return The daysInstance TimeFormatter.
      */
     public static synchronized TimeFormat getDaysInstance() {
@@ -111,7 +111,7 @@ public abstract class TimeFormat {
      * and milliseconds.
      * <p>
      * The format looks like: 5d 23h 12m 52s 10ms.
-     * 
+     *
      * @return The millisecondsInstance TimeFormatter.
      */
     public static synchronized TimeFormat getMillisecondsInstance() {
@@ -120,7 +120,7 @@ public abstract class TimeFormat {
 
     /**
      * Returns a formatted time string for the specified time period.
-     * 
+     *
      * @param time
      *            the time period.
      * @return The formatted time string.

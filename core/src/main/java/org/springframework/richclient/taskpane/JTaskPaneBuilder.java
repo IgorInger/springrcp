@@ -14,8 +14,7 @@ import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class JTaskPaneBuilder extends CommandGroupJComponentBuilder
-{
+public class JTaskPaneBuilder extends CommandGroupJComponentBuilder {
     private IconSource iconSource = null;
 
     private boolean onlyOneExpanded = true;
@@ -23,18 +22,15 @@ public class JTaskPaneBuilder extends CommandGroupJComponentBuilder
 
     private IconGenerator<AbstractCommand> iconGenerator;
 
-    protected JComponent buildRootComponent(AbstractCommand command)
-    {
+    protected JComponent buildRootComponent(AbstractCommand command) {
         JTaskPane pane = new JTaskPane();
         pane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         pane.setOpaque(false);
         return pane;
     }
 
-    protected JComponent buildChildComponent(JComponent parentComponent, AbstractCommand command, int level)
-    {
-        if (command != null)
-        {
+    protected JComponent buildChildComponent(JComponent parentComponent, AbstractCommand command, int level) {
+        if (command != null) {
             JLinkButton button = new JLinkButton();
             command.attach(button, configurer);
             parentComponent.add(button);
@@ -43,57 +39,43 @@ public class JTaskPaneBuilder extends CommandGroupJComponentBuilder
         return null;
     }
 
-    public boolean hasOnlyOneExpanded()
-    {
+    public boolean hasOnlyOneExpanded() {
         return onlyOneExpanded;
     }
 
-    public void setOnlyOneExpanded(boolean onlyOneExpanded)
-    {
+    public void setOnlyOneExpanded(boolean onlyOneExpanded) {
         this.onlyOneExpanded = onlyOneExpanded;
     }
 
-    protected JComponent buildGroupComponent(JComponent parentComponent, CommandGroup command, int level)
-    {
+    protected JComponent buildGroupComponent(JComponent parentComponent, CommandGroup command, int level) {
         if (level == 0)
             return parentComponent;
 
         if (iconSource == null)
             iconSource = (IconSource) ApplicationServicesLocator.services().getService(IconSource.class);
         Icon icon;
-        if(command.getIcon() == null && iconGenerator != null)
-        {
+        if(command.getIcon() == null && iconGenerator != null) {
             icon = iconGenerator.generateIcon(command);
-        }
-        else
-        {
+        } else {
             icon = command.getIcon();
         }
 
-        if (parentComponent instanceof JTaskPaneGroup)
-        {
+        if (parentComponent instanceof JTaskPaneGroup) {
             final JTaskPaneGroup parent = (JTaskPaneGroup) parentComponent;
             final JTaskPaneGroup group = new JTaskPaneGroup();
             group.setTitle(command.getText());
             group.setIcon(icon);
             group.setExpanded(false);
 
-            if (hasOnlyOneExpanded())
-            {
-                group.addPropertyChangeListener(JTaskPaneGroup.EXPANDED_CHANGED_KEY, new PropertyChangeListener()
-                {
-                    public void propertyChange(PropertyChangeEvent evt)
-                    {
-                        if ((Boolean) evt.getNewValue())
-                        {
+            if (hasOnlyOneExpanded()) {
+                group.addPropertyChangeListener(JTaskPaneGroup.EXPANDED_CHANGED_KEY, new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        if ((Boolean) evt.getNewValue()) {
                             Component[] comps = parent.getComponents();
-                            for (int i = 0; i < comps.length; i++)
-                            {
-                                if (comps[i] instanceof JTaskPaneGroup && comps[i] != group)
-                                {
+                            for (int i = 0; i < comps.length; i++) {
+                                if (comps[i] instanceof JTaskPaneGroup && comps[i] != group) {
                                     JTaskPaneGroup g = ((JTaskPaneGroup) comps[i]);
-                                    if (g.isExpanded())
-                                    {
+                                    if (g.isExpanded()) {
                                         g.setExpanded(false);
                                     }
                                 }
@@ -106,31 +88,22 @@ public class JTaskPaneBuilder extends CommandGroupJComponentBuilder
             parent.add(group);
 
             return group;
-        }
-        else
-        {
+        } else {
             final JTaskPane parent = (JTaskPane) parentComponent;
             final JTaskPaneGroup group = new JTaskPaneGroup();
             group.setTitle(command.getText());
             group.setIcon(icon);
             group.setExpanded(false);
 
-            if (hasOnlyOneExpanded())
-            {
-                group.addPropertyChangeListener(JTaskPaneGroup.EXPANDED_CHANGED_KEY, new PropertyChangeListener()
-                {
-                    public void propertyChange(PropertyChangeEvent evt)
-                    {
-                        if ((Boolean) evt.getNewValue())
-                        {
+            if (hasOnlyOneExpanded()) {
+                group.addPropertyChangeListener(JTaskPaneGroup.EXPANDED_CHANGED_KEY, new PropertyChangeListener() {
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        if ((Boolean) evt.getNewValue()) {
                             Component[] comps = parent.getComponents();
-                            for (int i = 0; i < comps.length; i++)
-                            {
-                                if (comps[i] instanceof JTaskPaneGroup && comps[i] != group)
-                                {
+                            for (int i = 0; i < comps.length; i++) {
+                                if (comps[i] instanceof JTaskPaneGroup && comps[i] != group) {
                                     JTaskPaneGroup g = ((JTaskPaneGroup) comps[i]);
-                                    if (g.isExpanded())
-                                    {
+                                    if (g.isExpanded()) {
                                         g.setExpanded(false);
                                     }
                                 }
@@ -146,13 +119,11 @@ public class JTaskPaneBuilder extends CommandGroupJComponentBuilder
         }
     }
 
-    public IconGenerator<AbstractCommand> getIconGenerator()
-    {
+    public IconGenerator<AbstractCommand> getIconGenerator() {
         return iconGenerator;
     }
 
-    public void setIconGenerator(IconGenerator<AbstractCommand> iconGenerator)
-    {
+    public void setIconGenerator(IconGenerator<AbstractCommand> iconGenerator) {
         this.iconGenerator = iconGenerator;
     }
 }

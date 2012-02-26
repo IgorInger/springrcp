@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * A purger that looks through to a throwable chain and can select one to unwrap.
- * 
+ *
  * @author Geoffrey De Smet
  * @since 0.3.0
  */
@@ -13,7 +13,7 @@ public class DefaultExceptionPurger implements ExceptionPurger {
 
     protected List<Class> includeThrowableClassList = Collections.emptyList();
     protected List<Class> excludeThrowableClassList = Collections.emptyList();
-    
+
     public DefaultExceptionPurger() {}
 
     public DefaultExceptionPurger(Class includeThrowableClass, Class excludeThrowableClass) {
@@ -24,7 +24,7 @@ public class DefaultExceptionPurger implements ExceptionPurger {
             this.excludeThrowableClassList = Collections.singletonList(excludeThrowableClass);
         }
     }
-    
+
     public DefaultExceptionPurger(List<Class> includeThrowableClassList, List<Class> excludeThrowableClassList) {
         if (includeThrowableClassList != null) {
             this.includeThrowableClassList = includeThrowableClassList;
@@ -41,7 +41,7 @@ public class DefaultExceptionPurger implements ExceptionPurger {
     public void setIncludeThrowableClass(Class includeThrowableClass) {
         setIncludeThrowableClassList(Collections.singletonList(includeThrowableClass));
     }
-    
+
     /**
      * Sets Throwables that if found, are unwrapped.
      * These Throwables are ussually very specific exceptions, for example: LoginCredentialsExpiredException.
@@ -70,7 +70,7 @@ public class DefaultExceptionPurger implements ExceptionPurger {
     public void setExcludeThrowableClass(Class excludeThrowableClass) {
         setExcludeThrowableClassList(Collections.singletonList(excludeThrowableClass));
     }
-    
+
     /**
      * Sets Throwables that if found, its cause is unwrapped.
      * These Throwables are ussually very general wrapper exceptions, for example: WrapperException.
@@ -92,8 +92,8 @@ public class DefaultExceptionPurger implements ExceptionPurger {
     public void setExcludeThrowableClassList(List<Class> excludeThrowableClassList) {
         this.excludeThrowableClassList = excludeThrowableClassList;
     }
-    
-    
+
+
     public Throwable purge(Throwable root) {
         Throwable excludedPurged = root;
         Throwable e = root;
@@ -114,7 +114,7 @@ public class DefaultExceptionPurger implements ExceptionPurger {
         return excludedPurged;
     }
 
-    
+
 //    public Throwable purge(Throwable root) {
 //        Throwable purged = root;
 //        Throwable e = root;
@@ -128,7 +128,7 @@ public class DefaultExceptionPurger implements ExceptionPurger {
 //        }
 //        return purged;
 //    }
-    
+
     protected boolean containedIn(Throwable e, List<Class> throwableClassList) {
         for (Class throwableClass : throwableClassList) {
             if (throwableClass.isInstance(e)) {
@@ -137,5 +137,5 @@ public class DefaultExceptionPurger implements ExceptionPurger {
         }
         return false;
     }
-    
+
 }

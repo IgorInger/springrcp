@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,8 +56,7 @@ public class CommandFaceDescriptorTests extends TestCase {
         try {
             new CommandFaceDescriptor((CommandButtonLabelInfo)null);
             fail("Should throw IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             pass();
         }
     }
@@ -185,21 +184,19 @@ public class CommandFaceDescriptorTests extends TestCase {
         try {
             descriptor.configure(new JButton(), null, null);
             fail("Should throw IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             pass();
         }
         try {
             descriptor.configure(null, null, new TestCommandButtonConfigurer());
             fail("Should throw IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             pass();
         }
     }
 
     private static class TestCommandButtonConfigurer extends DefaultCommandButtonConfigurer implements
-            CommandButtonConfigurer {
+        CommandButtonConfigurer {
         private CommandFaceDescriptor face;
 
         private AbstractButton button;
@@ -251,8 +248,7 @@ public class CommandFaceDescriptorTests extends TestCase {
         try {
             descriptor.configure(null);
             fail("Should throw IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             pass();
         }
     }
@@ -266,9 +262,9 @@ public class CommandFaceDescriptorTests extends TestCase {
         descriptor.configure(action);
         assertEquals("name", descriptor.getLabelInfo().getText(), action.getValue(Action.NAME));
         assertEquals("mnemonic", new Integer(descriptor.getLabelInfo().getMnemonic()), action
-                .getValue(Action.MNEMONIC_KEY));
+                     .getValue(Action.MNEMONIC_KEY));
         assertEquals("accelerator", descriptor.getLabelInfo().getAccelerator(), action
-                .getValue(Action.ACCELERATOR_KEY));
+                     .getValue(Action.ACCELERATOR_KEY));
         assertEquals("icon", descriptor.getIconInfo().getIcon(), action.getValue(Action.SMALL_ICON));
         assertEquals("caption", descriptor.getCaption(), action.getValue(Action.SHORT_DESCRIPTION));
         assertEquals("description", descriptor.getDescription(), action.getValue(Action.LONG_DESCRIPTION));
@@ -324,7 +320,7 @@ public class CommandFaceDescriptorTests extends TestCase {
 
         /*
          * (non-Javadoc)
-         * 
+         *
          * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
          */
         public void propertyChange(PropertyChangeEvent e) {
@@ -336,7 +332,7 @@ public class CommandFaceDescriptorTests extends TestCase {
         }
 
         /**
-         *  
+         *
          */
         public void reset() {
             changed = false;

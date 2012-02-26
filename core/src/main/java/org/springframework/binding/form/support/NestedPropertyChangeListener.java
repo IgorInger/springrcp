@@ -19,32 +19,25 @@ import java.util.Date;
  * @author Jan Hoskens
  *
  */
-public class NestedPropertyChangeListener implements PropertyChangeListener
-{
+public class NestedPropertyChangeListener implements PropertyChangeListener {
 
     private JTextField nestedField;
     private String nestedProperty;
     private static BeanUtilsBean beanUtilsBean;
 
-    static
-    {
+    static {
         ConvertUtilsBean convertUtilsBean = new ConvertUtilsBean();
         convertUtilsBean.register(new StringConverter(), String.class);
         beanUtilsBean = new BeanUtilsBean(convertUtilsBean, new PropertyUtilsBean());
     }
 
-    public static final class StringConverter implements Converter
-    {
+    public static final class StringConverter implements Converter {
 
-        public Object convert(Class type, Object value)
-        {
+        public Object convert(Class type, Object value) {
 
-            if (value == null)
-            {
+            if (value == null) {
                 return ((String) null);
-            }
-            else if (value instanceof Date)
-            {
+            } else if (value instanceof Date) {
                 return DateFormatUtils.format((Date)value, "dd/MM/yyyy");
             }
             return (value.toString());
@@ -52,28 +45,20 @@ public class NestedPropertyChangeListener implements PropertyChangeListener
 
     }
 
-    public NestedPropertyChangeListener(JTextField nestedPropertyField, String nestedProperty)
-    {
+    public NestedPropertyChangeListener(JTextField nestedPropertyField, String nestedProperty) {
         this.nestedField = nestedPropertyField;
         this.nestedProperty = nestedProperty;
     }
 
-    public void propertyChange(PropertyChangeEvent evt)
-    {
+    public void propertyChange(PropertyChangeEvent evt) {
         Object newValue = evt.getNewValue();
-        if (newValue == null)
-        {
+        if (newValue == null) {
             nestedField.setText("");
-        }
-        else
-        {
+        } else {
             String nestedValue;
-            try
-            {
+            try {
                 nestedValue = beanUtilsBean.getProperty(newValue, nestedProperty);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 nestedValue = "";
             };
             nestedField.setText(nestedValue);

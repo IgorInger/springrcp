@@ -2,7 +2,7 @@ package org.springframework.rules;
 
 /**
  * Simple JavaBean domain object representing an person.
- * 
+ *
  * @author Ken Krebs
  */
 public class Person {
@@ -24,10 +24,10 @@ public class Person {
 
     private String state;
     private String zip;
-    
+
     /**
      * Getter for property firstName.
-     * 
+     *
      * @return Value of property firstName.
      */
     public String getFirstName() {
@@ -36,7 +36,7 @@ public class Person {
 
     /**
      * Setter for property firstName.
-     * 
+     *
      * @param firstName
      *            New value of property firstName.
      */
@@ -46,7 +46,7 @@ public class Person {
 
     /**
      * Getter for property lastName.
-     * 
+     *
      * @return Value of property lastName.
      */
     public String getLastName() {
@@ -55,7 +55,7 @@ public class Person {
 
     /**
      * Setter for property lastName.
-     * 
+     *
      * @param lastName
      *            New value of property lastName.
      */
@@ -65,7 +65,7 @@ public class Person {
 
     /**
      * Getter for property address.
-     * 
+     *
      * @return Value of property address.
      */
     public String getAddress() {
@@ -74,7 +74,7 @@ public class Person {
 
     /**
      * Setter for property address.
-     * 
+     *
      * @param address
      *            New value of property address.
      */
@@ -84,7 +84,7 @@ public class Person {
 
     /**
      * Getter for property city.
-     * 
+     *
      * @return Value of property city.
      */
     public String getCity() {
@@ -93,7 +93,7 @@ public class Person {
 
     /**
      * Setter for property city.
-     * 
+     *
      * @param city
      *            New value of property city.
      */
@@ -103,7 +103,7 @@ public class Person {
 
     /**
      * Getter for property telephone.
-     * 
+     *
      * @return Value of property telephone.
      */
     public String getTelephone() {
@@ -112,7 +112,7 @@ public class Person {
 
     /**
      * Setter for property telephone.
-     * 
+     *
      * @param telephone
      *            New value of property telephone.
      */

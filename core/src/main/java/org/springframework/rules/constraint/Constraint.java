@@ -28,12 +28,12 @@ package org.springframework.rules.constraint;
  */
 public interface Constraint {
 
-	/**
-	 * Test the provided argument against this predicate's condition.
-	 *
-	 * @param argument the argument value
-	 * @return <code>true</code> if the condition was satisfied,
-	 * <code>false</code> otherwise
-	 */
-	boolean test(Object argument);
+    /**
+     * Test the provided argument against this predicate's condition.
+     *
+     * @param argument the argument value
+     * @return <code>true</code> if the condition was satisfied,
+     * <code>false</code> otherwise
+     */
+    boolean test(Object argument);
 }

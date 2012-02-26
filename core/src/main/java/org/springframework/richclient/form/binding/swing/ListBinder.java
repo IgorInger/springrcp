@@ -69,7 +69,7 @@ public class ListBinder extends AbstractListBinder {
             } else {
                 try {
                     listBinding.setSelectionMode(((Integer) ListSelectionModel.class.getField(
-                            (String) contextSelectionMode).get(null)).intValue());
+                                                      (String) contextSelectionMode).get(null)).intValue());
                 } catch (IllegalAccessException e) {
                     throw new IllegalArgumentException("Unable to access selection mode field in ListSelectionModel", e);
                 } catch (NoSuchFieldException e) {

@@ -31,70 +31,70 @@ import org.springframework.richclient.command.CommandManager;
  * <li>a separator</li>
  * <li>a "show" command for each frame in the desktop pane</li>
  * </ul>
- * 
+ *
  * @author Peter De Bruycker
  */
 public class DefaultDesktopCommandGroupFactory implements DesktopCommandGroupFactory {
-	private boolean cascadeResizesFrames = false;
-	private int cascadeOffset = 20;
+    private boolean cascadeResizesFrames = false;
+    private int cascadeOffset = 20;
 
-	/**
-	 * Create a window menu CommandGroup
-	 * @return the window menu CommandGroup
-	 */
-	public CommandGroup createWindowMenuCommandGroup(CommandManager commandManager, JDesktopPane desktopPane) {
-		// TODO implement this
-		return null;
-	}
+    /**
+     * Create a window menu CommandGroup
+     * @return the window menu CommandGroup
+     */
+    public CommandGroup createWindowMenuCommandGroup(CommandManager commandManager, JDesktopPane desktopPane) {
+        // TODO implement this
+        return null;
+    }
 
-	/**
-	 * Create a desktop pane context menu CommandGroup.
-	 * @return the context menu CommandGroup
-	 */
-	public CommandGroup createContextMenuCommandGroup(CommandManager commandManager, JDesktopPane desktop) {
-		CommandGroup commandGroup = new CommandGroup();
+    /**
+     * Create a desktop pane context menu CommandGroup.
+     * @return the context menu CommandGroup
+     */
+    public CommandGroup createContextMenuCommandGroup(CommandManager commandManager, JDesktopPane desktop) {
+        CommandGroup commandGroup = new CommandGroup();
 
-		TileCommand tileCommand = new TileCommand(desktop);
-		CascadeCommand cascadeCommand = new CascadeCommand(desktop, cascadeOffset, cascadeResizesFrames);
-		MinimizeAllCommand minimizeAllCommand = new MinimizeAllCommand(desktop);
+        TileCommand tileCommand = new TileCommand(desktop);
+        CascadeCommand cascadeCommand = new CascadeCommand(desktop, cascadeOffset, cascadeResizesFrames);
+        MinimizeAllCommand minimizeAllCommand = new MinimizeAllCommand(desktop);
 
-		commandManager.configure(tileCommand);
-		commandManager.configure(cascadeCommand);
-		commandManager.configure(minimizeAllCommand);
+        commandManager.configure(tileCommand);
+        commandManager.configure(cascadeCommand);
+        commandManager.configure(minimizeAllCommand);
 
-		commandGroup.add(tileCommand);
-		commandGroup.add(cascadeCommand);
-		commandGroup.add(minimizeAllCommand);
+        commandGroup.add(tileCommand);
+        commandGroup.add(cascadeCommand);
+        commandGroup.add(minimizeAllCommand);
 
-		if (desktop.getAllFrames().length > 0) {
-			commandGroup.addSeparator();
-			// TODO try to get the frames in the order they've been added to the
-			// desktop
-			// pane instead of the current z-order.
-			for (int i = 0; i < desktop.getAllFrames().length; i++) {
-				JInternalFrame frame = desktop.getAllFrames()[i];
+        if (desktop.getAllFrames().length > 0) {
+            commandGroup.addSeparator();
+            // TODO try to get the frames in the order they've been added to the
+            // desktop
+            // pane instead of the current z-order.
+            for (int i = 0; i < desktop.getAllFrames().length; i++) {
+                JInternalFrame frame = desktop.getAllFrames()[i];
 
-				ShowFrameCommand showFrameCommand = new ShowFrameCommand(frame);
-				showFrameCommand.setIcon(frame.getFrameIcon());
-				showFrameCommand.setCaption("" + frame.getTitle());
+                ShowFrameCommand showFrameCommand = new ShowFrameCommand(frame);
+                showFrameCommand.setIcon(frame.getFrameIcon());
+                showFrameCommand.setCaption("" + frame.getTitle());
 
-				String label = i + " " + frame.getTitle();
-				if (i < 10) {
-					label = "&" + label;
-				}
-				showFrameCommand.setLabel(label);
+                String label = i + " " + frame.getTitle();
+                if (i < 10) {
+                    label = "&" + label;
+                }
+                showFrameCommand.setLabel(label);
 
-				commandGroup.add(showFrameCommand);
-			}
-		}
-		return commandGroup;
-	}
+                commandGroup.add(showFrameCommand);
+            }
+        }
+        return commandGroup;
+    }
 
-	public void setCascadeResizesFrames(boolean resizeFrames) {
-		cascadeResizesFrames = resizeFrames;
-	}
-	
-	public void setCascadeOffset(int offset) {
-		cascadeOffset = offset;
-	}
+    public void setCascadeResizesFrames(boolean resizeFrames) {
+        cascadeResizesFrames = resizeFrames;
+    }
+
+    public void setCascadeOffset(int offset) {
+        cascadeOffset = offset;
+    }
 }

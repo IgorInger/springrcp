@@ -27,7 +27,7 @@ public interface LayoutBuilder {
     /**
      * Creates and returns a JPanel with all the given components in it, using
      * the "hints" that were provided to the builder.
-     * 
+     *
      * @return a new JPanel with the components laid-out in it; never null
      */
     JPanel getPanel();

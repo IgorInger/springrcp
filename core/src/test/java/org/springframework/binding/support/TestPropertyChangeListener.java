@@ -13,9 +13,9 @@ import java.util.List;
 import junit.framework.Assert;
 
 /**
- * An implementation of PropertyChangeListener that logs all 
+ * An implementation of PropertyChangeListener that logs all
  * events received. Intended to be used in unit tests.
- * 
+ *
  * @author Oliver Hutchison
  */
 public class TestPropertyChangeListener implements PropertyChangeListener {
@@ -46,7 +46,7 @@ public class TestPropertyChangeListener implements PropertyChangeListener {
 
     public void propertyChange(PropertyChangeEvent e) {
         Assert.assertEquals("Received PropertyChangeEvent for unexpected property", onlyForProperty,
-                e.getPropertyName());
+                            e.getPropertyName());
         eventsRecevied.add(e);
     }
 
@@ -61,6 +61,6 @@ public class TestPropertyChangeListener implements PropertyChangeListener {
     }
 
     public void assertLastEvent(int count, boolean oldValue, boolean newValue) {
-        assertLastEvent(count, Boolean.valueOf(oldValue), Boolean.valueOf(newValue));   
+        assertLastEvent(count, Boolean.valueOf(oldValue), Boolean.valueOf(newValue));
     }
 }

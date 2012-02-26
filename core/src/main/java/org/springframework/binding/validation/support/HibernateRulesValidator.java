@@ -64,157 +64,153 @@ import org.springframework.rules.reporting.ObjectNameResolver;
 @SuppressWarnings("unchecked")
 public class HibernateRulesValidator implements RichValidator, ObjectNameResolver {
 
-	private final ClassValidator hibernateValidator;
+    private final ClassValidator hibernateValidator;
 
-	private ValidatingFormModel formModel;
+    private ValidatingFormModel formModel;
 
-	private DefaultValidationResults results = new DefaultValidationResults();
+    private DefaultValidationResults results = new DefaultValidationResults();
 
-	private Set<String> ignoredHibernateProperties;
+    private Set<String> ignoredHibernateProperties;
 
-	/**
-	 * Creates a new HibernateRulesValidator without ignoring any properties.
-	 *
-	 * @param formModel The {@link ValidatingFormModel} on which validation
-	 * needs to occur
-	 * @param clazz The class of the object this validator needs to check
-	 */
-	public HibernateRulesValidator(ValidatingFormModel formModel, Class clazz) {
-		this(formModel, clazz, new HashSet<String>());
-	}
+    /**
+     * Creates a new HibernateRulesValidator without ignoring any properties.
+     *
+     * @param formModel The {@link ValidatingFormModel} on which validation
+     * needs to occur
+     * @param clazz The class of the object this validator needs to check
+     */
+    public HibernateRulesValidator(ValidatingFormModel formModel, Class clazz) {
+        this(formModel, clazz, new HashSet<String>());
+    }
 
-	/**
-	 * Creates a new HibernateRulesValidator with additionally a set of
-	 * properties that should not be validated.
-	 *
-	 * @param formModel The {@link ValidatingFormModel} on which validation
-	 * needs to occur
-	 * @param clazz The class of the object this validator needs to check
-	 * @param ignoredHibernateProperties properties that should not be checked
-	 * though are
-	 */
-	public HibernateRulesValidator(ValidatingFormModel formModel, Class clazz, Set<String> ignoredHibernateProperties) {
-		this.formModel = formModel;
-		this.hibernateValidator = new ClassValidator(clazz, new HibernateRulesMessageInterpolator());
-		this.ignoredHibernateProperties = ignoredHibernateProperties;
-	}
+    /**
+     * Creates a new HibernateRulesValidator with additionally a set of
+     * properties that should not be validated.
+     *
+     * @param formModel The {@link ValidatingFormModel} on which validation
+     * needs to occur
+     * @param clazz The class of the object this validator needs to check
+     * @param ignoredHibernateProperties properties that should not be checked
+     * though are
+     */
+    public HibernateRulesValidator(ValidatingFormModel formModel, Class clazz, Set<String> ignoredHibernateProperties) {
+        this.formModel = formModel;
+        this.hibernateValidator = new ClassValidator(clazz, new HibernateRulesMessageInterpolator());
+        this.ignoredHibernateProperties = ignoredHibernateProperties;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public ValidationResults validate(Object object) {
-		return validate(object, null);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public ValidationResults validate(Object object) {
+        return validate(object, null);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public ValidationResults validate(Object object, String propertyName) {
-		// hibernate will return InvalidValues per propertyName, remove any
-		// previous validationMessages.
-		if (propertyName == null) {
-			results.clearMessages();
-		}
-		else {
-			results.clearMessages(propertyName);
-		}
+    /**
+     * {@inheritDoc}
+     */
+    public ValidationResults validate(Object object, String propertyName) {
+        // hibernate will return InvalidValues per propertyName, remove any
+        // previous validationMessages.
+        if (propertyName == null) {
+            results.clearMessages();
+        } else {
+            results.clearMessages(propertyName);
+        }
 
-		addInvalidValues(doHibernateValidate(object, propertyName));
-		return results;
-	}
+        addInvalidValues(doHibernateValidate(object, propertyName));
+        return results;
+    }
 
-	/**
-	 * Add all {@link InvalidValue}s to the {@link ValidationResults}.
-	 */
-	protected void addInvalidValues(InvalidValue[] invalidValues) {
-		if (invalidValues != null) {
-			for (InvalidValue invalidValue : invalidValues) {
-				results.addMessage(translateMessage(invalidValue));
-			}
-		}
-	}
+    /**
+     * Add all {@link InvalidValue}s to the {@link ValidationResults}.
+     */
+    protected void addInvalidValues(InvalidValue[] invalidValues) {
+        if (invalidValues != null) {
+            for (InvalidValue invalidValue : invalidValues) {
+                results.addMessage(translateMessage(invalidValue));
+            }
+        }
+    }
 
-	/**
-	 * Translate a single {@link InvalidValue} to a {@link ValidationMessage}.
-	 */
-	protected ValidationMessage translateMessage(InvalidValue invalidValue) {
-		return new DefaultValidationMessage(invalidValue.getPropertyName(), Severity.ERROR,
-				resolveObjectName(invalidValue.getPropertyName()) + " " + invalidValue.getMessage());
-	}
+    /**
+     * Translate a single {@link InvalidValue} to a {@link ValidationMessage}.
+     */
+    protected ValidationMessage translateMessage(InvalidValue invalidValue) {
+        return new DefaultValidationMessage(invalidValue.getPropertyName(), Severity.ERROR,
+                                            resolveObjectName(invalidValue.getPropertyName()) + " " + invalidValue.getMessage());
+    }
 
-	/**
-	 * Validates the object through Hibernate Validator
-	 *
-	 * @param object The object that needs to be validated
-	 * @param property The properties that needs to be validated
-	 * @return An array of {@link InvalidValue}, containing all validation
-	 * errors
-	 */
-	protected InvalidValue[] doHibernateValidate(final Object object, final String property) {
-		if (property == null) {
-			final List<InvalidValue> ret = new ArrayList<InvalidValue>();
-			PropertyDescriptor[] propertyDescriptors;
-			try {
-				propertyDescriptors = Introspector.getBeanInfo(object.getClass()).getPropertyDescriptors();
-			}
-			catch (IntrospectionException e) {
-				throw new IllegalStateException("Could not retrieve property information");
-			}
-			for (final PropertyDescriptor prop : propertyDescriptors) {
-				String propertyName = prop.getName();
-				if (formModel.hasValueModel(propertyName) && !ignoredHibernateProperties.contains(propertyName)) {
-					final InvalidValue[] result = hibernateValidator.getPotentialInvalidValues(propertyName, formModel
-							.getValueModel(propertyName).getValue());
-					if (result != null) {
-						for (final InvalidValue r : result) {
-							ret.add(r);
-						}
-					}
-				}
-			}
-			return ret.toArray(new InvalidValue[ret.size()]);
-		}
-		else if (!ignoredHibernateProperties.contains(property) && formModel.hasValueModel(property)) {
-			return hibernateValidator.getPotentialInvalidValues(property, formModel.getValueModel(property).getValue());
-		}
-		else {
-			return null;
-		}
-	}
+    /**
+     * Validates the object through Hibernate Validator
+     *
+     * @param object The object that needs to be validated
+     * @param property The properties that needs to be validated
+     * @return An array of {@link InvalidValue}, containing all validation
+     * errors
+     */
+    protected InvalidValue[] doHibernateValidate(final Object object, final String property) {
+        if (property == null) {
+            final List<InvalidValue> ret = new ArrayList<InvalidValue>();
+            PropertyDescriptor[] propertyDescriptors;
+            try {
+                propertyDescriptors = Introspector.getBeanInfo(object.getClass()).getPropertyDescriptors();
+            } catch (IntrospectionException e) {
+                throw new IllegalStateException("Could not retrieve property information");
+            }
+            for (final PropertyDescriptor prop : propertyDescriptors) {
+                String propertyName = prop.getName();
+                if (formModel.hasValueModel(propertyName) && !ignoredHibernateProperties.contains(propertyName)) {
+                    final InvalidValue[] result = hibernateValidator.getPotentialInvalidValues(propertyName, formModel
+                                                  .getValueModel(propertyName).getValue());
+                    if (result != null) {
+                        for (final InvalidValue r : result) {
+                            ret.add(r);
+                        }
+                    }
+                }
+            }
+            return ret.toArray(new InvalidValue[ret.size()]);
+        } else if (!ignoredHibernateProperties.contains(property) && formModel.hasValueModel(property)) {
+            return hibernateValidator.getPotentialInvalidValues(property, formModel.getValueModel(property).getValue());
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * Clear the current validationMessages and the errors.
-	 *
-	 * @see #validate(Object, String)
-	 */
-	public void clearMessages() {
-		this.results.clearMessages();
-	}
+    /**
+     * Clear the current validationMessages and the errors.
+     *
+     * @see #validate(Object, String)
+     */
+    public void clearMessages() {
+        this.results.clearMessages();
+    }
 
-	/**
-	 * Add a property for the Hibernate validator to ignore.
-	 *
-	 * @param propertyName Name of the property to ignore. Cannot be null.
-	 */
-	public void addIgnoredHibernateProperty(String propertyName) {
-		Assert.notNull(propertyName);
-		ignoredHibernateProperties.add(propertyName);
-	}
+    /**
+     * Add a property for the Hibernate validator to ignore.
+     *
+     * @param propertyName Name of the property to ignore. Cannot be null.
+     */
+    public void addIgnoredHibernateProperty(String propertyName) {
+        Assert.notNull(propertyName);
+        ignoredHibernateProperties.add(propertyName);
+    }
 
-	/**
-	 * Remove a property for the Hibernate validator to ignore.
-	 *
-	 * @param propertyName Name of the property to be removed. Cannot be null.
-	 */
-	public void removeIgnoredHibernateProperty(String propertyName) {
-		Assert.notNull(propertyName);
-		ignoredHibernateProperties.remove(propertyName);
-	}
+    /**
+     * Remove a property for the Hibernate validator to ignore.
+     *
+     * @param propertyName Name of the property to be removed. Cannot be null.
+     */
+    public void removeIgnoredHibernateProperty(String propertyName) {
+        Assert.notNull(propertyName);
+        ignoredHibernateProperties.remove(propertyName);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public String resolveObjectName(String objectName) {
-		return formModel.getFieldFace(objectName).getDisplayName();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public String resolveObjectName(String objectName) {
+        return formModel.getFieldFace(objectName).getDisplayName();
+    }
 }

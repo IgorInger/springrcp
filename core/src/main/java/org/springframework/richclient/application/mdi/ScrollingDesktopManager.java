@@ -55,7 +55,7 @@ public class ScrollingDesktopManager extends DefaultDesktopManager {
             Dimension d = scrollPane.getVisibleRect().getSize();
             if (scrollPane.getBorder() != null) {
                 d.setSize(d.getWidth() - scrollInsets.left - scrollInsets.right, d.getHeight() - scrollInsets.top
-                        - scrollInsets.bottom);
+                          - scrollInsets.bottom);
             }
 
             d.setSize(d.getWidth() - 20, d.getHeight() - 20);
@@ -101,7 +101,7 @@ public class ScrollingDesktopManager extends DefaultDesktopManager {
             Dimension d = scrollPane.getVisibleRect().getSize();
             if (scrollPane.getBorder() != null) {
                 d.setSize(d.getWidth() - scrollInsets.left - scrollInsets.right, d.getHeight() - scrollInsets.top
-                        - scrollInsets.bottom);
+                          - scrollInsets.bottom);
             }
 
             if (x <= d.getWidth())
@@ -113,7 +113,7 @@ public class ScrollingDesktopManager extends DefaultDesktopManager {
             scrollPane.validate();
         }
     }
-    
+
     private void setAllSize(int width, int height) {
         Dimension d = new Dimension(width, height);
 

@@ -27,8 +27,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public abstract class AbstractLookupBinding extends CustomBinding
-{
+public abstract class AbstractLookupBinding extends CustomBinding {
 
     public static final String ON_ABOUT_TO_CHANGE = "on-about-to-change";
 
@@ -107,8 +106,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
 
     private Object filter;
 
-    public AbstractLookupBinding(DefaultDataEditorWidget dataEditor, FormModel formModel, String formPropertyPath)
-    {
+    public AbstractLookupBinding(DefaultDataEditorWidget dataEditor, FormModel formModel, String formPropertyPath) {
         super(formModel, formPropertyPath, null);
         this.dataEditor = dataEditor;
         // a parameter hashMap with a key to not initialize the dataEditor anymore
@@ -117,11 +115,9 @@ public abstract class AbstractLookupBinding extends CustomBinding
         this.parameters = new HashMap<Object, Object>();
         this.parameters.put(NO_INITIALIZE_DATA_EDITOR, ON);
         referableDataEditorViewCommand = new ReferableDataEditorViewCommand();
-        formModel.getValueModel(formPropertyPath).addValueChangeListener(new PropertyChangeListener()
-        {
+        formModel.getValueModel(formPropertyPath).addValueChangeListener(new PropertyChangeListener() {
 
-            public void propertyChange(PropertyChangeEvent evt)
-            {
+            public void propertyChange(PropertyChangeEvent evt) {
                 referableDataEditorViewCommand.setEnabled(evt.getNewValue() != null);
                 if (evt.getNewValue() != null)
                     referableDataEditorViewCommand.setSelectedObject(evt.getNewValue());
@@ -133,48 +129,42 @@ public abstract class AbstractLookupBinding extends CustomBinding
      * Returns the parameter map that is passed to the dataEditor command. This allows for eg turning
      * initialization of the dataEditor on/off.
      */
-    protected Map<Object, Object> getParameters()
-    {
+    protected Map<Object, Object> getParameters() {
         return parameters;
     }
 
     /**
      * Returns the id for the TitledApplicationDialog that shows up when pressing the button.
      */
-    protected String getSelectDialogId()
-    {
+    protected String getSelectDialogId() {
         return this.selectDialogId;
     }
 
     /**
      * Set the id for the TitledApplicationDialog that shows up when pressing the button.
      */
-    public void setSelectDialogId(String selectDialogId)
-    {
+    public void setSelectDialogId(String selectDialogId) {
         this.selectDialogId = selectDialogId;
     }
 
     /**
      * Returns the id for the command that shows the dialog.
      */
-    protected String getSelectDialogCommandId()
-    {
+    protected String getSelectDialogCommandId() {
         return this.selectDialogCommandId;
     }
 
     /**
      * Set the id for the command that shows the dialog.
      */
-    public void setSelectDialogCommandId(String selectDialogCommandId)
-    {
+    public void setSelectDialogCommandId(String selectDialogCommandId) {
         this.selectDialogCommandId = selectDialogCommandId;
     }
 
     /**
      * Returns the mask defining the behavior of the pop-up.
      */
-    protected int getAutoPopupDialog()
-    {
+    protected int getAutoPopupDialog() {
         return this.autoPopupDialog;
     }
 
@@ -187,24 +177,21 @@ public abstract class AbstractLookupBinding extends CustomBinding
      * @see #AUTOPOPUPDIALOG_NO_MATCH
      * @see #AUTOPOPUPDIALOG_NO_UNIQUE_MATCH
      */
-    public void setAutoPopupdialog(int autoPopupDialog)
-    {
+    public void setAutoPopupdialog(int autoPopupDialog) {
         this.autoPopupDialog = autoPopupDialog;
     }
 
     /**
      * Return <code>true</code> if the value should be reverted when focus is lost and no value is selected.
      */
-    protected boolean revertValueOnFocusLost()
-    {
+    protected boolean revertValueOnFocusLost() {
         return this.revertValueOnFocusLost;
     }
 
     /**
      * Set to <code>true</code> if the value should be reverted when focus is lost and no value is selected.
      */
-    public void setRevertValueOnFocusLost(boolean revertValueOnFocusLost)
-    {
+    public void setRevertValueOnFocusLost(boolean revertValueOnFocusLost) {
         this.revertValueOnFocusLost = revertValueOnFocusLost;
     }
 
@@ -215,8 +202,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
 
      */
     @Override
-    protected void valueModelChanged(Object newValue)
-    {
+    protected void valueModelChanged(Object newValue) {
         if (newValue == null)
             setKeyComponentText(null);
         else
@@ -227,55 +213,48 @@ public abstract class AbstractLookupBinding extends CustomBinding
     public abstract String getObjectLabel(Object o);
 
     @Override
-    protected JComponent doBindControl()
-    {
+    protected JComponent doBindControl() {
         FormLayout layout;
-        if (isEnableViewCommand())
-        {
-            layout = new FormLayout(new ColumnSpec[]{
-                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-                    FormFactory.RELATED_GAP_COLSPEC,
-                    new ColumnSpec(ColumnSpec.LEFT, Sizes.MINIMUM, FormSpec.NO_GROW),
-                    FormFactory.RELATED_GAP_COLSPEC,
-                    new ColumnSpec(ColumnSpec.LEFT, Sizes.MINIMUM, FormSpec.NO_GROW)},
-                    new RowSpec[]{new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)});
+        if (isEnableViewCommand()) {
+            layout = new FormLayout(new ColumnSpec[] {
+                                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                                        FormFactory.RELATED_GAP_COLSPEC,
+                                        new ColumnSpec(ColumnSpec.LEFT, Sizes.MINIMUM, FormSpec.NO_GROW),
+                                        FormFactory.RELATED_GAP_COLSPEC,
+                                        new ColumnSpec(ColumnSpec.LEFT, Sizes.MINIMUM, FormSpec.NO_GROW)
+                                    },
+            new RowSpec[] {new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)});
+        } else {
+            layout = new FormLayout(new ColumnSpec[] {
+                                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                                        FormFactory.RELATED_GAP_COLSPEC,
+                                        new ColumnSpec(ColumnSpec.LEFT, Sizes.MINIMUM, FormSpec.NO_GROW)
+                                    },
+            new RowSpec[] {new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)});
         }
-        else
-        {
-            layout = new FormLayout(new ColumnSpec[]{
-                    new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-                    FormFactory.RELATED_GAP_COLSPEC,
-                    new ColumnSpec(ColumnSpec.LEFT, Sizes.MINIMUM, FormSpec.NO_GROW)},
-                    new RowSpec[]{new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)});
-        }
-        JPanel editor = new PanelWithValidationComponent(layout)
-        {
+        JPanel editor = new PanelWithValidationComponent(layout) {
 
             private static final long serialVersionUID = 534852878664152460L;
 
             @Override
-            public void setEnabled(boolean enabled)
-            {
+            public void setEnabled(boolean enabled) {
                 super.setEnabled(enabled);
                 getKeyComponent().setEnabled(enabled);
                 getDataEditorCommand().setEnabled(enabled);
             }
 
             @Override
-            public JComponent getValidationComponent()
-            {
+            public JComponent getValidationComponent() {
                 return getKeyComponent();
             }
 
             @Override
-            public synchronized void addVetoableChangeListener(VetoableChangeListener listener)
-            {
+            public synchronized void addVetoableChangeListener(VetoableChangeListener listener) {
                 AbstractLookupBinding.this.propertyChangeMonitor.addVetoableChangeListener(listener);
             }
 
             @Override
-            public boolean requestFocusInWindow()
-            {
+            public boolean requestFocusInWindow() {
                 return getKeyComponent().requestFocusInWindow();
             }
         };
@@ -283,8 +262,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
         CellConstraints cc = new CellConstraints();
         editor.add(getKeyComponent(), cc.xy(1, 1));
         editor.add(getDataEditorButton(), cc.xy(3, 1));
-        if (isEnableViewCommand())
-        {
+        if (isEnableViewCommand()) {
             AbstractButton viewButton = referableDataEditorViewCommand.createButton();
             viewButton.setFocusable(false);
             editor.add(viewButton, cc.xy(5, 1));
@@ -300,21 +278,18 @@ public abstract class AbstractLookupBinding extends CustomBinding
      *             {@link #getKeyComponentText()} and {@link #setKeyComponentText(String)}.
      */
     @Deprecated
-    protected JTextComponent getOrCreateKeyTextComponent()
-    {
+    protected JTextComponent getOrCreateKeyTextComponent() {
         return (JTextComponent) getKeyComponent();
     }
 
-    protected JComponent getKeyComponent()
-    {
+    protected JComponent getKeyComponent() {
         if (keyField == null)
             keyField = createKeyComponent();
 
         return keyField;
     }
 
-    protected JComponent createKeyComponent()
-    {
+    protected JComponent createKeyComponent() {
         return createTextComponent();
     }
 
@@ -324,12 +299,11 @@ public abstract class AbstractLookupBinding extends CustomBinding
      * @deprecated move implementation to {@link #createKeyComponent()} when removing this method.
      */
     @Deprecated
-    protected JTextField createTextComponent()
-    {
+    protected JTextField createTextComponent() {
         JTextField textField = new JTextField();
         // Focustraversal keys moeten afgezet worden, anders wordt de keylistener niet getriggered.
         textField.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
-                new HashSet<AWTKeyStroke>());
+                                        new HashSet<AWTKeyStroke>());
         textField.addKeyListener(createKeyListener());
         textField.addFocusListener(new SelectAllFocusListener(textField));
         textField.addFocusListener(createFocusListener());
@@ -340,8 +314,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
      * Return the text that is shown on the keyComponent and that should be used to lookup the referable. Most
      * commonly this string contains the label of the referable.
      */
-    protected String getKeyComponentText()
-    {
+    protected String getKeyComponentText() {
         if (getKeyComponent() instanceof JTextComponent)
             return ((JTextComponent) getKeyComponent()).getText();
 
@@ -351,8 +324,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
     /**
      * Set the text of the referable label on the key component (normally the textField).
      */
-    protected void setKeyComponentText(String text)
-    {
+    protected void setKeyComponentText(String text) {
         if (getKeyComponent() instanceof JTextComponent)
             ((JTextComponent) getKeyComponent()).setText(text);
     }
@@ -361,42 +333,35 @@ public abstract class AbstractLookupBinding extends CustomBinding
      * Create a keyListener that reacts on tabs. Pop-up the dialog as defined in the
      * {@link #getAutoPopupDialog()} mask.
      */
-    protected TabKeyListener createKeyListener()
-    {
-        return new TabKeyListener()
-        {
+    protected TabKeyListener createKeyListener() {
+        return new TabKeyListener() {
 
             @Override
-            public void onTabKey(Component component)
-            {
+            public void onTabKey(Component component) {
                 String textFieldValue = getKeyComponentText();
                 boolean empty = "".equals(textFieldValue.trim());
                 Object ref = AbstractLookupBinding.this.getValue();
                 // if something was filled in and it doesn't match the internal value
-                if (!empty && ((ref == null) || !textFieldValue.equals(getObjectLabel(ref))))
-                {
+                if (!empty && ((ref == null) || !textFieldValue.equals(getObjectLabel(ref)))) {
                     // call the dataEditor to fire the search
                     Object result = initializeDataEditor();
 
                     //no match
-                    if(result == null)
-                    {
+                    if(result == null) {
                         if (!revertValueOnFocusLost())
                             getValueModel().setValue(createFilterFromString(textFieldValue));
                         if ((getAutoPopupDialog() & AUTOPOPUPDIALOG_NO_MATCH) == AUTOPOPUPDIALOG_NO_MATCH)
                             getDataEditorCommand().execute(parameters);
                     }
                     // multiple matches
-                    else if ((result instanceof java.util.List) && (((java.util.List<?>) result).size() > 1))
-                    {
+                    else if ((result instanceof java.util.List) && (((java.util.List<?>) result).size() > 1)) {
                         if (!revertValueOnFocusLost())
                             getValueModel().setValue(createFilterFromString(textFieldValue));
                         if ((getAutoPopupDialog() & AUTOPOPUPDIALOG_MULTIPLE_MATCH) == AUTOPOPUPDIALOG_MULTIPLE_MATCH)
                             getDataEditorCommand().execute(parameters);
                     }
                     // exact match
-                    else
-                    {
+                    else {
                         // in dit geval krijg je een object uit de lijst terug, dit is niet gedetaileerd,
                         // daarom moet het eventueel gedetaileerd geladen worden.
                         setValue(result, true);
@@ -407,8 +372,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
 
                 }
                 // nothing filled in, underlying value isn't empty and we should not revert, set null
-                else if (!revertValueOnFocusLost() && empty && ref != null)
-                {
+                else if (!revertValueOnFocusLost() && empty && ref != null) {
                     getValueModel().setValue(null);
                 }
                 getDataEditorButton().transferFocus();
@@ -423,31 +387,25 @@ public abstract class AbstractLookupBinding extends CustomBinding
      *
      * @return a focus listener.
      */
-    protected FocusListener createFocusListener()
-    {
-        return new FocusAdapter()
-        {
+    protected FocusListener createFocusListener() {
+        return new FocusAdapter() {
 
             @Override
-            public void focusLost(FocusEvent e)
-            {
+            public void focusLost(FocusEvent e) {
                 String textFieldValue = getKeyComponentText();
                 boolean empty = "".equals(textFieldValue.trim());
                 Object ref = AbstractLookupBinding.this.getValue();
 
-                if (evaluateFocusLost(e))
-                {
+                if (evaluateFocusLost(e)) {
                     // Revert if value isn't empty
-                    if (revertValueOnFocusLost())
-                    {
+                    if (revertValueOnFocusLost()) {
                         if (empty)
                             getValueModel().setValue(null);
                         else
                             valueModelChanged(AbstractLookupBinding.super.getValue());
                     }
                     // Create new referable if value isn't empty
-                    else
-                    {
+                    else {
                         if (empty && (ref != null))
                             getValueModel().setValue(null);
                         else if (!empty && ((ref == null) || !textFieldValue.equals(getObjectLabel(ref))))
@@ -459,15 +417,13 @@ public abstract class AbstractLookupBinding extends CustomBinding
         };
     }
 
-    protected boolean evaluateFocusLost(FocusEvent e)
-    {
+    protected boolean evaluateFocusLost(FocusEvent e) {
         Component oppositeComponent = e.getOppositeComponent();
         return (oppositeComponent != getDataEditorButton()) && (oppositeComponent != getKeyComponent());
     }
 
     @Override
-    protected void readOnlyChanged()
-    {
+    protected void readOnlyChanged() {
         if (getKeyComponent() instanceof JTextComponent)
             ((JTextComponent) getKeyComponent()).setEditable(isEnabled() && !isReadOnly());
 
@@ -475,8 +431,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
     }
 
     @Override
-    protected void enabledChanged()
-    {
+    protected void enabledChanged() {
         getKeyComponent().setEnabled(isEnabled());
         readOnlyChanged();
     }
@@ -487,8 +442,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
      * @return a single object if the search has an unique match, a list if multiple matches occurred or
      *         <code>null</code> if nothing was found.
      */
-    protected Object initializeDataEditor()
-    {
+    protected Object initializeDataEditor() {
         final String textFieldValue = getKeyComponentText();
         Object ref = super.getValue();
         if ((ref != null) && textFieldValue.equals(getObjectLabel(ref)))
@@ -510,10 +464,8 @@ public abstract class AbstractLookupBinding extends CustomBinding
     /**
      * Get/create the button to open the dataEditor in selection mode
      */
-    protected AbstractButton getDataEditorButton()
-    {
-        if (dataEditorButton == null)
-        {
+    protected AbstractButton getDataEditorButton() {
+        if (dataEditorButton == null) {
             dataEditorButton = getDataEditorCommand().createButton();
             dataEditorButton.addFocusListener(createFocusListener());
         }
@@ -524,8 +476,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
     /**
      * Return the dataEditorCommand.
      */
-    protected final ActionCommand getDataEditorCommand()
-    {
+    protected final ActionCommand getDataEditorCommand() {
         if (dataEditorCommand == null)
             dataEditorCommand = createDataEditorCommand();
         return dataEditorCommand;
@@ -536,26 +487,19 @@ public abstract class AbstractLookupBinding extends CustomBinding
     /**
      * Create the dataEditorCommand.
      */
-    protected ActionCommand createDataEditorCommand()
-    {
-        ActionCommand selectDialogCommand = new ActionCommand(getSelectDialogCommandId())
-        {
+    protected ActionCommand createDataEditorCommand() {
+        ActionCommand selectDialogCommand = new ActionCommand(getSelectDialogCommandId()) {
 
             private ApplicationDialog dataEditorDialog;
 
             @Override
-            protected void doExecuteCommand()
-            {
-                if (AbstractLookupBinding.this.propertyChangeMonitor.proceedOnChange())
-                {
-                    if (dataEditorDialog == null)
-                    {
+            protected void doExecuteCommand() {
+                if (AbstractLookupBinding.this.propertyChangeMonitor.proceedOnChange()) {
+                    if (dataEditorDialog == null) {
                         dataEditorDialog = new TitledWidgetApplicationDialog(getDataEditor(),
-                                TitledWidgetApplicationDialog.SELECT_CANCEL_MODE)
-                        {
+                        TitledWidgetApplicationDialog.SELECT_CANCEL_MODE) {
 
-                            protected boolean onFinish()
-                            {
+                            protected boolean onFinish() {
                                 if (getDataEditor().canClose())
                                     return AbstractLookupBinding.this.onFinish();
                                 return false;
@@ -563,13 +507,12 @@ public abstract class AbstractLookupBinding extends CustomBinding
 
                             @Override
                             protected boolean onSelectNone() {
-                            	getDataEditor().getTableWidget().unSelectAll();
-                            	return super.onSelectNone();
+                                getDataEditor().getTableWidget().unSelectAll();
+                                return super.onSelectNone();
                             }
 
                             @Override
-                            protected void onCancel()
-                            {
+                            protected void onCancel() {
                                 if (getDataEditor().canClose())
                                     super.onCancel();
                             }
@@ -580,8 +523,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
                     }
                     if (getParameter(NO_INITIALIZE_DATA_EDITOR) != ON)
                         initializeDataEditor();
-                    if(getDialogSize() != null)
-                    {
+                    if(getDialogSize() != null) {
                         dataEditorDialog.getDialog().setMinimumSize(getDialogSize());
                     }
                     dataEditorDialog.showDialog();
@@ -595,8 +537,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
     /**
      * Return the dataEditor used to select a referable.
      */
-    protected DefaultDataEditorWidget getDataEditor()
-    {
+    protected DefaultDataEditorWidget getDataEditor() {
         return this.dataEditor;
     }
 
@@ -605,65 +546,51 @@ public abstract class AbstractLookupBinding extends CustomBinding
      *
      * @return <code>true</code> if successful.
      */
-    protected boolean onFinish()
-    {
+    protected boolean onFinish() {
         setValue(getDataEditor().getSelectedRowObject(), false);
         return true;
     }
 
-    private void setValue(Object value, boolean doLoadDetailedObject)
-    {
-        if (value != null && !loadDetailedObject)
-        {
+    private void setValue(Object value, boolean doLoadDetailedObject) {
+        if (value != null && !loadDetailedObject) {
             value = getDataEditor().getDataProvider().getSimpleObject(value);
-        }
-        else if (value != null && doLoadDetailedObject)
-        {
+        } else if (value != null && doLoadDetailedObject) {
             value = getDataEditor().getDataProvider().getDetailObject(value, false);
         }
 
         getValueModel().setValue(value);
     }
 
-    private static class PropertyChangeMonitor extends JComponent
-    {
+    private static class PropertyChangeMonitor extends JComponent {
 
         private static final long serialVersionUID = -5117792596024956433L;
 
-        public boolean proceedOnChange()
-        {
+        public boolean proceedOnChange() {
             boolean proceedNotVetoed = true;
-            try
-            {
+            try {
                 fireVetoableChange(ON_ABOUT_TO_CHANGE, false, true);
-            }
-            catch (PropertyVetoException e)
-            {
+            } catch (PropertyVetoException e) {
                 proceedNotVetoed = false;
             }
             return proceedNotVetoed;
         }
     }
 
-    private class ReferableDataEditorViewCommand extends ActionCommand
-    {
+    private class ReferableDataEditorViewCommand extends ActionCommand {
 
         private Object selectedObject;
 
-        public ReferableDataEditorViewCommand()
-        {
+        public ReferableDataEditorViewCommand() {
             super("referableDataEditorViewCommand");
             RcpSupport.configure(this);
         }
 
-        public void setSelectedObject(Object selectedObject)
-        {
+        public void setSelectedObject(Object selectedObject) {
             this.selectedObject = selectedObject;
         }
 
         @Override
-        protected void doExecuteCommand()
-        {
+        protected void doExecuteCommand() {
             Assert.notNull(dataEditorViewCommandId);
             DataEditorWidgetViewCommand command = RcpSupport.getCommand(dataEditorViewCommandId);
             RcpSupport.executeViewDataEditorCommand(command, filter, selectedObject);
@@ -673,53 +600,45 @@ public abstract class AbstractLookupBinding extends CustomBinding
     /**
      * Set the id used to configure the viewCommand.
      */
-    public void setDataEditorViewCommandId(String dataEditorViewCommandId)
-    {
+    public void setDataEditorViewCommandId(String dataEditorViewCommandId) {
         this.dataEditorViewCommandId = dataEditorViewCommandId;
     }
 
     /**
      * Returns the id used to configure the viewCommand.
      */
-    public String getDataEditorViewCommandId()
-    {
+    public String getDataEditorViewCommandId() {
         return dataEditorViewCommandId;
     }
 
     /**
      * Enable the viewCommand that switches the view to the dataEditor of this referable.
      */
-    public void setEnableViewCommand(boolean enableViewCommand)
-    {
+    public void setEnableViewCommand(boolean enableViewCommand) {
         this.enableViewCommand = enableViewCommand;
     }
 
     /**
      * Returns <code>true</code> if the viewCommand should be shown. Default value is <code>false</code>.
      */
-    public boolean isEnableViewCommand()
-    {
+    public boolean isEnableViewCommand() {
         return enableViewCommand;
     }
 
 
 
-    public boolean isLoadDetailedObject()
-    {
+    public boolean isLoadDetailedObject() {
         return loadDetailedObject;
     }
-    public void setLoadDetailedObject(boolean loadDetailedObject)
-    {
+    public void setLoadDetailedObject(boolean loadDetailedObject) {
         this.loadDetailedObject = loadDetailedObject;
     }
 
-    public void setFilter(Object filter)
-    {
+    public void setFilter(Object filter) {
         this.filter = filter;
     }
 
-    public Object getFilter()
-    {
+    public Object getFilter() {
         return filter;
     }
 
@@ -729,8 +648,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
      *
      * @author Jan Hoskens
      */
-    protected static class TabKeyListener extends KeyAdapter
-    {
+    protected static class TabKeyListener extends KeyAdapter {
 
         /**
          * Action to do when tab is pressed. Default behavior is to transfer focus.
@@ -738,8 +656,7 @@ public abstract class AbstractLookupBinding extends CustomBinding
          * @param component
          *            the component which should handle the tab.
          */
-        public void onTabKey(Component component)
-        {
+        public void onTabKey(Component component) {
             component.transferFocus();
         }
 
@@ -749,27 +666,21 @@ public abstract class AbstractLookupBinding extends CustomBinding
          * @param component
          *            the component which should handle the shift-tab.
          */
-        public void onShiftTabKey(Component component)
-        {
+        public void onShiftTabKey(Component component) {
             component.transferFocusBackward();
         }
 
         @Override
-        public void keyTyped(KeyEvent e)
-        {
-            if (e.getKeyChar() == '\t' && !e.isShiftDown())
-            {
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyChar() == '\t' && !e.isShiftDown()) {
                 onTabKey(e.getComponent());
-            }
-            else if (e.getKeyChar() == '\t' && e.isShiftDown())
-            {
+            } else if (e.getKeyChar() == '\t' && e.isShiftDown()) {
                 onShiftTabKey(e.getComponent());
             }
         }
     }
 
-    public Dimension getDialogSize()
-    {
+    public Dimension getDialogSize() {
         return null;
     }
 }

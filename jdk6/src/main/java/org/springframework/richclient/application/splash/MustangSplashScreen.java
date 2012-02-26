@@ -19,7 +19,7 @@ import org.springframework.util.Assert;
 
 /**
  * <code>SplashScreen</code> implementation that delegates to a <code>java.awt.SplashScreen</code> implementation.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class MustangSplashScreen implements SplashScreen {
@@ -37,7 +37,7 @@ public class MustangSplashScreen implements SplashScreen {
     /**
      * Returns the <code>java.awt.SplashScreen</code> implementation that has been set at startup. The splashscreen
      * can then be used to perform custom painting, etc...
-     * 
+     *
      * @return the splash screen
      */
     protected java.awt.SplashScreen getSplashScreen() {

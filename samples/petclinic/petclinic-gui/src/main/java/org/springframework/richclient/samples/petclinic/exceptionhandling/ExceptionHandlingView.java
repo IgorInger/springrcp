@@ -38,7 +38,7 @@ public class ExceptionHandlingView extends AbstractView {
         layoutBuilder.row();
         layoutBuilder.unrelatedGapRow();
 
-        JButton badCredentials = new JButton(new AbstractAction("Login with bad credentials"){
+        JButton badCredentials = new JButton(new AbstractAction("Login with bad credentials") {
             public void actionPerformed(ActionEvent e) {
                 loginWithBadCredentials();
             }
@@ -47,7 +47,7 @@ public class ExceptionHandlingView extends AbstractView {
         layoutBuilder.row();
         layoutBuilder.relatedGapRow();
 
-        JButton accessDenied = new JButton(new AbstractAction("Do something you don't have access to"){
+        JButton accessDenied = new JButton(new AbstractAction("Do something you don't have access to") {
             public void actionPerformed(ActionEvent e) {
                 denyAccess();
             }
@@ -56,7 +56,7 @@ public class ExceptionHandlingView extends AbstractView {
         layoutBuilder.row();
         layoutBuilder.relatedGapRow();
 
-        JButton invalidPerson = new JButton(new AbstractAction("Validate a person with a null name and age 1981"){
+        JButton invalidPerson = new JButton(new AbstractAction("Validate a person with a null name and age 1981") {
             public void actionPerformed(ActionEvent e) {
                 validateInvalidPerson();
             }
@@ -65,7 +65,7 @@ public class ExceptionHandlingView extends AbstractView {
         layoutBuilder.row();
         layoutBuilder.relatedGapRow();
 
-        JButton nullPointer = new JButton(new AbstractAction("Cause a NumberFormatException"){
+        JButton nullPointer = new JButton(new AbstractAction("Cause a NumberFormatException") {
             public void actionPerformed(ActionEvent e) {
                 causeNumberFormatException();
             }
@@ -74,7 +74,7 @@ public class ExceptionHandlingView extends AbstractView {
         layoutBuilder.row();
         layoutBuilder.relatedGapRow();
 
-        JButton stackOverflow = new JButton(new AbstractAction("Cause a stack overflow error"){
+        JButton stackOverflow = new JButton(new AbstractAction("Cause a stack overflow error") {
             public void actionPerformed(ActionEvent e) {
                 causeStackOverflow();
             }

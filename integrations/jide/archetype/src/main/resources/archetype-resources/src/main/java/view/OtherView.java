@@ -17,13 +17,13 @@ import java.awt.BorderLayout;
  *         <a href="http://www.xore.de">Xore Systems</a>
  */
 public class OtherView extends JideAbstractView {
-  protected JComponent createControl() {
-    JLabel lblMessage = getComponentFactory().createLabel( "otherView.message" );
-    lblMessage.setBorder( BorderFactory.createEmptyBorder( 5, 0, 5, 0 ) );
+    protected JComponent createControl() {
+        JLabel lblMessage = getComponentFactory().createLabel( "otherView.message" );
+        lblMessage.setBorder( BorderFactory.createEmptyBorder( 5, 0, 5, 0 ) );
 
-    JPanel panel = getComponentFactory().createPanel( new BorderLayout() );
-    panel.add( lblMessage );
+        JPanel panel = getComponentFactory().createPanel( new BorderLayout() );
+        panel.add( lblMessage );
 
-    return panel;
-  }
+        return panel;
+    }
 }

@@ -42,7 +42,7 @@ public class DefaultMessage implements Message, Serializable {
 
     private static final long serialVersionUID = -6524078363891514995L;
 
-	private final long timestamp;
+    private final long timestamp;
 
     private final String message;
 
@@ -101,13 +101,11 @@ public class DefaultMessage implements Message, Serializable {
     public void renderMessage(JComponent component) {
         if (component instanceof JTextComponent) {
             ((JTextComponent)component).setText(getMessage());
-        }
-        else if (component instanceof JLabel) {
+        } else if (component instanceof JLabel) {
             JLabel label = (JLabel)component;
             label.setText(LabelUtils.htmlBlock(getMessage()));
             label.setIcon(getIcon());
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Unsupported component type " + component);
         }
     }
@@ -129,8 +127,7 @@ public class DefaultMessage implements Message, Serializable {
         try {
             IconSource iconSource = (IconSource)ApplicationServicesLocator.services().getService(IconSource.class);
             return iconSource.getIcon("severity." + severity.getLabel());
-        }
-        catch (NoSuchImageResourceException e) {
+        } catch (NoSuchImageResourceException e) {
             return null;
         }
     }

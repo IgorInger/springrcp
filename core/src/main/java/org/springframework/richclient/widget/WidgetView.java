@@ -13,38 +13,31 @@ import java.util.List;
 /**
  * View implementation to show a widget
  */
-public class WidgetView extends AbstractView
-{
+public class WidgetView extends AbstractView {
     private Widget widget;
 
-    public WidgetView()
-    {
+    public WidgetView() {
     }
 
-    public WidgetView(Widget widget)
-    {
+    public WidgetView(Widget widget) {
         setWidget(widget);
     }
 
-    public void setWidget(Widget widget)
-    {
+    public void setWidget(Widget widget) {
         this.widget = widget;
     }
 
-    public Widget getWidget()
-    {
+    public Widget getWidget() {
         return this.widget;
     }
 
-    protected JComponent createControl()
-    {
+    protected JComponent createControl() {
         JComponent widgetComponent = getWidget().getComponent();
         JPanel viewPanel = new JPanel(new BorderLayout());
         viewPanel.add(widgetComponent, BorderLayout.CENTER);
         Widget widget = getWidget();
         List<? extends AbstractCommand> widgetCommands = widget.getCommands();
-        if (widgetCommands != null)
-        {
+        if (widgetCommands != null) {
             JComponent widgetButtonBar = CommandGroup.createCommandGroup(widgetCommands).createButtonBar(ColumnSpec.decode("fill:pref:nogrow"), RowSpec.decode("fill:default:nogrow"), null);
             JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
             buttonPanel.add(widgetButtonBar);
@@ -54,18 +47,15 @@ public class WidgetView extends AbstractView
         return viewPanel;
     }
 
-    public boolean canClose()
-    {
+    public boolean canClose() {
         return getWidget().canClose();
     }
 
-    public void componentFocusGained()
-    {
+    public void componentFocusGained() {
         getWidget().onAboutToShow();
     }
 
-    public void componentFocusLost()
-    {
+    public void componentFocusLost() {
         getWidget().onAboutToHide();
     }
 }

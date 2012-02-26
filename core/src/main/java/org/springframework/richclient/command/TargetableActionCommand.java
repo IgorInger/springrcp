@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,15 +22,15 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * An {@link ActionCommand} that delegates to an internal {@link ActionCommandExecutor}.
- * The executor can be provided at construction but can also be provided 
+ * The executor can be provided at construction but can also be provided
  * programmatically at runtime and replaced during program execution. This enables a shared
- * global command feature whereby a single command is specified that can perform different 
- * actions depending on the currently active context. 
- * 
+ * global command feature whereby a single command is specified that can perform different
+ * actions depending on the currently active context.
+ *
  * @author Keith Donald
  */
 public class TargetableActionCommand extends ActionCommand {
-	
+
     private ActionCommandExecutor commandExecutor;
 
     private PropertyChangeListener guardRelay;
@@ -44,7 +44,7 @@ public class TargetableActionCommand extends ActionCommand {
     }
 
     /**
-     * Creates a new {@code TargetableActionCommand} with the given identifier. 
+     * Creates a new {@code TargetableActionCommand} with the given identifier.
      * The instance will be initialized in a disabled state.
      *
      * @param commandId The identifier for this instance.
@@ -54,11 +54,11 @@ public class TargetableActionCommand extends ActionCommand {
     }
 
     /**
-     * Creates a new {@code TargetableActionCommand} with the given identifier and initial 
+     * Creates a new {@code TargetableActionCommand} with the given identifier and initial
      * executor. The instance will be initialized in a disabled state.
      *
-     * @param commandId The identifier for this instance. 
-     * @param commandExecutor The initial command executor. 
+     * @param commandId The identifier for this instance.
+     * @param commandExecutor The initial command executor.
      */
     public TargetableActionCommand(String commandId, ActionCommandExecutor commandExecutor) {
         super(commandId);
@@ -69,7 +69,7 @@ public class TargetableActionCommand extends ActionCommand {
     /**
      * Attaches the given executor to this command instance, detaching the current executor in the process.
      *
-     * @param commandExecutor The executor to be attached. May be null, in which case this command 
+     * @param commandExecutor The executor to be attached. May be null, in which case this command
      * will be disabled.
      */
     public void setCommandExecutor(ActionCommandExecutor commandExecutor) {
@@ -78,8 +78,7 @@ public class TargetableActionCommand extends ActionCommand {
         }
         if (commandExecutor == null) {
             detachCommandExecutor();
-        }
-        else {
+        } else {
             if (this.commandExecutor instanceof GuardedActionCommandExecutor) {
                 unsubscribeFromGuardedCommandDelegate();
             }
@@ -90,16 +89,15 @@ public class TargetableActionCommand extends ActionCommand {
 
     /**
      * Attaches the currently assigned command executor to this instance. The command will
-     * be enabled by default unless the executor is a {@link GuardedActionCommandExecutor}, 
-     * in which case the command will be assigned the enabled state of the executor. 
+     * be enabled by default unless the executor is a {@link GuardedActionCommandExecutor},
+     * in which case the command will be assigned the enabled state of the executor.
      */
     private void attachCommandExecutor() {
         if (this.commandExecutor instanceof GuardedActionCommandExecutor) {
             GuardedActionCommandExecutor dynamicHandler = (GuardedActionCommandExecutor)commandExecutor;
             setEnabled(dynamicHandler.isEnabled());
             subscribeToGuardedCommandDelegate();
-        }
-        else {
+        } else {
             setEnabled(true);
         }
         if (logger.isDebugEnabled()) {
@@ -117,7 +115,7 @@ public class TargetableActionCommand extends ActionCommand {
     }
 
     /**
-     * Detaches the current executor from this command and sets the command to disabled state. 
+     * Detaches the current executor from this command and sets the command to disabled state.
      */
     public void detachCommandExecutor() {
         if (this.commandExecutor instanceof GuardedActionCommandExecutor) {
@@ -138,11 +136,10 @@ public class TargetableActionCommand extends ActionCommand {
     protected void doExecuteCommand() {
         if (this.commandExecutor instanceof ParameterizableActionCommandExecutor) {
             ((ParameterizableActionCommandExecutor) this.commandExecutor).execute(getParameters());
-        }
-        else {
-        	if (this.commandExecutor != null) {
-        		this.commandExecutor.execute();
-        	}
+        } else {
+            if (this.commandExecutor != null) {
+                this.commandExecutor.execute();
+            }
         }
     }
 

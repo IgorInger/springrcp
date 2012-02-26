@@ -9,28 +9,24 @@ import java.util.Collections;
 /**
  * Default behavior implementation of AbstractWidget
  */
-public abstract class AbstractWidget extends ApplicationServicesAccessor implements Widget
-{
+public abstract class AbstractWidget extends ApplicationServicesAccessor implements Widget {
     protected boolean showing = false;
 
     /**
      * {@inheritDoc}
      */
-    public void onAboutToShow()
-    {
+    public void onAboutToShow() {
         showing = true;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void onAboutToHide()
-    {
+    public void onAboutToHide() {
         showing = false;
     }
 
-    public boolean isShowing()
-    {
+    public boolean isShowing() {
         return showing;
     }
 
@@ -39,16 +35,14 @@ public abstract class AbstractWidget extends ApplicationServicesAccessor impleme
      *
      * Default: Widget can be closed.
      */
-    public boolean canClose()
-    {
+    public boolean canClose() {
         return true;
     }
 
     /**
      * {@inheritDoc}
      */
-    public List<? extends AbstractCommand> getCommands()
-    {
+    public List<? extends AbstractCommand> getCommands() {
         return Collections.emptyList();
     }
 }

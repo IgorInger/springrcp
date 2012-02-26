@@ -25,8 +25,8 @@ import org.springframework.rules.constraint.property.PropertyConstraint;
  */
 public interface PropertyConstraintProvider {
 
-	/**
-	 * Returns the constraint on the given property.
-	 */
-	public PropertyConstraint getPropertyConstraint(String propertyName);
+    /**
+     * Returns the constraint on the given property.
+     */
+    public PropertyConstraint getPropertyConstraint(String propertyName);
 }

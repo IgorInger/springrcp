@@ -166,9 +166,9 @@ public class DefaultApplicationServices implements ApplicationServices, Applicat
      * @return application context
      */
     public ApplicationContext getApplicationContext() {
-    	if (applicationContext == null) {
-    		applicationContext = new GenericApplicationContext();
-    	}
+        if (applicationContext == null) {
+            applicationContext = new GenericApplicationContext();
+        }
         return applicationContext;
     }
 
@@ -737,11 +737,10 @@ public class DefaultApplicationServices implements ApplicationServices, Applicat
                     logger.debug("Using bean '" + lookupName + "' (" + bean.getClass().getName() + ") for service " + serviceType.getName());
                 }
                 return bean;
-            }
-            else if(logger.isDebugEnabled()){
+            } else if(logger.isDebugEnabled()) {
                 logger.debug("Bean with id '" + lookupName + "' (" + bean.getClass().getName() + ") does not implement " + serviceType.getName());
             }
-        } else if(logger.isDebugEnabled()){
+        } else if(logger.isDebugEnabled()) {
             logger.debug("No Bean with id '" + lookupName + "' found for service " + serviceType.getName());
         }
         return null;
@@ -854,7 +853,7 @@ public class DefaultApplicationServices implements ApplicationServices, Applicat
                             ApplicationObjectConfigurer.class );
                 } catch( NoSuchBeanDefinitionException e ) {
                     logger.info( "No object configurer found in context under name '" + aocBeanId
-                            + "'; configuring defaults." );
+                                 + "'; configuring defaults." );
                     impl = new DefaultApplicationObjectConfigurer((MessageSource)applicationServices.getService(MessageSource.class));
                 }
             } else {
@@ -879,11 +878,10 @@ public class DefaultApplicationServices implements ApplicationServices, Applicat
                 ResourceMapFactoryBean imageResourcesFactory = new ResourceMapFactoryBean();
                 imageResourcesFactory.setLocation(new ClassPathResource("org/springframework/richclient/image/images.properties"));
                 imageResourcesFactory.afterPropertiesSet();
-				return new DefaultImageSource((Map)imageResourcesFactory.getObject());
-			}
-			catch (IOException e) {
-				return new DefaultImageSource(new HashMap());
-			}
+                return new DefaultImageSource((Map)imageResourcesFactory.getObject());
+            } catch (IOException e) {
+                return new DefaultImageSource(new HashMap());
+            }
         }
     };
 

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -34,7 +34,7 @@ import org.springframework.richclient.command.CommandGroup;
  * @author Keith Donald
  */
 public class DefaultApplicationLifecycleAdvisor extends ApplicationLifecycleAdvisor
-        implements ApplicationListener {
+    implements ApplicationListener {
     private String windowCommandManagerBeanName;
 
     private String toolBarBeanName;
@@ -47,7 +47,7 @@ public class DefaultApplicationLifecycleAdvisor extends ApplicationLifecycleAdvi
 
     /** Set of child command contexts created - used to bridge application events. */
     private ArrayList childContexts = new ArrayList();
-    
+
     public void setWindowCommandBarDefinitions(String commandBarDefinitionLocation) {
         this.windowCommandBarDefinitions = commandBarDefinitionLocation;
     }
@@ -74,15 +74,15 @@ public class DefaultApplicationLifecycleAdvisor extends ApplicationLifecycleAdvi
     }
 
     protected void initNewWindowCommandBarFactory() {
-    	if (windowCommandBarDefinitions != null) {
-    		// Install our own application context so we can register needed post-processors
-    		final CommandBarApplicationContext commandBarContext =
-    			new CommandBarApplicationContext(windowCommandBarDefinitions);
-    		addChildCommandContext(commandBarContext);
-    		this.openingWindowCommandBarFactory = commandBarContext.getBeanFactory();
-    	} else {
-    		this.openingWindowCommandBarFactory = new DefaultListableBeanFactory();
-    	}
+        if (windowCommandBarDefinitions != null) {
+            // Install our own application context so we can register needed post-processors
+            final CommandBarApplicationContext commandBarContext =
+                new CommandBarApplicationContext(windowCommandBarDefinitions);
+            addChildCommandContext(commandBarContext);
+            this.openingWindowCommandBarFactory = commandBarContext.getBeanFactory();
+        } else {
+            this.openingWindowCommandBarFactory = new DefaultListableBeanFactory();
+        }
     }
 
     protected ConfigurableListableBeanFactory getCommandBarFactory() {
@@ -124,7 +124,7 @@ public class DefaultApplicationLifecycleAdvisor extends ApplicationLifecycleAdvi
      * <p>
      * <em>Note, theactual collection is being returned - so be careful what you
      * do to it.</em>
-     * 
+     *
      * @return list of contexts
      */
     protected List getChildCommandContexts() {

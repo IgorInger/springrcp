@@ -29,9 +29,9 @@ import org.springframework.binding.value.IndexAdapter;
  * This class provides an implementation of {@link EventList} that also implements the
  * {@link ObservableList} interface so that it can be used by an AbstractForm as the list
  * of editable objects.
- * 
+ *
  * @author Larry Streepy
- * 
+ *
  */
 public class ObservableEventList extends TransformedList implements ObservableList {
 
@@ -51,7 +51,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
 
     /**
      * Gets whether the source {@link EventList} is writable via this API.
-     * 
+     *
      * @return always true
      */
     protected boolean isWritable() {
@@ -60,7 +60,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see ca.odell.glazedlists.TransformedList#listChanged(ca.odell.glazedlists.event.ListEvent)
      */
     public void listChanged(ListEvent listChanges) {
@@ -87,7 +87,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.binding.value.support.ObservableList#getIndexAdapter(int)
      */
     public IndexAdapter getIndexAdapter(int index) {
@@ -100,7 +100,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see javax.swing.ListModel#getSize()
      */
     public int getSize() {
@@ -109,7 +109,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see javax.swing.ListModel#getElementAt(int)
      */
     public Object getElementAt(int index) {
@@ -118,7 +118,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see javax.swing.ListModel#addListDataListener(javax.swing.event.ListDataListener)
      */
     public void addListDataListener(ListDataListener l) {
@@ -127,7 +127,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see javax.swing.ListModel#removeListDataListener(javax.swing.event.ListDataListener)
      */
     public void removeListDataListener(ListDataListener l) {
@@ -139,7 +139,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
      * or more elements of the list change. The changed elements are specified by the
      * closed interval index0, index1 -- the endpoints are included. Note that index0 need
      * not be less than or equal to index1.
-     * 
+     *
      * @param source the <code>ListModel</code> that changed, typically "this"
      * @param index0 one end of the new interval
      * @param index1 the other end of the new interval
@@ -165,7 +165,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
      * or more elements are added to the model. The new elements are specified by a closed
      * interval index0, index1 -- the enpoints are included. Note that index0 need not be
      * less than or equal to index1.
-     * 
+     *
      * @param source the <code>ListModel</code> that changed, typically "this"
      * @param index0 one end of the new interval
      * @param index1 the other end of the new interval
@@ -191,7 +191,7 @@ public class ObservableEventList extends TransformedList implements ObservableLi
      * or more elements are removed from the model. <code>index0</code> and
      * <code>index1</code> are the end points of the interval that's been removed. Note
      * that <code>index0</code> need not be less than or equal to <code>index1</code>.
-     * 
+     *
      * @param source the <code>ListModel</code> that changed, typically "this"
      * @param index0 one end of the removed interval, including <code>index0</code>
      * @param index1 the other end of the removed interval, including <code>index1</code>

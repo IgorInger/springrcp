@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -55,8 +55,7 @@ public class SwingBindingFactoryTests extends SpringRichTestCase {
         try {
             new SwingBindingFactory(null);
             fail("allowed null form model");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // expected
         }
     }
@@ -106,18 +105,17 @@ public class SwingBindingFactoryTests extends SpringRichTestCase {
         assertBindingProperties(b, JComboBox.class, null, "name");
         assertEquals(4, b.getContext().size());
         assertEquals(sbf.getFormModel().getValueModel("listProperty"), b.getContext().get(
-                ComboBoxBinder.SELECTABLE_ITEMS_KEY));
+                         ComboBoxBinder.SELECTABLE_ITEMS_KEY));
         assertEquals("displayProperty",
-                ((BeanPropertyValueListRenderer)b.getContext().get(ComboBoxBinder.RENDERER_KEY)).getPropertyName());
+                     ((BeanPropertyValueListRenderer)b.getContext().get(ComboBoxBinder.RENDERER_KEY)).getPropertyName());
         assertEquals("displayProperty",
-                ((BeanPropertyEditorClosure)b.getContext().get(ComboBoxBinder.EDITOR_KEY)).getRenderedProperty());
+                     ((BeanPropertyEditorClosure)b.getContext().get(ComboBoxBinder.EDITOR_KEY)).getRenderedProperty());
         assertEquals("displayProperty", getComparatorProperty(b));
 
         try {
             b = (TestableBinding)sbf.createBoundComboBox("name", "someUnknownProperty", "displayProperty");
             fail("cant use an unknown property to provide the selectable items");
-        }
-        catch (InvalidPropertyException e) {
+        } catch (InvalidPropertyException e) {
             // expected
         }
     }
@@ -129,15 +127,15 @@ public class SwingBindingFactoryTests extends SpringRichTestCase {
         assertEquals(4, b.getContext().size());
         assertEquals(selectableItemsHolder, b.getContext().get(ComboBoxBinder.SELECTABLE_ITEMS_KEY));
         assertEquals("displayProperty",
-                ((BeanPropertyValueListRenderer)b.getContext().get(ComboBoxBinder.RENDERER_KEY)).getPropertyName());
+                     ((BeanPropertyValueListRenderer)b.getContext().get(ComboBoxBinder.RENDERER_KEY)).getPropertyName());
         assertEquals("displayProperty",
-                ((BeanPropertyEditorClosure)b.getContext().get(ComboBoxBinder.EDITOR_KEY)).getRenderedProperty());
+                     ((BeanPropertyEditorClosure)b.getContext().get(ComboBoxBinder.EDITOR_KEY)).getRenderedProperty());
         assertEquals("displayProperty", getComparatorProperty(b));
     }
 
     public void testCreateBoundListModel() {
         ValueModel vm = ((DefaultFormModel)sbf.getFormModel()).getFormObjectPropertyAccessStrategy().getPropertyValueModel(
-                "listProperty");
+                            "listProperty");
         ObservableList observableList = sbf.createBoundListModel("listProperty");
 
         ArrayList list = new ArrayList();
@@ -164,9 +162,9 @@ public class SwingBindingFactoryTests extends SpringRichTestCase {
 
         assertEquals(3, b.getContext().size());
         assertEquals(selectableItems,
-                ((ValueModel)b.getContext().get(ListBinder.SELECTABLE_ITEMS_KEY)).getValue());
+                     ((ValueModel)b.getContext().get(ListBinder.SELECTABLE_ITEMS_KEY)).getValue());
         assertEquals("displayProperty",
-                ((BeanPropertyValueListRenderer)b.getContext().get(ListBinder.RENDERER_KEY)).getPropertyName());
+                     ((BeanPropertyValueListRenderer)b.getContext().get(ListBinder.RENDERER_KEY)).getPropertyName());
         assertEquals("displayProperty", getComparatorProperty(b));
         assertFalse(b.getContext().containsKey(ListBinder.SELECTION_MODE_KEY));
     }
@@ -174,13 +172,13 @@ public class SwingBindingFactoryTests extends SpringRichTestCase {
     public void testCreateBoundListStringValueModelString() {
         ValueModel selectableItemsHolder = new ValueHolder(new Object());
         TestableBinding b = (TestableBinding)sbf.createBoundList("listProperty", selectableItemsHolder,
-                "displayProperty");
+                            "displayProperty");
         assertBindingProperties(b, JList.class, null, "listProperty");
 
         assertEquals(3, b.getContext().size());
         assertEquals(selectableItemsHolder, b.getContext().get(ListBinder.SELECTABLE_ITEMS_KEY));
         assertEquals("displayProperty",
-                ((BeanPropertyValueListRenderer)b.getContext().get(ListBinder.RENDERER_KEY)).getPropertyName());
+                     ((BeanPropertyValueListRenderer)b.getContext().get(ListBinder.RENDERER_KEY)).getPropertyName());
         assertEquals("displayProperty", getComparatorProperty(b));
         assertFalse(b.getContext().containsKey(ListBinder.SELECTION_MODE_KEY));
     }
@@ -191,12 +189,12 @@ public class SwingBindingFactoryTests extends SpringRichTestCase {
         assertEquals(b.getFormModel(), sbf.getFormModel());
         assertEquals(b.getProperty(), property);
     }
-    
+
     private String getComparatorProperty(TestableBinding b) {
         // TODO: remove this nasty reflection once PropertyComparator is extended with the abbility
         // to query the SortDefinition
         return ((SortDefinition)getField(b.getContext().get(ListBinder.COMPARATOR_KEY),
-                "sortDefinition")).getProperty();
+                                         "sortDefinition")).getProperty();
     }
 
     private Object getField(Object source, String fieldName) {
@@ -204,8 +202,7 @@ public class SwingBindingFactoryTests extends SpringRichTestCase {
             Field field = source.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
             return field.get(source);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             fail(e.toString());
             return null;
         }

@@ -26,19 +26,19 @@ import org.springframework.binding.value.ValueModel;
  */
 public interface ValueModelWrapper {
 
-	/**
-	 * Returns the <code>ValueModel</code> wrapped by this
-	 * <code>ValueModelWrapper</code>.
-	 *
-	 * @return the wrapped value model.
-	 */
-	ValueModel getWrappedValueModel();
+    /**
+     * Returns the <code>ValueModel</code> wrapped by this
+     * <code>ValueModelWrapper</code>.
+     *
+     * @return the wrapped value model.
+     */
+    ValueModel getWrappedValueModel();
 
-	/**
-	 * Returns the inner most <code>ValueModel</code> wrapped by this
-	 * <code>ValueModelWrapper</code>.
-	 *
-	 * @return the inner most wrapped value model.
-	 */
-	ValueModel getInnerMostWrappedValueModel();
+    /**
+     * Returns the inner most <code>ValueModel</code> wrapped by this
+     * <code>ValueModelWrapper</code>.
+     *
+     * @return the inner most wrapped value model.
+     */
+    ValueModel getInnerMostWrappedValueModel();
 }

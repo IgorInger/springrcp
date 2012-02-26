@@ -64,8 +64,7 @@ public class BeanFactoryPageDescriptorRegistry extends ApplicationObjectSupport 
 
         try {
             return (PageDescriptor) getApplicationContext().getBean(pageName, PageDescriptor.class);
-        }
-        catch (NoSuchBeanDefinitionException e) {
+        } catch (NoSuchBeanDefinitionException e) {
             return null;
         }
 

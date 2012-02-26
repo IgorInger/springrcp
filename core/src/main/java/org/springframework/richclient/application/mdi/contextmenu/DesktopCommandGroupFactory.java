@@ -26,11 +26,11 @@ import org.springframework.richclient.command.CommandManager;
  * <li>a Window menu CommandGroup: </li>
  * <li>a context menu CommandGroup: cascade, tile, minimze, separator, all open
  * frames</li>
- * 
+ *
  * @author Peter De Bruycker
  */
 public interface DesktopCommandGroupFactory {
-	CommandGroup createWindowMenuCommandGroup(CommandManager commandManager, JDesktopPane desktopPane);
+    CommandGroup createWindowMenuCommandGroup(CommandManager commandManager, JDesktopPane desktopPane);
 
-	CommandGroup createContextMenuCommandGroup(CommandManager commandManager, JDesktopPane desktopPane);
+    CommandGroup createContextMenuCommandGroup(CommandManager commandManager, JDesktopPane desktopPane);
 }
