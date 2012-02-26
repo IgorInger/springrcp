@@ -10,21 +10,17 @@ import java.util.Date;
 import java.util.Map;
 
 @SuppressWarnings("unchecked")
-public class TimeBinder extends AbstractBinder
-{
+public class TimeBinder extends AbstractBinder {
 
-    public TimeBinder()
-    {
+    public TimeBinder() {
         super(Date.class);
     }
 
-    protected JComponent createControl(Map context)
-    {
+    protected JComponent createControl(Map context) {
         return new TimeTextField();
     }
 
-    protected Binding doBind(JComponent control, FormModel formModel, String formPropertyPath, Map context)
-    {
+    protected Binding doBind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
         return new TimeBinding(formModel, formPropertyPath, Date.class, (TimeTextField) control);
     }
 

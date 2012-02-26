@@ -4,8 +4,7 @@
  */
 package org.springframework.richclient.widget.editor.provider;
 
-public class DataProviderEvent
-{
+public class DataProviderEvent {
 
     /**
      * Type of event: New, Update or Delete.
@@ -41,7 +40,7 @@ public class DataProviderEvent
     /**
      * Constructor. Maak een nieuw event aan met de correcte nieuwe en oude
      * entiteit waarden.
-     * 
+     *
      * @param eventType
      *            Type van event.
      * @param oldEntity
@@ -49,40 +48,33 @@ public class DataProviderEvent
      * @param newEntity
      *            Nieuwe waarde van de entiteit.
      */
-    public DataProviderEvent(final int eventType, Object oldEntity, Object newEntity)
-    {
+    public DataProviderEvent(final int eventType, Object oldEntity, Object newEntity) {
         this.eventType = eventType;
         this.oldEntity = oldEntity;
         this.newEntity = newEntity;
     }
 
-    public Object getNewEntity()
-    {
+    public Object getNewEntity() {
         return this.newEntity;
     }
 
-    public Object getOldEntity()
-    {
+    public Object getOldEntity() {
         return oldEntity;
     }
 
-    public int getEventType()
-    {
+    public int getEventType() {
         return this.eventType;
     }
 
-    public static final DataProviderEvent newEntityEvent(Object newEntity)
-    {
+    public static final DataProviderEvent newEntityEvent(Object newEntity) {
         return new DataProviderEvent(EVENT_TYPE_NEW, null, newEntity);
     }
 
-    public static final DataProviderEvent updateEntityEvent(Object oldEntity, Object newEntity)
-    {
+    public static final DataProviderEvent updateEntityEvent(Object oldEntity, Object newEntity) {
         return new DataProviderEvent(EVENT_TYPE_UPDATE, oldEntity, newEntity);
     }
-    
-    public static final DataProviderEvent deleteEntityEvent(Object oldEntity)
-    {
+
+    public static final DataProviderEvent deleteEntityEvent(Object oldEntity) {
         return new DataProviderEvent(EVENT_TYPE_DELETE, oldEntity, null);
     }
 }

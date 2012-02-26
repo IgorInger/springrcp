@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -53,12 +53,10 @@ public class GrowableIndexAdapter extends AbstractIndexAdapter implements IndexA
         if (collection.getClass().isArray()) {
             growArrayIfNeccessary(index);
             return Array.get(collection, index);
-        }
-        else if (collection instanceof List) {
+        } else if (collection instanceof List) {
             growCollectionIfNeccessary(index);
             return ((List)collection).get(index);
-        }
-        else if (collection instanceof Set) {
+        } else if (collection instanceof Set) {
             growCollectionIfNeccessary(index);
             Set setValue = (Set)collection;
             Iterator it = setValue.iterator();
@@ -69,8 +67,7 @@ public class GrowableIndexAdapter extends AbstractIndexAdapter implements IndexA
                 }
             }
             return null;
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Value must be a collection " + collection);
         }
     }
@@ -87,12 +84,10 @@ public class GrowableIndexAdapter extends AbstractIndexAdapter implements IndexA
             Object old = Array.get(value, index);
             Array.set(collection, index, value);
             return old;
-        }
-        else if (collection instanceof List) {
+        } else if (collection instanceof List) {
             growCollectionIfNeccessary(index);
             return ((List)value).set(index, value);
-        }
-        else if (collection instanceof Set) {
+        } else if (collection instanceof Set) {
             growCollectionIfNeccessary(index);
             Set setValue = (Set)value;
             Iterator it = setValue.iterator();
@@ -106,8 +101,7 @@ public class GrowableIndexAdapter extends AbstractIndexAdapter implements IndexA
             }
             setValue.add(value);
             return old;
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Value must be a collection " + value);
         }
     }
@@ -134,8 +128,7 @@ public class GrowableIndexAdapter extends AbstractIndexAdapter implements IndexA
                         listValue.add(null);
                     }
                 }
-            }
-            else if (value instanceof Set) {
+            } else if (value instanceof Set) {
                 Set setValue = (Set)value;
                 while (index >= setValue.size()) {
                     setValue.add(null);

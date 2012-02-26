@@ -8,8 +8,7 @@ import org.springframework.richclient.command.CommandGroup;
 
 import javax.swing.*;
 
-public class TaskPaneNavigatorApplicationWindow extends DefaultApplicationWindow
-{
+public class TaskPaneNavigatorApplicationWindow extends DefaultApplicationWindow {
     private JSplitPane framedPage;
 
     private boolean onlyOneExpanded;
@@ -17,45 +16,39 @@ public class TaskPaneNavigatorApplicationWindow extends DefaultApplicationWindow
     private IconGenerator<AbstractCommand> taskPaneIconGenerator;
 
     @Override
-    protected JComponent createWindowContentPane()
-    {
+    protected JComponent createWindowContentPane() {
         CommandGroup navigationCommandGroup = ((NavigatorApplicationLifecycleAdvisor) getAdvisor())
-                .getNavigationCommandGroup();
+                                              .getNavigationCommandGroup();
         TaskPaneNavigatorView taskPaneNavigatorView = new TaskPaneNavigatorView(navigationCommandGroup);
         taskPaneNavigatorView.setIconGenerator(getTaskPaneIconGenerator());
         taskPaneNavigatorView.setOnlyOneExpanded(onlyOneExpanded);
 
         framedPage = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, new JScrollPane(taskPaneNavigatorView.getControl(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER),
-                null);
+                                    null);
         framedPage.setOneTouchExpandable(true);
 
         return framedPage;
     }
 
-    public boolean hasOnlyOneExpanded()
-    {
+    public boolean hasOnlyOneExpanded() {
         return onlyOneExpanded;
     }
 
-    public void setOnlyOneExpanded(boolean onlyOneExpanded)
-    {
+    public void setOnlyOneExpanded(boolean onlyOneExpanded) {
         this.onlyOneExpanded = onlyOneExpanded;
     }
 
     @Override
-    protected void setActivePage(ApplicationPage page)
-    {
+    protected void setActivePage(ApplicationPage page) {
         framedPage.setRightComponent(page.getControl());
         framedPage.revalidate();
     }
 
-    public IconGenerator<AbstractCommand> getTaskPaneIconGenerator()
-    {
+    public IconGenerator<AbstractCommand> getTaskPaneIconGenerator() {
         return taskPaneIconGenerator;
     }
 
-    public void setTaskPaneIconGenerator(IconGenerator<AbstractCommand> taskPaneIconGenerator)
-    {
+    public void setTaskPaneIconGenerator(IconGenerator<AbstractCommand> taskPaneIconGenerator) {
         this.taskPaneIconGenerator = taskPaneIconGenerator;
     }
 }

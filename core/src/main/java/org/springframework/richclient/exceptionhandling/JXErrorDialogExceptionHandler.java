@@ -22,7 +22,7 @@ public class JXErrorDialogExceptionHandler extends MessagesDialogExceptionHandle
      */
     public void setShutdownPolicy(ShutdownPolicy shutdownPolicy) {
         throw new UnsupportedOperationException(
-                "JXErrorDialogExceptionHandler does not support setting of ShutdownPolicy");
+            "JXErrorDialogExceptionHandler does not support setting of ShutdownPolicy");
     }
 
     /**
@@ -39,10 +39,10 @@ public class JXErrorDialogExceptionHandler extends MessagesDialogExceptionHandle
      */
     public void notifyUserAboutException(Thread thread, Throwable throwable) {
         ErrorInfo errorInfo = new ErrorInfo(
-                resolveExceptionCaption(throwable),
-                (String) createExceptionContent(throwable),
-                getDetailsAsHTML(throwable.getMessage(), logLevel, throwable),
-                null, throwable, logLevel.getJdkLogLevel(), null);
+            resolveExceptionCaption(throwable),
+            (String) createExceptionContent(throwable),
+            getDetailsAsHTML(throwable.getMessage(), logLevel, throwable),
+            null, throwable, logLevel.getJdkLogLevel(), null);
         JXErrorPane pane = new JXErrorPane();
         pane.setErrorInfo(errorInfo);
         if (errorReporter != null) {

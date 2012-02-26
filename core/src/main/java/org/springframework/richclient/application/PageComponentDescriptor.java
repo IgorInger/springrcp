@@ -28,7 +28,7 @@ import org.springframework.richclient.core.VisualizedElement;
  * on the page within the current active window.
  */
 public interface PageComponentDescriptor extends PropertyChangePublisher, DescribedElement, VisualizedElement {
-    
+
     /**
      * Returns the identifier of this descriptor.
      * @return The descriptor id.

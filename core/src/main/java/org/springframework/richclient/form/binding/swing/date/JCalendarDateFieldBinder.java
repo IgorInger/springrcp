@@ -13,21 +13,21 @@ import com.toedter.calendar.JDateChooser;
 
 public class JCalendarDateFieldBinder extends AbstractDateFieldBinder {
 
-	public JCalendarDateFieldBinder() {
-		super(new String[] { DATE_FORMAT });
-	}
+    public JCalendarDateFieldBinder() {
+        super(new String[] { DATE_FORMAT });
+    }
 
-	protected JComponent createControl(Map context) {
-		return new JDateChooser();
-	}
+    protected JComponent createControl(Map context) {
+        return new JDateChooser();
+    }
 
-	protected Binding doBind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
-		Assert.isTrue(control instanceof JDateChooser, "Control must be an instance of JDateChooser.");
-		JCalendarDateFieldBinding binding = new JCalendarDateFieldBinding((JDateChooser) control, formModel,
-				formPropertyPath);
-		applyContext(binding, context);
+    protected Binding doBind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
+        Assert.isTrue(control instanceof JDateChooser, "Control must be an instance of JDateChooser.");
+        JCalendarDateFieldBinding binding = new JCalendarDateFieldBinding((JDateChooser) control, formModel,
+                formPropertyPath);
+        applyContext(binding, context);
 
-		return binding;
-	}
+        return binding;
+    }
 
 }

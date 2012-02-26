@@ -13,14 +13,12 @@ import java.io.IOException;
  * @see #setImage(javax.swing.ImageIcon)
  * @see #setImage(org.springframework.core.io.Resource)
  */
-public class ImageViewWidget extends AbstractWidget
-{
+public class ImageViewWidget extends AbstractWidget {
     private JLabel imageHolder;
     private JComponent mainComponent;
     private boolean hasContent;
 
-    public ImageViewWidget()
-    {
+    public ImageViewWidget() {
         this.imageHolder = new JLabel();
 
         // below is a small lie to make sure we provide a blank control in case
@@ -30,14 +28,12 @@ public class ImageViewWidget extends AbstractWidget
         this.mainComponent = imageHolder;
     }
 
-    public ImageViewWidget(Resource resource)
-    {
+    public ImageViewWidget(Resource resource) {
         this();
         setImage(resource);
     }
 
-    public ImageViewWidget(ImageIcon image)
-    {
+    public ImageViewWidget(ImageIcon image) {
         this();
         setImage(image);
     }
@@ -48,17 +44,12 @@ public class ImageViewWidget extends AbstractWidget
      * @param resource
      *            points to a image resource
      */
-    public void setImage(Resource resource)
-    {
+    public void setImage(Resource resource) {
         ImageIcon image = null;
-        if (resource != null && resource.exists())
-        {
-            try
-            {
+        if (resource != null && resource.exists()) {
+            try {
                 image = new ImageIcon(resource.getURL());
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 logger.warn("Error reading resource: " + resource);
                 throw new RuntimeException("Error reading resource " + resource, e);
             }
@@ -72,14 +63,12 @@ public class ImageViewWidget extends AbstractWidget
      * @param image
      *            The image icon to be shown
      */
-    public void setImage(ImageIcon image)
-    {
+    public void setImage(ImageIcon image) {
         this.imageHolder.setIcon(image);
         this.hasContent = (image != null);
     }
 
-    public JComponent getComponent()
-    {
+    public JComponent getComponent() {
         return this.hasContent ? this.mainComponent : new JPanel();
     }
 }

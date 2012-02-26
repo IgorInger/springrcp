@@ -12,9 +12,9 @@ import org.springframework.richclient.exceptionhandling.JXErrorDialogExceptionHa
  */
 public class JXErrorDialogExceptionHandlerCommand extends ActionCommand {
 
-	@Override
-	protected void doExecuteCommand() {
-		throw new JXErrorDialogException();
-	}
+    @Override
+    protected void doExecuteCommand() {
+        throw new JXErrorDialogException();
+    }
 
 }

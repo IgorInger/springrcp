@@ -30,8 +30,7 @@ import java.util.EventObject;
  * @author Jan Hoskens
  *
  */
-public class ValueModelTableCellEditor extends AbstractCellEditor implements TableCellEditor
-{
+public class ValueModelTableCellEditor extends AbstractCellEditor implements TableCellEditor {
 
     private final FormModel formModel;
 
@@ -55,26 +54,22 @@ public class ValueModelTableCellEditor extends AbstractCellEditor implements Tab
      * @param editor
      *            JComponent bound to that property used in the editable state.
      */
-    public ValueModelTableCellEditor(FormModel formModel, String propertyName, JComponent editor)
-    {
+    public ValueModelTableCellEditor(FormModel formModel, String propertyName, JComponent editor) {
         this(formModel, formModel.getFieldMetadata(propertyName), formModel.getValueModel(propertyName),
-                editor);
+             editor);
     }
 
-    public ValueModelTableCellEditor(AbstractForm form, String propertyName)
-    {
-    	this(form.getFormModel(), propertyName, form.getBindingFactory().createBinding(propertyName).getControl());
+    public ValueModelTableCellEditor(AbstractForm form, String propertyName) {
+        this(form.getFormModel(), propertyName, form.getBindingFactory().createBinding(propertyName).getControl());
     }
 
-    public ValueModelTableCellEditor(FormModel formModel, String propertyName, JComponent editor, ActionCommand commitCommand)
-    {
+    public ValueModelTableCellEditor(FormModel formModel, String propertyName, JComponent editor, ActionCommand commitCommand) {
         this(formModel, formModel.getFieldMetadata(propertyName), formModel.getValueModel(propertyName),
-                editor, commitCommand);
+             editor, commitCommand);
     }
 
     public ValueModelTableCellEditor(FormModel formModel, FieldMetadata fieldMetadata, ValueModel valueModel,
-            JComponent editor)
-    {
+                                     JComponent editor) {
         this(formModel, fieldMetadata, valueModel, editor, null);
     }
 
@@ -93,8 +88,7 @@ public class ValueModelTableCellEditor extends AbstractCellEditor implements Tab
      *            JComponent bound to that property used in the editable state.
      */
     public ValueModelTableCellEditor(FormModel formModel, FieldMetadata fieldMetadata, ValueModel valueModel,
-            JComponent editor, ActionCommand commitCommand)
-    {
+                                     JComponent editor, ActionCommand commitCommand) {
         this.formModel = formModel;
         this.valueModel = valueModel;
         this.fieldMetaData = fieldMetadata;
@@ -103,11 +97,9 @@ public class ValueModelTableCellEditor extends AbstractCellEditor implements Tab
     }
 
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
-            int column)
-    {
+            int column) {
         TableModel tableModel = table.getModel();
-        if (tableModel instanceof EventTableModel<?>)
-        {
+        if (tableModel instanceof EventTableModel<?>) {
             formModel.setFormObject(((EventTableModel<?>)tableModel).getElementAt(row));
         }
         if (editor instanceof JTextComponent)
@@ -116,14 +108,12 @@ public class ValueModelTableCellEditor extends AbstractCellEditor implements Tab
     }
 
     @Override
-    public void cancelCellEditing()
-    {
+    public void cancelCellEditing() {
         formModel.revert();
         super.cancelCellEditing();
     }
 
-    public Object getCellEditorValue()
-    {
+    public Object getCellEditorValue() {
         return valueModel.getValue();
     }
 
@@ -133,19 +123,16 @@ public class ValueModelTableCellEditor extends AbstractCellEditor implements Tab
      * Instead rely on the binding's component to set the editor read-only.
      */
     @Override
-    public boolean isCellEditable(EventObject anEvent)
-    {
+    public boolean isCellEditable(EventObject anEvent) {
         return true;
     }
 
     @Override
-    public boolean stopCellEditing()
-    {
+    public boolean stopCellEditing() {
         if (!formModel.isDirty())
             return super.stopCellEditing();
 
-        if (formModel.isCommittable())
-        {
+        if (formModel.isCommittable()) {
             // if you've specified a commitCommand, all handling is left to you, otherwise just commit the form
             if (commitCommand != null)
                 commitCommand.execute();

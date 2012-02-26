@@ -6,7 +6,7 @@ import org.springframework.richclient.dialog.MessageDialog;
 
 public class BasicMessageDialog extends MessageDialog {
 
-	public BasicMessageDialog() {
-		super("Title", new DefaultValidationMessage("Property", Severity.ERROR, "message"));
-	}
+    public BasicMessageDialog() {
+        super("Title", new DefaultValidationMessage("Property", Severity.ERROR, "message"));
+    }
 }

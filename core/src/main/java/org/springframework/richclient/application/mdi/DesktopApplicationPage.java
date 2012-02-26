@@ -33,26 +33,26 @@ import java.util.Map;
  */
 public class DesktopApplicationPage extends AbstractApplicationPage implements PageLayoutBuilder {
 
-	private JDesktopPane control;
+    private JDesktopPane control;
 
-	private Map frames = new HashMap();
+    private Map frames = new HashMap();
 
-	private int dragMode;
+    private int dragMode;
 
     private boolean scrollable = true;
 
     private final DesktopCommandGroupFactory desktopCommandGroupFactory;
 
-	public DesktopApplicationPage(ApplicationWindow window, PageDescriptor pageDescriptor, int dragMode,
-			DesktopCommandGroupFactory desktopCommandGroupFactory) {
-		super(window, pageDescriptor);
-		this.desktopCommandGroupFactory = desktopCommandGroupFactory;
+    public DesktopApplicationPage(ApplicationWindow window, PageDescriptor pageDescriptor, int dragMode,
+                                  DesktopCommandGroupFactory desktopCommandGroupFactory) {
+        super(window, pageDescriptor);
+        this.desktopCommandGroupFactory = desktopCommandGroupFactory;
 
-		Assert.isTrue(dragMode == JDesktopPane.LIVE_DRAG_MODE || dragMode == JDesktopPane.OUTLINE_DRAG_MODE,
-				"dragMode must be JDesktopPane.LIVE_DRAG_MODE or JDesktopPane.OUTLINE_DRAG_MODE");
+        Assert.isTrue(dragMode == JDesktopPane.LIVE_DRAG_MODE || dragMode == JDesktopPane.OUTLINE_DRAG_MODE,
+                      "dragMode must be JDesktopPane.LIVE_DRAG_MODE or JDesktopPane.OUTLINE_DRAG_MODE");
 
-		this.dragMode = dragMode;
-	}
+        this.dragMode = dragMode;
+    }
 
     public void setScrollable(boolean scrollable) {
         if (isControlCreated()) {
@@ -61,65 +61,64 @@ public class DesktopApplicationPage extends AbstractApplicationPage implements P
         this.scrollable = scrollable;
     }
 
-	protected boolean giveFocusTo(PageComponent pageComponent) {
-		if (getActiveComponent() == pageComponent) {
-			return true;
-		}
+    protected boolean giveFocusTo(PageComponent pageComponent) {
+        if (getActiveComponent() == pageComponent) {
+            return true;
+        }
 
-		JInternalFrame frame = getInternalFrame(pageComponent);
-		if (frame == null) {
-			return false;
-		}
+        JInternalFrame frame = getInternalFrame(pageComponent);
+        if (frame == null) {
+            return false;
+        }
 
-		try {
-			if (frame.isIcon()) {
-				frame.setIcon(false);
-			}
+        try {
+            if (frame.isIcon()) {
+                frame.setIcon(false);
+            }
 
-			frame.setSelected(true);
-		}
-		catch (PropertyVetoException e) {
-			// ignore
-		}
+            frame.setSelected(true);
+        } catch (PropertyVetoException e) {
+            // ignore
+        }
 
-		return pageComponent.getControl().requestFocusInWindow();
-	}
+        return pageComponent.getControl().requestFocusInWindow();
+    }
 
-	public void addView(String viewDescriptorId) {
-		showView(viewDescriptorId);
-	}
+    public void addView(String viewDescriptorId) {
+        showView(viewDescriptorId);
+    }
 
-	protected void doAddPageComponent(PageComponent pageComponent) {
-		JInternalFrame frame = createInternalFrame(pageComponent);
+    protected void doAddPageComponent(PageComponent pageComponent) {
+        JInternalFrame frame = createInternalFrame(pageComponent);
 
-		frame.setVisible(true);
-		control.add(frame);
-	}
+        frame.setVisible(true);
+        control.add(frame);
+    }
 
-	protected JInternalFrame createInternalFrame(final PageComponent pageComponent) {
-		JInternalFrame internalFrame = new JInternalFrame(pageComponent.getDisplayName());
-		internalFrame.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
+    protected JInternalFrame createInternalFrame(final PageComponent pageComponent) {
+        JInternalFrame internalFrame = new JInternalFrame(pageComponent.getDisplayName());
+        internalFrame.setDefaultCloseOperation(JInternalFrame.DO_NOTHING_ON_CLOSE);
 
-		configureFrame(pageComponent, internalFrame);
+        configureFrame(pageComponent, internalFrame);
 
-		keepFrameDetails(pageComponent, internalFrame);
+        keepFrameDetails(pageComponent, internalFrame);
 
-		internalFrame.addInternalFrameListener(new InternalFrameAdapter() {
-			public void internalFrameClosing(InternalFrameEvent e) {
-				close(pageComponent);
-			}
+        internalFrame.addInternalFrameListener(new InternalFrameAdapter() {
+            public void internalFrameClosing(InternalFrameEvent e) {
+                close(pageComponent);
+            }
 
-			public void internalFrameActivated(InternalFrameEvent e) {
-				if (!e.getInternalFrame().isIcon()) {
-					setActiveComponent(pageComponent);
-				}
-			}
-		});
+            public void internalFrameActivated(InternalFrameEvent e) {
+                if (!e.getInternalFrame().isIcon()) {
+                    setActiveComponent(pageComponent);
+                }
+            }
+        });
 
-		internalFrame.getContentPane().add(pageComponent.getControl());
-		internalFrame.pack();
-		return internalFrame;
-	}
+        internalFrame.getContentPane().add(pageComponent.getControl());
+        internalFrame.pack();
+        return internalFrame;
+    }
 
     /**
      * Having this method allows subclasses to enrich/wrap the internal frame, for instance with a visible resizer.
@@ -129,52 +128,51 @@ public class DesktopApplicationPage extends AbstractApplicationPage implements P
     }
 
     protected void configureFrame(PageComponent component, JInternalFrame frame) {
-		if (component.getIcon() != null) {
-			frame.setFrameIcon(component.getIcon());
-		}
+        if (component.getIcon() != null) {
+            frame.setFrameIcon(component.getIcon());
+        }
 
-		ViewDescriptor descriptor = getViewDescriptor(component.getId());
-		if (descriptor instanceof DesktopViewDescriptor) {
-			DesktopViewDescriptor desktopViewDescriptor = (DesktopViewDescriptor) descriptor;
-			frame.setResizable(desktopViewDescriptor.isResizable());
-			frame.setMaximizable(desktopViewDescriptor.isMaximizable());
-			frame.setIconifiable(desktopViewDescriptor.isIconifiable());
-			frame.setClosable(desktopViewDescriptor.isClosable());
-		}
-		else {
-			frame.setResizable(true);
-			frame.setMaximizable(true);
-			frame.setIconifiable(true);
-			frame.setClosable(true);
-		}
-	}
+        ViewDescriptor descriptor = getViewDescriptor(component.getId());
+        if (descriptor instanceof DesktopViewDescriptor) {
+            DesktopViewDescriptor desktopViewDescriptor = (DesktopViewDescriptor) descriptor;
+            frame.setResizable(desktopViewDescriptor.isResizable());
+            frame.setMaximizable(desktopViewDescriptor.isMaximizable());
+            frame.setIconifiable(desktopViewDescriptor.isIconifiable());
+            frame.setClosable(desktopViewDescriptor.isClosable());
+        } else {
+            frame.setResizable(true);
+            frame.setMaximizable(true);
+            frame.setIconifiable(true);
+            frame.setClosable(true);
+        }
+    }
 
-	protected JInternalFrame getInternalFrame(PageComponent pageComponent) {
-		return (JInternalFrame) frames.get(pageComponent);
-	}
+    protected JInternalFrame getInternalFrame(PageComponent pageComponent) {
+        return (JInternalFrame) frames.get(pageComponent);
+    }
 
-	protected void doRemovePageComponent(PageComponent pageComponent) {
-		// not used
-		JInternalFrame frame = getInternalFrame(pageComponent);
-		if (frame != null) {
-			frame.dispose();
-			frames.remove(pageComponent);
-		}
-	}
+    protected void doRemovePageComponent(PageComponent pageComponent) {
+        // not used
+        JInternalFrame frame = getInternalFrame(pageComponent);
+        if (frame != null) {
+            frame.dispose();
+            frames.remove(pageComponent);
+        }
+    }
 
-	protected JComponent createControl() {
-		control = createDesktopPane();
-		control.setDragMode(dragMode);
+    protected JComponent createControl() {
+        control = createDesktopPane();
+        control.setDragMode(dragMode);
 
-		getPageDescriptor().buildInitialLayout(this);
+        getPageDescriptor().buildInitialLayout(this);
 
         if (scrollable) {
             return new JScrollPane(control);
         } else {
             return control;
         }
-	}
-	
+    }
+
     protected JDesktopPane createDesktopPane() {
         final JDesktopPane control;
         if (scrollable) {
@@ -188,37 +186,36 @@ public class DesktopApplicationPage extends AbstractApplicationPage implements P
                         control).createPopupMenu();
             }
         });
-        return control; 
+        return control;
     }
 
-	protected void updatePageComponentProperties(PageComponent pageComponent) {
-		JInternalFrame frame = getInternalFrame(pageComponent);
+    protected void updatePageComponentProperties(PageComponent pageComponent) {
+        JInternalFrame frame = getInternalFrame(pageComponent);
 
-		if (pageComponent.getIcon() != null) {
-			frame.setFrameIcon(pageComponent.getIcon());
-		}
-		frame.setTitle(pageComponent.getDisplayName());
-		frame.setToolTipText(pageComponent.getCaption());
-	}
+        if (pageComponent.getIcon() != null) {
+            frame.setFrameIcon(pageComponent.getIcon());
+        }
+        frame.setTitle(pageComponent.getDisplayName());
+        frame.setToolTipText(pageComponent.getCaption());
+    }
 
-	/**
-	 * Overridden so it will leave iconified frames iconified.
-	 */
-	protected void setActiveComponent() {
-		// getAllFrames returns the frames in z-order (i.e. the first one in the
-		// list is the last one used)
-		JInternalFrame[] frames = control.getAllFrames();
-		for (int i = 0; i < frames.length; i++) {
-			JInternalFrame frame = frames[i];
-			if (!frame.isIcon()) {
-				try {
-					frame.setSelected(true);
-				}
-				catch (PropertyVetoException ignore) {
+    /**
+     * Overridden so it will leave iconified frames iconified.
+     */
+    protected void setActiveComponent() {
+        // getAllFrames returns the frames in z-order (i.e. the first one in the
+        // list is the last one used)
+        JInternalFrame[] frames = control.getAllFrames();
+        for (int i = 0; i < frames.length; i++) {
+            JInternalFrame frame = frames[i];
+            if (!frame.isIcon()) {
+                try {
+                    frame.setSelected(true);
+                } catch (PropertyVetoException ignore) {
 
-				}
-				break;
-			}
-		}
-	}
+                }
+                break;
+            }
+        }
+    }
 }

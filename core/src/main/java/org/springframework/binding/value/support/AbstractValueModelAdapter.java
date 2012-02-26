@@ -23,9 +23,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.binding.value.ValueModel;
 
 /**
- * Abstract base class for objects that adapt a value model to some other 
+ * Abstract base class for objects that adapt a value model to some other
  * model. e.g. a GUI component.
- * 
+ *
  * @author Oliver Hutchison
  */
 public abstract class AbstractValueModelAdapter {
@@ -39,10 +39,10 @@ public abstract class AbstractValueModelAdapter {
         this.valueModel = valueModel;
         this.valueModel.addValueChangeListener(valueModelChangeHandler);
     }
-    
+
     /**
      * Must be called to initialize the adapted value. Usually the
-     * last call in the constructor. 
+     * last call in the constructor.
      */
     protected void initalizeAdaptedValue() {
         valueModelValueChanged(valueModel.getValue());
@@ -51,11 +51,11 @@ public abstract class AbstractValueModelAdapter {
     protected ValueModel getValueModel() {
         return valueModel;
     }
-        
+
     /**
      * Subclasses must called this when the value being adapted has changed.
-     * 
-     * @param newValue the new adapted value 
+     *
+     * @param newValue the new adapted value
      */
     protected void adaptedValueChanged(Object newValue) {
         if (valueModel != null) {
@@ -65,7 +65,7 @@ public abstract class AbstractValueModelAdapter {
 
     /**
      * Called when the value held by the value model has changes
-     * 
+     *
      * @param newValue the new value held by the value model
      */
     protected abstract void valueModelValueChanged(Object newValue);

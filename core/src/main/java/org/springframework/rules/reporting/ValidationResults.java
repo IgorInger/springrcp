@@ -15,23 +15,23 @@ import org.springframework.richclient.core.Severity;
  */
 public interface ValidationResults {
 
-	/**
-	 * @return Returns the rejectedValue.
-	 */
-	public Object getRejectedValue();
+    /**
+     * @return Returns the rejectedValue.
+     */
+    public Object getRejectedValue();
 
-	/**
-	 * @return Returns the violatedConstraint.
-	 */
-	public Constraint getViolatedConstraint();
+    /**
+     * @return Returns the violatedConstraint.
+     */
+    public Constraint getViolatedConstraint();
 
-	/**
-	 * @return Returns the violatedCount.
-	 */
-	public int getViolatedCount();
+    /**
+     * @return Returns the violatedCount.
+     */
+    public int getViolatedCount();
 
-	/**
-	 * @return Returns the severity.
-	 */
-	public Severity getSeverity();
+    /**
+     * @return Returns the severity.
+     */
+    public Severity getSeverity();
 }

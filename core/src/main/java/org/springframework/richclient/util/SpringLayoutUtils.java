@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy
  * of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -46,7 +46,7 @@ public class SpringLayoutUtils {
      * <code>parent</code> in a grid. Each component is as big as the maximum
      * preferred width and height of the components. The parent is made just big
      * enough to fit them all.
-     * 
+     *
      * @param rows
      *            number of rows
      * @param cols
@@ -65,8 +65,7 @@ public class SpringLayoutUtils {
         SpringLayout layout;
         try {
             layout = (SpringLayout)parent.getLayout();
-        }
-        catch (ClassCastException exc) {
+        } catch (ClassCastException exc) {
             System.err.println("The first argument to makeGrid must use SpringLayout.");
             return;
         }
@@ -106,15 +105,13 @@ public class SpringLayoutUtils {
             if (i % cols == 0) { //start of new row
                 lastRowCons = lastCons;
                 cons.setX(initialXSpring);
-            }
-            else { //x position depends on previous component
+            } else { //x position depends on previous component
                 cons.setX(Spring.sum(lastCons.getConstraint(SpringLayout.EAST), xPadSpring));
             }
 
             if (i / cols == 0) { //first row
                 cons.setY(initialYSpring);
-            }
-            else { //y position depends on previous row
+            } else { //y position depends on previous row
                 cons.setY(Spring.sum(lastRowCons.getConstraint(SpringLayout.SOUTH), yPadSpring));
             }
             lastCons = cons;
@@ -123,9 +120,9 @@ public class SpringLayoutUtils {
         //Set the parent's size.
         SpringLayout.Constraints pCons = layout.getConstraints(parent);
         pCons.setConstraint(SpringLayout.SOUTH, Spring.sum(Spring.constant(yPad), lastCons
-                .getConstraint(SpringLayout.SOUTH)));
+                            .getConstraint(SpringLayout.SOUTH)));
         pCons.setConstraint(SpringLayout.EAST, Spring.sum(Spring.constant(xPad), lastCons
-                .getConstraint(SpringLayout.EAST)));
+                            .getConstraint(SpringLayout.EAST)));
     }
 
     /* Used by makeCompactGrid. */
@@ -141,7 +138,7 @@ public class SpringLayoutUtils {
      * the maximum preferred width of the components in that column; height is
      * similarly determined for each row. The parent is made just big enough to
      * fit them all.
-     * 
+     *
      * @param rows
      *            number of rows
      * @param cols
@@ -156,12 +153,11 @@ public class SpringLayoutUtils {
      *            y padding between cells
      */
     public static void makeCompactGrid(Container parent, int rows, int cols, int initialX, int initialY, int xPad,
-            int yPad) {
+                                       int yPad) {
         SpringLayout layout;
         try {
             layout = (SpringLayout)parent.getLayout();
-        }
-        catch (ClassCastException exc) {
+        } catch (ClassCastException exc) {
             System.err.println("The first argument to makeCompactGrid must use SpringLayout.");
             return;
         }
@@ -204,16 +200,16 @@ public class SpringLayoutUtils {
 
     /**
      * %DOC one sentence summary caption%.
-     * 
+     *
      * %long description%.
-     * 
+     *
      * @param contentPane
      * @param i
      * @param j
      */
     public static void makeCompactGridWithStandardBorder(JPanel contentPane, int rows, int cols) {
         makeCompactGrid(contentPane, rows, cols, UIConstants.ONE_SPACE, UIConstants.ONE_SPACE, UIConstants.ONE_SPACE,
-                UIConstants.ONE_SPACE);
+                        UIConstants.ONE_SPACE);
 
     }
 }

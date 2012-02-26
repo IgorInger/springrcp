@@ -31,52 +31,52 @@ import org.springframework.util.Assert;
  */
 public class SummingVisitor {
 
-	private ReflectiveVisitorHelper visitorSupport = new ReflectiveVisitorHelper();
+    private ReflectiveVisitorHelper visitorSupport = new ReflectiveVisitorHelper();
 
-	private int sum;
+    private int sum;
 
-	private Constraint constraint;
+    private Constraint constraint;
 
-	public SummingVisitor(Constraint constraint) {
-		Assert.notNull(constraint, "constraint is required");
-		this.constraint = constraint;
-	}
+    public SummingVisitor(Constraint constraint) {
+        Assert.notNull(constraint, "constraint is required");
+        this.constraint = constraint;
+    }
 
-	public int sum() {
-		visitorSupport.invokeVisit(this, constraint);
-		return sum;
-	}
+    public int sum() {
+        visitorSupport.invokeVisit(this, constraint);
+        return sum;
+    }
 
-	void visit(CompoundPropertyConstraint rule) {
-		visitorSupport.invokeVisit(this, rule.getPredicate());
-	}
+    void visit(CompoundPropertyConstraint rule) {
+        visitorSupport.invokeVisit(this, rule.getPredicate());
+    }
 
-	void visit(PropertiesConstraint e) {
-		sum++;
-	}
+    void visit(PropertiesConstraint e) {
+        sum++;
+    }
 
-	void visit(ParameterizedPropertyConstraint e) {
-		sum++;
-	}
+    void visit(ParameterizedPropertyConstraint e) {
+        sum++;
+    }
 
-	void visit(And and) {
-		Iterator it = and.iterator();
-		while (it.hasNext()) {
-			Constraint p = (Constraint) it.next();
-			visitorSupport.invokeVisit(this, p);
-		}
-	}
+    void visit(And and) {
+        Iterator it = and.iterator();
+        while (it.hasNext()) {
+            Constraint p = (Constraint) it.next();
+            visitorSupport.invokeVisit(this, p);
+        }
+    }
 
-	void visit(Or or) {
-		Iterator it = or.iterator();
-		while (it.hasNext()) {
-			Constraint p = (Constraint) it.next();
-			visitorSupport.invokeVisit(this, p);
-		}
-	}
+    void visit(Or or) {
+        Iterator it = or.iterator();
+        while (it.hasNext()) {
+            Constraint p = (Constraint) it.next();
+            visitorSupport.invokeVisit(this, p);
+        }
+    }
 
-	void visit(Constraint constraint) {
-		sum++;
-	}
+    void visit(Constraint constraint) {
+        sum++;
+    }
 
 }

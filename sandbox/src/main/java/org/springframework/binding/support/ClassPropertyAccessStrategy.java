@@ -37,85 +37,85 @@ import org.springframework.richclient.beans.DefaultMemberPropertyAccessor;
  */
 public class ClassPropertyAccessStrategy extends AbstractPropertyAccessStrategy {
 
-	private final DefaultMemberPropertyAccessor propertyAccessor;
+    private final DefaultMemberPropertyAccessor propertyAccessor;
 
-	/**
-	 * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
-	 * @param targetClass the target class
-	 */
-	public ClassPropertyAccessStrategy(Class targetClass) {
-		super(new ValueHolder());
-		propertyAccessor = new DefaultMemberPropertyAccessor(targetClass);
-	}
+    /**
+     * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
+     * @param targetClass the target class
+     */
+    public ClassPropertyAccessStrategy(Class targetClass) {
+        super(new ValueHolder());
+        propertyAccessor = new DefaultMemberPropertyAccessor(targetClass);
+    }
 
-	/**
-	 * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
-	 * @param target the domain object
-	 */
-	public ClassPropertyAccessStrategy(Object target) {
-		this(new ValueHolder(target));
-	}
+    /**
+     * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
+     * @param target the domain object
+     */
+    public ClassPropertyAccessStrategy(Object target) {
+        this(new ValueHolder(target));
+    }
 
-	/**
-	 * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
-	 * @param domainObjectHolder the value model containing the domain object
-	 */
-	public ClassPropertyAccessStrategy(final ValueModel domainObjectHolder) {
-		this(domainObjectHolder, false);
-	}
+    /**
+     * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
+     * @param domainObjectHolder the value model containing the domain object
+     */
+    public ClassPropertyAccessStrategy(final ValueModel domainObjectHolder) {
+        this(domainObjectHolder, false);
+    }
 
-	/**
-	 * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
-	 * @param domainObjectHolder the value model containing the domain object
-	 * @param fieldAccessEnabled whether the fields of the objects should be
-	 * accessed directly where possible instead of using methods
-	 */
-	public ClassPropertyAccessStrategy(final ValueModel domainObjectHolder, boolean fieldAccessEnabled) {
-		this(domainObjectHolder, fieldAccessEnabled, true);
-	}
+    /**
+     * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
+     * @param domainObjectHolder the value model containing the domain object
+     * @param fieldAccessEnabled whether the fields of the objects should be
+     * accessed directly where possible instead of using methods
+     */
+    public ClassPropertyAccessStrategy(final ValueModel domainObjectHolder, boolean fieldAccessEnabled) {
+        this(domainObjectHolder, fieldAccessEnabled, true);
+    }
 
-	/**
-	 * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
-	 * @param domainObjectHolder the value model containing the domain object
-	 * @param fieldAccessEnabled whether the fields of the objects should be
-	 * accessed directly where possible instead of using methods
-	 * @param strictNullValueHandling whether a
-	 * <tt>NullValueInNestedPathException</tt> should be thrown on nested
-	 * null-values or <tt>null</tt> should be returned
-	 */
-	public ClassPropertyAccessStrategy(final ValueModel domainObjectHolder, boolean fieldAccessEnabled,
-			boolean strictNullValueHandling) {
-		super(domainObjectHolder);
-		propertyAccessor = new DefaultMemberPropertyAccessor(domainObjectHolder.getValue().getClass(),
-				domainObjectHolder.getValue(), fieldAccessEnabled, strictNullValueHandling);
-	}
+    /**
+     * Creates a new instance of <tt>ClassPropertyAccessStrategy</tt>.
+     * @param domainObjectHolder the value model containing the domain object
+     * @param fieldAccessEnabled whether the fields of the objects should be
+     * accessed directly where possible instead of using methods
+     * @param strictNullValueHandling whether a
+     * <tt>NullValueInNestedPathException</tt> should be thrown on nested
+     * null-values or <tt>null</tt> should be returned
+     */
+    public ClassPropertyAccessStrategy(final ValueModel domainObjectHolder, boolean fieldAccessEnabled,
+                                       boolean strictNullValueHandling) {
+        super(domainObjectHolder);
+        propertyAccessor = new DefaultMemberPropertyAccessor(domainObjectHolder.getValue().getClass(),
+                domainObjectHolder.getValue(), fieldAccessEnabled, strictNullValueHandling);
+    }
 
-	/**
-	 * Creates a child instance of <tt>ClassPropertyAccessStrategy<tt>
-	 * that will delegate to its parent for property access.
-	 *
-	 * @param parent <tt>ClassPropertyAccessStrategy</tt> which will be used to provide property access
-	 * @param basePropertyPath property path that will as a base when accessing
-	 *                         the parent <tt>ClassPropertyAccessStrategy</tt>
-	 */
-	public ClassPropertyAccessStrategy(ClassPropertyAccessStrategy parent, String basePropertyPath) {
-		super(parent, basePropertyPath);
-		propertyAccessor = parent.propertyAccessor;
-	}
+    /**
+     * Creates a child instance of <tt>ClassPropertyAccessStrategy<tt>
+     * that will delegate to its parent for property access.
+     *
+     * @param parent <tt>ClassPropertyAccessStrategy</tt> which will be used to provide property access
+     * @param basePropertyPath property path that will as a base when accessing
+     *                         the parent <tt>ClassPropertyAccessStrategy</tt>
+     */
+    public ClassPropertyAccessStrategy(ClassPropertyAccessStrategy parent, String basePropertyPath) {
+        super(parent, basePropertyPath);
+        propertyAccessor = parent.propertyAccessor;
+    }
 
-	protected PropertyAccessor getPropertyAccessor() {
-		return propertyAccessor;
-	}
+    protected PropertyAccessor getPropertyAccessor() {
+        return propertyAccessor;
+    }
 
-	public MutablePropertyAccessStrategy getPropertyAccessStrategyForPath(String propertyPath) throws BeansException {
-		return new ClassPropertyAccessStrategy(this, getFullPropertyPath(propertyPath));
-	}
+    public MutablePropertyAccessStrategy getPropertyAccessStrategyForPath(String propertyPath) throws BeansException {
+        return new ClassPropertyAccessStrategy(this, getFullPropertyPath(propertyPath));
+    }
 
-	public MutablePropertyAccessStrategy newPropertyAccessStrategy(ValueModel domainObjectHolder) {
-		return new ClassPropertyAccessStrategy(domainObjectHolder);
-	}
+    public MutablePropertyAccessStrategy newPropertyAccessStrategy(ValueModel domainObjectHolder) {
+        return new ClassPropertyAccessStrategy(domainObjectHolder);
+    }
 
-	protected void domainObjectChanged() {
-		propertyAccessor.setTarget(getDomainObject());
-	}
+    protected void domainObjectChanged() {
+        propertyAccessor.setTarget(getDomainObject());
+    }
 }

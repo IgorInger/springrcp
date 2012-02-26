@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2007 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,10 +30,10 @@ import org.springframework.richclient.factory.MenuFactory;
  * @author Keith Donald
  */
 public class DefaultCommandServices implements CommandServices {
-	private ComponentFactory componentFactory;
-	
-	private ButtonFactory toolBarButtonFactory;
-	
+    private ComponentFactory componentFactory;
+
+    private ButtonFactory toolBarButtonFactory;
+
     private ButtonFactory buttonFactory;
 
     private MenuFactory menuFactory;
@@ -46,14 +46,14 @@ public class DefaultCommandServices implements CommandServices {
 
     private CommandButtonConfigurer pullDownMenuButtonConfigurer;
 
-    public void setComponentFactory(ComponentFactory componentFactory){
-    	this.componentFactory = componentFactory;
+    public void setComponentFactory(ComponentFactory componentFactory) {
+        this.componentFactory = componentFactory;
     }
-    
-    public void setToolBarButtonFactory(ButtonFactory buttonFactory){
-    	this.toolBarButtonFactory = buttonFactory;
+
+    public void setToolBarButtonFactory(ButtonFactory buttonFactory) {
+        this.toolBarButtonFactory = buttonFactory;
     }
-    
+
     public void setButtonFactory(ButtonFactory buttonFactory) {
         this.buttonFactory = buttonFactory;
     }
@@ -78,20 +78,20 @@ public class DefaultCommandServices implements CommandServices {
         this.pullDownMenuButtonConfigurer = pullDownMenuButtonConfigurer;
     }
 
-    public ComponentFactory getComponentFactory(){
-    	if(componentFactory == null){
-    		componentFactory = (ComponentFactory) ApplicationServicesLocator.services().getService(ComponentFactory.class);
-    	}
-    	return componentFactory;
+    public ComponentFactory getComponentFactory() {
+        if(componentFactory == null) {
+            componentFactory = (ComponentFactory) ApplicationServicesLocator.services().getService(ComponentFactory.class);
+        }
+        return componentFactory;
     }
-    
-    public ButtonFactory getToolBarButtonFactory(){
-    	if(toolBarButtonFactory == null){
-    		toolBarButtonFactory = (ButtonFactory) ApplicationServicesLocator.services().getService(ButtonFactory.class);
-    	}
+
+    public ButtonFactory getToolBarButtonFactory() {
+        if(toolBarButtonFactory == null) {
+            toolBarButtonFactory = (ButtonFactory) ApplicationServicesLocator.services().getService(ButtonFactory.class);
+        }
         return toolBarButtonFactory;
     }
-    
+
     public ButtonFactory getButtonFactory() {
         if(buttonFactory == null) {
             buttonFactory = (ButtonFactory) ApplicationServicesLocator.services().getService(ButtonFactory.class);

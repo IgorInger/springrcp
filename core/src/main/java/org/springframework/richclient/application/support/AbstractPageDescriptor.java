@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * @author Peter De Bruycker
  */
 public abstract class AbstractPageDescriptor extends LabeledObjectSupport implements PageDescriptor, BeanNameAware,
-        InitializingBean {
+    InitializingBean {
 
     private String id;
 

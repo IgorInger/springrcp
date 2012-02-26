@@ -4,16 +4,15 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * Accessor interface: defines a way to access a value and it's type.
- * 
+ *
  * @author Jan Hoskens
  * @since 0.5.0
  */
-public interface Accessor
-{
+public interface Accessor {
 
     /**
      * Get the value from the given target entity.
-     * 
+     *
      * @param fromEntity
      *            the entity from which the value should be obtained.
      * @return the value.

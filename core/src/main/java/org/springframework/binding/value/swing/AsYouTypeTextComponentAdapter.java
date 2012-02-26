@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,8 +24,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 
-public class AsYouTypeTextComponentAdapter extends AbstractValueModelAdapter implements DocumentListener
-{
+public class AsYouTypeTextComponentAdapter extends AbstractValueModelAdapter implements DocumentListener {
 
     private final JTextComponent control;
 
@@ -33,13 +32,11 @@ public class AsYouTypeTextComponentAdapter extends AbstractValueModelAdapter imp
 
     private boolean settingText;
 
-    public AsYouTypeTextComponentAdapter(JTextComponent control, ValueModel valueModel)
-    {
+    public AsYouTypeTextComponentAdapter(JTextComponent control, ValueModel valueModel) {
         this(control, valueModel, false);
     }
 
-    public AsYouTypeTextComponentAdapter(JTextComponent control, ValueModel valueModel, boolean convertEmptyStringToNull)
-    {
+    public AsYouTypeTextComponentAdapter(JTextComponent control, ValueModel valueModel, boolean convertEmptyStringToNull) {
         super(valueModel);
         Assert.notNull(control);
         this.control = control;
@@ -48,25 +45,20 @@ public class AsYouTypeTextComponentAdapter extends AbstractValueModelAdapter imp
         initalizeAdaptedValue();
     }
 
-    public void removeUpdate(DocumentEvent e)
-    {
+    public void removeUpdate(DocumentEvent e) {
         controlTextValueChanged();
     }
 
-    public void insertUpdate(DocumentEvent e)
-    {
+    public void insertUpdate(DocumentEvent e) {
         controlTextValueChanged();
     }
 
-    public void changedUpdate(DocumentEvent e)
-    {
+    public void changedUpdate(DocumentEvent e) {
         controlTextValueChanged();
     }
 
-    private void controlTextValueChanged()
-    {
-        if (!settingText)
-        {
+    private void controlTextValueChanged() {
+        if (!settingText) {
             if (!StringUtils.hasText(control.getText()) && convertEmptyStringToNull)
                 adaptedValueChanged(null);
             else
@@ -74,18 +66,14 @@ public class AsYouTypeTextComponentAdapter extends AbstractValueModelAdapter imp
         }
     }
 
-    protected void valueModelValueChanged(Object value)
-    {
+    protected void valueModelValueChanged(Object value) {
         // this try block will coalesce the 2 DocumentEvents that
         // JTextComponent.setText() fires into 1 call to
         // componentValueChanged()
-        try
-        {
+        try {
             settingText = true;
             control.setText((String) value);
-        }
-        finally
-        {
+        } finally {
             settingText = false;
         }
     }

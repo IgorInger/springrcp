@@ -44,7 +44,7 @@ public class TestableBinding implements Binding {
         this.property = property;
         this.context = context;
     }
-    
+
     public Class getControlType() {
         return controlType;
     }

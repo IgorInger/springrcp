@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * A {@link View} implementation that uses {@link ScriptEngine} to build its control.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class ScriptedView extends AbstractView implements InitializingBean {
@@ -66,11 +66,9 @@ public class ScriptedView extends AbstractView implements InitializingBean {
 
         try {
             engine.eval(new InputStreamReader(script.getInputStream()));
-        }
-        catch (ScriptException e) {
+        } catch (ScriptException e) {
             throw new ScriptExecutionException("error running script", e);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new ScriptIOException("error reading script", e);
         }
 
@@ -80,9 +78,9 @@ public class ScriptedView extends AbstractView implements InitializingBean {
     /**
      * Creates the <code>ScriptEngine</code>, by using the {@link #engineName} if provided. If no engine name is set,
      * the extension of the file name of the {@link #script} is used.
-     * 
+     *
      * @return the <code>ScriptEngine</code>
-     * 
+     *
      * @see ScriptEngineManager#getEngineByName(String)
      * @see ScriptEngineManager#getEngineByExtension(String)
      */
@@ -108,12 +106,12 @@ public class ScriptedView extends AbstractView implements InitializingBean {
      * If the {@link #viewBindingName} is set, the view instance will be included in the bindings.
      * <p>
      * All the variables in the {@link #scriptBindings} will also be included in the bindings.
-     * 
+     *
      * @param bindings
      *            the bindings
      * @param container
      *            the compontent that will be passed into the script
-     * 
+     *
      * @see #setContainerBindingName(String)
      * @see #setViewBindingName(String)
      * @see #setScriptBindings(Map)
@@ -139,10 +137,10 @@ public class ScriptedView extends AbstractView implements InitializingBean {
 
     /**
      * Sets the name of the engine to be created. This name will be used to create the engine.
-     * 
+     *
      * @param name
      *            the name
-     * 
+     *
      * @see ScriptEngineManager#getEngineByName(String)
      */
     public void setEngineName(String name) {
@@ -151,7 +149,7 @@ public class ScriptedView extends AbstractView implements InitializingBean {
 
     /**
      * Set the bindings to be passed to the script.
-     * 
+     *
      * @param bindings
      *            the bindings
      */
@@ -162,7 +160,7 @@ public class ScriptedView extends AbstractView implements InitializingBean {
 
     /**
      * Sets the view binding name.
-     * 
+     *
      * @param viewBindingName
      *            the name
      * @see #populateBindings(Bindings, JComponent) for more details
@@ -173,7 +171,7 @@ public class ScriptedView extends AbstractView implements InitializingBean {
 
     /**
      * Sets the container binding name.
-     * 
+     *
      * @param containerBindingName
      *            the name
      * @see #populateBindings(Bindings, JComponent) for more details

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -48,16 +48,16 @@ import org.springframework.util.Assert;
  * <p>
  * This class also decorates the entries in the tree to indicate the page
  * completed status.
- * 
+ *
  * @author Peter De Bruycker
  * @author Oliver Hutchison
  */
 public class TreeCompositeDialogPage extends CompositeDialogPage {
 
     private static final DialogPage ROOT_PAGE = null;
-    
+
     private final PageSelector pageSelector = new PageSelector();
-    
+
     private final PageTitleCellRenderer treeCellRenderer = new PageTitleCellRenderer();
 
     private CardLayout cardLayout;
@@ -73,14 +73,14 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
 
     /**
      * Constructs a new <code>TreeCompositeDialogPage</code> instance.
-     * 
+     *
      * @param pageId
      *            the pageId
      */
     public TreeCompositeDialogPage(String pageId) {
         this(pageId, true);
     }
-    
+
     public TreeCompositeDialogPage(String pageId, boolean autoConfigure) {
         super(pageId, autoConfigure);
         nodes = new HashMap();
@@ -90,7 +90,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
     /**
      * Adds a DialogPage to the tree. The page will be added at the top level of
      * the tree hierarchy.
-     * 
+     *
      * @param page
      *            the page to add
      */
@@ -101,7 +101,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
     /**
      * Adds a new page to the tree. The page is created by wrapping the form
      * page in a FormBackedDialogPage.
-     * 
+     *
      * @param parent
      *            the parent page in the tree hierarchy
      * @param formPage
@@ -116,7 +116,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
 
     /**
      * Adds a DialogPage to the tree.
-     * 
+     *
      * @param parent
      *            the parent page in the tree hierarchy
      * @param page
@@ -129,7 +129,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
         parentNode.add(childNode);
         nodes.put(child, childNode);
         super.addPage(child);
-        
+
         // If we've already been constructed, then update our model and cards
         if( pageTreeModel != null ) {
             pageTreeModel.nodeStructureChanged(parentNode);
@@ -148,9 +148,9 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
     public void removePage( DialogPage page ) {
         DefaultMutableTreeNode treeNode = getNode(page);
         TreeNode parentNode = treeNode.getParent();
-        
+
         treeNode.removeFromParent();
-        
+
         // If we've already been constructed, then update our model and cards
         if( pagePanel != null ) {
             JComponent control = page.getControl();
@@ -164,7 +164,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
 
     /**
      * Adds a group DialogPages to the tree.
-     * 
+     *
      * @param parent
      *            the parent page in the tree hierarchy
      * @param pages
@@ -178,7 +178,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
 
     /**
      * Expands or collapses all of the tree nodes.
-     * 
+     *
      * @param expand
      *            when true expand all nodes; otherwise collapses all nodes
      */
@@ -191,7 +191,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
 
     /**
      * Expands or collapses a number of levels of tree nodes.
-     * 
+     *
      * @param levels
      *            the number of levels to expand/collapses
      * @param expand
@@ -272,19 +272,19 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
             pageTreeModel.nodeChanged(getNode(page));
         }
     }
-    
+
     protected void updatePageLabels(DialogPage page) {
         if (pageTreeModel != null) {
-             pageTreeModel.nodeChanged(getNode(page));
-         }
+            pageTreeModel.nodeChanged(getNode(page));
+        }
     }
- 
+
 
     protected DefaultMutableTreeNode getNode(DialogPage page) {
         return (DefaultMutableTreeNode)nodes.get(page);
     }
 
-    
+
     /**
      * Get the nodes map.
      * @return nodes map.
@@ -292,7 +292,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
     protected Map getNodes() {
         return nodes;
     }
-    
+
     /**
      * Get the page tree.
      * @return page tree component.
@@ -308,7 +308,7 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
     protected JPanel getPagePanel() {
         return pagePanel;
     }
-    
+
     /**
      * Get the page tree model.
      * @return page tree model.
@@ -316,20 +316,20 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
     protected DefaultTreeModel getPageTreeModel() {
         return pageTreeModel;
     }
-    
+
     protected class PageTitleCellRenderer extends FocusableTreeCellRenderer {
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
                 boolean leaf, int row, boolean hasFocus) {
             super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
-        
+
             DefaultMutableTreeNode node = (DefaultMutableTreeNode)value;
             if (node.getUserObject() instanceof DialogPage) {
                 DialogPage page = (DialogPage)node.getUserObject();
-        
+
                 this.setText(getDecoratedPageTitle(page));
                 this.setIcon(page.getIcon());
             }
-        
+
             return this;
         }
     }
@@ -352,5 +352,5 @@ public class TreeCompositeDialogPage extends CompositeDialogPage {
             cardLayout.show(pagePanel, activePage.getId());
             setActivePage(activePage);
         }
-    }    
+    }
 }

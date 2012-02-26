@@ -33,32 +33,32 @@ import org.springframework.richclient.form.binding.BindingFactory;
  */
 public interface FormUIProvider extends ControlFactory {
 
-  /**
-   * Produces the pre-generated form as a single Swing component.
-   */
-  JComponent getControl();
+    /**
+     * Produces the pre-generated form as a single Swing component.
+     */
+    JComponent getControl();
 
-  /**
-   * Binds the fields and other components in this pre-generated form to a
-   * Spring {@link Form form} by using the specified {@link BindingFactory}.
-   * 
-   * @param factory the <code>BindingFactory</code> this form provider should
-   *        use to bind the provided form.
-   * @param form the <code>Form</code> being bound.
-   */
-  void bind(BindingFactory factory, Form form);
+    /**
+     * Binds the fields and other components in this pre-generated form to a
+     * Spring {@link Form form} by using the specified {@link BindingFactory}.
+     *
+     * @param factory the <code>BindingFactory</code> this form provider should
+     *        use to bind the provided form.
+     * @param form the <code>Form</code> being bound.
+     */
+    void bind(BindingFactory factory, Form form);
 
-  /**
-   * Provides access to individual components of this pre-generated form.
-   * Components are referenced by id.  The "id" of a component can be any
-   * arbitrary String agreed upon between the designer and the developer, but
-   * typically these IDs will be the same as the property names of the
-   * object backing the form.
-   *
-   * @param componentId component id to lookup
-   *
-   * @return component with the specified id, or <code>null</code> if no
-   *         component exists in this pre-generated form with the given id.
-   */
-  JComponent getComponent(String componentId);
+    /**
+     * Provides access to individual components of this pre-generated form.
+     * Components are referenced by id.  The "id" of a component can be any
+     * arbitrary String agreed upon between the designer and the developer, but
+     * typically these IDs will be the same as the property names of the
+     * object backing the form.
+     *
+     * @param componentId component id to lookup
+     *
+     * @return component with the specified id, or <code>null</code> if no
+     *         component exists in this pre-generated form with the given id.
+     */
+    JComponent getComponent(String componentId);
 }

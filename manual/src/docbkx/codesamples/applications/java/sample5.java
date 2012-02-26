@@ -1,22 +1,18 @@
-public class DynamicStatusBar extends DefaultStatusBar
-{
-    protected JComponent createControl()
-    {
+public class DynamicStatusBar extends DefaultStatusBar {
+    protected JComponent createControl() {
         JPanel statusBar;
 
         FormLayout layout = new FormLayout(
-                new ColumnSpec[]
-                        {
-                                FormFactory.GLUE_COLSPEC,
-                                FormFactory.RELATED_GAP_COLSPEC,
-                                FormFactory.DEFAULT_COLSPEC,
-                                FormFactory.RELATED_GAP_COLSPEC,
-                                FormFactory.DEFAULT_COLSPEC,
-                        },
-                new RowSpec[]
-                        {
-                                FormFactory.DEFAULT_ROWSPEC
-                        });
+            new ColumnSpec[] {
+                FormFactory.GLUE_COLSPEC,
+                FormFactory.RELATED_GAP_COLSPEC,
+                FormFactory.DEFAULT_COLSPEC,
+                FormFactory.RELATED_GAP_COLSPEC,
+                FormFactory.DEFAULT_COLSPEC,
+            },
+            new RowSpec[] {
+                FormFactory.DEFAULT_ROWSPEC
+            });
 
         statusBar = new JPanel(layout);
 
@@ -33,25 +29,18 @@ public class DynamicStatusBar extends DefaultStatusBar
         return statusBar;
     }
 
-    private JLabel createClock()
-    {
+    private JLabel createClock() {
         final JLabel label = new JLabel();
-        Thread t = new Thread(new Runnable()
-        {
-            public void run()
-            {
-                while (true)
-                {
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                while (true) {
                     DateFormatter formatter = new DateFormatter(DateFormat.getDateTimeInstance(DateFormat.SHORT,
-                                              DateFormat.MEDIUM));
+                            DateFormat.MEDIUM));
                     final String text = formatter.formatValue(new Date());
                     label.setText(text);
-                    try
-                    {
+                    try {
                         Thread.sleep(1000);
-                    }
-                    catch (InterruptedException e)
-                    {
+                    } catch (InterruptedException e) {
                         // ignore
                     }
                 }

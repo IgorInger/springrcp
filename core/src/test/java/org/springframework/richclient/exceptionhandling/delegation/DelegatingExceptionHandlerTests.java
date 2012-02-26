@@ -63,7 +63,7 @@ public class DelegatingExceptionHandlerTests extends TestCase {
         assertEquals(3, nullPointerCounter.getCounter());
         assertEquals(2, runtimeCounter.getCounter());
     }
-    
+
     public void testChainInpstectingDelegation() {
         DelegatingExceptionHandler delegatingExceptionHandler = new DelegatingExceptionHandler();
         List<ExceptionHandlerDelegate> delegateList = new LinkedList<ExceptionHandlerDelegate>();
@@ -83,25 +83,25 @@ public class DelegatingExceptionHandlerTests extends TestCase {
 
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new IllegalArgumentException(
-                        new RuntimeException(new IllegalStateException()))); // chainCounter
+                    new RuntimeException(new IllegalStateException()))); // chainCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new RuntimeException(new IllegalArgumentException(
-                        new RuntimeException(new IllegalStateException())))); // chainCounter
+                                         new RuntimeException(new IllegalStateException())))); // chainCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new RuntimeException(new RuntimeException(new IllegalArgumentException(
-                        new RuntimeException(new IllegalStateException()))))); // chainCounter
+                                         new RuntimeException(new IllegalStateException()))))); // chainCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new RuntimeException(new RuntimeException(new RuntimeException(new IllegalArgumentException(
-                        new RuntimeException(new IllegalStateException())))))); // runtimeCounter
+                                         new RuntimeException(new IllegalStateException())))))); // runtimeCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new IllegalArgumentException(
-                        new IllegalStateException())); // runtimeCounter
+                    new IllegalStateException())); // runtimeCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new IllegalArgumentException(
-                        new RuntimeException(new RuntimeException(new IllegalStateException())))); // runtimeCounter
+                    new RuntimeException(new RuntimeException(new IllegalStateException())))); // runtimeCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new IllegalStateException(
-                        new RuntimeException(new IllegalArgumentException()))); // runtimeCounter
+                    new RuntimeException(new IllegalArgumentException()))); // runtimeCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
                 new NumberFormatException()); // cornerCounter
         delegatingExceptionHandler.uncaughtException(Thread.currentThread(),
@@ -111,7 +111,7 @@ public class DelegatingExceptionHandlerTests extends TestCase {
         assertEquals(2, cornerCounter.getCounter());
         assertEquals(4, runtimeCounter.getCounter());
     }
-    
+
     public static class ExceptionHandlerCounter implements Thread.UncaughtExceptionHandler {
 
         private int counter = 0;

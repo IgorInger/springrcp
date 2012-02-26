@@ -30,7 +30,7 @@ public class MessagesDialogExceptionHandler extends AbstractDialogExceptionHandl
 
     private int wrapLength = 120;
     private int identLength = 2;
-    
+
     private String messagesKey = null;
 
     /**
@@ -55,14 +55,14 @@ public class MessagesDialogExceptionHandler extends AbstractDialogExceptionHandl
      * If messagesKey is set, the caption and description shown in the dialog
      * are not based dynamically on the throwable,
      * but instead statically on the keys messageKey.caption and messageKey.description.
-     * 
+     *
      * @param messagesKey the key used for the caption and title
      */
     public void setMessagesKey(String messagesKey) {
         this.messagesKey = messagesKey;
     }
 
-    
+
     public String resolveExceptionCaption(Throwable throwable) {
         String[] messagesKeys = getMessagesKeys(throwable, ".caption");
         return messageSourceAccessor.getMessage(new DefaultMessageSourceResolvable(
@@ -71,7 +71,7 @@ public class MessagesDialogExceptionHandler extends AbstractDialogExceptionHandl
 
     public Object createExceptionContent(Throwable throwable) {
         String[] messagesKeys = getMessagesKeys(throwable, ".description");
-        String[] parameters = new String[]{
+        String[] parameters = new String[] {
             formatMessage(throwable.getMessage())
         };
         return messageSourceAccessor.getMessage(new DefaultMessageSourceResolvable(
@@ -84,12 +84,10 @@ public class MessagesDialogExceptionHandler extends AbstractDialogExceptionHandl
         }
         List<String> messageKeyList = new ArrayList<String>();
         Class clazz = throwable.getClass();
-        if (throwable instanceof ErrorCoded)
-        {
+        if (throwable instanceof ErrorCoded) {
             messageKeyList.add(((ErrorCoded) throwable).getErrorCode() + keySuffix);
         }
-        if (throwable instanceof SQLException)
-        {
+        if (throwable instanceof SQLException) {
             messageKeyList.add(SQLException.class.getName() + "." + ((SQLException) throwable).getErrorCode() + keySuffix);
         }
         while (clazz != Object.class) {

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -51,16 +51,16 @@ import org.springframework.richclient.util.GuiStandardUtils;
  * standard title pane, you can easily arrange for the messages coming from the dialog
  * page to be sent to a {@link Messagable} of your choice using
  * {@link #addMessageMonitor(DialogPage, Messagable)}.
- * 
+ *
  * @author Larry Streepy
- * 
+ *
  */
 public class DialogPageUtils {
 
     /**
      * Create a standard {@link TitlePane} wired to receive messages from the given dialog
      * page. The title pane will also be configured from the dialog page's title and icon.
-     * 
+     *
      * @param dialogPage to process
      */
     public static TitlePane createTitlePane( DialogPage dialogPage ) {
@@ -78,7 +78,7 @@ public class DialogPageUtils {
      * command button bar (using the provided ok and cancel commands) on the bottom. The
      * finishCommand provided will automatically be wired into the page complete status of
      * the dialog page.
-     * 
+     *
      * @param dialogPage to process
      * @param okCommand Action command to wire into dialogPage's page complete status
      * @param cancelCommand to add to the command button bar
@@ -97,7 +97,7 @@ public class DialogPageUtils {
      * title/message area at the top, the dialog page control in the center, and the
      * command button bar (using the provided group of commands) on the bottom. You should
      * have already wired any commands to the page complete status as needed.
-     * 
+     *
      * @param dialogPage to process
      * @param commandGroupMembers Array of commands to place in the button bar
      * @return created component
@@ -123,7 +123,7 @@ public class DialogPageUtils {
 
     /**
      * Return a standardized row of command buttons.
-     * 
+     *
      * @param groupMembers
      * @return button bar
      */
@@ -138,7 +138,7 @@ public class DialogPageUtils {
      * Add a message monitor. Each monitor will have its
      * {@link Messagable#setMessage(Message)} method called whenever the MESSAGE property
      * on the dialog page changes.
-     * 
+     *
      * @param dialogPage to monitor
      * @param monitor to add
      */
@@ -151,7 +151,7 @@ public class DialogPageUtils {
      * adapt it to operations on the provided Guarded object. If the page is complete,
      * then the guarded object will be enabled. If this page is not complete, then the
      * guarded object will be disabled.
-     * 
+     *
      * @param dialogPage to monitor
      * @param guarded object to adapt
      */
@@ -168,7 +168,7 @@ public class DialogPageUtils {
 
         /**
          * Construct a handler on the given guarded object.
-         * 
+         *
          * @param guarded object to manage
          */
         protected PageCompleteAdapter( Guarded guarded ) {
@@ -177,7 +177,7 @@ public class DialogPageUtils {
 
         /**
          * Handle a change in the page complete state of the dialog page
-         * 
+         *
          * @param e
          */
         public void propertyChange( PropertyChangeEvent e ) {
@@ -195,7 +195,7 @@ public class DialogPageUtils {
 
         /**
          * Construct a handler on the given message monitor.
-         * 
+         *
          * @param monitor to send messages to
          */
         public MessageHandler( Messagable monitor ) {
@@ -204,7 +204,7 @@ public class DialogPageUtils {
 
         /**
          * Handle a change in the message or page complete state of the dialog page.
-         * 
+         *
          * @param e
          */
         public void propertyChange( PropertyChangeEvent e ) {

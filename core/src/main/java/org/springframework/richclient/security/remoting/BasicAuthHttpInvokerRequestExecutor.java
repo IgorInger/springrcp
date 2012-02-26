@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2002-2005 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -49,13 +49,13 @@ import org.springframework.security.Authentication;
  * that I erred on the side of "ease of use".  Also, the current implementation
  * does nothing more than store a reference to the new token, so receiving two
  * notifications isn't a problem.
- * 
+ *
  * @author Larry Streepy
  * @see org.springframework.richclient.security.remoting.BasicAuthHttpInvokerProxyFactoryBean
- * 
+ *
  */
 public class BasicAuthHttpInvokerRequestExecutor extends SimpleHttpInvokerRequestExecutor implements
-        AuthenticationAware {
+    AuthenticationAware {
 
     private Authentication authentication;
 
@@ -87,10 +87,10 @@ public class BasicAuthHttpInvokerRequestExecutor extends SimpleHttpInvokerReques
     /**
      * Provided so subclasses can perform additional configuration if required (eg set
      * additional request headers for non-security related information etc).
-     * 
+     *
      * @param con the HTTP connection to prepare
      * @param contentLength the length of the content to send
-     * 
+     *
      * @throws IOException if thrown by HttpURLConnection methods
      */
     protected void doPrepareConnection(HttpURLConnection con, int contentLength) throws IOException {
@@ -108,10 +108,10 @@ public class BasicAuthHttpInvokerRequestExecutor extends SimpleHttpInvokerReques
      * The previously saved authentication token is used to obtain the principal and
      * credentials. If the saved token is null, then the "Authorization" header will not
      * be added to the request.
-     * 
+     *
      * @param con the HTTP connection to prepare
      * @param contentLength the length of the content to send
-     * 
+     *
      * @throws IOException if thrown by HttpURLConnection methods
      */
     protected void prepareConnection(HttpURLConnection con, int contentLength) throws IOException {

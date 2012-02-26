@@ -7,17 +7,14 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 @SuppressWarnings("unchecked")
-public class L2fProdSupport
-{
+public class L2fProdSupport {
 
-    public static Property[] makePropertyArray(Properties properties)
-    {
+    public static Property[] makePropertyArray(Properties properties) {
         Property[] propertiesArray = new Property[properties.size()];
         Enumeration propertyEnum = properties.propertyNames();
         int i = 0;
 
-        while (propertyEnum.hasMoreElements())
-        {
+        while (propertyEnum.hasMoreElements()) {
             String name = (String) propertyEnum.nextElement();
             String value = properties.get(name).toString();
             propertiesArray[i++] = makePropertyInCategory(name, value);
@@ -25,20 +22,17 @@ public class L2fProdSupport
         return propertiesArray;
     }
 
-    private static String getPropertyCategory(String name)
-    {
+    private static String getPropertyCategory(String name) {
         int pos = name.indexOf('.');
         return (pos == -1) ? name : name.substring(0, pos);
     }
 
-    private static Property makePropertyInCategory(String name, String value)
-    {
+    private static Property makePropertyInCategory(String name, String value) {
         String category = getPropertyCategory(name);
         return makeProperty(category, name, value);
     }
 
-    public static Property makeProperty(String category, String name, String value)
-    {
+    public static Property makeProperty(String category, String name, String value) {
         DefaultProperty prop;
         prop = new DefaultProperty();
         prop.setCategory(category);

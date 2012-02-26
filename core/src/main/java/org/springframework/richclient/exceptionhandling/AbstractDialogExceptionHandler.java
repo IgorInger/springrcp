@@ -14,7 +14,7 @@ import javax.swing.*;
  * @since 0.3
  */
 public abstract class AbstractDialogExceptionHandler extends AbstractLoggingExceptionHandler
-        implements InitializingBean {
+    implements InitializingBean {
 
     private static final String DIALOG_EXCEPTION_HANDLER_KEY = "dialogExceptionHandler";
 
@@ -48,7 +48,7 @@ public abstract class AbstractDialogExceptionHandler extends AbstractLoggingExce
     public void afterPropertiesSet() {
         if (messageSourceAccessor == null) {
             messageSourceAccessor = (MessageSourceAccessor)
-                    ApplicationServicesLocator.services().getService(MessageSourceAccessor.class);
+                                    ApplicationServicesLocator.services().getService(MessageSourceAccessor.class);
         }
     }
 
@@ -57,30 +57,33 @@ public abstract class AbstractDialogExceptionHandler extends AbstractLoggingExce
         Object[] options;
         // TODO implement ability to deal with mnemonics (for example "&Shutdown" in messages.properties)
         switch (shutdownPolicy) {
-            case NONE:
-                options = new String[]{
-                        messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".none.ok")};
-                break;
-            case ASK:
-                options = new String[]{
-                        messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".ask.shutdown"),
-                        messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".ask.continue")};
-                break;
-            case OBLIGATE:
-                options = new String[]{
-                        messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".obligate.shutdown")};
-                break;
-            default:
-                // Can not occur and if it does it will crash the event thread
-                throw new IllegalStateException("Unrecognized shutdownPolicy: " + shutdownPolicy);
+        case NONE:
+            options = new String[] {
+                messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".none.ok")
+            };
+            break;
+        case ASK:
+            options = new String[] {
+                messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".ask.shutdown"),
+                messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".ask.continue")
+            };
+            break;
+        case OBLIGATE:
+            options = new String[] {
+                messageSourceAccessor.getMessage(DIALOG_EXCEPTION_HANDLER_KEY + ".obligate.shutdown")
+            };
+            break;
+        default:
+            // Can not occur and if it does it will crash the event thread
+            throw new IllegalStateException("Unrecognized shutdownPolicy: " + shutdownPolicy);
         }
         int result = JOptionPane.showOptionDialog(
-                resolveParentFrame(),
-                createExceptionContent(throwable),
-                resolveExceptionCaption(throwable),
-                JOptionPane.DEFAULT_OPTION,
-                resolveMessageType(), null,
-                options, options[0]);
+                         resolveParentFrame(),
+                         createExceptionContent(throwable),
+                         resolveExceptionCaption(throwable),
+                         JOptionPane.DEFAULT_OPTION,
+                         resolveMessageType(), null,
+                         options, options[0]);
         if ((shutdownPolicy == ShutdownPolicy.ASK && result == 0)
                 || shutdownPolicy == ShutdownPolicy.OBLIGATE) {
             logger.info("Shutting down due to uncaught exception.");
@@ -106,16 +109,16 @@ public abstract class AbstractDialogExceptionHandler extends AbstractLoggingExce
 
     private int resolveMessageType() {
         switch (logLevel) {
-            case TRACE:
-            case DEBUG:
-            case INFO:
-                return JOptionPane.INFORMATION_MESSAGE;
-            case WARN:
-                return JOptionPane.WARNING_MESSAGE;
-            case ERROR:
-            case FATAL:
-            default:
-                return JOptionPane.ERROR_MESSAGE;
+        case TRACE:
+        case DEBUG:
+        case INFO:
+            return JOptionPane.INFORMATION_MESSAGE;
+        case WARN:
+            return JOptionPane.WARNING_MESSAGE;
+        case ERROR:
+        case FATAL:
+        default:
+            return JOptionPane.ERROR_MESSAGE;
         }
     }
 

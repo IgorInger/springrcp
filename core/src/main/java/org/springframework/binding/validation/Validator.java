@@ -21,11 +21,11 @@ package org.springframework.binding.validation;
  * @author Oliver Hutchison
  */
 public interface Validator {
-	/**
-	 * Validates the provided object.
-	 *
-	 * @param object the object to validate
-	 * @return the results on the validation
-	 */
-	ValidationResults validate(Object object);
+    /**
+     * Validates the provided object.
+     *
+     * @param object the object to validate
+     * @return the results on the validation
+     */
+    ValidationResults validate(Object object);
 }

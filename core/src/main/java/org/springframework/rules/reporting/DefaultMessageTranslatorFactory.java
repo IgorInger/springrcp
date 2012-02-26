@@ -24,27 +24,27 @@ import org.springframework.util.Assert;
 
 /**
  * @author Mathias Broekelmann
- * 
+ *
  */
 public class DefaultMessageTranslatorFactory implements
-		MessageTranslatorFactory, MessageSourceAware, InitializingBean {
+    MessageTranslatorFactory, MessageSourceAware, InitializingBean {
 
-	private MessageSource messageSource;
+    private MessageSource messageSource;
 
-	public MessageTranslator createTranslator(ObjectNameResolver resolver) {
-		return createTranslator(resolver, Locale.getDefault());
-	}
+    public MessageTranslator createTranslator(ObjectNameResolver resolver) {
+        return createTranslator(resolver, Locale.getDefault());
+    }
 
-	public MessageTranslator createTranslator(ObjectNameResolver resolver,
-			Locale locale) {
-		return new DefaultMessageTranslator(messageSource, resolver, locale);
-	}
+    public MessageTranslator createTranslator(ObjectNameResolver resolver,
+            Locale locale) {
+        return new DefaultMessageTranslator(messageSource, resolver, locale);
+    }
 
-	public void setMessageSource(MessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
-	public void afterPropertiesSet() throws Exception {
-		Assert.notNull(messageSource, "messageSource has not been set");
-	}
+    public void afterPropertiesSet() throws Exception {
+        Assert.notNull(messageSource, "messageSource has not been set");
+    }
 }

@@ -24,7 +24,7 @@ import javax.swing.*;
 
 /**
  * supports converting {@link EventList}s to {@link ListModel}
- * 
+ *
  * @author Mathias Broekelmann
  *
  */

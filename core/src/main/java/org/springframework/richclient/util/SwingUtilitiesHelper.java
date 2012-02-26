@@ -12,14 +12,10 @@ public class SwingUtilitiesHelper {
      * SwingUtilities.invokeLater(...).
      * @param runnable The runnable to be executed on the EDT
      */
-    public static void executeWithEDTCheck(Runnable runnable)
-    {
-        if(SwingUtilities.isEventDispatchThread())
-        {
+    public static void executeWithEDTCheck(Runnable runnable) {
+        if(SwingUtilities.isEventDispatchThread()) {
             runnable.run();
-        }
-        else
-        {
+        } else {
             SwingUtilities.invokeLater(runnable);
         }
     }

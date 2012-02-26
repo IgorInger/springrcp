@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -22,7 +22,7 @@ import org.springframework.richclient.core.UIConstants;
 
 /**
  * Utility functions to assist using the horridly complex Grid bag layout.
- * 
+ *
  * @author Keith Donald
  */
 public class GridBagCellConstraints {
@@ -69,23 +69,23 @@ public class GridBagCellConstraints {
         switch (result.fill) {
         case GridBagConstraints.NONE: {
         }
-            break;
+        break;
         case GridBagConstraints.BOTH: {
             result.weightx = result.weighty = 1.0;
         }
-            break;
+        break;
         case GridBagConstraints.VERTICAL: {
             result.weighty = 1.0;
         }
-            break;
+        break;
         case GridBagConstraints.HORIZONTAL: {
             result.weightx = 1.0;
         }
-            break;
+        break;
         default: {
             result.fill = GridBagConstraints.NONE;
         }
-            break;
+        break;
         }
         return result;
     }

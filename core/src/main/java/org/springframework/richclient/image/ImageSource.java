@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,7 +27,7 @@ import java.awt.Image;
  * Image source implementations are responsible for resolving the underlying
  * image resource and loading it into memory. They may also cache image
  * resources.
- * 
+ *
  * @author Keith Donald
  */
 public interface ImageSource {
@@ -40,7 +40,7 @@ public interface ImageSource {
      * If the load is successful, the image resource is returned. If the load
      * fails, a broken image indicator is returned if it is set for this source.
      * If not set, an exception is thrown.
-     * 
+     *
      * @param key
      *            The image key
      * @return The image.
@@ -54,7 +54,7 @@ public interface ImageSource {
      * Returns the image resource indexed by the specified key. A resource is a
      * lightweight pointer to the image in the classpath, filesystem, or
      * network, and not the actual loaded image itself.
-     * 
+     *
      * @param key
      *            The image key.
      * @return The image resource.

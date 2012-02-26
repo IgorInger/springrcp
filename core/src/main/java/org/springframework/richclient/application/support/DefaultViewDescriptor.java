@@ -36,11 +36,11 @@ import org.springframework.util.Assert;
 
 /**
  * Provides a standard implementation of {@link ViewDescriptor}.
- * 
+ *
  * @author Keith Donald
  */
 public class DefaultViewDescriptor extends LabeledObjectSupport implements ViewDescriptor, BeanNameAware,
-        InitializingBean {
+    InitializingBean {
     private String id;
 
     private Class<? extends View> viewClass;
@@ -97,7 +97,7 @@ public class DefaultViewDescriptor extends LabeledObjectSupport implements ViewD
         Assert.state(viewClass != null, "View class to instantiate is not set");
         Object o = BeanUtils.instantiateClass(viewClass);
         Assert.isTrue((o instanceof View), "View class '" + viewClass
-                + "' was instantiated, but instance is not a View!");
+                      + "' was instantiated, but instance is not a View!");
         View view = (View) o;
         view.setDescriptor(this);
         if (viewProperties != null) {

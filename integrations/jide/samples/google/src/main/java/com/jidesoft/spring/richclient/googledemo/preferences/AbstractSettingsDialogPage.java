@@ -1,12 +1,12 @@
 /*
  * Copyright 2005 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -35,54 +35,54 @@ import com.jidesoft.swing.StyledLabel;
 
 /**
  * Abstract super class containing common implementation
- * code for dialogs internal to multipage dialog from JIDE. 
- * 
+ * code for dialogs internal to multipage dialog from JIDE.
+ *
  * @author Jonny Wray
  *
  */
 public abstract class AbstractSettingsDialogPage extends AbstractDialogPage {
-	
-	protected abstract String getFormComponentLabel();
-	protected abstract JComponent getFormComponentControl();
-	protected abstract void applyChanges();
-	
-	protected String getMessage(String key){
-		MessageSource messageSource = (MessageSource)ApplicationServicesLocator.services().getService(MessageSource.class);
-		return messageSource.getMessage(key, new Object[]{}, Locale.getDefault());
-	}
-	
-	public void lazyInitialize() {
-		setLayout(new BorderLayout());
-		add(getTitleComponent(), BorderLayout.NORTH);
-		add(getFormComponent(), BorderLayout.CENTER);
-	}
-	
 
-	private JComponent getTitleComponent(){
-		JPanel titlePanel = new JPanel();
-		titlePanel.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createEmptyBorder( 10, 10, 0, 10),
-				new PartialEtchedBorder(EtchedBorder.LOWERED, PartialEtchedBorder.SOUTH)));
-		titlePanel.setLayout(new BorderLayout());
-		StyledLabel label = new StyledLabel(getTitle());
-		label.setStyleRanges(new StyleRange[]{new StyleRange(Font.BOLD, Color.BLACK)});
-		titlePanel.add(label, BorderLayout.WEST);
-		return titlePanel;
-	}
-	
+    protected abstract String getFormComponentLabel();
+    protected abstract JComponent getFormComponentControl();
+    protected abstract void applyChanges();
 
-	private JComponent getFormComponent(){
-		JPanel formPanel = new JPanel();
-		formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		formPanel.setLayout(new BorderLayout());
-		JPanel title = new JPanel();
-		title.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
-		title.setLayout(new BorderLayout());
-		StyledLabel titleLabel = new StyledLabel(getFormComponentLabel());
-		titleLabel.setStyleRanges(new StyleRange[]{new StyleRange(Font.PLAIN, Color.BLACK)});
-		title.add(titleLabel, BorderLayout.WEST);
-		formPanel.add(title, BorderLayout.NORTH);
-    	formPanel.add(getFormComponentControl(), BorderLayout.CENTER);
-    	return formPanel;
-	}
+    protected String getMessage(String key) {
+        MessageSource messageSource = (MessageSource)ApplicationServicesLocator.services().getService(MessageSource.class);
+        return messageSource.getMessage(key, new Object[] {}, Locale.getDefault());
+    }
+
+    public void lazyInitialize() {
+        setLayout(new BorderLayout());
+        add(getTitleComponent(), BorderLayout.NORTH);
+        add(getFormComponent(), BorderLayout.CENTER);
+    }
+
+
+    private JComponent getTitleComponent() {
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBorder(BorderFactory.createCompoundBorder(
+                                 BorderFactory.createEmptyBorder( 10, 10, 0, 10),
+                                 new PartialEtchedBorder(EtchedBorder.LOWERED, PartialEtchedBorder.SOUTH)));
+        titlePanel.setLayout(new BorderLayout());
+        StyledLabel label = new StyledLabel(getTitle());
+        label.setStyleRanges(new StyleRange[] {new StyleRange(Font.BOLD, Color.BLACK)});
+        titlePanel.add(label, BorderLayout.WEST);
+        return titlePanel;
+    }
+
+
+    private JComponent getFormComponent() {
+        JPanel formPanel = new JPanel();
+        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        formPanel.setLayout(new BorderLayout());
+        JPanel title = new JPanel();
+        title.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        title.setLayout(new BorderLayout());
+        StyledLabel titleLabel = new StyledLabel(getFormComponentLabel());
+        titleLabel.setStyleRanges(new StyleRange[] {new StyleRange(Font.PLAIN, Color.BLACK)});
+        title.add(titleLabel, BorderLayout.WEST);
+        formPanel.add(title, BorderLayout.NORTH);
+        formPanel.add(getFormComponentControl(), BorderLayout.CENTER);
+        return formPanel;
+    }
 }

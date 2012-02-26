@@ -24,7 +24,7 @@ import org.springframework.richclient.application.ApplicationPage;
 
 /**
  * Abstract base testcase for {@link ApplicationPage} implementations.
- * 
+ *
  * @author Peter De Bruycker
  */
 public abstract class AbstractApplicationPageTestCase extends TestCase {
@@ -87,15 +87,15 @@ public abstract class AbstractApplicationPageTestCase extends TestCase {
         assertTrue(view.isSetInputCalled());
         assertEquals(input, view.getInput());
     }
-    
+
     public void testShowView() {
         assertSame(testView1, applicationPage.showView("testView1"));
         assertSame(testView1, applicationPage.getActiveComponent());
-        
+
         assertSame(testView2, applicationPage.showView("testView2"));
         assertSame(testView2, applicationPage.getActiveComponent());
     }
-    
+
     public void testShowViewWithoutInput() {
         applicationPage.showView("testView1");
 
@@ -143,7 +143,7 @@ public abstract class AbstractApplicationPageTestCase extends TestCase {
         public Object getInput() {
             return input;
         }
-        
+
         public boolean isSetInputCalled() {
             return setInputCalled;
         }

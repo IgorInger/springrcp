@@ -21,9 +21,9 @@ import javax.swing.event.ListDataListener;
 import junit.framework.Assert;
 
 /**
- * Implementation of {@link ListDataListener} that eases testing of 
+ * Implementation of {@link ListDataListener} that eases testing of
  * Swing's list related classes.
- * 
+ *
  * @author Oliver Hutchison
  */
 public class TestListDataListener implements ListDataListener {

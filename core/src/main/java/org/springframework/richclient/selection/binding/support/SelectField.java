@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2008 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -37,7 +37,7 @@ import org.springframework.richclient.factory.AbstractControlFactory;
  * The renderer component shows the current value, the select button opens the selection dialog, and the clear button
  * sets the value to <code>null</code>.
  * </p>
- * 
+ *
  * @author Peter De Bruycker
  */
 public abstract class SelectField extends AbstractControlFactory implements PropertyChangePublisher {
@@ -62,7 +62,7 @@ public abstract class SelectField extends AbstractControlFactory implements Prop
 
         // configure commands
         CommandConfigurer configurer = (CommandConfigurer) ApplicationServicesLocator.services().getService(
-                CommandConfigurer.class);
+                                           CommandConfigurer.class);
         configurer.configure(selectCommand);
         configurer.configure(clearCommand);
 
@@ -80,7 +80,7 @@ public abstract class SelectField extends AbstractControlFactory implements Prop
 
     /**
      * Create the component that will do the rendering. Cannot return <code>null</code>.
-     * 
+     *
      * @return the renderer component
      */
     protected abstract JComponent createRenderer();
@@ -122,7 +122,7 @@ public abstract class SelectField extends AbstractControlFactory implements Prop
 
     /**
      * Render the given value. Warning: the value can be <code>null</code>.
-     * 
+     *
      * @param value
      *            the value
      */
@@ -146,7 +146,7 @@ public abstract class SelectField extends AbstractControlFactory implements Prop
 
     /**
      * Returns whether the property is nullable. If set to true, the "clear" button is shown.
-     * 
+     *
      * @return whether the property is nullable
      */
     public boolean isNullable() {
@@ -155,7 +155,7 @@ public abstract class SelectField extends AbstractControlFactory implements Prop
 
     /**
      * Sets whether the clear button is shown
-     * 
+     *
      * @param nullable
      *            whether the clear button is shown
      */

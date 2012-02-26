@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -25,7 +25,7 @@ import org.springframework.richclient.core.Severity;
 
 /**
  * Tests for @link DefaultValidationResultsModel
- * 
+ *
  * @author  Oliver Hutchison
  */
 public class DefaultValidationResultsModelTests extends TestCase {
@@ -38,7 +38,7 @@ public class DefaultValidationResultsModelTests extends TestCase {
     private TestPropertyChangeListener errorsListener;
 
     private TestValidationListener listener;
-    
+
     private TestValidationListener field1Listener;
 
     private TestValidationListener nullListener;
@@ -98,16 +98,16 @@ public class DefaultValidationResultsModelTests extends TestCase {
         assertEquals(Boolean.TRUE, errorsListener.lastEvent().getOldValue());
         assertEquals(Boolean.FALSE, errorsListener.lastEvent().getNewValue());
     }
-    
+
     public void testEventsHaveCorectSource() {
         vrm.updateValidationResults(getResults("field1", Severity.ERROR));
         assertEquals(vrm, errorsListener.lastEvent().getSource());
         assertEquals(vrm, listener.lastResults());
-        
+
         ValidationResultsModel delegateFor = new DefaultValidationResultsModel();
         vrm = new DefaultValidationResultsModel(delegateFor);
         vrm.addValidationListener(listener);
-        vrm.addPropertyChangeListener(ValidationResultsModel.HAS_ERRORS_PROPERTY, errorsListener);        
+        vrm.addPropertyChangeListener(ValidationResultsModel.HAS_ERRORS_PROPERTY, errorsListener);
         vrm.updateValidationResults(getResults("field1", Severity.ERROR));
         assertEquals(delegateFor, errorsListener.lastEvent().getSource());
         assertEquals(delegateFor, listener.lastResults());
@@ -121,98 +121,98 @@ public class DefaultValidationResultsModelTests extends TestCase {
         assertEquals(vrm, listener.lastResults());
         assertEquals(vrm, field1Listener.lastResults());
         assertEquals(null, nullListener.lastResults());
-        
+
         vrm.updateValidationResults(getResults("field1", Severity.INFO, ValidationMessage.GLOBAL_PROPERTY, Severity.ERROR));
         assertEquals(2, listener.eventCount());
         assertEquals(2, field1Listener.eventCount());
         assertEquals(1, nullListener.eventCount());
         assertEquals(vrm, nullListener.lastResults());
-        
+
         vrm.clearAllValidationResults();
         assertEquals(3, listener.eventCount());
         assertEquals(3, field1Listener.eventCount());
         assertEquals(2, nullListener.eventCount());
-        
+
         vrm.clearAllValidationResults();
         assertEquals(3, listener.eventCount());
         assertEquals(3, field1Listener.eventCount());
         assertEquals(2, nullListener.eventCount());
-        
+
         vrm.updateValidationResults(getResults(ValidationMessage.GLOBAL_PROPERTY, Severity.INFO));
         assertEquals(4, listener.eventCount());
         assertEquals(3, field1Listener.eventCount());
         assertEquals(3, nullListener.eventCount());
     }
-    
+
     /**
      * Simply check if {@link DefaultValidationResultsModel} counts its messages correctly.
      */
     public void testMessageCount() {
-    	DefaultValidationResultsModel resultsModel = new DefaultValidationResultsModel();
-    	resultsModel.addMessage(new DefaultValidationMessage("property1", Severity.ERROR, "message1"));
-    	resultsModel.addMessage(new DefaultValidationMessage("property1", Severity.INFO, "message2"));
-    	resultsModel.addMessage(new DefaultValidationMessage("property2", Severity.ERROR, "message3"));
-    	assertEquals("Number of messages should be 3", 3, resultsModel.getMessageCount());
-    	assertEquals("Number of messages registered for property1 should be 2", 2, resultsModel.getMessageCount("property1"));
-    	assertEquals("Number of messages flagged as INFO should be 1", 1, resultsModel.getMessageCount(Severity.INFO));
+        DefaultValidationResultsModel resultsModel = new DefaultValidationResultsModel();
+        resultsModel.addMessage(new DefaultValidationMessage("property1", Severity.ERROR, "message1"));
+        resultsModel.addMessage(new DefaultValidationMessage("property1", Severity.INFO, "message2"));
+        resultsModel.addMessage(new DefaultValidationMessage("property2", Severity.ERROR, "message3"));
+        assertEquals("Number of messages should be 3", 3, resultsModel.getMessageCount());
+        assertEquals("Number of messages registered for property1 should be 2", 2, resultsModel.getMessageCount("property1"));
+        assertEquals("Number of messages flagged as INFO should be 1", 1, resultsModel.getMessageCount(Severity.INFO));
     }
 
     /**
      * Check if adding a child triggers the parent to fire appropriate events.
      */
     public void testAddChildEvents() {
-    	DefaultValidationResultsModel childModel = new DefaultValidationResultsModel();
-    	
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.ERROR, "childErrorMessage1"));
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.WARNING, "childWarningMessage1"));
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.INFO, "childInfoMessage1"));
-    	vrm.add(childModel);
-    	assertEquals("ParentModel adds child with Error.", 1, listener.eventCount());
-    	assertEquals("ChildModel has ErrorMessage.", 1, errorsListener.eventCount());
-    	assertEquals("ChildModel has WarningMessage.", 1, warnListener.eventCount());
-    	assertEquals("ChildModel has InfoMessage.", 1, infoListener.eventCount());
-    	assertEquals("ChildModel has ErrorMessage.", Boolean.TRUE, errorsListener.lastEvent().getNewValue());
-    	assertEquals("ChildModel has WarningMessage.", Boolean.TRUE, warnListener.lastEvent().getNewValue());
-    	assertEquals("ChildModel has InfoMessage.", Boolean.TRUE, infoListener.lastEvent().getNewValue());
+        DefaultValidationResultsModel childModel = new DefaultValidationResultsModel();
+
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.ERROR, "childErrorMessage1"));
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.WARNING, "childWarningMessage1"));
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.INFO, "childInfoMessage1"));
+        vrm.add(childModel);
+        assertEquals("ParentModel adds child with Error.", 1, listener.eventCount());
+        assertEquals("ChildModel has ErrorMessage.", 1, errorsListener.eventCount());
+        assertEquals("ChildModel has WarningMessage.", 1, warnListener.eventCount());
+        assertEquals("ChildModel has InfoMessage.", 1, infoListener.eventCount());
+        assertEquals("ChildModel has ErrorMessage.", Boolean.TRUE, errorsListener.lastEvent().getNewValue());
+        assertEquals("ChildModel has WarningMessage.", Boolean.TRUE, warnListener.lastEvent().getNewValue());
+        assertEquals("ChildModel has InfoMessage.", Boolean.TRUE, infoListener.lastEvent().getNewValue());
     }
-    	
+
     /**
      * Check if adding a child triggers the parent to fire appropriate events.
      */
     public void testChildEvents() {
-    	DefaultValidationResultsModel childModel = new DefaultValidationResultsModel();
-    	
-    	vrm.add(childModel);
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.ERROR, "childErrorMessage1"));
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.WARNING, "childWarningMessage1"));
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.INFO, "childInfoMessage1"));
-    	assertEquals("Child added errorMessage, warningMessage and InfoMessage.", 3, listener.eventCount());
-    	assertEquals("ChildModel added ErrorMessage.", 1, errorsListener.eventCount());
-    	assertEquals("ChildModel added WarningMessage.", 1, warnListener.eventCount());
-    	assertEquals("ChildModel added InfoMessage.", 1, infoListener.eventCount());
-    	assertEquals("ChildModel added ErrorMessage.", Boolean.TRUE, errorsListener.lastEvent().getNewValue());
-    	assertEquals("ChildModel added WarningMessage.", Boolean.TRUE, warnListener.lastEvent().getNewValue());
-    	assertEquals("ChildModel added InfoMessage.", Boolean.TRUE, infoListener.lastEvent().getNewValue());
+        DefaultValidationResultsModel childModel = new DefaultValidationResultsModel();
+
+        vrm.add(childModel);
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.ERROR, "childErrorMessage1"));
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.WARNING, "childWarningMessage1"));
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.INFO, "childInfoMessage1"));
+        assertEquals("Child added errorMessage, warningMessage and InfoMessage.", 3, listener.eventCount());
+        assertEquals("ChildModel added ErrorMessage.", 1, errorsListener.eventCount());
+        assertEquals("ChildModel added WarningMessage.", 1, warnListener.eventCount());
+        assertEquals("ChildModel added InfoMessage.", 1, infoListener.eventCount());
+        assertEquals("ChildModel added ErrorMessage.", Boolean.TRUE, errorsListener.lastEvent().getNewValue());
+        assertEquals("ChildModel added WarningMessage.", Boolean.TRUE, warnListener.lastEvent().getNewValue());
+        assertEquals("ChildModel added InfoMessage.", Boolean.TRUE, infoListener.lastEvent().getNewValue());
     }
-    
+
     /**
      * Check if adding a child triggers the parent to fire appropriate events.
      */
     public void testRemoveChildEvents() {
-    	DefaultValidationResultsModel childModel = new DefaultValidationResultsModel();
-    	
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.ERROR, "childErrorMessage1"));
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.WARNING, "childWarningMessage1"));
-    	childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.INFO, "childInfoMessage1"));
-    	vrm.add(childModel);
-    	vrm.remove(childModel);
-    	assertEquals("Child removed, revalidate.", 2, listener.eventCount());    	
-    	assertEquals("Child removed, revalidate ErrorMessages.", 2, errorsListener.eventCount());
-    	assertEquals("Child removed, revalidate WarningMessages.", 2, warnListener.eventCount());
-    	assertEquals("Child removed, revalidate InfoMessages.", 2, infoListener.eventCount());
-    	assertEquals("Child removed, revalidate ErrorMessages.", Boolean.FALSE, errorsListener.lastEvent().getNewValue());
-    	assertEquals("Child removed, revalidate WarningMessages.", Boolean.FALSE, warnListener.lastEvent().getNewValue());
-    	assertEquals("Child removed, revalidate InfoMessages.", Boolean.FALSE, infoListener.lastEvent().getNewValue());
+        DefaultValidationResultsModel childModel = new DefaultValidationResultsModel();
+
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.ERROR, "childErrorMessage1"));
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.WARNING, "childWarningMessage1"));
+        childModel.addMessage(new DefaultValidationMessage("childProperty1", Severity.INFO, "childInfoMessage1"));
+        vrm.add(childModel);
+        vrm.remove(childModel);
+        assertEquals("Child removed, revalidate.", 2, listener.eventCount());
+        assertEquals("Child removed, revalidate ErrorMessages.", 2, errorsListener.eventCount());
+        assertEquals("Child removed, revalidate WarningMessages.", 2, warnListener.eventCount());
+        assertEquals("Child removed, revalidate InfoMessages.", 2, infoListener.eventCount());
+        assertEquals("Child removed, revalidate ErrorMessages.", Boolean.FALSE, errorsListener.lastEvent().getNewValue());
+        assertEquals("Child removed, revalidate WarningMessages.", Boolean.FALSE, warnListener.lastEvent().getNewValue());
+        assertEquals("Child removed, revalidate InfoMessages.", Boolean.FALSE, infoListener.lastEvent().getNewValue());
     }
 
     private ValidationResults getResults(String field, Severity severity) {

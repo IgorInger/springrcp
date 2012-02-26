@@ -75,231 +75,229 @@ import org.springframework.richclient.exceptionhandling.RegisterableExceptionHan
  */
 public abstract class ApplicationLifecycleAdvisor implements InitializingBean {
 
-	/** Application to work with. */
-	private Application application;
+    /** Application to work with. */
+    private Application application;
 
-	/** The applicationWindow. */
-	private ApplicationWindow openingWindow;
+    /** The applicationWindow. */
+    private ApplicationWindow openingWindow;
 
-	/** Initial page to show. */
-	private String startingPageId;
+    /** Initial page to show. */
+    private String startingPageId;
 
     private ApplicationSessionInitializer applicationSessionInitializer;
 
-	/** ExceptionHandler to catch all uncaught exceptions. */
-	private RegisterableExceptionHandler registerableExceptionHandler;
+    /** ExceptionHandler to catch all uncaught exceptions. */
+    private RegisterableExceptionHandler registerableExceptionHandler;
 
-	/**
-	 * This is used to allow the ViewDescriptor to be lazily created when the
-	 * ApplicationWindow is opened. Useful when the ApplicationAdvisor needs to
-	 * do things before ViewDescriptor should be created, such as setting up a
-	 * security context.
-	 *
-	 * @param pageDescriptorId id of the pageDescriptor bean to show on startup.
-	 *
-	 * @see #getStartingPageId()
-	 */
-	public void setStartingPageId(String pageDescriptorId) {
-		this.startingPageId = pageDescriptorId;
-	}
+    /**
+     * This is used to allow the ViewDescriptor to be lazily created when the
+     * ApplicationWindow is opened. Useful when the ApplicationAdvisor needs to
+     * do things before ViewDescriptor should be created, such as setting up a
+     * security context.
+     *
+     * @param pageDescriptorId id of the pageDescriptor bean to show on startup.
+     *
+     * @see #getStartingPageId()
+     */
+    public void setStartingPageId(String pageDescriptorId) {
+        this.startingPageId = pageDescriptorId;
+    }
 
-	/**
-	 * Sets the exception handler which will be registered upon initialization
-	 * to handle uncaught throwables.
-	 *
-	 * By default this is a DefaultRegisterableExceptionHandler, which is
-	 * inferior to a well configured DelegatingExceptionHandler (java 1.5 only).
-	 *
-	 * @param registerableExceptionHandler the exception handler which will
-	 * handle uncaught throwables
-	 */
-	public void setRegisterableExceptionHandler(RegisterableExceptionHandler registerableExceptionHandler) {
-		this.registerableExceptionHandler = registerableExceptionHandler;
-	}
+    /**
+     * Sets the exception handler which will be registered upon initialization
+     * to handle uncaught throwables.
+     *
+     * By default this is a DefaultRegisterableExceptionHandler, which is
+     * inferior to a well configured DelegatingExceptionHandler (java 1.5 only).
+     *
+     * @param registerableExceptionHandler the exception handler which will
+     * handle uncaught throwables
+     */
+    public void setRegisterableExceptionHandler(RegisterableExceptionHandler registerableExceptionHandler) {
+        this.registerableExceptionHandler = registerableExceptionHandler;
+    }
 
-	/**
-	 * After properties are set, register the exceptionHandler.
-	 */
-	public void afterPropertiesSet() throws Exception {
-		getRegisterableExceptionHandler().registerExceptionHandler();
-	}
+    /**
+     * After properties are set, register the exceptionHandler.
+     */
+    public void afterPropertiesSet() throws Exception {
+        getRegisterableExceptionHandler().registerExceptionHandler();
+    }
 
-	/**
-	 * @return the id of the starting Page.
-	 */
-	public String getStartingPageId() {
-		return startingPageId;
-	}
+    /**
+     * @return the id of the starting Page.
+     */
+    public String getStartingPageId() {
+        return startingPageId;
+    }
 
-	/**
-	 * @return Application.
-	 */
-	protected Application getApplication() {
-		return application;
-	}
+    /**
+     * @return Application.
+     */
+    protected Application getApplication() {
+        return application;
+    }
 
-	/**
-	 * @return ApplicationServices.
-	 */
-	protected ApplicationServices getApplicationServices() {
-		return ApplicationServicesLocator.services();
-	}
+    /**
+     * @return ApplicationServices.
+     */
+    protected ApplicationServices getApplicationServices() {
+        return ApplicationServicesLocator.services();
+    }
 
-	/**
-	 * Hook called right after the application has been created.
-	 *
-	 * @param application the application.
-	 */
-	public void onPreInitialize(Application application) {
+    /**
+     * Hook called right after the application has been created.
+     *
+     * @param application the application.
+     */
+    public void onPreInitialize(Application application) {
 
-	}
+    }
 
-	/**
-	 * Hook called right before the applicationWindow is created.
-	 */
-	public void onPreStartup() {
+    /**
+     * Hook called right before the applicationWindow is created.
+     */
+    public void onPreStartup() {
 
-	}
+    }
 
-	/**
-	 * Hook called right after the applicationWindow is created.
-	 */
-	public void onPostStartup() {
+    /**
+     * Hook called right after the applicationWindow is created.
+     */
+    public void onPostStartup() {
 
-	}
+    }
 
-	/**
-	 * Hook called right afther the application is closed.
-	 */
-	public void onShutdown() {
+    /**
+     * Hook called right afther the application is closed.
+     */
+    public void onShutdown() {
 
-	}
+    }
 
-	/**
-	 * @param window the openingWindow.
-	 */
-	public void setOpeningWindow(ApplicationWindow window) {
-		this.openingWindow = window;
-	}
+    /**
+     * @param window the openingWindow.
+     */
+    public void setOpeningWindow(ApplicationWindow window) {
+        this.openingWindow = window;
+    }
 
-	/**
-	 * Hook called right before the application opens a window.
-	 *
-	 * @param configurer
-	 */
-	public void onPreWindowOpen(ApplicationWindowConfigurer configurer) {
-		configurer.setTitle(getApplication().getName());
-		configurer.setImage(getApplication().getImage());
-	}
+    /**
+     * Hook called right before the application opens a window.
+     *
+     * @param configurer
+     */
+    public void onPreWindowOpen(ApplicationWindowConfigurer configurer) {
+        configurer.setTitle(getApplication().getName());
+        configurer.setImage(getApplication().getImage());
+    }
 
-	/**
-	 * @return the openingWindow.
-	 */
-	protected final ApplicationWindow getOpeningWindow() {
-		return openingWindow;
-	}
+    /**
+     * @return the openingWindow.
+     */
+    protected final ApplicationWindow getOpeningWindow() {
+        return openingWindow;
+    }
 
-	/**
-	 * Create a {@link ApplicationWindowCommandManager} for the application.
-	 *
-	 * @return applicationWindowCommandManager.
-	 */
-	public ApplicationWindowCommandManager createWindowCommandManager() {
-		return new ApplicationWindowCommandManager();
-	}
+    /**
+     * Create a {@link ApplicationWindowCommandManager} for the application.
+     *
+     * @return applicationWindowCommandManager.
+     */
+    public ApplicationWindowCommandManager createWindowCommandManager() {
+        return new ApplicationWindowCommandManager();
+    }
 
-	/**
-	 * Create the menuBar for the application.
-	 *
-	 * @return a CommandGroup.
-	 */
-	public CommandGroup getMenuBarCommandGroup() {
-		return new CommandGroup();
-	}
+    /**
+     * Create the menuBar for the application.
+     *
+     * @return a CommandGroup.
+     */
+    public CommandGroup getMenuBarCommandGroup() {
+        return new CommandGroup();
+    }
 
-	/**
-	 * Create the toolBar for the application.
-	 *
-	 * @return a CommandGroup.
-	 */
-	public CommandGroup getToolBarCommandGroup() {
-		return new CommandGroup();
-	}
+    /**
+     * Create the toolBar for the application.
+     *
+     * @return a CommandGroup.
+     */
+    public CommandGroup getToolBarCommandGroup() {
+        return new CommandGroup();
+    }
 
-	/**
-	 * Create the statusBar for the application.
-	 *
-	 * @return a statusBar.
-	 */
-	public StatusBar getStatusBar() {
-		return new DefaultStatusBar();
-	}
+    /**
+     * Create the statusBar for the application.
+     *
+     * @return a statusBar.
+     */
+    public StatusBar getStatusBar() {
+        return new DefaultStatusBar();
+    }
 
-	/**
-	 * Hook called right after commands are initialized. Typically the next step
-	 * after the get*CommandGroup() methods are called.
-	 *
-	 * @param window applicationWindow.
-	 */
-	public void onCommandsCreated(ApplicationWindow window) {
+    /**
+     * Hook called right after commands are initialized. Typically the next step
+     * after the get*CommandGroup() methods are called.
+     *
+     * @param window applicationWindow.
+     */
+    public void onCommandsCreated(ApplicationWindow window) {
 
-	}
+    }
 
-	/**
-	 * Hook called right after the window (JFrame) of the application is
-	 * created.
-	 *
-	 * @param window applicationWindow.
-	 */
-	public void onWindowCreated(ApplicationWindow window) {
+    /**
+     * Hook called right after the window (JFrame) of the application is
+     * created.
+     *
+     * @param window applicationWindow.
+     */
+    public void onWindowCreated(ApplicationWindow window) {
 
-	}
+    }
 
-	/**
-	 * Hook called right after the window (JFrame) of the application is shown
-	 * (setVisible(true)).
-	 *
-	 * @param window applicationWindow.
-	 */
-	public void onWindowOpened(ApplicationWindow window) {
+    /**
+     * Hook called right after the window (JFrame) of the application is shown
+     * (setVisible(true)).
+     *
+     * @param window applicationWindow.
+     */
+    public void onWindowOpened(ApplicationWindow window) {
 
-	}
+    }
 
-	/**
-	 * Check if the ApplicationWindow can close.
-	 *
-	 * @param window the applicationWindow that should be closed.
-	 * @return <code>true</code> if the window may close.
-	 */
-	public boolean onPreWindowClose(ApplicationWindow window) {
-		return true;
-	}
+    /**
+     * Check if the ApplicationWindow can close.
+     *
+     * @param window the applicationWindow that should be closed.
+     * @return <code>true</code> if the window may close.
+     */
+    public boolean onPreWindowClose(ApplicationWindow window) {
+        return true;
+    }
 
-	/**
-	 * @return the ExceptionHandler to be registered as
-	 * uncaughtExceptionHandler.
-	 */
-	public RegisterableExceptionHandler getRegisterableExceptionHandler() {
-		if (registerableExceptionHandler == null) {
-			this.registerableExceptionHandler = new DefaultRegisterableExceptionHandler();
-		}
-		return registerableExceptionHandler;
-	}
+    /**
+     * @return the ExceptionHandler to be registered as
+     * uncaughtExceptionHandler.
+     */
+    public RegisterableExceptionHandler getRegisterableExceptionHandler() {
+        if (registerableExceptionHandler == null) {
+            this.registerableExceptionHandler = new DefaultRegisterableExceptionHandler();
+        }
+        return registerableExceptionHandler;
+    }
 
-	/**
-	 * @param application set the current application.
-	 */
-	public void setApplication(Application application) {
-		this.application = application;
-	}
+    /**
+     * @param application set the current application.
+     */
+    public void setApplication(Application application) {
+        this.application = application;
+    }
 
-    public ApplicationSessionInitializer getApplicationSessionInitializer()
-    {
+    public ApplicationSessionInitializer getApplicationSessionInitializer() {
         return applicationSessionInitializer;
     }
 
-    public void setApplicationSessionInitializer(ApplicationSessionInitializer applicationSessionInitializer)
-    {
+    public void setApplicationSessionInitializer(ApplicationSessionInitializer applicationSessionInitializer) {
         this.applicationSessionInitializer = applicationSessionInitializer;
     }
 }

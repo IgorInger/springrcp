@@ -24,49 +24,48 @@ import org.springframework.richclient.application.ApplicationServicesLocator;
  */
 public class HibernateRulesMessageInterpolator implements MessageInterpolator {
 
-	private MessageSourceAccessor messageSourceAccessor;
+    private MessageSourceAccessor messageSourceAccessor;
 
-	private static Log log = LogFactory.getLog(HibernateRulesMessageInterpolator.class);
+    private static Log log = LogFactory.getLog(HibernateRulesMessageInterpolator.class);
 
-	private String annotationMessage;
+    private String annotationMessage;
 
-	private String interpolateMessage;
+    private String interpolateMessage;
 
-	/**
-	 * Initialize the MessageSourceAccessor by finding it inside the application
-	 * Spring context.
-	 */
-	private void initializeMessageSourceAccessor() {
-		this.messageSourceAccessor = (MessageSourceAccessor) ApplicationServicesLocator.services().getService(
-				MessageSourceAccessor.class);
-	}
+    /**
+     * Initialize the MessageSourceAccessor by finding it inside the application
+     * Spring context.
+     */
+    private void initializeMessageSourceAccessor() {
+        this.messageSourceAccessor = (MessageSourceAccessor) ApplicationServicesLocator.services().getService(
+                                         MessageSourceAccessor.class);
+    }
 
-	/**
-	 * Retrieve the message for the validator.
-	 */
-	public String interpolate(String message, Validator validator, MessageInterpolator defaultInterpolator) {
-		if (annotationMessage != null && annotationMessage.equals(message)) {
-			// short cut
-			return interpolateMessage;
-		}
-		else {
-			message = message.replaceAll("[\\{\\}]", "");
-			String string = null;
-			string = messageSourceAccessor != null ? messageSourceAccessor.getMessage(message, new Object[0], Locale
-					.getDefault()) : null;
-			if (StringUtils.isEmpty(string)) {
-				log.info("Message not found in messageSourceAccessor (it may not exist), "
-						+ "trying Hibernate default messages");
-				return defaultInterpolator.interpolate(message, validator, defaultInterpolator);
-			}
-			return string;
-		}
-	}
+    /**
+     * Retrieve the message for the validator.
+     */
+    public String interpolate(String message, Validator validator, MessageInterpolator defaultInterpolator) {
+        if (annotationMessage != null && annotationMessage.equals(message)) {
+            // short cut
+            return interpolateMessage;
+        } else {
+            message = message.replaceAll("[\\{\\}]", "");
+            String string = null;
+            string = messageSourceAccessor != null ? messageSourceAccessor.getMessage(message, new Object[0], Locale
+                     .getDefault()) : null;
+            if (StringUtils.isEmpty(string)) {
+                log.info("Message not found in messageSourceAccessor (it may not exist), "
+                         + "trying Hibernate default messages");
+                return defaultInterpolator.interpolate(message, validator, defaultInterpolator);
+            }
+            return string;
+        }
+    }
 
-	/**
-	 * Create a new instance of the interpolator.
-	 */
-	public HibernateRulesMessageInterpolator() {
-		initializeMessageSourceAccessor();
-	}
+    /**
+     * Create a new instance of the interpolator.
+     */
+    public HibernateRulesMessageInterpolator() {
+        initializeMessageSourceAccessor();
+    }
 }

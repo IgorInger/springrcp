@@ -22,7 +22,7 @@ import java.beans.PropertyChangeListener;
 
 /**
  * @author Mathias Broekelmann
- * 
+ *
  */
 public abstract class AbstractCommandTests extends TestCase {
 

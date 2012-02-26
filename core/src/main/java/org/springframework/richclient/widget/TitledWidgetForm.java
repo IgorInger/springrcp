@@ -18,49 +18,42 @@ import java.util.Collections;
  * @author Jan Hoskens
  *
  */
-public class TitledWidgetForm extends AbstractTitledWidget
-{
+public class TitledWidgetForm extends AbstractTitledWidget {
 
     private AbstractForm form;
 
     /**
      * Set the inner form that needs decorating.
      */
-    public void setForm(AbstractForm form)
-    {
+    public void setForm(AbstractForm form) {
         this.form = form;
     }
 
     /**
      * Returns the form.
      */
-    public AbstractForm getForm()
-    {
+    public AbstractForm getForm() {
         return form;
     }
 
     @Override
-    public JComponent createWidgetContent()
-    {
+    public JComponent createWidgetContent() {
         newSingleLineResultsReporter(this);
         return getForm().getControl();
     }
 
     @Override
-    public List<? extends AbstractCommand> getCommands()
-    {
+    public List<? extends AbstractCommand> getCommands() {
         return Collections.emptyList();
     }
 
     @Override
-    public ValidationResultsReporter newSingleLineResultsReporter(Messagable messagable)
-    {
+    public ValidationResultsReporter newSingleLineResultsReporter(Messagable messagable) {
         return getForm().newSingleLineResultsReporter(this);
     }
 
     @Override
-    public void onAboutToHide()
-    {
+    public void onAboutToHide() {
         super.onAboutToHide();
         // NOTE in future form should be a widget
         if (form instanceof Widget)
@@ -68,8 +61,7 @@ public class TitledWidgetForm extends AbstractTitledWidget
     }
 
     @Override
-    public void onAboutToShow()
-    {
+    public void onAboutToShow() {
         super.onAboutToShow();
         // NOTE in future form should be a widget
         if (form instanceof Widget)

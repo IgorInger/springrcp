@@ -29,9 +29,9 @@ import org.springframework.richclient.form.binding.Binding;
 import org.springframework.util.Assert;
 
 /**
- * Default base implementation of <code>Binding</code>. Provides helper methods for 
- * access to commonly needed properties. 
- * 
+ * Default base implementation of <code>Binding</code>. Provides helper methods for
+ * access to commonly needed properties.
+ *
  * @author Oliver Hutchison
  */
 public abstract class AbstractBinding extends AbstractControlFactory implements Binding {
@@ -111,7 +111,7 @@ public abstract class AbstractBinding extends AbstractControlFactory implements 
 
     protected ValueModel getValueModel() {
         ValueModel valueModel = (requiredSourceClass == null) ? formModel.getValueModel(formPropertyPath)
-                : formModel.getValueModel(formPropertyPath, requiredSourceClass);
+                                : formModel.getValueModel(formPropertyPath, requiredSourceClass);
         Assert.notNull(valueModel, "Unable to locate value model for property '" + formPropertyPath + "'.");
         return valueModel;
     }
@@ -119,13 +119,12 @@ public abstract class AbstractBinding extends AbstractControlFactory implements 
     protected Object getValue() {
         return getValueModel().getValue();
     }
-    
+
     private class FieldMetadataChangeHandler implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {
             if (FieldMetadata.ENABLED_PROPERTY.equals(evt.getPropertyName())) {
                 enabledChanged();
-            }
-            else if (FieldMetadata.READ_ONLY_PROPERTY.equals(evt.getPropertyName())) {
+            } else if (FieldMetadata.READ_ONLY_PROPERTY.equals(evt.getPropertyName())) {
                 readOnlyChanged();
             }
         }

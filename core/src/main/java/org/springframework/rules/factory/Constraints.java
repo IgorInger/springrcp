@@ -37,7 +37,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * A factory for easing the construction and composition of constraints.
- * 
+ *
  * @author Keith Donald
  */
 public class Constraints extends AlgorithmsAccessor {
@@ -62,7 +62,7 @@ public class Constraints extends AlgorithmsAccessor {
      * <code>BinaryConstraint</code>. The result is a <code>Constraint</code>
      * which will test a single variable argument against the constant
      * parameter.
-     * 
+     *
      * @param constraint the binary constraint to bind to
      * @param parameter the parameter value (constant)
      * @return The constraint
@@ -76,7 +76,7 @@ public class Constraints extends AlgorithmsAccessor {
      * the <code>BinaryConstraint</code>. The result is a
      * <code>Constraint</code> which will test a single variable argument
      * against the constant <code>int</code> parameter.
-     * 
+     *
      * @param constraint the binary constraint to bind to
      * @param parameter the <code>int</code> parameter value (constant)
      * @return The constraint
@@ -90,7 +90,7 @@ public class Constraints extends AlgorithmsAccessor {
      * of the <code>BinaryConstraint</code>. The result is a
      * <code>Constraint</code> which will test a single variable argument
      * against the constant <code>float</code> parameter.
-     * 
+     *
      * @param constraint the binary constraint to bind to
      * @param parameter the <code>float</code> parameter value (constant)
      * @return The constraint
@@ -104,7 +104,7 @@ public class Constraints extends AlgorithmsAccessor {
      * of the <code>BinaryConstraint</code>. The result is a
      * <code>Constraint</code> which will test a single variable argument
      * against the constant <code>double</code> parameter.
-     * 
+     *
      * @param constraint the binary constraint to bind to
      * @param parameter the <code>double</code> parameter value (constant)
      * @return The constraint
@@ -118,7 +118,7 @@ public class Constraints extends AlgorithmsAccessor {
      * argument of the <code>BinaryConstraint</code>. The result is a
      * <code>Constraint</code> which will test a single variable argument
      * against the constant <code>boolean</code> parameter.
-     * 
+     *
      * @param constraint the binary constraint to bind to
      * @param parameter the <code>boolean</code> parameter value (constant)
      * @return The constraint
@@ -131,7 +131,7 @@ public class Constraints extends AlgorithmsAccessor {
      * Attaches a constraint that tests the result returned by evaluating the
      * specified closure. This effectively attaches a constraint on the closure
      * return value.
-     * 
+     *
      * @param closure the closure
      * @param constraint the constraint to test the closure result
      * @return The testing constraint, which on the call to test(o) first
@@ -285,9 +285,9 @@ public class Constraints extends AlgorithmsAccessor {
         return Required.present();
     }
 
-	/**
+    /**
      * Returns a required constraint.
-     * 
+     *
      * @return The required constraint instance.
      */
     public Constraint required() {
@@ -301,7 +301,7 @@ public class Constraints extends AlgorithmsAccessor {
     public Constraint ifTrue(Constraint constraint, Constraint mustAlsoBeTrue, Constraint elseMustAlsoBeTrue) {
         return new IfTrue(constraint, mustAlsoBeTrue, elseMustAlsoBeTrue);
     }
-    
+
     public Constraint ifTrue(Constraint constraint, Constraint mustAlsoBeTrue, String type) {
         return new IfTrue(constraint, mustAlsoBeTrue, type);
     }
@@ -309,108 +309,108 @@ public class Constraints extends AlgorithmsAccessor {
     public Constraint ifTrue(Constraint constraint, Constraint mustAlsoBeTrue, Constraint elseMustAlsoBeTrue, String type) {
         return new IfTrue(constraint, mustAlsoBeTrue, elseMustAlsoBeTrue, type);
     }
-    
-    /**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint) {
-		return new ConditionalPropertyConstraint(ifConstraint, thenConstraint);
-	}
-    
-	/**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint, String type) {
-		return new ConditionalPropertyConstraint(ifConstraint, thenConstraint, type);
-	}
-	
-    /**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint,
-			PropertyConstraint elseConstraint) {
-		return new ConditionalPropertyConstraint(ifConstraint, thenConstraint, elseConstraint);
-	}
-	
-	/**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint,
-			PropertyConstraint elseConstraint, String type) {
-		return new ConditionalPropertyConstraint(ifConstraint, thenConstraint, elseConstraint, type);
-	}
-	
-	/**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints) {
-		return new ConditionalPropertyConstraint(ifConstraint, new CompoundPropertyConstraint(new And(thenConstraints)));
-	}
-	
-	/**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints, String type) {
-		return new ConditionalPropertyConstraint(ifConstraint, new CompoundPropertyConstraint(new And(thenConstraints)), type);
-	}
-    
-    /**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints,
-			PropertyConstraint[] elseConstraints) {
-		return new ConditionalPropertyConstraint(ifConstraint,
-				new CompoundPropertyConstraint(new And(thenConstraints)), new CompoundPropertyConstraint(new And(
-						elseConstraints)));
-	}
-	
-	/**
-	 * Returns a ConditionalPropertyConstraint: one property will trigger the
-	 * validation of another.
-	 * 
-	 * @see ConditionalPropertyConstraint
-	 */
-	public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints,
-			PropertyConstraint[] elseConstraints, String type) {
-		return new ConditionalPropertyConstraint(ifConstraint,
-				new CompoundPropertyConstraint(new And(thenConstraints)), new CompoundPropertyConstraint(new And(
-						elseConstraints)), type);
-	}
 
     /**
-	 * Returns a maxlength constraint.
-	 * 
-	 * @param maxLength The maximum length in characters.
-	 * @return The configured maxlength constraint.
-	 */
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint) {
+        return new ConditionalPropertyConstraint(ifConstraint, thenConstraint);
+    }
+
+    /**
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint, String type) {
+        return new ConditionalPropertyConstraint(ifConstraint, thenConstraint, type);
+    }
+
+    /**
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint,
+                                     PropertyConstraint elseConstraint) {
+        return new ConditionalPropertyConstraint(ifConstraint, thenConstraint, elseConstraint);
+    }
+
+    /**
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint thenConstraint,
+                                     PropertyConstraint elseConstraint, String type) {
+        return new ConditionalPropertyConstraint(ifConstraint, thenConstraint, elseConstraint, type);
+    }
+
+    /**
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints) {
+        return new ConditionalPropertyConstraint(ifConstraint, new CompoundPropertyConstraint(new And(thenConstraints)));
+    }
+
+    /**
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints, String type) {
+        return new ConditionalPropertyConstraint(ifConstraint, new CompoundPropertyConstraint(new And(thenConstraints)), type);
+    }
+
+    /**
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints,
+                                     PropertyConstraint[] elseConstraints) {
+        return new ConditionalPropertyConstraint(ifConstraint,
+                new CompoundPropertyConstraint(new And(thenConstraints)), new CompoundPropertyConstraint(new And(
+                            elseConstraints)));
+    }
+
+    /**
+     * Returns a ConditionalPropertyConstraint: one property will trigger the
+     * validation of another.
+     *
+     * @see ConditionalPropertyConstraint
+     */
+    public PropertyConstraint ifTrue(PropertyConstraint ifConstraint, PropertyConstraint[] thenConstraints,
+                                     PropertyConstraint[] elseConstraints, String type) {
+        return new ConditionalPropertyConstraint(ifConstraint,
+                new CompoundPropertyConstraint(new And(thenConstraints)), new CompoundPropertyConstraint(new And(
+                            elseConstraints)), type);
+    }
+
+    /**
+     * Returns a maxlength constraint.
+     *
+     * @param maxLength The maximum length in characters.
+     * @return The configured maxlength constraint.
+     */
     public Constraint maxLength(int maxLength) {
         return new StringLengthConstraint(maxLength);
     }
 
     /**
      * Returns a minlength constraint.
-     * 
+     *
      * @param minLength The minimum length in characters.
      * @return The configured minlength constraint.
      */
@@ -420,7 +420,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Returns a 'like' constraint.
-     * 
+     *
      * @param encodedLikeString the likeString
      * @return The Like constraint.
      */
@@ -430,7 +430,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Creates a constraint backed by a regular expression.
-     * 
+     *
      * @param regexp The regular expression string.
      * @return The constraint.
      */
@@ -441,7 +441,7 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Creates a constraint backed by a regular expression, with a type for
      * reporting.
-     * 
+     *
      * @param regexp The regular expression string.
      * @return The constraint.
      */
@@ -454,7 +454,7 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Returns a constraint whose test is determined by a boolean method on a
      * target object.
-     * 
+     *
      * @param targetObject The targetObject
      * @param methodName The method name
      * @return The constraint.
@@ -465,7 +465,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Returns a 'in' group (or set) constraint.
-     * 
+     *
      * @param group the group items
      * @return The InGroup constraint
      */
@@ -475,7 +475,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Returns a 'in' group (or set) constraint.
-     * 
+     *
      * @param group the group items
      * @return The InGroup constraint.
      */
@@ -485,7 +485,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Returns a 'in' group (or set) constraint.
-     * 
+     *
      * @param group the group items
      * @return The InGroup constraint.
      */
@@ -495,7 +495,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * AND two constraints.
-     * 
+     *
      * @param constraint1 the first constraint
      * @param constraint2 the second constraint
      * @return The compound AND constraint
@@ -506,7 +506,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Return the conjunction (all constraint) for all constraints.
-     * 
+     *
      * @param constraints the constraints
      * @return The compound AND constraint
      */
@@ -517,7 +517,7 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Returns a new, empty conjunction prototype, capable of composing
      * individual constraints where 'ALL' must test true.
-     * 
+     *
      * @return the UnaryAnd
      */
     public And conjunction() {
@@ -526,7 +526,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * OR two constraints.
-     * 
+     *
      * @param constraint1 the first constraint
      * @param constraint2 the second constraint
      * @return The compound OR constraint
@@ -537,7 +537,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Return the disjunction (any constraint) for all constraints.
-     * 
+     *
      * @param constraints the constraints
      * @return The compound AND constraint
      */
@@ -548,7 +548,7 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Returns a new, empty disjunction prototype, capable of composing
      * individual constraints where 'ANY' must test true.
-     * 
+     *
      * @return the UnaryOr
      */
     public Or disjunction() {
@@ -558,7 +558,7 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Returns a new, empty exclusive disjunction prototype, capable of composing
      * individual constraints where only one must test true.
-     * 
+     *
      * @return the UnaryXOr
      */
     public XOr exclusiveDisjunction() {
@@ -567,7 +567,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Negate the specified constraint.
-     * 
+     *
      * @param constraint The constraint to negate
      * @return The negated constraint.
      */
@@ -580,7 +580,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Attach a value constraint for the provided bean property.
-     * 
+     *
      * @param propertyName the bean property name
      * @param valueConstraint the value constraint
      * @return The bean property expression that tests the constraint
@@ -591,16 +591,16 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Returns a present bean property expression.
-     * 
+     *
      * @return The present constraint instance.
      */
-	public PropertyConstraint present(String propertyName) {
-		return value(propertyName, present());
-	}
+    public PropertyConstraint present(String propertyName) {
+        return value(propertyName, present());
+    }
 
     /**
      * Returns a required bean property expression.
-     * 
+     *
      * @return The required constraint instance.
      */
     public PropertyConstraint required(String property) {
@@ -610,7 +610,7 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Return a 'like' constraint applied as a value constraint to the provided
      * property.
-     * 
+     *
      * @param property The property to constrain
      * @param likeType The like type
      * @param value The like string value to match
@@ -622,7 +622,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Returns a 'in' group (or set) constraint appled to the provided property.
-     * 
+     *
      * @param propertyName the property
      * @param group the group items
      * @return The InGroup constraint.
@@ -633,7 +633,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply an "all" value constraint to the provided bean property.
-     * 
+     *
      * @param propertyName The bean property name
      * @param constraints The constraints that form a all conjunction
      * @return
@@ -644,7 +644,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply an "any" value constraint to the provided bean property.
-     * 
+     *
      * @param propertyName The bean property name
      * @param constraints The constraints that form a all disjunction
      * @return
@@ -655,7 +655,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Negate a bean property expression.
-     * 
+     *
      * @param e the expression to negate
      * @return The negated expression
      */
@@ -669,7 +669,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "equal to" constraint to a bean property.
-     * 
+     *
      * @param propertyName The first property
      * @param propertyValue The constraint value
      * @return The constraint
@@ -680,12 +680,12 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "equal to" constraint to a bean property.
-     * 
+     *
      * @param propertyName The first property
      * @param propertyValue The constraint value
      * @param comparator the comparator to use while comparing the values
      * @return The constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint eq(String propertyName, Object propertyValue, Comparator comparator) {
@@ -694,7 +694,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "greater than" constraint to a bean property.
-     * 
+     *
      * @param propertyName The first property
      * @param propertyValue The constraint value
      * @return The constraint
@@ -705,7 +705,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "greater than equal to" constraint to a bean property.
-     * 
+     *
      * @param propertyName The first property
      * @param propertyValue The constraint value
      * @return The constraint
@@ -716,7 +716,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "less than" constraint to a bean property.
-     * 
+     *
      * @param propertyName The first property
      * @param propertyValue The constraint value
      * @return The constraint
@@ -727,7 +727,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "less than equal to" constraint to a bean property.
-     * 
+     *
      * @param propertyName The first property
      * @param propertyValue The constraint value
      * @return The constraint
@@ -742,12 +742,12 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "equal to" constraint to two bean properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @param comparator the comparator to use while comparing the values
      * @return The constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint eqProperty(String propertyName, String otherPropertyName, Comparator comparator) {
@@ -756,12 +756,12 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "greater than" constraint to two properties
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @param comparator the comparator to use while comparing the values
      * @return The constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint gtProperty(String propertyName, String otherPropertyName, Comparator comparator) {
@@ -770,12 +770,12 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "greater than or equal to" constraint to two properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @param comparator the comparator to use while comparing the values
      * @return The constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint gteProperty(String propertyName, String otherPropertyName, Comparator comparator) {
@@ -784,12 +784,12 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "less than" constraint to two properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @param comparator the comparator to use while comparing the values
      * @return The constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint ltProperty(String propertyName, String otherPropertyName, Comparator comparator) {
@@ -798,12 +798,12 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "less than or equal to" constraint to two properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @param comparator the comparator to use while comparing the values
      * @return The constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint lteProperty(String propertyName, String otherPropertyName, Comparator comparator) {
@@ -812,13 +812,13 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a inclusive "range" constraint to a bean property.
-     * 
+     *
      * @param propertyName the property with the range constraint.
      * @param min the low edge of the range
      * @param max the high edge of the range
      * @param comparator the comparator to use while comparing the values
      * @return The range constraint constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint inRange(String propertyName, Object min, Object max, Comparator comparator) {
@@ -828,13 +828,13 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Apply a inclusive "range" constraint between two other properties to a
      * bean property.
-     * 
+     *
      * @param propertyName the property with the range constraint.
      * @param minPropertyName the low edge of the range
      * @param maxPropertyName the high edge of the range
      * @param comparator the comparator to use while comparing the values
      * @return The range constraint constraint
-     * 
+     *
      * @since 0.3.0
      */
     public PropertyConstraint inRangeProperties(String propertyName, String minPropertyName, String maxPropertyName, Comparator comparator) {
@@ -845,7 +845,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "equal to" constraint to two bean properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @return The constraint
@@ -856,7 +856,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "greater than" constraint to two properties
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @return The constraint
@@ -867,7 +867,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "greater than or equal to" constraint to two properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @return The constraint
@@ -878,7 +878,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "less than" constraint to two properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @return The constraint
@@ -889,7 +889,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a "less than or equal to" constraint to two properties.
-     * 
+     *
      * @param propertyName The first property
      * @param otherPropertyName The other property
      * @return The constraint
@@ -900,7 +900,7 @@ public class Constraints extends AlgorithmsAccessor {
 
     /**
      * Apply a inclusive "range" constraint to a bean property.
-     * 
+     *
      * @param propertyName the property with the range constraint.
      * @param min the low edge of the range
      * @param max the high edge of the range
@@ -913,7 +913,7 @@ public class Constraints extends AlgorithmsAccessor {
     /**
      * Apply a inclusive "range" constraint between two other properties to a
      * bean property.
-     * 
+     *
      * @param propertyName the property with the range constraint.
      * @param minPropertyName the low edge of the range
      * @param maxPropertyName the high edge of the range

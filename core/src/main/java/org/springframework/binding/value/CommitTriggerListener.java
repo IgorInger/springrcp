@@ -24,13 +24,13 @@ package org.springframework.binding.value;
  */
 public interface CommitTriggerListener {
 
-	/**
-	 * Called when a commit event is fired.
-	 */
-	void commit();
+    /**
+     * Called when a commit event is fired.
+     */
+    void commit();
 
-	/**
-	 * Called when a revert event is fired.
-	 */
-	void revert();
+    /**
+     * Called when a revert event is fired.
+     */
+    void revert();
 }

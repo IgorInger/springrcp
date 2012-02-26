@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
 
 /**
  * Very simple {@link ViewDescriptorRegistry} implementation, mostly for testing purposes.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class SimpleViewDescriptorRegistry implements ViewDescriptorRegistry {

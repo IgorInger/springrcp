@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -25,7 +25,7 @@ import org.springframework.richclient.core.Guarded;
  * This class applies a guard to a {@link Guarded} object that enables the
  * guarded object bsaed on the contents of the selection model value. Concrete
  * subclasses must provide an implementation for {@link #shouldEnable(int[])}.
- * 
+ *
  * @author Larry Streepy
  */
 public abstract class AbstractListSelectionGuard implements PropertyChangeListener {
@@ -35,7 +35,7 @@ public abstract class AbstractListSelectionGuard implements PropertyChangeListen
 
     /**
      * Constructor.
-     * 
+     *
      * @param selectionHolder ValueModel holding the list selection (value must
      *        be an array of int (<code>int[]</code).
      * @param guarded Object to guard
@@ -57,7 +57,7 @@ public abstract class AbstractListSelectionGuard implements PropertyChangeListen
 
     /**
      * Get the guarded object.
-     * 
+     *
      * @return guarded object
      */
     public Guarded getGuarded() {
@@ -76,7 +76,7 @@ public abstract class AbstractListSelectionGuard implements PropertyChangeListen
     /**
      * Determine if the guarded object should be enabled based on the contents
      * of the current selection model value.
-     * 
+     *
      * @param selected The array of selected rows
      * @return boolean true if the guarded object should be enabled
      */

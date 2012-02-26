@@ -6,31 +6,26 @@ import org.springframework.binding.form.FormModel;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.MessageSource;
 
-public class PromptTextFieldFormComponentInterceptorFactory implements FormComponentInterceptorFactory, MessageSourceAware
-{
+public class PromptTextFieldFormComponentInterceptorFactory implements FormComponentInterceptorFactory, MessageSourceAware {
     private MessageSource messageSource;
 
     private String promptKey;
 
-    public String getPromptKey()
-    {
+    public String getPromptKey() {
         return promptKey;
     }
 
-    public void setPromptKey(String promptKey)
-    {
+    public void setPromptKey(String promptKey) {
         this.promptKey = promptKey;
     }
 
-    public FormComponentInterceptor getInterceptor(FormModel formModel)
-    {
+    public FormComponentInterceptor getInterceptor(FormModel formModel) {
         PromptTextFieldFormComponentInterceptor interceptor = new PromptTextFieldFormComponentInterceptor(formModel, messageSource);
         interceptor.setPromptKey(getPromptKey());
         return interceptor;
     }
 
-    public void setMessageSource(MessageSource messageSource)
-    {
+    public void setMessageSource(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
 }

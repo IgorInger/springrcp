@@ -135,24 +135,23 @@ public final class LabelInfo {
                 labelText.append(labelDescriptor.charAt(nextCharIndex));
                 i++;
                 i++;
-            }
-            else if (currentChar == '&') {
+            } else if (currentChar == '&') {
                 //we've found a mnemonic indicator, so...
 
                 //confirm that we haven't already found one, ...
                 if (mnemonicChar != '\0') {
                     throw new IllegalArgumentException(
-                            "The label descriptor ["
-                            + labelDescriptor
-                            + "] can only contain one non-escaped ampersand.");
+                        "The label descriptor ["
+                        + labelDescriptor
+                        + "] can only contain one non-escaped ampersand.");
                 }
 
                 //...that it isn't the last character, ...
                 if (nextCharIndex >= labelDescriptor.length()) {
                     throw new IllegalArgumentException(
-                            "The label descriptor ["
-                            + labelDescriptor
-                            + "] cannot have a non-escaped ampersand as its last character.");
+                        "The label descriptor ["
+                        + labelDescriptor
+                        + "] cannot have a non-escaped ampersand as its last character.");
                 }
 
                 //...and that the character that it prefixes is a valid mnemonic character.
@@ -166,8 +165,7 @@ public final class LabelInfo {
                 i++;
                 i++;
 
-            }
-            else {
+            } else {
                 labelText.append(currentChar);
                 i++;
             }
@@ -194,20 +192,20 @@ public final class LabelInfo {
 
         if (index >= labelDescriptor.length()) {
             throw new IllegalArgumentException(
-                    "The label descriptor contains an invalid escape sequence. Backslash "
-                    + "characters (\\) must be followed by either an ampersand (&) or another "
-                    + "backslash.");
+                "The label descriptor contains an invalid escape sequence. Backslash "
+                + "characters (\\) must be followed by either an ampersand (&) or another "
+                + "backslash.");
         }
 
         char escapedChar = labelDescriptor.charAt(index);
 
         if (escapedChar != '&' && escapedChar != '\\') {
             throw new IllegalArgumentException(
-                    "The label descriptor ["
-                    + labelDescriptor
-                    + "] contains an invalid escape sequence. Backslash "
-                    + "characters (\\) must be followed by either an ampersand (&) or another "
-                    + "backslash.");
+                "The label descriptor ["
+                + labelDescriptor
+                + "] contains an invalid escape sequence. Backslash "
+                + "characters (\\) must be followed by either an ampersand (&) or another "
+                + "backslash.");
         }
 
     }
@@ -223,9 +221,9 @@ public final class LabelInfo {
 
         if (mnemonicChar == ' ') {
             throw new IllegalArgumentException(
-                    "The mnemonic character cannot be a space. ["
-                    + labelDescriptor
-                    + "]");
+                "The mnemonic character cannot be a space. ["
+                + labelDescriptor
+                + "]");
         }
 
     }
@@ -436,10 +434,10 @@ public final class LabelInfo {
      */
     public String toString() {
         return new ToStringCreator(this)
-                .append("text", this.text)
-                .append("mnemonic", this.mnemonic)
-                .append("mnemonicIndex", this.mnemonicIndex)
-                .toString();
+               .append("text", this.text)
+               .append("mnemonic", this.mnemonic)
+               .append("mnemonicIndex", this.mnemonicIndex)
+               .toString();
     }
 
 }

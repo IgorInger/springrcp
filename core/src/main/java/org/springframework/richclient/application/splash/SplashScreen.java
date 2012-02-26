@@ -18,7 +18,7 @@ package org.springframework.richclient.application.splash;
 
 /**
  * A <code>SplashScreen</code> is shown to the user during application startup.
- * 
+ *
  * @author Peter De Bruycker
  */
 public interface SplashScreen {
@@ -28,7 +28,7 @@ public interface SplashScreen {
     void splash();
 
     /**
-     * Disposes this <code>SplashScreen</code>, freeing any system resources 
+     * Disposes this <code>SplashScreen</code>, freeing any system resources
      * that it may be using.
      */
     void dispose();

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -30,219 +30,219 @@ import org.springframework.richclient.settings.TransientSettings;
  * @author Peter De Bruycker
  */
 public class WindowMementoTests extends TestCase {
-	private JFrame frame;
+    private JFrame frame;
 
-	private JDialog dialog;
+    private JDialog dialog;
 
-	private TransientSettings settings;
+    private TransientSettings settings;
 
-	protected void setUp() throws Exception {
-		frame = new JFrame("test frame");
-		dialog = new JDialog(frame, "test dialog");
-		settings = new TransientSettings();
-	}
+    protected void setUp() throws Exception {
+        frame = new JFrame("test frame");
+        dialog = new JDialog(frame, "test dialog");
+        settings = new TransientSettings();
+    }
 
-	public void testConstructor() {
-		try {
-			new WindowMemento(null);
-			fail("Should throw IllegalArgumentException");
-		} catch (IllegalArgumentException e) {
-			// test passes
-		}
+    public void testConstructor() {
+        try {
+            new WindowMemento(null);
+            fail("Should throw IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // test passes
+        }
 
-		try {
-			frame.setName(null);
-			new WindowMemento(frame, "");
-			fail("Should throw IllegalArgumentException: window has no name");
-		} catch (Exception e) {
-			// test passes
-		}
+        try {
+            frame.setName(null);
+            new WindowMemento(frame, "");
+            fail("Should throw IllegalArgumentException: window has no name");
+        } catch (Exception e) {
+            // test passes
+        }
 
-		frame.setName("frame0");
+        frame.setName("frame0");
 
-		WindowMemento memento = new WindowMemento(frame);
-		assertEquals(frame, memento.getWindow());
-		assertEquals("frame0", memento.getKey());
-		
-		memento = new WindowMemento(frame, "key");
-		assertEquals(frame, memento.getWindow());
-		assertEquals("key", memento.getKey());
-	}
+        WindowMemento memento = new WindowMemento(frame);
+        assertEquals(frame, memento.getWindow());
+        assertEquals("frame0", memento.getKey());
 
-	public void testSaveLocation() {
-		// frame
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
-		frame.setLocation(100, 99);
-		frameMemento.saveLocation(settings);
+        memento = new WindowMemento(frame, "key");
+        assertEquals(frame, memento.getWindow());
+        assertEquals("key", memento.getKey());
+    }
 
-		assertEquals(100, settings.getInt("frame.x"));
-		assertEquals(99, settings.getInt("frame.y"));
+    public void testSaveLocation() {
+        // frame
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
+        frame.setLocation(100, 99);
+        frameMemento.saveLocation(settings);
 
-		// dialog
-		WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
-		dialog.setLocation(20, 15);
-		dialogMemento.saveLocation(settings);
+        assertEquals(100, settings.getInt("frame.x"));
+        assertEquals(99, settings.getInt("frame.y"));
 
-		assertEquals(20, settings.getInt("dialog.x"));
-		assertEquals(15, settings.getInt("dialog.y"));
-	}
+        // dialog
+        WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
+        dialog.setLocation(20, 15);
+        dialogMemento.saveLocation(settings);
 
-	public void testRestoreLocation() {
-		// frame
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
+        assertEquals(20, settings.getInt("dialog.x"));
+        assertEquals(15, settings.getInt("dialog.y"));
+    }
 
-		frame.setLocation(100, 99);
-		settings.setInt("frame.x", 15);
-		settings.setInt("frame.y", 30);
-		frameMemento.restoreLocation(settings);
+    public void testRestoreLocation() {
+        // frame
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
 
-		assertEquals(15, frame.getX());
-		assertEquals(30, frame.getY());
+        frame.setLocation(100, 99);
+        settings.setInt("frame.x", 15);
+        settings.setInt("frame.y", 30);
+        frameMemento.restoreLocation(settings);
 
-		// dialog
-		WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
+        assertEquals(15, frame.getX());
+        assertEquals(30, frame.getY());
 
-		dialog.setLocation(20, 15);
-		settings.setInt("dialog.x", 100);
-		settings.setInt("dialog.y", 115);
-		dialogMemento.restoreLocation(settings);
+        // dialog
+        WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
 
-		assertEquals(100, dialog.getX());
-		assertEquals(115, dialog.getY());
-	}
+        dialog.setLocation(20, 15);
+        settings.setInt("dialog.x", 100);
+        settings.setInt("dialog.y", 115);
+        dialogMemento.restoreLocation(settings);
 
-	public void testRestoreLocationNotInSettings() {
-		// frame
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
+        assertEquals(100, dialog.getX());
+        assertEquals(115, dialog.getY());
+    }
 
-		frame.setLocation(100, 99);
-		assertFalse(settings.contains("frame.x"));
-		assertFalse(settings.contains("frame.y"));
-		frameMemento.restoreLocation(settings);
+    public void testRestoreLocationNotInSettings() {
+        // frame
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
 
-		assertEquals(100, frame.getX());
-		assertEquals(99, frame.getY());
+        frame.setLocation(100, 99);
+        assertFalse(settings.contains("frame.x"));
+        assertFalse(settings.contains("frame.y"));
+        frameMemento.restoreLocation(settings);
 
-		// dialog
-		WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
+        assertEquals(100, frame.getX());
+        assertEquals(99, frame.getY());
 
-		dialog.setLocation(20, 15);
-		assertFalse(settings.contains("dialog.x"));
-		assertFalse(settings.contains("dialog.y"));
-		dialogMemento.restoreLocation(settings);
+        // dialog
+        WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
 
-		assertEquals(20, dialog.getX());
-		assertEquals(15, dialog.getY());
-	}
+        dialog.setLocation(20, 15);
+        assertFalse(settings.contains("dialog.x"));
+        assertFalse(settings.contains("dialog.y"));
+        dialogMemento.restoreLocation(settings);
 
-	public void testSaveSize() {
-		// frame
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
+        assertEquals(20, dialog.getX());
+        assertEquals(15, dialog.getY());
+    }
 
-		frame.setSize(800, 600);
-		frameMemento.saveSize(settings);
+    public void testSaveSize() {
+        // frame
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
 
-		assertEquals(800, settings.getInt("frame.width"));
-		assertEquals(600, settings.getInt("frame.height"));
+        frame.setSize(800, 600);
+        frameMemento.saveSize(settings);
 
-		// dialog
-		WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
+        assertEquals(800, settings.getInt("frame.width"));
+        assertEquals(600, settings.getInt("frame.height"));
 
-		dialog.setSize(150, 100);
-		dialogMemento.saveSize(settings);
+        // dialog
+        WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
 
-		assertEquals(150, settings.getInt("dialog.width"));
-		assertEquals(100, settings.getInt("dialog.height"));
-	}
+        dialog.setSize(150, 100);
+        dialogMemento.saveSize(settings);
 
-	public void testSaveMaximizedState() {
-		// skip test if platform doesn't support this frame state.
-		if (!Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH))
-			return;
+        assertEquals(150, settings.getInt("dialog.width"));
+        assertEquals(100, settings.getInt("dialog.height"));
+    }
 
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
+    public void testSaveMaximizedState() {
+        // skip test if platform doesn't support this frame state.
+        if (!Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH))
+            return;
 
-		frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-		frameMemento.saveMaximizedState(settings);
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
 
-		assertTrue(settings.getBoolean("frame.maximized"));
+        frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+        frameMemento.saveMaximizedState(settings);
 
-		frame.setExtendedState(Frame.NORMAL);
-		frameMemento.saveMaximizedState(settings);
-		assertFalse(settings.getBoolean("frame.maximized"));
-	}
+        assertTrue(settings.getBoolean("frame.maximized"));
 
-	public void testRestoreMaximizedState() {
-		// skip test if platform doesn't support this frame state.
-		if (!Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH))
-			return;
+        frame.setExtendedState(Frame.NORMAL);
+        frameMemento.saveMaximizedState(settings);
+        assertFalse(settings.getBoolean("frame.maximized"));
+    }
 
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
+    public void testRestoreMaximizedState() {
+        // skip test if platform doesn't support this frame state.
+        if (!Toolkit.getDefaultToolkit().isFrameStateSupported(Frame.MAXIMIZED_BOTH))
+            return;
 
-		frame.setExtendedState(Frame.NORMAL);
-		settings.setBoolean("frame.maximized", true);
-		frameMemento.restoreMaximizedState(settings);
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
 
-		assertEquals(Frame.MAXIMIZED_BOTH, frame.getExtendedState());
+        frame.setExtendedState(Frame.NORMAL);
+        settings.setBoolean("frame.maximized", true);
+        frameMemento.restoreMaximizedState(settings);
 
-		settings.setBoolean("frame.maximized", false);
-		frameMemento.restoreMaximizedState(settings);
-		assertEquals(Frame.NORMAL, frame.getExtendedState());
-	}
+        assertEquals(Frame.MAXIMIZED_BOTH, frame.getExtendedState());
 
-	public void testRestoreSize() {
-		// frame
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
+        settings.setBoolean("frame.maximized", false);
+        frameMemento.restoreMaximizedState(settings);
+        assertEquals(Frame.NORMAL, frame.getExtendedState());
+    }
 
-		frame.setSize(800, 600);
-		settings.setInt("frame.width", 1024);
-		settings.setInt("frame.height", 768);
-		frameMemento.restoreSize(settings);
+    public void testRestoreSize() {
+        // frame
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
 
-		assertEquals(1024, frame.getWidth());
-		assertEquals(768, frame.getHeight());
+        frame.setSize(800, 600);
+        settings.setInt("frame.width", 1024);
+        settings.setInt("frame.height", 768);
+        frameMemento.restoreSize(settings);
 
-		// dialog
-		WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
+        assertEquals(1024, frame.getWidth());
+        assertEquals(768, frame.getHeight());
 
-		dialog.setSize(150, 100);
-		settings.setInt("dialog.width", 200);
-		settings.setInt("dialog.height", 150);
-		dialogMemento.restoreSize(settings);
+        // dialog
+        WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
 
-		assertEquals(200, dialog.getWidth());
-		assertEquals(150, dialog.getHeight());
-	}
+        dialog.setSize(150, 100);
+        settings.setInt("dialog.width", 200);
+        settings.setInt("dialog.height", 150);
+        dialogMemento.restoreSize(settings);
 
-	public void testRestoreSizeNotInSettings() {
-		// frame
-		WindowMemento frameMemento = new WindowMemento(frame, "frame");
+        assertEquals(200, dialog.getWidth());
+        assertEquals(150, dialog.getHeight());
+    }
 
-		frame.setSize(800, 600);
-		assertFalse(settings.contains("frame.width"));
-		assertFalse(settings.contains("frame.height"));
-		frameMemento.restoreSize(settings);
+    public void testRestoreSizeNotInSettings() {
+        // frame
+        WindowMemento frameMemento = new WindowMemento(frame, "frame");
 
-		assertEquals(800, frame.getWidth());
-		assertEquals(600, frame.getHeight());
+        frame.setSize(800, 600);
+        assertFalse(settings.contains("frame.width"));
+        assertFalse(settings.contains("frame.height"));
+        frameMemento.restoreSize(settings);
 
-		// dialog
-		WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
+        assertEquals(800, frame.getWidth());
+        assertEquals(600, frame.getHeight());
 
-		dialog.setSize(150, 100);
-		assertFalse(settings.contains("dialog.width"));
-		assertFalse(settings.contains("dialog.height"));
-		dialogMemento.restoreSize(settings);
+        // dialog
+        WindowMemento dialogMemento = new WindowMemento(dialog, "dialog");
 
-		assertEquals(150, dialog.getWidth());
-		assertEquals(100, dialog.getHeight());
-	}
+        dialog.setSize(150, 100);
+        assertFalse(settings.contains("dialog.width"));
+        assertFalse(settings.contains("dialog.height"));
+        dialogMemento.restoreSize(settings);
 
-	protected Component createComponent() {
-		return null;
-	}
+        assertEquals(150, dialog.getWidth());
+        assertEquals(100, dialog.getHeight());
+    }
 
-	protected String getKey() {
-		return null;
-	}
+    protected Component createComponent() {
+        return null;
+    }
+
+    protected String getKey() {
+        return null;
+    }
 }

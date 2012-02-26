@@ -1,28 +1,23 @@
-public class TestForm extends AbstractForm
-{
-    public TestForm()
-    {
+public class TestForm extends AbstractForm {
+    public TestForm() {
         super(FormModelHelper.createFormModel(new TestObject(), "testForm"));
     }
 
-    protected JComponent createFormControl()
-    {
+    protected JComponent createFormControl() {
         JPanel content = new JPanel();
         content.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         content.setLayout(new FormLayout(
-                new ColumnSpec[]
-                        {
-                                FormFactory.DEFAULT_COLSPEC,
-                                FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-                                FormFactory.DEFAULT_COLSPEC
-                        },
-                new RowSpec[]
-                        {
-                                FormFactory.DEFAULT_ROWSPEC,
-                                FormFactory.LINE_GAP_ROWSPEC,
-                                FormFactory.DEFAULT_ROWSPEC
-                        }
-        ));
+                              new ColumnSpec[] {
+                                  FormFactory.DEFAULT_COLSPEC,
+                                  FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
+                                  FormFactory.DEFAULT_COLSPEC
+                              },
+                              new RowSpec[] {
+                                  FormFactory.DEFAULT_ROWSPEC,
+                                  FormFactory.LINE_GAP_ROWSPEC,
+                                  FormFactory.DEFAULT_ROWSPEC
+                              }
+                          ));
 
         TextComponentBinder binder = new TextComponentBinder();
 

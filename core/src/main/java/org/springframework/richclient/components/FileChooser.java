@@ -9,8 +9,7 @@ import java.awt.event.MouseEvent;
  * A component that shows a filesystem view and in which the user can either choose a file or a directory,
  * depending on the mode set (standard is file).
  */
-public class FileChooser extends JComponent
-{
+public class FileChooser extends JComponent {
     private JTextField nameField;
 
     private JButton openDialogButton;
@@ -19,8 +18,7 @@ public class FileChooser extends JComponent
 
     private FileChooserMode mode = FileChooserMode.FILE;
 
-    public FileChooser()
-    {
+    public FileChooser() {
         nameField = new JTextField();
         /*
            * nameField.addFocusListener(new FocusAdapter() { public void
@@ -40,31 +38,28 @@ public class FileChooser extends JComponent
     /**
      * {@inheritDoc}
      */
-    public void doLayout()
-    {
+    public void doLayout() {
         int width = getWidth();
         int height = getHeight();
 
         Insets insets = getInsets();
         nameField.setBounds(insets.left, insets.bottom, width - 3
-                - openDialogButtonWidth, height);
+                            - openDialogButtonWidth, height);
         openDialogButton.setBounds(width - openDialogButtonWidth + insets.left,
-                insets.bottom, openDialogButtonWidth, height);
+                                   insets.bottom, openDialogButtonWidth, height);
     }
 
     /**
      * {@inheritDoc}
      */
-    public Dimension getMinimumSize()
-    {
+    public Dimension getMinimumSize() {
         return getPreferredSize();
     }
 
     /**
      * {@inheritDoc}
      */
-    public Dimension getPreferredSize()
-    {
+    public Dimension getPreferredSize() {
         Dimension dim = nameField.getPreferredSize();
         dim.width += openDialogButton.getPreferredSize().width;
         Insets insets = getInsets();
@@ -76,16 +71,14 @@ public class FileChooser extends JComponent
     /**
      * @param mode the mode to set
      */
-    public void setMode(FileChooserMode mode)
-    {
+    public void setMode(FileChooserMode mode) {
         this.mode = mode;
     }
 
     /**
      * @return the mode
      */
-    public FileChooserMode getMode()
-    {
+    public FileChooserMode getMode() {
         return mode;
     }
 
@@ -94,28 +87,22 @@ public class FileChooser extends JComponent
      *
      * @param text
      */
-    public void setText(String text)
-    {
+    public void setText(String text) {
         nameField.setText(text);
     }
 
     /**
      * Get the text of the file textfield
      */
-    public String getText()
-    {
+    public String getText() {
         return nameField.getText();
     }
 
-    public void setEditable(boolean editable)
-    {
-        if (editable)
-        {
+    public void setEditable(boolean editable) {
+        if (editable) {
             nameField.setEditable(true);
             openDialogButton.setEnabled(true);
-        }
-        else
-        {
+        } else {
             nameField.setEditable(false);
             openDialogButton.setEnabled(false);
         }
@@ -124,8 +111,7 @@ public class FileChooser extends JComponent
     /**
      * Gets whether the control is editable or not
      */
-    public boolean isEditable()
-    {
+    public boolean isEditable() {
         return nameField.isEditable();
     }
 
@@ -134,8 +120,7 @@ public class FileChooser extends JComponent
      *
      * @param enabled Whether the control is enabled or not
      */
-    public void setEnabled(boolean enabled)
-    {
+    public void setEnabled(boolean enabled) {
         nameField.setEnabled(enabled);
         openDialogButton.setEnabled(enabled);
     }
@@ -143,28 +128,23 @@ public class FileChooser extends JComponent
     /**
      * Gets whether the control is enabled or not
      */
-    public boolean isEnabled()
-    {
+    public boolean isEnabled() {
         return nameField.isEnabled() & openDialogButton.isEnabled();
     }
 
-    private class Handler extends MouseAdapter
-    {
+    private class Handler extends MouseAdapter {
 
         @Override
-        public void mousePressed(MouseEvent ev)
-        {
-            if (isEnabled())
-            {
+        public void mousePressed(MouseEvent ev) {
+            if (isEnabled()) {
                 JFileChooser chooser = new JFileChooser();
-                switch (mode)
-                {
-                    case FILE:
-                        chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                        break;
-                    case FOLDER:
-                        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                        break;
+                switch (mode) {
+                case FILE:
+                    chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                    break;
+                case FOLDER:
+                    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    break;
                 }
                 int result = chooser.showOpenDialog(null);
                 if (result == JFileChooser.CANCEL_OPTION)
@@ -174,8 +154,7 @@ public class FileChooser extends JComponent
         }
     }
 
-    public enum FileChooserMode
-    {
+    public enum FileChooserMode {
         FILE,
         FOLDER
     }

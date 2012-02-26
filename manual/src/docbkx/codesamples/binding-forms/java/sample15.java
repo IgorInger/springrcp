@@ -1,12 +1,9 @@
-public class TestForm extends AbstractForm
-{
-    public TestForm()
-    {
+public class TestForm extends AbstractForm {
+    public TestForm() {
         super(FormModelHelper.createFormModel(new TestObject(), "testForm"));
     }
 
-    protected JComponent createFormControl()
-    {
+    protected JComponent createFormControl() {
         TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
         builder.add("field1");
         builder.row();

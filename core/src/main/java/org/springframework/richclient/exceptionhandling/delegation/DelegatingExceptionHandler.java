@@ -17,7 +17,7 @@ import java.util.List;
  * For example, consider 3 simple delegates for the following classes in this order:
  * NullPointerException (1), RuntimeException (2), IllegalArgumentException (3).
  * A thrown IllegalArgumentException will be handled by the (2) handler. The (3) handler is useless.
- * 
+ *
  * @see ExceptionHandlerDelegate
  * @see SimpleExceptionHandlerDelegate
  * @author Geoffrey De Smet
@@ -26,7 +26,7 @@ import java.util.List;
 public class DelegatingExceptionHandler extends AbstractRegisterableExceptionHandler implements InitializingBean {
 
     protected final transient Log logger = LogFactory.getLog(getClass());
-    
+
     protected List<ExceptionHandlerDelegate> delegateList;
     protected ExceptionPurger exceptionPurger = null;
 
@@ -39,7 +39,7 @@ public class DelegatingExceptionHandler extends AbstractRegisterableExceptionHan
     public void setDelegateList(List<ExceptionHandlerDelegate> delegateList) {
         this.delegateList = delegateList;
     }
-    
+
     /**
      * If set the throwable will first be purged before handling it.
      * @param exceptionPurger

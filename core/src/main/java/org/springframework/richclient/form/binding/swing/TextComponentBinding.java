@@ -29,8 +29,7 @@ import javax.swing.text.JTextComponent;
 /**
  * @author Oliver Hutchison
  */
-public class TextComponentBinding extends AbstractBinding
-{
+public class TextComponentBinding extends AbstractBinding {
 
     private final JTextComponent textComponent;
     private boolean convertEmptyStringToNull;
@@ -38,21 +37,16 @@ public class TextComponentBinding extends AbstractBinding
     private boolean readOnly;
     private boolean selectAllOnFocus;
 
-    public TextComponentBinding(JTextComponent textComponent, FormModel formModel, String formPropertyPath)
-    {
+    public TextComponentBinding(JTextComponent textComponent, FormModel formModel, String formPropertyPath) {
         super(formModel, formPropertyPath, String.class);
         this.textComponent = textComponent;
     }
 
-    protected JComponent doBindControl()
-    {
+    protected JComponent doBindControl() {
         final ValueModel valueModel = getValueModel();
-        try
-        {
+        try {
             textComponent.setText((String) valueModel.getValue());
-        }
-        catch (ClassCastException e)
-        {
+        } catch (ClassCastException e) {
             IllegalArgumentException ex = new IllegalArgumentException("Class cast exception converting '"
                     + getProperty() + "' property value to string - did you install a type converter?");
             ex.initCause(e);
@@ -61,60 +55,49 @@ public class TextComponentBinding extends AbstractBinding
         if (getPromptKey() != null)
             PromptSupport.setPrompt(RcpSupport.getMessage(getPromptKey()), textComponent);
         new AsYouTypeTextComponentAdapter(textComponent, valueModel, convertEmptyStringToNull);
-        if(selectAllOnFocus)
-        {
+        if(selectAllOnFocus) {
             textComponent.addFocusListener(new SelectAllFocusListener(textComponent));
         }
         return textComponent;
     }
 
-    public boolean isReadOnly()
-    {
+    public boolean isReadOnly() {
         return super.isReadOnly() || readOnly;
     }
 
-    public void setReadOnly(boolean readOnly)
-    {
+    public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
     }
 
-    protected void readOnlyChanged()
-    {
+    protected void readOnlyChanged() {
         textComponent.setEditable(!isReadOnly());
     }
 
-    protected void enabledChanged()
-    {
+    protected void enabledChanged() {
         textComponent.setEnabled(isEnabled());
     }
 
-    public String getPromptKey()
-    {
+    public String getPromptKey() {
         return promptKey;
     }
 
-    public void setPromptKey(String promptKey)
-    {
+    public void setPromptKey(String promptKey) {
         this.promptKey = promptKey;
     }
 
-    public boolean isConvertEmptyStringToNull()
-    {
+    public boolean isConvertEmptyStringToNull() {
         return convertEmptyStringToNull;
     }
 
-    public void setConvertEmptyStringToNull(boolean convertEmptyStringToNull)
-    {
+    public void setConvertEmptyStringToNull(boolean convertEmptyStringToNull) {
         this.convertEmptyStringToNull = convertEmptyStringToNull;
     }
 
-    public boolean isSelectAllOnFocus()
-    {
+    public boolean isSelectAllOnFocus() {
         return selectAllOnFocus;
     }
 
-    public void setSelectAllOnFocus(boolean selectAllOnFocus)
-    {
+    public void setSelectAllOnFocus(boolean selectAllOnFocus) {
         this.selectAllOnFocus = selectAllOnFocus;
     }
 }

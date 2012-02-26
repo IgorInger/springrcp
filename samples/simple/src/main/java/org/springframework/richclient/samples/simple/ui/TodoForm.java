@@ -8,15 +8,12 @@ import org.springframework.richclient.samples.simple.domain.TodoItem;
 
 import javax.swing.*;
 
-public class TodoForm  extends AbstractFocussableForm
-{
-    public TodoForm()
-    {
+public class TodoForm  extends AbstractFocussableForm {
+    public TodoForm() {
         super(FormModelHelper.createFormModel(new TodoItem(), "todoItemForm"));
     }
 
-    protected JComponent createFormControl()
-    {
+    protected JComponent createFormControl() {
         FormLayout layout = new FormLayout("right:pref, 4dlu, default", "default");
         FormLayoutFormBuilder builder = new FormLayoutFormBuilder(getBindingFactory(), layout);
 

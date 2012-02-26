@@ -1,6 +1,6 @@
 /*
  * Copyright 2005 (C) Our Community Pty. Ltd. All Rights Reserved
- * 
+ *
  * $Id$
  */
 
@@ -11,7 +11,7 @@ import org.springframework.binding.support.BeanPropertyAccessStrategy;
 import org.springframework.binding.value.ValueModel;
 
 public class TestPropertyAccessStrategy extends BeanPropertyAccessStrategy {
-    
+
     private int numValueModelRequests;
     private String lastRequestedValueModel;
 
@@ -24,7 +24,7 @@ public class TestPropertyAccessStrategy extends BeanPropertyAccessStrategy {
         lastRequestedValueModel = propertyPath;
         return super.getPropertyValueModel(propertyPath);
     }
-    
+
     public int numValueModelRequests() {
         return numValueModelRequests;
     }

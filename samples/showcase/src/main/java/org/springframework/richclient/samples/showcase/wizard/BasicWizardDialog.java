@@ -6,7 +6,7 @@ import org.springframework.richclient.wizard.WizardDialog;
 
 public class BasicWizardDialog extends WizardDialog {
 
-	public BasicWizardDialog() {
-		setPreferredSize(new Dimension(400, 200));
-	}
+    public BasicWizardDialog() {
+        setPreferredSize(new Dimension(400, 200));
+    }
 }

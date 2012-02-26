@@ -25,7 +25,7 @@ public class TextComponentBindingAbstractTests extends BindingAbstractTests {
 
     private TextComponentBinding b;
 
-    protected String setUpBinding() {        
+    protected String setUpBinding() {
         b = new TextComponentBinding(new JTextField(), fm, "simpleProperty");
         tc = (JTextField)b.getControl();
         return "simpleProperty";

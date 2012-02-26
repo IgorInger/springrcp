@@ -8,8 +8,8 @@ import java.util.List;
  * @author peter.de.bruycker
  */
 public class ListTableModelTests extends AbstractBaseTableModelTests {
-    
-    
+
+
     private final ListTableModel dummyListTableModel = new ListTableModel() {
 
         protected Class[] createColumnClasses() {
@@ -19,10 +19,10 @@ public class ListTableModelTests extends AbstractBaseTableModelTests {
         protected String[] createColumnNames() {
             return new String[] { "column" };
         }
-        
-        
+
+
     };
-    
+
     /**
      * {@inheritDoc}
      */
@@ -46,8 +46,7 @@ public class ListTableModelTests extends AbstractBaseTableModelTests {
             };
             model.createColumnInfo();
             model.getColumnCount();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             fail("Should not throw NullPointerException");
         }
 
@@ -63,8 +62,7 @@ public class ListTableModelTests extends AbstractBaseTableModelTests {
             };
             model.createColumnInfo();
             model.getColumnCount();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             fail("Should not throw NullPointerException");
         }
     }
@@ -122,8 +120,7 @@ public class ListTableModelTests extends AbstractBaseTableModelTests {
         try {
             model.getValueAtInternal(row, 0);
             fail("Should throw IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             pass();
         }
     }

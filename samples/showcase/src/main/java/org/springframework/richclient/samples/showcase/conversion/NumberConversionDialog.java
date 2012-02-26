@@ -9,41 +9,41 @@ import org.springframework.richclient.form.builder.TableFormBuilder;
 
 public class NumberConversionDialog extends TitledApplicationDialog {
 
-	private class NumberClass {
-		private int primitiveInt = 3;
+    private class NumberClass {
+        private int primitiveInt = 3;
 
-		public int getPrimitiveInt() {
-			return primitiveInt;
-		}
+        public int getPrimitiveInt() {
+            return primitiveInt;
+        }
 
-		public void setPrimitiveInt(int primitiveInt) {
-			this.primitiveInt = primitiveInt;
-		}
-	}
+        public void setPrimitiveInt(int primitiveInt) {
+            this.primitiveInt = primitiveInt;
+        }
+    }
 
-	private class NumberClassForm extends AbstractForm {
+    private class NumberClassForm extends AbstractForm {
 
-		public NumberClassForm() {
-			super(FormModelHelper.createFormModel(new NumberClass()));
-		}
+        public NumberClassForm() {
+            super(FormModelHelper.createFormModel(new NumberClass()));
+        }
 
-		@Override
-		protected JComponent createFormControl() {
-			TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
-			builder.add("primitiveInt");
-			newSingleLineResultsReporter(NumberConversionDialog.this);
-			return builder.getForm();
-		}
+        @Override
+        protected JComponent createFormControl() {
+            TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
+            builder.add("primitiveInt");
+            newSingleLineResultsReporter(NumberConversionDialog.this);
+            return builder.getForm();
+        }
 
-	}
+    }
 
-	@Override
-	protected JComponent createTitledDialogContentPane() {
-		return (new NumberClassForm()).getControl();
-	}
+    @Override
+    protected JComponent createTitledDialogContentPane() {
+        return (new NumberClassForm()).getControl();
+    }
 
-	@Override
-	protected boolean onFinish() {
-		return true;
-	}
+    @Override
+    protected boolean onFinish() {
+        return true;
+    }
 }

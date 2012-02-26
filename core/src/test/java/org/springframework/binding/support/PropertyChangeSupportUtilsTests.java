@@ -26,7 +26,7 @@ import org.springframework.binding.value.support.AbstractPropertyChangePublisher
 
 /**
  * Tests class {@link PropertyChangeSupportUtils}.
- * 
+ *
  * @author Oliver Hutchison
  */
 public class PropertyChangeSupportUtilsTests extends TestCase {
@@ -39,7 +39,7 @@ public class PropertyChangeSupportUtilsTests extends TestCase {
         for (int i = 0; i < observableClasses.length; i++) {
             Class beanClass = observableClasses[i];
             assertTrue("Could not detect that the class supports bound properties.",
-                    PropertyChangeSupportUtils.supportsBoundProperties(beanClass));
+                       PropertyChangeSupportUtils.supportsBoundProperties(beanClass));
         }
     }
 
@@ -51,7 +51,7 @@ public class PropertyChangeSupportUtilsTests extends TestCase {
         for (int i = 0; i < unobservableClasses.length; i++) {
             Class beanClass = unobservableClasses[i];
             assertFalse("Failed to reject a class that supports no bound properties.",
-                    PropertyChangeSupportUtils.supportsBoundProperties(beanClass));
+                        PropertyChangeSupportUtils.supportsBoundProperties(beanClass));
         }
     }
 
@@ -81,7 +81,7 @@ public class PropertyChangeSupportUtilsTests extends TestCase {
     }
 
     private class PropertyChangePublisherImpl extends AbstractPropertyChangePublisher implements
-            PropertyChangePublisher {
+        PropertyChangePublisher {
     }
 
     private class StandardJavaBeanImpl extends PropertyChangeSupport {

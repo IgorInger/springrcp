@@ -21,8 +21,8 @@ import java.beans.PropertyChangeListener;
 import org.springframework.binding.form.FormModel;
 
 /**
- * A helper implementation for binding to custom controls.  
- * 
+ * A helper implementation for binding to custom controls.
+ *
  * @author Oliver Hutchison
  */
 public abstract class CustomBinding extends AbstractBinding {
@@ -39,12 +39,12 @@ public abstract class CustomBinding extends AbstractBinding {
     }
 
     /**
-     * Called when the underlying property's value model value changes. 
+     * Called when the underlying property's value model value changes.
      */
     protected abstract void valueModelChanged(Object newValue);
-    
+
     /**
-     * Should be called when the bound component's value changes. 
+     * Should be called when the bound component's value changes.
      */
     protected final void controlValueChanged(Object newValue) {
         getValueModel().setValueSilently(newValue, valueModelChangeHandler);
@@ -64,8 +64,7 @@ public abstract class CustomBinding extends AbstractBinding {
      *
      * @param readOnly <code>true</code> if only read-access should be allowed.
      */
-    public void setReadOnly(boolean readOnly)
-    {
+    public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
         readOnlyChanged();
     }
@@ -74,8 +73,7 @@ public abstract class CustomBinding extends AbstractBinding {
      * We were using an override to check the setter's visibility on the backing object.
      */
     @Override
-    protected boolean isReadOnly()
-    {
+    protected boolean isReadOnly() {
         return this.readOnly || super.isReadOnly();
     }
 }

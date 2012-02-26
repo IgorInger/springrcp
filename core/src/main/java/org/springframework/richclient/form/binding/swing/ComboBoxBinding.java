@@ -30,7 +30,7 @@ import org.springframework.richclient.list.AbstractFilteredListModel;
 
 /**
  * TODO: support for filters
- * 
+ *
  * @author Oliver Hutchison
  */
 public class ComboBoxBinding extends AbstractListBinding {

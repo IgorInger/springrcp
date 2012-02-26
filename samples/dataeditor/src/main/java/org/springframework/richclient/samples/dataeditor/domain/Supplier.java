@@ -1,7 +1,6 @@
 package org.springframework.richclient.samples.dataeditor.domain;
 
-public class Supplier implements Comparable<Supplier>
-{
+public class Supplier implements Comparable<Supplier> {
     private String name;
 
     private String contactName;
@@ -12,12 +11,10 @@ public class Supplier implements Comparable<Supplier>
 
     private String emailAddress;
 
-    public Supplier()
-    {
+    public Supplier() {
     }
 
-    public Supplier(String contactName, String emailAddress, String faxNumber, String name, String telephoneNumber)
-    {
+    public Supplier(String contactName, String emailAddress, String faxNumber, String name, String telephoneNumber) {
         this.contactName = contactName;
         this.emailAddress = emailAddress;
         this.faxNumber = faxNumber;
@@ -25,58 +22,47 @@ public class Supplier implements Comparable<Supplier>
         this.telephoneNumber = telephoneNumber;
     }
 
-    public String getContactName()
-    {
+    public String getContactName() {
         return contactName;
     }
 
-    public void setContactName(String contactName)
-    {
+    public void setContactName(String contactName) {
         this.contactName = contactName;
     }
 
-    public String getEmailAddress()
-    {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
-    public void setEmailAddress(String emailAddress)
-    {
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
-    public String getFaxNumber()
-    {
+    public String getFaxNumber() {
         return faxNumber;
     }
 
-    public void setFaxNumber(String faxNumber)
-    {
+    public void setFaxNumber(String faxNumber) {
         this.faxNumber = faxNumber;
     }
-    
-    public String getName()
-    {
+
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getTelephoneNumber()
-    {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(String telephoneNumber)
-    {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 
-    public int compareTo(Supplier supplier)
-    {
+    public int compareTo(Supplier supplier) {
         return getName().compareTo(supplier.getName());
     }
 }

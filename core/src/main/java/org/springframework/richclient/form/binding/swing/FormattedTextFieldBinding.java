@@ -26,7 +26,7 @@ import org.springframework.richclient.form.binding.support.AbstractBinding;
 
 /**
  * TODO: this is probably very broken. Need to do extensive testing.
- *  
+ *
  * @author Oliver Hutchison
  */
 public class FormattedTextFieldBinding extends AbstractBinding {
@@ -34,7 +34,7 @@ public class FormattedTextFieldBinding extends AbstractBinding {
     private final JFormattedTextField formattedTextField;
 
     public FormattedTextFieldBinding(JFormattedTextField formattedTextField, FormModel formModel,
-            String formPropertyPath, Class requiredSourceClass) {
+                                     String formPropertyPath, Class requiredSourceClass) {
         super(formModel, formPropertyPath, requiredSourceClass);
         this.formattedTextField = formattedTextField;
     }

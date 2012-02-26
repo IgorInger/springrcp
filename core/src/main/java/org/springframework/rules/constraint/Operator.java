@@ -22,19 +22,19 @@ import org.springframework.core.enums.StringCodedLabeledEnum;
  */
 public abstract class Operator extends StringCodedLabeledEnum {
 
-	protected Operator(String code, String symbol) {
-		super(code, symbol);
-	}
+    protected Operator(String code, String symbol) {
+        super(code, symbol);
+    }
 
-	public String getSymbol() {
-		return getLabel();
-	}
+    public String getSymbol() {
+        return getLabel();
+    }
 
-	public Operator negation() {
-		return null;
-	}
-	
-	public String toString() {
-		return getSymbol();
-	}
+    public Operator negation() {
+        return null;
+    }
+
+    public String toString() {
+        return getSymbol();
+    }
 }

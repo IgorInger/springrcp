@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2008 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -41,7 +41,7 @@ import java.util.Map;
  * <li><code>FILTER_PROPERTIES_KEY</code>: array of properties that will be used for filtering</li>
  * <li><code>RENDERER_KEY</code>: custom ListCellRenderer that will be used in the selection dialog</li>
  * </ul>
- * 
+ *
  * @author Peter De Bruycker
  */
 public class ListSelectionDialogBinder extends AbstractBinder {
@@ -77,7 +77,8 @@ public class ListSelectionDialogBinder extends AbstractBinder {
 
     public ListSelectionDialogBinder() {
         super(null, new String[] { SELECTABLE_ITEMS_HOLDER_KEY, FILTER_PROPERTIES_KEY, FILTERED_KEY, RENDERER_KEY,
-                LABEL_PROVIDER_KEY, COMPARATOR_KEY, DESCRIPTION_KEY_KEY, TITLE_KEY_KEY, NULLABLE_KEY });
+                                   LABEL_PROVIDER_KEY, COMPARATOR_KEY, DESCRIPTION_KEY_KEY, TITLE_KEY_KEY, NULLABLE_KEY
+                                 });
     }
 
     protected JComponent createControl(Map context) {
@@ -183,7 +184,7 @@ public class ListSelectionDialogBinder extends AbstractBinder {
 
     /**
      * May return null if no value is set!
-     * 
+     *
      * @return whether the field shall be nullable
      */
     public Boolean isNullable() {

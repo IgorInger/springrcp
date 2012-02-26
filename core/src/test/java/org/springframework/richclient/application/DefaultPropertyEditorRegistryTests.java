@@ -60,8 +60,7 @@ public class DefaultPropertyEditorRegistryTests extends TestCase {
         try {
             registry.getPropertyEditor(B.class, "something");
             fail("Should have thrown an IllegalArgumentException");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             // should have been thrown
         }
 

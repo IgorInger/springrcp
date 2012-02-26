@@ -56,11 +56,11 @@ import org.springframework.util.StringUtils;
  * <code>setVisible(boolean)</code> method then it is called with the authorized value.
  * Thus, if the object is not authorized, it will have <code>setVisible(false)</code>
  * called on it.
- * 
+ *
  * @author Larry Streepy
  * @see #getSecuredObject()
  * @see #getConfigAttributeDefinition(Object)
- * 
+ *
  */
 public abstract class AbstractSecurityController implements SecurityController, InitializingBean {
 
@@ -200,7 +200,7 @@ public abstract class AbstractSecurityController implements SecurityController, 
      * Post-process a controlled object after its authorization state has been updated.
      * Subclasses that override this method MUST ensure that this method is called id they
      * do not process the given action id.
-     * 
+     *
      * @param actionId Id of the post-processor action to run
      * @param controlledObject Object being controlled
      * @param authorized state that has been installed on controlledObject
@@ -281,7 +281,7 @@ public abstract class AbstractSecurityController implements SecurityController, 
             // Ensure that we got something we can control
             if( !(o instanceof Authorizable) ) {
                 throw new IllegalArgumentException( "Controlled object must implement Authorizable, got "
-                        + o.getClass() );
+                                                    + o.getClass() );
             }
             addAndPrepareControlledObject( (Authorizable) o );
         }
@@ -350,7 +350,7 @@ public abstract class AbstractSecurityController implements SecurityController, 
         for( int i = 0; i < actions.length; i++ ) {
             if( !postProcessorActionIds.contains( actions[i] ) ) {
                 throw new IllegalArgumentException( "Requested post-processor action '" + actions[i]
-                        + "' is not registered." );
+                                                    + "' is not registered." );
             }
         }
     }

@@ -9,19 +9,19 @@ import java.util.List;
  * In most cases this class is overkill and SimpleExceptionHandlerDelegate with a purger will suffice.
  * Think about it: just purging out MySpecificLoginException suffices most of the time,
  * it doesn't really matter that it's wrapped in MyWrapperException.
- * 
+ *
  * @see SimpleExceptionHandlerDelegate
  * @see DefaultExceptionPurger
  * @author Geoffrey De Smet
  * @since 0.3.0
  */
 public class ChainInspectingExceptionHandlerDelegate extends AbstractExceptionHandlerDelegate {
-    
+
     private List<ChainPart> chainPartList;
 
     public ChainInspectingExceptionHandlerDelegate() {
     }
-    
+
     public ChainInspectingExceptionHandlerDelegate(List<ChainPart> chainPartList,
             UncaughtExceptionHandler exceptionHandler) {
         super(exceptionHandler);
@@ -68,7 +68,7 @@ public class ChainInspectingExceptionHandlerDelegate extends AbstractExceptionHa
 //      }
 //      return true;
 //  }
-    
+
     public Throwable findChainPartThrowable(ChainPart chainPart, Throwable firstThrowable) {
         Throwable e = firstThrowable;
         int relativeDepth = 0;
@@ -90,29 +90,29 @@ public class ChainInspectingExceptionHandlerDelegate extends AbstractExceptionHa
         }
         return e;
     }
-    
+
 
     @Override
     public void uncaughtExceptionPurged(Thread thread, Throwable throwable) {
         exceptionHandler.uncaughtException(thread, throwable);
     }
-    
+
     public static class ChainPart {
-        
+
         private Class throwableClass = Throwable.class;
         private int minimumRelativeDepth = 0;
         private int maximumRelativeDepth = -1;
-        
+
         public ChainPart() {}
-        
+
         public ChainPart(Class throwableClass) {
             this.throwableClass = throwableClass;
         }
-        
+
         public ChainPart(Class throwableClass, int relativeDepth) {
             this(throwableClass, relativeDepth, relativeDepth);
         }
-        
+
         public ChainPart(Class throwableClass, int minimumRelativeDepth, int maximumRelativeDepth) {
             this.throwableClass = throwableClass;
             this.minimumRelativeDepth = minimumRelativeDepth;
@@ -122,32 +122,32 @@ public class ChainInspectingExceptionHandlerDelegate extends AbstractExceptionHa
         public Class getThrowableClass() {
             return throwableClass;
         }
-        
+
         public void setThrowableClass(Class throwableClass) {
             this.throwableClass = throwableClass;
         }
-        
+
         public void setRelativeDepth(int relativeDepth) {
             setMinimumRelativeDepth(relativeDepth);
             setMaximumRelativeDepth(relativeDepth);
         }
-        
+
         public int getMinimumRelativeDepth() {
             return minimumRelativeDepth;
         }
-        
+
         public void setMinimumRelativeDepth(int minimumRelativeDepth) {
             this.minimumRelativeDepth = minimumRelativeDepth;
         }
-        
+
         public int getMaximumRelativeDepth() {
             return maximumRelativeDepth;
         }
-        
+
         public void setMaximumRelativeDepth(int maximumRelativeDepth) {
             this.maximumRelativeDepth = maximumRelativeDepth;
         }
-        
+
     }
-    
+
 }

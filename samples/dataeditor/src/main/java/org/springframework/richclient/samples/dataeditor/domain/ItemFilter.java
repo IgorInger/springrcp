@@ -1,28 +1,23 @@
 package org.springframework.richclient.samples.dataeditor.domain;
 
-public class ItemFilter
-{
+public class ItemFilter {
     private String quickSearch;
 
     private String nameContains;
 
-    public String getNameContains()
-    {
+    public String getNameContains() {
         return nameContains;
     }
 
-    public void setNameContains(String nameContains)
-    {
+    public void setNameContains(String nameContains) {
         this.nameContains = nameContains;
     }
 
-    public String getQuickSearch()
-    {
+    public String getQuickSearch() {
         return quickSearch;
     }
 
-    public void setQuickSearch(String quickSearch)
-    {
+    public void setQuickSearch(String quickSearch) {
         this.quickSearch = quickSearch;
     }
 }

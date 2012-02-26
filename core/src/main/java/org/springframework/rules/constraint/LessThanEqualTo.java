@@ -28,42 +28,42 @@ import org.springframework.rules.closure.BinaryConstraint;
  */
 public class LessThanEqualTo extends ComparisonBinaryPredicate implements BinaryConstraint {
 
-	public static LessThanEqualTo INSTANCE = new LessThanEqualTo();
+    public static LessThanEqualTo INSTANCE = new LessThanEqualTo();
 
-	public static synchronized BinaryConstraint instance() {
-		return INSTANCE;
-	}
+    public static synchronized BinaryConstraint instance() {
+        return INSTANCE;
+    }
 
-	public static void load(LessThanEqualTo instance) {
-		INSTANCE = instance;
-	}
+    public static void load(LessThanEqualTo instance) {
+        INSTANCE = instance;
+    }
 
-	public static BinaryConstraint instance(Comparator c) {
-		return new LessThanEqualTo(c);
-	}
+    public static BinaryConstraint instance(Comparator c) {
+        return new LessThanEqualTo(c);
+    }
 
-	public static Constraint value(Comparable value) {
-		return INSTANCE.bind(instance(), value);
-	}
+    public static Constraint value(Comparable value) {
+        return INSTANCE.bind(instance(), value);
+    }
 
-	public static Constraint value(Object value, Comparator comparator) {
-		return INSTANCE.bind(instance(comparator), value);
-	}
+    public static Constraint value(Object value, Comparator comparator) {
+        return INSTANCE.bind(instance(comparator), value);
+    }
 
-	public LessThanEqualTo() {
-		super();
-	}
+    public LessThanEqualTo() {
+        super();
+    }
 
-	public LessThanEqualTo(Comparator comparator) {
-		super(comparator);
-	}
+    public LessThanEqualTo(Comparator comparator) {
+        super(comparator);
+    }
 
-	protected boolean testCompareResult(int result) {
-		return result <= 0;
-	}
+    protected boolean testCompareResult(int result) {
+        return result <= 0;
+    }
 
-	public String toString() {
-		return RelationalOperator.LESS_THAN_EQUAL_TO.toString();
-	}
+    public String toString() {
+        return RelationalOperator.LESS_THAN_EQUAL_TO.toString();
+    }
 
 }

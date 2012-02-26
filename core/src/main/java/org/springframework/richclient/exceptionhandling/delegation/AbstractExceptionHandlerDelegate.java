@@ -4,7 +4,7 @@ import java.lang.Thread.UncaughtExceptionHandler;
 
 /**
  * Superclass for delegate implementations
- * 
+ *
  * @author Geoffrey De Smet
  * @since 0.3.0
  */
@@ -14,10 +14,10 @@ public abstract class AbstractExceptionHandlerDelegate implements ExceptionHandl
     protected ExceptionPurger exceptionPurger = null;
     protected boolean purgeOnAppropriateCheck = true;
     protected boolean purgeOnHandling = true;
-    
+
     public AbstractExceptionHandlerDelegate() {
     }
-    
+
     public AbstractExceptionHandlerDelegate(UncaughtExceptionHandler exceptionHandler) {
         this.exceptionHandler = exceptionHandler;
     }
@@ -25,7 +25,7 @@ public abstract class AbstractExceptionHandlerDelegate implements ExceptionHandl
     public void setExceptionHandler(Thread.UncaughtExceptionHandler exceptionHandler) {
         this.exceptionHandler = exceptionHandler;
     }
-    
+
     /**
      * If set the throwable will first be purged before doing the approriate check or handling it.
      * @param exceptionPurger
@@ -37,7 +37,7 @@ public abstract class AbstractExceptionHandlerDelegate implements ExceptionHandl
     public void setPurgeOnAppropriateCheck(boolean purgeOnAppropriateCheck) {
         this.purgeOnAppropriateCheck = purgeOnAppropriateCheck;
     }
-    
+
     public void setPurgeOnHandling(boolean purgeOnHandling) {
         this.purgeOnHandling = purgeOnHandling;
     }
@@ -52,7 +52,7 @@ public abstract class AbstractExceptionHandlerDelegate implements ExceptionHandl
         }
         return hasAppropriateHandlerPurged(throwable);
     }
-    
+
 
     public abstract boolean hasAppropriateHandlerPurged(Throwable throwable);
 
@@ -69,5 +69,5 @@ public abstract class AbstractExceptionHandlerDelegate implements ExceptionHandl
     public void uncaughtExceptionPurged(Thread thread, Throwable throwable) {
         exceptionHandler.uncaughtException(thread, throwable);
     }
-    
+
 }

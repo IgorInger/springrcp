@@ -38,39 +38,37 @@ public class CommandRegistryEventTests extends TestCase {
     }
 
     /**
-     * Tests that the event object can be created and its properties correctly retrieved. 
+     * Tests that the event object can be created and its properties correctly retrieved.
      */
     public final void testAll() {
-        
+
         AbstractCommand command = new AbstractCommand("noOpCommand") {
             public void execute() {
                 //do nothing
             }
         };
-        
+
         CommandRegistry registry = (CommandRegistry) EasyMock.createMock(CommandRegistry.class);
-        
+
         try {
             new CommandRegistryEvent(null, command);
             Assert.fail("Should have thrown an IllegalArgumentException for null registry");
-        } 
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             //test passes
         }
-        
+
         try {
             new CommandRegistryEvent(registry, null);
             Assert.fail("Should have thrown an IllegalArgumentException for null command");
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             //test passes
         }
 
         CommandRegistryEvent event = new CommandRegistryEvent(registry, command);
-        
+
         Assert.assertEquals(command, event.getCommand());
         Assert.assertEquals(registry, event.getSource());
-        
+
     }
 
 }

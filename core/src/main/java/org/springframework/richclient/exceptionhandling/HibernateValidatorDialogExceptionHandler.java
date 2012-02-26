@@ -25,8 +25,8 @@ public class HibernateValidatorDialogExceptionHandler extends AbstractDialogExce
     public Object createExceptionContent(Throwable throwable) {
         if (!(throwable instanceof InvalidStateException)) {
             String ILLEGAL_THROWABLE_ARGUMENT
-                    = "Could not handle exception: throwable is not an InvalidStateException:\n"
-                    + throwable.getClass().getName();
+                = "Could not handle exception: throwable is not an InvalidStateException:\n"
+                  + throwable.getClass().getName();
             logger.error(ILLEGAL_THROWABLE_ARGUMENT);
             return ILLEGAL_THROWABLE_ARGUMENT;
         }

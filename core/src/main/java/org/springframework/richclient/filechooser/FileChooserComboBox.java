@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -38,7 +38,7 @@ import com.jgoodies.forms.layout.FormLayout;
 /**
  * A combo box that allows you to type and/or select files, as well as click a
  * Browse button to navigate to the file you wish to work with.
- * 
+ *
  * @author Keith Donald
  */
 public class FileChooserComboBox extends AbstractControlFactory {
@@ -82,7 +82,7 @@ public class FileChooserComboBox extends AbstractControlFactory {
     }
 
     public File getStartDirectory() {
-        if (startDirectory != null) 
+        if (startDirectory != null)
             return startDirectory;
 
         return getSelectedFile();
@@ -100,7 +100,7 @@ public class FileChooserComboBox extends AbstractControlFactory {
 
     protected JComponent createControl() {
         this.fileNameField = (JTextField)new SwingBindingFactory(formModel).createBinding(JTextField.class,
-                formProperty).getControl();
+                             formProperty).getControl();
         JLabel fileToProcess = getComponentFactory().createLabelFor(fileChooserLabel, fileNameField);
         this.browseButton = getComponentFactory().createButton("button.browse");
         BrowseActionHandler browseActionHandler = new BrowseActionHandler();
@@ -113,13 +113,12 @@ public class FileChooserComboBox extends AbstractControlFactory {
         panel.add(browseButton, cc.xy(3, 3));
         return panel;
     }
-    
+
     private class BrowseActionHandler implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             if (fileChooser == null) {
                 fileChooser = new JFileChooser(getStartDirectory());
-            }
-            else {
+            } else {
                 fileChooser.setCurrentDirectory(getStartDirectory());
             }
             int returnVal = fileChooser.showOpenDialog(SwingUtilities.getWindowAncestor(browseButton));
@@ -128,8 +127,7 @@ public class FileChooserComboBox extends AbstractControlFactory {
                 fileNameField.setText(selectedFile.getAbsolutePath());
                 if (selectedFile.isDirectory()) {
                     setStartDirectory(selectedFile);
-                }
-                else {
+                } else {
                     setStartDirectory(selectedFile.getParentFile());
                 }
             }

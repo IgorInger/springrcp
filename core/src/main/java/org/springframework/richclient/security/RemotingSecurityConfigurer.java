@@ -21,32 +21,32 @@ import org.springframework.security.Authentication;
 /**
  * Correctly configures the username and password on Spring's remoting proxy
  * factory beans.
- * 
+ *
  * <P>
  * This bean works with "Spring Remoting Proxy Factories" defined in the
  * application context. Presently this includes the following Spring classes:
  * {@link HessianProxyFactoryBean},{@link BurlapProxyFactoryBean}and {@link
  * JaxRpcPortProxyFactoryBean}.
  * </p>
- * 
+ *
  * <P>
  * This bean listens for any <code>ClientSecurityEvent</code> and responds as
  * follows:
  * </p>
- * 
+ *
  * <P>
  * Upon receipt of a {@link LoginEvent}, any Spring Remoting Proxy Factories
  * will be located. Each located bean will have its username and password
  * methods set to the <code>LoginEvent</code>'s principal and credentials
  * respectively.
  * </p>
- * 
+ *
  * <P>
  * Upon receipt of a {@link LogoutEvent}, any Spring Remoting Proxy Factories
  * will be located. Each located bean will have its username and password
  * methods set to <code>null</code>.
  * </p>
- * 
+ *
  * @author Ben Alex
  */
 public class RemotingSecurityConfigurer implements ApplicationListener {
@@ -66,8 +66,7 @@ public class RemotingSecurityConfigurer implements ApplicationListener {
         if (event instanceof LoginEvent) {
             Authentication authentication = (Authentication)event.getSource();
             updateExporters(authentication.getPrincipal().toString(), authentication.getCredentials().toString());
-        }
-        else if (event instanceof LogoutEvent) {
+        } else if (event instanceof LogoutEvent) {
             updateExporters(null, null);
         }
     }
@@ -81,11 +80,11 @@ public class RemotingSecurityConfigurer implements ApplicationListener {
         List list = new Vector();
 
         Class[] types = new Class[] {
-                HessianProxyFactoryBean.class,
-                BurlapProxyFactoryBean.class,
-                JaxRpcPortProxyFactoryBean.class
+            HessianProxyFactoryBean.class,
+            BurlapProxyFactoryBean.class,
+            JaxRpcPortProxyFactoryBean.class
         };
-        
+
         for( int i = 0; i < types.length; i++ ) {
             Map map = appCtx.getBeansOfType(types[i], false, true);
             Iterator iter = map.entrySet().iterator();
@@ -108,34 +107,28 @@ public class RemotingSecurityConfigurer implements ApplicationListener {
         for (int i = 0; i < factories.length; i++) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Updating " + factories[i].toString() + " to username: " + username
-                        + "; password: [PROTECTED]");
+                             + "; password: [PROTECTED]");
             }
 
             try {
                 Method method = factories[i].getClass().getMethod("setUsername", new Class[] { String.class });
                 method.invoke(factories[i], new Object[] { username });
-            }
-            catch (NoSuchMethodException ignored) {
+            } catch (NoSuchMethodException ignored) {
                 logger.error("Could not call setter", ignored);
-            }
-            catch (IllegalAccessException ignored) {
+            } catch (IllegalAccessException ignored) {
                 logger.error("Could not call setter", ignored);
-            }
-            catch (InvocationTargetException ignored) {
+            } catch (InvocationTargetException ignored) {
                 logger.error("Could not call setter", ignored);
             }
 
             try {
                 Method method = factories[i].getClass().getMethod("setPassword", new Class[] { String.class });
                 method.invoke(factories[i], new Object[] { password });
-            }
-            catch (NoSuchMethodException ignored) {
+            } catch (NoSuchMethodException ignored) {
                 logger.error("Could not call setter", ignored);
-            }
-            catch (IllegalAccessException ignored) {
+            } catch (IllegalAccessException ignored) {
                 logger.error("Could not call setter", ignored);
-            }
-            catch (InvocationTargetException ignored) {
+            } catch (InvocationTargetException ignored) {
                 logger.error("Could not call setter", ignored);
             }
         }

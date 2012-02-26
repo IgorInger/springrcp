@@ -59,13 +59,13 @@ public class BasicAuthCommonsHttpInvokerProxyFactoryBean extends HttpInvokerProx
         }
 
         CommonsHttpInvokerRequestExecutor executor
-                = (CommonsHttpInvokerRequestExecutor) getHttpInvokerRequestExecutor();
+            = (CommonsHttpInvokerRequestExecutor) getHttpInvokerRequestExecutor();
         HttpClient httpClient = executor.getHttpClient();
         httpClient.getParams().setAuthenticationPreemptive(authentication != null);
         UsernamePasswordCredentials usernamePasswordCredentials;
         if (authentication != null) {
             usernamePasswordCredentials = new UsernamePasswordCredentials(
-                    authentication.getName(), authentication.getCredentials().toString());
+                authentication.getName(), authentication.getCredentials().toString());
         } else {
             usernamePasswordCredentials = null;
         }

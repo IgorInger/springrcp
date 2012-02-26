@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -29,31 +29,30 @@ import org.springframework.richclient.application.ApplicationServicesLocator;
  * the {@link ValueModel} interface. It provides convenience methods
  * to convert boolean, double, float, int, and long to their
  * corresponding Object values.
- * 
- * <p>Subclasses must implement <code>getValue()</code> and 
+ *
+ * <p>Subclasses must implement <code>getValue()</code> and
  * <code>setValue(Object)</code> to get and set the observable value.
  *
  * @author Karsten Lentzsch
  * @author Keith Donald
- * @author Oliver Hutchison  
+ * @author Oliver Hutchison
  */
 public abstract class AbstractValueModel extends AbstractPropertyChangePublisher implements ValueModel {
 
     protected final Log logger = LogFactory.getLog(getClass());
 
     private final ThreadLocal listenerToSkipHolder = new ThreadLocal();
-    
+
     private ValueChangeDetector valueChangeDetector;
 
     public final void setValueSilently(Object newValue, PropertyChangeListener listenerToSkip) {
-        // We need to keep track of listenerToSkip on a per thread basis as it's 
+        // We need to keep track of listenerToSkip on a per thread basis as it's
         // possible that this value model may be accessed from multiple threads.
         final Object oldListenerToSkip = listenerToSkipHolder.get();
         try {
             listenerToSkipHolder.set(listenerToSkip);
             setValue(newValue);
-        }
-        finally {
+        } finally {
             listenerToSkipHolder.set(oldListenerToSkip);
         }
     }
@@ -67,10 +66,10 @@ public abstract class AbstractValueModel extends AbstractPropertyChangePublisher
     }
 
     /**
-     * This method can be called when it in necessary to send a 
-     * PropertyChangeEvent to any registered PropertyChangeListeners 
+     * This method can be called when it in necessary to send a
+     * PropertyChangeEvent to any registered PropertyChangeListeners
      * even though the encapsulated value has not changed.
-     * 
+     *
      * FIXME: This needs a much better name!
      */
     protected void fireValueChangeWhenStillEqual() {
@@ -80,8 +79,8 @@ public abstract class AbstractValueModel extends AbstractPropertyChangePublisher
 
     /**
      * Notifies all listeners that have registered interest for
-     * notification on this event type.  The event instance 
-     * is lazily created using the parameters passed into 
+     * notification on this event type.  The event instance
+     * is lazily created using the parameters passed into
      * the fire method.
      *
      * @param oldValue the boolean value before the change
@@ -93,8 +92,8 @@ public abstract class AbstractValueModel extends AbstractPropertyChangePublisher
 
     /**
      * Notifies all listeners that have registered interest for
-     * notification on this event type.  The event instance 
-     * is lazily created using the parameters passed into 
+     * notification on this event type.  The event instance
+     * is lazily created using the parameters passed into
      * the fire method.
      *
      * @param oldValue the int value before the change
@@ -106,8 +105,8 @@ public abstract class AbstractValueModel extends AbstractPropertyChangePublisher
 
     /**
      * Notifies all listeners that have registered interest for
-     * notification on this event type.  The event instance 
-     * is lazily created using the parameters passed into 
+     * notification on this event type.  The event instance
+     * is lazily created using the parameters passed into
      * the fire method.
      *
      * @param oldValue the long value before the change
@@ -119,8 +118,8 @@ public abstract class AbstractValueModel extends AbstractPropertyChangePublisher
 
     /**
      * Notifies all listeners that have registered interest for
-     * notification on this event type.  The event instance 
-     * is lazily created using the parameters passed into 
+     * notification on this event type.  The event instance
+     * is lazily created using the parameters passed into
      * the fire method.
      *
      * @param oldValue the double value before the change
@@ -132,8 +131,8 @@ public abstract class AbstractValueModel extends AbstractPropertyChangePublisher
 
     /**
      * Notifies all listeners that have registered interest for
-     * notification on this event type.  The event instance 
-     * is lazily created using the parameters passed into 
+     * notification on this event type.  The event instance
+     * is lazily created using the parameters passed into
      * the fire method.
      *
      * @param oldValue the float value before the change

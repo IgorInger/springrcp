@@ -11,5 +11,5 @@ public enum ShutdownPolicy {
     NONE,
     ASK,
     OBLIGATE
-    
+
 }

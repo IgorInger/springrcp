@@ -19,7 +19,7 @@ import java.io.IOException;
 
 /**
  * Converts {@link IOException} to a runtime exception.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class ScriptIOException extends BaseScriptException {

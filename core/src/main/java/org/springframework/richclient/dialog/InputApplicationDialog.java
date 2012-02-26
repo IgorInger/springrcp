@@ -102,14 +102,14 @@ public class InputApplicationDialog extends ApplicationDialog implements Messaga
     }
 
     protected MessagePane createMessagePane() {
-    	return new DefaultMessageAreaPane();
+        return new DefaultMessageAreaPane();
     }
 
     private MessagePane getMessagePane() {
         if (reporter == null) {
             reporter = createMessagePane();
 
-        	if (this.formModel != null) {
+            if (this.formModel != null) {
                 new SimpleValidationResultsReporter(formModel.getValidationResults(), reporter);
                 FormGuard formGuard = new FormGuard(formModel);
                 formGuard.addGuarded(this, FormGuard.FORMERROR_GUARDED);
@@ -164,11 +164,9 @@ public class InputApplicationDialog extends ApplicationDialog implements Messaga
     private Object getInputValue() {
         if (inputField instanceof JFormattedTextField) {
             return ((JFormattedTextField)inputField).getValue();
-        }
-        else if (inputField instanceof JTextComponent) {
+        } else if (inputField instanceof JTextComponent) {
             return ((JTextComponent)inputField).getText();
-        }
-        else {
+        } else {
             throw new IllegalStateException("Input field type not supported");
         }
     }
@@ -203,23 +201,23 @@ public class InputApplicationDialog extends ApplicationDialog implements Messaga
         }
     }
 
-	public void setMessage(Message message) {
-		getMessagePane().setMessage(message);
-	}
+    public void setMessage(Message message) {
+        getMessagePane().setMessage(message);
+    }
 
-	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		getMessagePane().addPropertyChangeListener(listener);
-	}
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        getMessagePane().addPropertyChangeListener(listener);
+    }
 
-	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-		getMessagePane().addPropertyChangeListener(propertyName, listener);
-	}
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        getMessagePane().addPropertyChangeListener(propertyName, listener);
+    }
 
-	public void removePropertyChangeListener(PropertyChangeListener listener) {
-		getMessagePane().removePropertyChangeListener(listener);
-	}
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        getMessagePane().removePropertyChangeListener(listener);
+    }
 
-	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-		getMessagePane().removePropertyChangeListener(propertyName, listener);
-	}
+    public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+        getMessagePane().removePropertyChangeListener(propertyName, listener);
+    }
 }

@@ -57,13 +57,13 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
     protected abstract AbstractPropertyAccessStrategy createPropertyAccessStrategy(Object target);
 
     protected boolean isStrictNullHandlingEnabled() {
-    	return true;
+        return true;
     }
 
     public void testSimpleProperty() {
         vm = pas.getPropertyValueModel("simpleProperty");
         Block setValueDirectly = new Block() {
-           public void handle(Object newValue) {
+            public void handle(Object newValue) {
                 testBean.setSimpleProperty((String)newValue);
             }
         };
@@ -102,11 +102,11 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
         MutablePropertyAccessStrategy cpas = pas.getPropertyAccessStrategyForPath("nestedProperty");
 
         assertEquals("Child domainObjectHolder should equal equivalent parent ValueModel",
-                pas.getPropertyValueModel("nestedProperty"), cpas.getDomainObjectHolder());
+                     pas.getPropertyValueModel("nestedProperty"), cpas.getDomainObjectHolder());
 
         vm = cpas.getPropertyValueModel("simpleProperty");
         assertEquals("Child should return the same ValueModel as parent",
-                pas.getPropertyValueModel("nestedProperty.simpleProperty"), vm);
+                     pas.getPropertyValueModel("nestedProperty.simpleProperty"), vm);
 
         Block setValueDirectly = new Block() {
             public void handle(Object newValue) {
@@ -125,11 +125,10 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
         try {
             pas.getPropertyValueModel("nestedProperty").setValue(null);
             if (isStrictNullHandlingEnabled())
-            	fail("Should have thrown a NullValueInNestedPathException");
-        }
-        catch (NullValueInNestedPathException e) {
+                fail("Should have thrown a NullValueInNestedPathException");
+        } catch (NullValueInNestedPathException e) {
             if (!isStrictNullHandlingEnabled())
-            	fail("Should not have thrown a NullValueInNestedPathException");
+                fail("Should not have thrown a NullValueInNestedPathException");
         }
     }
 
@@ -153,11 +152,10 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
         try {
             pas.getPropertyValueModel("mapProperty").setValue(null);
             if (isStrictNullHandlingEnabled())
-            	fail("Should have thrown a NullValueInNestedPathException");
-        }
-        catch (NullValueInNestedPathException e) {
+                fail("Should have thrown a NullValueInNestedPathException");
+        } catch (NullValueInNestedPathException e) {
             if (!isStrictNullHandlingEnabled())
-            	fail("Should not have thrown a NullValueInNestedPathException");
+                fail("Should not have thrown a NullValueInNestedPathException");
         }
     }
 
@@ -188,21 +186,19 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
             List newList = new ArrayList();
             pas.getPropertyValueModel("listProperty").setValue(newList);
             if (isStrictNullHandlingEnabled())
-            	fail("Should have thrown an InvalidPropertyException");
-        }
-        catch (InvalidPropertyException e) {
+                fail("Should have thrown an InvalidPropertyException");
+        } catch (InvalidPropertyException e) {
             if (!isStrictNullHandlingEnabled())
-            	fail("Should not have thrown an InvalidPropertyException");
+                fail("Should not have thrown an InvalidPropertyException");
         }
 
         try {
             pas.getPropertyValueModel("listProperty").setValue(null);
             if (isStrictNullHandlingEnabled())
-            	fail("Should have thrown a NullValueInNestedPathException");
-        }
-        catch (NullValueInNestedPathException e) {
+                fail("Should have thrown a NullValueInNestedPathException");
+        } catch (NullValueInNestedPathException e) {
             if (!isStrictNullHandlingEnabled())
-            	fail("Should not have thrown a NullValueInNestedPathException");
+                fail("Should not have thrown a NullValueInNestedPathException");
         }
     }
 
@@ -240,12 +236,12 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
 
         vm = pas.getPropertyValueModel("boundProperty");
         assertEquals("ValueModel should have registered a PropertyChangeListener", 1,
-                testBeanPCP.getPropertyChangeListeners("boundProperty").length);
+                     testBeanPCP.getPropertyChangeListeners("boundProperty").length);
 
         vm.addValueChangeListener(pcl);
         testBeanPCP.setBoundProperty("1");
         assertEquals("Change to bound property should have been detected by ValueModel", 1, pcl.getEventsRecevied()
-                .size());
+                     .size());
         PropertyChangeEvent e = (PropertyChangeEvent)pcl.getEventsRecevied().get(0);
         assertEquals(vm, e.getSource());
         assertEquals(null, e.getOldValue());
@@ -263,9 +259,9 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
         pas.getDomainObjectHolder().setValue(testBeanPCP2);
 
         assertEquals("ValueModel should have removed the PropertyChangeListener", 0,
-                testBeanPCP.getPropertyChangeListeners("boundProperty").length);
+                     testBeanPCP.getPropertyChangeListeners("boundProperty").length);
         assertEquals("ValueModel should have registered a PropertyChangeListener", 1,
-                testBeanPCP2.getPropertyChangeListeners("boundProperty").length);
+                     testBeanPCP2.getPropertyChangeListeners("boundProperty").length);
     }
 
     private void testSettingAndGetting(Object[] valuesToTest, Closure getValueDirectly, Block setValueDirectly) {
@@ -283,7 +279,7 @@ public abstract class AbstractPropertyAccessStrategyTests extends SpringRichTest
             assertEquals("Change to ValueModel had no effect", valueToTest, vm.getValue());
             if (valueToTest != null) {
                 assertEquals("Incorrect number of property change events fired by value model",
-                    1, pcl.getEventsRecevied().size());
+                             1, pcl.getEventsRecevied().size());
                 PropertyChangeEvent e = (PropertyChangeEvent)pcl.getEventsRecevied().get(0);
                 assertEquals(vm, e.getSource());
                 assertEquals(null, e.getOldValue());

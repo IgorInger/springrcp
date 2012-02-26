@@ -1,33 +1,24 @@
-public class DefaultApplicationWindowFactory implements ApplicationWindowFactory
-{
+public class DefaultApplicationWindowFactory implements ApplicationWindowFactory {
     private static final Log logger = LogFactory.getLog(DefaultApplicationWindowFactory.class);
 
-    public ApplicationWindow createApplicationWindow()
-    {
+    public ApplicationWindow createApplicationWindow() {
         ApplicationLifecycleAdvisor lifecycleAdvisor = Application.instance().getLifecycleAdvisor();
-        if (lifecycleAdvisor instanceof OutlookNavigatorApplicationLifecycleAdvisor)
-        {
-             return OutlookNavigatorApplicationWindowFactory.create();
-        }
-        else if (lifecycleAdvisor instanceof TaskPaneNavigatorApplicationLifecycleAdvisor)
-        {
-             return TaskPaneNavigatorApplicationWindowFactory.create();
+        if (lifecycleAdvisor instanceof OutlookNavigatorApplicationLifecycleAdvisor) {
+            return OutlookNavigatorApplicationWindowFactory.create();
+        } else if (lifecycleAdvisor instanceof TaskPaneNavigatorApplicationLifecycleAdvisor) {
+            return TaskPaneNavigatorApplicationWindowFactory.create();
         }
         return new DefaultApplicationWindow();
     }
 
-    static class TaskPaneNavigatorApplicationWindowFactory
-    {
-        public static ApplicationWindow create(boolean onlyOneExpanded)
-        {
+    static class TaskPaneNavigatorApplicationWindowFactory {
+        public static ApplicationWindow create(boolean onlyOneExpanded) {
             ...
         }
     }
 
-    static class OutlookNavigatorApplicationWindowFactory
-    {
-        public static ApplicationWindow create()
-        {
+    static class OutlookNavigatorApplicationWindowFactory {
+        public static ApplicationWindow create() {
             ...
         }
     }

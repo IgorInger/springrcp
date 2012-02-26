@@ -1,16 +1,11 @@
-public class MultipleToolbarApplicationWindow extends DefaultApplicationWindow
-{
+public class MultipleToolbarApplicationWindow extends DefaultApplicationWindow {
     private CommandGroup[] toolBarCommandGroups;
 
-    protected void init()
-    {
+    protected void init() {
         super.init();
-        if(getAdvisor() instanceof CustomApplicationLifecycleAdvisor)
-        {
+        if(getAdvisor() instanceof CustomApplicationLifecycleAdvisor) {
             this.toolBarCommandGroups = ((CustomApplicationLifecycleAdvisor) getAdvisor()).getToolBarCommandGroups();
-        }
-        else
-        {
+        } else {
             this.toolBarCommandGroups = new CommandGroup[] {getAdvisor().getToolBarCommandGroup()};
         }
     }
@@ -18,11 +13,10 @@ public class MultipleToolbarApplicationWindow extends DefaultApplicationWindow
     protected JComponent createToolBarControl() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(toolBarCommandGroups.length, 1));
-        for (int i = 0; i < toolBarCommandGroups.length; i++)
-        {
+        for (int i = 0; i < toolBarCommandGroups.length; i++) {
             CommandGroup toolBarCommandGroup = toolBarCommandGroups[i];
             JComponent toolBar = toolBarCommandGroup.createToolBar();
-        toolBarCommandGroup.setVisible( getWindowConfigurer().getShowToolBar() );
+            toolBarCommandGroup.setVisible( getWindowConfigurer().getShowToolBar() );
             panel.add(toolBar);
 
         }

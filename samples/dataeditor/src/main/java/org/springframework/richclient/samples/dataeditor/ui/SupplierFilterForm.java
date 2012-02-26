@@ -8,34 +8,26 @@ import org.springframework.richclient.samples.dataeditor.domain.SupplierFilter;
 
 import javax.swing.*;
 
-public class SupplierFilterForm extends FilterForm
-{
-    public SupplierFilterForm()
-    {
+public class SupplierFilterForm extends FilterForm {
+    public SupplierFilterForm() {
         super("supplierFilterForm");
     }
 
     @Override
-    protected Object newFormObject()
-    {
+    protected Object newFormObject() {
         return new SupplierFilter();
     }
 
     @Override
-    public void setFormObject(Object formObject)
-    {
-        if(formObject instanceof Supplier)
-        {
+    public void setFormObject(Object formObject) {
+        if(formObject instanceof Supplier) {
             super.setFormObject(SupplierFilter.fromSupplier((Supplier) formObject));
-        }
-        else
-        {
+        } else {
             super.setFormObject(formObject);
         }
     }
 
-    protected JComponent createFormControl()
-    {
+    protected JComponent createFormControl() {
         FormLayout layout = new FormLayout("default, 3dlu, fill:pref:nogrow", "default");
         FormLayoutFormBuilder builder = new FormLayoutFormBuilder(getBindingFactory(), layout);
         builder.addPropertyAndLabel("nameContains");

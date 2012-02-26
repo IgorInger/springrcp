@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,7 +27,7 @@ import org.springframework.richclient.settings.Settings;
  * Settings implementation using the J2SE Preferences API. <br>
  * Not using the PreferenceChangeListener to implement PropertyChangeListener
  * support, because we also need the old value.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class PreferencesSettings extends AbstractSettings {
@@ -48,8 +48,7 @@ public class PreferencesSettings extends AbstractSettings {
         super(parent, name);
         if (parent != null) {
             prefs = parent.getPreferences().node(name);
-        }
-        else {
+        } else {
             prefs = Preferences.userRoot().node(name);
         }
     }
@@ -69,8 +68,7 @@ public class PreferencesSettings extends AbstractSettings {
     public void save() throws IOException {
         try {
             prefs.flush();
-        }
-        catch (BackingStoreException e) {
+        } catch (BackingStoreException e) {
             IOException ioe = new IOException("Unable to save settings");
             ioe.initCause(e);
             throw ioe;
@@ -80,8 +78,7 @@ public class PreferencesSettings extends AbstractSettings {
     public void load() throws IOException {
         try {
             prefs.sync();
-        }
-        catch (BackingStoreException e) {
+        } catch (BackingStoreException e) {
             IOException ioe = new IOException("Unable to save settings");
             ioe.initCause(e);
             throw ioe;
@@ -101,7 +98,7 @@ public class PreferencesSettings extends AbstractSettings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.AbstractSettings#internalSet(java.lang.String,
      *      java.lang.String)
      */
@@ -111,21 +108,20 @@ public class PreferencesSettings extends AbstractSettings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.AbstractSettings#getKeys()
      */
     public String[] getKeys() {
         try {
             return prefs.keys();
-        }
-        catch (BackingStoreException e) {
+        } catch (BackingStoreException e) {
             throw new RuntimeException(e);
         }
     }
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.AbstractSettings#internalRemove(java.lang.String)
      */
     protected void internalRemove(String key) {
@@ -135,8 +131,7 @@ public class PreferencesSettings extends AbstractSettings {
     public boolean internalContains(String key) {
         try {
             return Arrays.asList(prefs.keys()).contains(key);
-        }
-        catch (BackingStoreException e) {
+        } catch (BackingStoreException e) {
             throw new RuntimeException(e);
         }
     }
@@ -144,8 +139,7 @@ public class PreferencesSettings extends AbstractSettings {
     protected String[] internalGetChildSettings() {
         try {
             return prefs.childrenNames();
-        }
-        catch (BackingStoreException e) {
+        } catch (BackingStoreException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,4 +1,4 @@
 MessageBoxCommand command = new MessageBoxCommand();
 commandConfigurer = (CommandConfigurer) ApplicationServicesLocator.services().getService(
-                    CommandConfigurer.class);
+                        CommandConfigurer.class);
 commandConfigurer.configure(command);

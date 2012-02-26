@@ -221,8 +221,7 @@ public class WizardDialog extends TitledApplicationDialog implements WizardConta
         setFinishEnabled(wizard.canFinish());
         if (canFlipToNextPage() && !wizard.canFinish()) {
             registerDefaultCommand(nextCommand);
-        }
-        else {
+        } else {
             registerDefaultCommand();
         }
     }
@@ -234,11 +233,9 @@ public class WizardDialog extends TitledApplicationDialog implements WizardConta
     public void propertyChange(PropertyChangeEvent e) {
         if (Messagable.MESSAGE_PROPERTY.equals(e.getPropertyName())) {
             updateMessagePane();
-        }
-        else if (DialogPage.PAGE_COMPLETE_PROPERTY.equals(e.getPropertyName())) {
+        } else if (DialogPage.PAGE_COMPLETE_PROPERTY.equals(e.getPropertyName())) {
             updateButtons();
-        }
-        else if (DialogPage.DESCRIPTION_PROPERTY.equals(e.getPropertyName())) {
+        } else if (DialogPage.DESCRIPTION_PROPERTY.equals(e.getPropertyName())) {
             updateTitlePane();
         }
     }

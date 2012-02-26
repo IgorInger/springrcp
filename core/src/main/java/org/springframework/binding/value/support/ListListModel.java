@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2007 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -49,8 +49,7 @@ public class ListListModel extends AbstractListModel implements ObservableList {
     public ListListModel(List items, Comparator sorter) {
         if (items != null) {
             this.items = new ArrayList(items);
-        }
-        else {
+        } else {
             this.items = new ArrayList();
         }
         setComparator(sorter);
@@ -217,18 +216,18 @@ public class ListListModel extends AbstractListModel implements ObservableList {
 
     public boolean retainAll(Collection c) {
         boolean b = items.retainAll(c);
-		if (b) {
-			fireContentsChanged(this, -1, -1);
-		}
-		return b;
+        if (b) {
+            fireContentsChanged(this, -1, -1);
+        }
+        return b;
     }
 
     /**
-	 * Set the value of a list element at the specified index.
-	 * @param index of element to set
-	 * @param element New element value
-	 * @return old element value
-	 */
+     * Set the value of a list element at the specified index.
+     * @param index of element to set
+     * @param element New element value
+     * @return old element value
+     */
     public Object set(int index, Object element) {
         Object oldObject = items.set(index, element);
         if (hasChanged(oldObject, element)) {
@@ -243,7 +242,7 @@ public class ListListModel extends AbstractListModel implements ObservableList {
      * altered "equals" implementation, it may not be sufficient to detect changes in a pair of
      * objects.  In that case, you can override this method and implement whatever change detection
      * mechanism is appropriate.
-     * 
+     *
      * @param oldElement Old (original) value to compare
      * @param newElement New (updated) value to compare
      * @return true if objects are different (have changed)
@@ -287,7 +286,7 @@ public class ListListModel extends AbstractListModel implements ObservableList {
     /**
      * Replace this list model's items with the contents of the provided
      * collection.
-     * 
+     *
      * @param collection
      *            The collection to replace with
      */

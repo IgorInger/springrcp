@@ -16,11 +16,11 @@ import javax.swing.AbstractButton;
  */
 public interface ButtonConfigurer {
 
-	/**
-	 * Configure the given button.
-	 *
-	 * @param button The button that needs to be configured.
-	 * @return the configured button.
-	 */
+    /**
+     * Configure the given button.
+     *
+     * @param button The button that needs to be configured.
+     * @return the configured button.
+     */
     public AbstractButton configure(AbstractButton button);
 }

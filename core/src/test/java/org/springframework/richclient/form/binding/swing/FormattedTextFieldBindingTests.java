@@ -29,19 +29,19 @@ public class FormattedTextFieldBindingTests extends BindingAbstractTests {
     private JFormattedTextField ftc;
 
     private FormattedTextFieldBinding b;
-    
+
     protected TestBean createTestBean() {
         TestBean testBean = super.createTestBean();
         testBean.setNumberProperty(initialValue);
         return testBean;
     }
 
-    protected String setUpBinding() {   
+    protected String setUpBinding() {
         b = new FormattedTextFieldBinding(new JFormattedTextField(NumberFormat.getInstance()), fm, "numberProperty", null);
         ftc = (JFormattedTextField)b.getControl();
         return "numberProperty";
     }
-    
+
     public void testInitialValue() {
         assertEquals(initialValue, vm.getValue());
         assertEquals(initialValue, ftc.getValue());

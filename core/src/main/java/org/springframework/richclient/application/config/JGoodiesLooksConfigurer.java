@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -43,7 +43,7 @@ import com.jgoodies.looks.plastic.PlasticTheme;
  * JGoodies {@link com.jgoodies.looks.Options} to set this property. Default LaF if not specified is the Options#PLASTICXP_NAME.
  * It is possible to define other LaF's as well, but any other property set in this bean will not be in effect if used in that way.
  * If you do need to set another LaF without additional configuration use {@link org.springframework.richclient.application.config.UIManagerConfigurer}
- * and/or create a specific configurer bean for the LaF of your choice. 
+ * and/or create a specific configurer bean for the LaF of your choice.
  * </p>
  */
 public class JGoodiesLooksConfigurer implements InitializingBean {
@@ -139,12 +139,12 @@ public class JGoodiesLooksConfigurer implements InitializingBean {
      */
     public void setHighContrastFocusColorsEnabled(boolean highContrastEnabled) {
         PlasticLookAndFeel
-                .setHighContrastFocusColorsEnabled(highContrastEnabled);
+        .setHighContrastFocusColorsEnabled(highContrastEnabled);
     }
 
     /**
      * @param tabStyle set the tab style that should be used.
-     * @see com.jgoodies.looks.plastic.PlasticLookAndFeel#setTabStyle(String)   
+     * @see com.jgoodies.looks.plastic.PlasticLookAndFeel#setTabStyle(String)
      */
     public void setTabStyle(String tabStyle) {
         PlasticLookAndFeel.setTabStyle(tabStyle);
@@ -162,7 +162,7 @@ public class JGoodiesLooksConfigurer implements InitializingBean {
      * <li>{@link com.jgoodies.looks.Options#DEFAULT_LOOK_NAME</li>
      * </ul>
      *
-     * <p>Default LaF if not specified is Options#PLASTICXP_NAME. Note that you could mention any LaF FQN here, but all other options would then be ignored.</p> 
+     * <p>Default LaF if not specified is Options#PLASTICXP_NAME. Note that you could mention any LaF FQN here, but all other options would then be ignored.</p>
      *
      * @param laFName the FQN of the LaF you want to install on the UIManagerConfigurer.
      */

@@ -19,7 +19,7 @@ import javax.script.ScriptException;
 
 /**
  * Converts {@link ScriptException} to a runtime exception.
- * 
+ *
  * @author Peter De Bruycker
  */
 public class ScriptExecutionException extends BaseScriptException {

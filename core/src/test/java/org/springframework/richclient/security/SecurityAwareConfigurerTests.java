@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2002-2005 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -28,7 +28,7 @@ import org.springframework.security.BadCredentialsException;
 
 /**
  * @author Larry Streepy
- * 
+ *
  */
 public class SecurityAwareConfigurerTests extends TestCase {
 
@@ -57,12 +57,12 @@ public class SecurityAwareConfigurerTests extends TestCase {
         Object sc = applicationContext.getBean( "securityConfigurer" );
 
         assertTrue( "securityManager must implement ApplicationSecurityManager",
-            asm instanceof ApplicationSecurityManager );
+                    asm instanceof ApplicationSecurityManager );
         assertTrue( "securityManager must be instance of DefaultApplicationSecurityManager",
-            asm instanceof DefaultApplicationSecurityManager );
+                    asm instanceof DefaultApplicationSecurityManager );
         assertTrue( "authenticationManager must implement AuthenticationManager", am instanceof AuthenticationManager );
         assertTrue( "authenticationManager must be instance of TestAuthenticationManager",
-            am instanceof TestAuthenticationManager );
+                    am instanceof TestAuthenticationManager );
         assertEquals( asm, ApplicationServicesLocator.services().getService(ApplicationSecurityManager.class) );
         assertTrue( "securityConfigurer must implement SecurityAwareConfigurer", sc instanceof SecurityAwareConfigurer );
     }
@@ -71,11 +71,11 @@ public class SecurityAwareConfigurerTests extends TestCase {
 
         securityManager.doLogin( TestAuthenticationManager.VALID_USER1 );
         assertEquals( "Authentication token should be VALID_USER1", authAwareBean.authentication,
-            TestAuthenticationManager.VALID_USER1 );
+                      TestAuthenticationManager.VALID_USER1 );
 
         securityManager.doLogin( TestAuthenticationManager.VALID_USER2 );
         assertEquals( "Authentication token should be VALID_USER2", authAwareBean.authentication,
-            TestAuthenticationManager.VALID_USER2 );
+                      TestAuthenticationManager.VALID_USER2 );
 
         try {
             securityManager.doLogin( TestAuthenticationManager.BAD_CREDENTIALS );
@@ -83,7 +83,7 @@ public class SecurityAwareConfigurerTests extends TestCase {
         } catch( BadCredentialsException e ) {
             // Shouldn't have been changed
             assertEquals( "Authentication token should be VALID_USER2", authAwareBean.authentication,
-                TestAuthenticationManager.VALID_USER2 );
+                          TestAuthenticationManager.VALID_USER2 );
         }
 
         securityManager.doLogout();
@@ -94,19 +94,19 @@ public class SecurityAwareConfigurerTests extends TestCase {
 
         securityManager.doLogin( TestAuthenticationManager.VALID_USER1 );
         assertEquals( "Authentication token should be VALID_USER1", loginAwareBean.authentication,
-            TestAuthenticationManager.VALID_USER1 );
+                      TestAuthenticationManager.VALID_USER1 );
         assertEquals( "Authentication tokens on beans should be equal ", authAwareBean.authentication,
-            loginAwareBean.authentication );
+                      loginAwareBean.authentication );
         assertTrue( "LoginAware notifications should happen after AuthAware",
-            authAwareBean.sequence < loginAwareBean.sequence );
+                    authAwareBean.sequence < loginAwareBean.sequence );
 
         loginAwareBean.reset();
         securityManager.doLogout();
         assertTrue( "Logout should be called", loginAwareBean.logoutCalled );
         assertEquals( "Previous token should be VALID_USER1", loginAwareBean.oldAuthentication,
-            TestAuthenticationManager.VALID_USER1 );
+                      TestAuthenticationManager.VALID_USER1 );
         assertTrue( "LoginAware notifications should happen after AuthAware",
-            authAwareBean.sequence < loginAwareBean.sequence );
+                    authAwareBean.sequence < loginAwareBean.sequence );
     }
 
     /**

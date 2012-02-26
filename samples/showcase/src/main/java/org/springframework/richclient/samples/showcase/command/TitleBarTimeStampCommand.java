@@ -15,20 +15,20 @@ import org.springframework.richclient.command.support.ApplicationWindowAwareComm
  */
 public class TitleBarTimeStampCommand extends ApplicationWindowAwareCommand {
 
-	private static final String TIMESTAMP_PREFIX = " [time: ";
+    private static final String TIMESTAMP_PREFIX = " [time: ";
 
-	private static final String TIMESTAMP_POSTFIX = "]";
+    private static final String TIMESTAMP_POSTFIX = "]";
 
-	private DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.FULL, Locale.getDefault());
+    private DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.FULL, Locale.getDefault());
 
-	@Override
-	protected void doExecuteCommand() {
-		Calendar currentTime = Calendar.getInstance();
-		String title = getApplicationWindow().getControl().getTitle();
-		int pos = title.indexOf(TIMESTAMP_PREFIX);
-		if (pos != -1)
-			title = title.substring(0, pos);
-		title += TIMESTAMP_PREFIX + format.format(currentTime.getTime()) + TIMESTAMP_POSTFIX;
-		getApplicationWindow().getControl().setTitle(title);
-	}
+    @Override
+    protected void doExecuteCommand() {
+        Calendar currentTime = Calendar.getInstance();
+        String title = getApplicationWindow().getControl().getTitle();
+        int pos = title.indexOf(TIMESTAMP_PREFIX);
+        if (pos != -1)
+            title = title.substring(0, pos);
+        title += TIMESTAMP_PREFIX + format.format(currentTime.getTime()) + TIMESTAMP_POSTFIX;
+        getApplicationWindow().getControl().setTitle(title);
+    }
 }

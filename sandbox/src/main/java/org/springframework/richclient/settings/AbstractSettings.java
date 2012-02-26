@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Abstract <code>Settings</code> implementation.
- * 
+ *
  * @author Peter De Bruycker
  */
 public abstract class AbstractSettings implements Settings {
@@ -60,14 +60,14 @@ public abstract class AbstractSettings implements Settings {
     /**
      * Should return the names of the child settings initially in this settings instance,
      * i.e. the children that were stored in the backend.
-     * 
+     *
      * @return the names of the child settings
      */
     protected abstract String[] internalGetChildSettings();
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setString(java.lang.String,
      *      java.lang.String)
      */
@@ -111,7 +111,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getString(java.lang.String)
      */
     public String getString( String key ) {
@@ -126,7 +126,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDefaultString(java.lang.String,
      *      java.lang.String)
      */
@@ -138,7 +138,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultString(java.lang.String)
      */
     public String getDefaultString( String key ) {
@@ -153,7 +153,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setInt(java.lang.String, int)
      */
     public void setInt( String key, int value ) {
@@ -166,7 +166,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getInt(java.lang.String)
      */
     public int getInt( String key ) {
@@ -181,7 +181,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDefaultInt(java.lang.String,
      *      int)
      */
@@ -193,7 +193,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultInt(java.lang.String)
      */
     public int getDefaultInt( String key ) {
@@ -208,7 +208,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDefaultLong(java.lang.String,
      *      long)
      */
@@ -220,7 +220,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultLong(java.lang.String)
      */
     public long getDefaultLong( String key ) {
@@ -235,7 +235,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setFloat(java.lang.String,
      *      float)
      */
@@ -249,7 +249,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getFloat(java.lang.String)
      */
     public float getFloat( String key ) {
@@ -264,7 +264,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDefaultFloat(java.lang.String,
      *      float)
      */
@@ -276,7 +276,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultFloat(java.lang.String)
      */
     public float getDefaultFloat( String key ) {
@@ -291,7 +291,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDouble(java.lang.String,
      *      double)
      */
@@ -305,7 +305,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDouble(java.lang.String)
      */
     public double getDouble( String key ) {
@@ -320,7 +320,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDefaultDouble(java.lang.String,
      *      double)
      */
@@ -332,7 +332,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultDouble(java.lang.String)
      */
     public double getDefaultDouble( String key ) {
@@ -347,7 +347,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setBoolean(java.lang.String,
      *      boolean)
      */
@@ -361,7 +361,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getBoolean(java.lang.String)
      */
     public boolean getBoolean( String key ) {
@@ -376,7 +376,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDefaultBoolean(java.lang.String,
      *      boolean)
      */
@@ -393,7 +393,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultBoolean(java.lang.String)
      */
     public boolean getDefaultBoolean( String key ) {
@@ -407,7 +407,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setLabeledEnum(java.lang.String,
      *      org.springframework.enums.LabeledEnum)
      */
@@ -432,7 +432,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getLabeledEnum(java.lang.String)
      */
     public LabeledEnum getLabeledEnum( String key ) {
@@ -447,7 +447,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setDefaultLabeledEnum(java.lang.String,
      *      org.springframework.enums.LabeledEnum)
      */
@@ -459,7 +459,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultLabeledEnum(java.lang.String)
      */
     public LabeledEnum getDefaultLabeledEnum( String key ) {
@@ -475,7 +475,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getDefaultKeys()
      */
     public String[] getDefaultKeys() {
@@ -484,7 +484,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getAllKeys()
      */
     public String[] getAllKeys() {
@@ -497,7 +497,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getName()
      */
     public String getName() {
@@ -506,7 +506,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getParent()
      */
     public Settings getParent() {
@@ -515,7 +515,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#addPropertyChangeListener(java.beans.PropertyChangeListener)
      */
     public void addPropertyChangeListener( PropertyChangeListener l ) {
@@ -524,7 +524,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#addPropertyChangeListener(java.lang.String,
      *      java.beans.PropertyChangeListener)
      */
@@ -534,7 +534,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#removePropertyChangeListener(java.beans.PropertyChangeListener)
      */
     public void removePropertyChangeListener( PropertyChangeListener l ) {
@@ -543,7 +543,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#removePropertyChangeListener(java.lang.String,
      *      java.beans.PropertyChangeListener)
      */
@@ -576,7 +576,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#setLong(java.lang.String,
      *      long)
      */
@@ -590,7 +590,7 @@ public abstract class AbstractSettings implements Settings {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.springframework.richclient.settings.Settings#getLong(java.lang.String)
      */
     public long getLong( String key ) {

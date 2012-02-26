@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -30,7 +30,7 @@ import org.springframework.richclient.core.Guarded;
 /**
  * Actually enables/disables registered 'guarded' objects based on the state of a
  * {@link org.springframework.binding.form.ValidatingFormModel}.
- * 
+ *
  * One instance of this FormGuard supports multiple guarded objects on one formModel. Each guarded object can
  * specify upon which state of the formModel it wants to be enabled:
  */
@@ -70,12 +70,12 @@ public class FormGuard implements PropertyChangeListener {
     public static final int FORMERROR_GUARDED = ON_ENABLED + ON_NOERRORS;
 
     private final ValidatingFormModel formModel;
-    
+
     private final Map guardedEntries = Collections.synchronizedMap(new HashMap());
 
     /**
      * Creates the FormGuard monitoring the passed formModel.
-     * 
+     *
      * @param formModel
      *            which state-changes should be passed to registered guarded objects.
      */
@@ -89,9 +89,9 @@ public class FormGuard implements PropertyChangeListener {
 
     /**
      * Creates the FormGuard monitoring the passed formModel, and adds the passed guarded-object.
-     * 
+     *
      * For backwards compatibility this assumes the {@link #FORMERROR_GUARDED} mask.
-     * 
+     *
      * @param formModel
      *            which state-changes should be passed to registered guarded objects.
      * @param guarded
@@ -104,7 +104,7 @@ public class FormGuard implements PropertyChangeListener {
     /**
      * Creates the FormGuard monitoring the passed formModel, and adds the passed guarded-object using the
      * specified mask.
-     * 
+     *
      * @param formModel
      *            which state-changes should be passed to registered guarded objects.
      * @param guarded
@@ -146,7 +146,7 @@ public class FormGuard implements PropertyChangeListener {
     }
 
     /**
-     * @see PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)  
+     * @see PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
      */
     public void propertyChange(PropertyChangeEvent e) {
         updateAllGuarded();
@@ -154,7 +154,7 @@ public class FormGuard implements PropertyChangeListener {
 
     /**
      * Adds a guarded object to be guarded by this FormGuard
-     * 
+     *
      * @param newGuarded
      *            object to be guarded
      * @param mask
@@ -167,11 +167,11 @@ public class FormGuard implements PropertyChangeListener {
 
     /**
      * Removes the guarded object from the management of this FormGuard.
-     * 
+     *
      * @param toRemove
      *            object that no longer should be managed
-     *            
-     * @return <code>false</code> if the object toRemove was not present in the list of managed guarded objects. 
+     *
+     * @return <code>false</code> if the object toRemove was not present in the list of managed guarded objects.
      */
     public boolean removeGuarded(Guarded toRemove) {
         Object mask = this.guardedEntries.remove(toRemove);

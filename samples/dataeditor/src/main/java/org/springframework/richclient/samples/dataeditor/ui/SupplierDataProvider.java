@@ -7,70 +7,54 @@ import org.springframework.richclient.widget.editor.provider.AbstractDataProvide
 
 import java.util.List;
 
-public class SupplierDataProvider extends AbstractDataProvider
-{
+public class SupplierDataProvider extends AbstractDataProvider {
     private SupplierService service;
 
-    public SupplierDataProvider(SupplierService service)
-    {
+    public SupplierDataProvider(SupplierService service) {
         this.service = service;
     }
 
-    public boolean supportsFiltering()
-    {
+    public boolean supportsFiltering() {
         return true;
     }
 
-    public List getList(Object criteria)
-    {
-        if (criteria instanceof SupplierFilter)
-        {
+    public List getList(Object criteria) {
+        if (criteria instanceof SupplierFilter) {
             return service.findSuppliers((SupplierFilter) criteria);
-        }
-        else if (criteria instanceof Supplier)
-        {
+        } else if (criteria instanceof Supplier) {
             return service.findSuppliers(SupplierFilter.fromSupplier((Supplier) criteria));
-        }
-        else
-        {
+        } else {
             throw new IllegalArgumentException("This provider can only filter through SupplierFilter, not " + criteria.getClass());
         }
     }
 
-    public boolean supportsUpdate()
-    {
+    public boolean supportsUpdate() {
         return true;
     }
 
     @Override
-    public Object doCreate(Object newData)
-    {
+    public Object doCreate(Object newData) {
         return newData;
     }
 
     @Override
-    public void doDelete(Object dataToRemove)
-    {
+    public void doDelete(Object dataToRemove) {
     }
 
     @Override
-    public Object doUpdate(Object updatedData)
-    {
+    public Object doUpdate(Object updatedData) {
         return updatedData;
     }
 
-    public boolean supportsCreate()
-    {
+    public boolean supportsCreate() {
         return true;
     }
 
-    public boolean supportsClone()
-    {
+    public boolean supportsClone() {
         return false;
     }
 
-    public boolean supportsDelete()
-    {
+    public boolean supportsDelete() {
         return true;
     }
 }
