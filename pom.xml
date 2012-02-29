@@ -427,7 +427,7 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.4</version>
         <configuration>
-          <dependencyDetailsEnabled>true</dependencyDetailsEnabled>
+          <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
           <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
         </configuration>
       </plugin>
@@ -459,7 +459,6 @@
           <aggregate>true</aggregate>
         </configuration>
       </plugin>
-	  <!--
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.8</version>
@@ -487,7 +486,6 @@
           </links>
         </configuration>
       </plugin>
-	  -->
     </plugins>
   </reporting>
   <properties>
