@@ -37,90 +37,90 @@ import ca.odell.glazedlists.swing.EventListModel;
 /**
  * A <code>ListSelectionDialog</code> can be used to select an item from a
  * list.
- *
+ * 
  * @author Peter De Bruycker
  */
 public class ListSelectionDialog extends AbstractSelectionDialog {
 
-    private ListCellRenderer renderer;
+	private ListCellRenderer renderer;
 
-    private JList list;
+	private JList list;
 
-    private EventList items;
+	private EventList items;
 
-    public ListSelectionDialog(String title, List items) {
-        this(title, null, GlazedLists.eventList(items));
-    }
+	public ListSelectionDialog(String title, List items) {
+		this(title, null, GlazedLists.eventList(items));
+	}
+	
+	public ListSelectionDialog(String title, Window parent, List items) {
+		this(title, parent, GlazedLists.eventList(items));
+	}
 
-    public ListSelectionDialog(String title, Window parent, List items) {
-        this(title, parent, GlazedLists.eventList(items));
-    }
+	public ListSelectionDialog(String title, Window parent, EventList items) {
+		super(title, parent);
+		this.items = items;
+	}
+	
+	public void setRenderer(ListCellRenderer renderer) {
+		Assert.notNull(renderer, "Renderer cannot be null.");
+		Assert.isTrue(!isControlCreated(), "Install the renderer before the control is created.");
 
-    public ListSelectionDialog(String title, Window parent, EventList items) {
-        super(title, parent);
-        this.items = items;
-    }
+		this.renderer = renderer;
+	}
 
-    public void setRenderer(ListCellRenderer renderer) {
-        Assert.notNull(renderer, "Renderer cannot be null.");
-        Assert.isTrue(!isControlCreated(), "Install the renderer before the control is created.");
+	protected JComponent createSelectionComponent() {
+		list = getComponentFactory().createList();
+		list.setModel(new EventListModel(items));
 
-        this.renderer = renderer;
-    }
+		list.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-    protected JComponent createSelectionComponent() {
-        list = getComponentFactory().createList();
-        list.setModel(new EventListModel(items));
+		list.addListSelectionListener(new ListSelectionListener() {
 
-        list.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			private int lastIndex = -1;
 
-        list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if (e.getValueIsAdjusting()) {
+					return;
+				}
 
-            private int lastIndex = -1;
+				if (list.getSelectionModel().isSelectionEmpty() && lastIndex > -1) {
+					if (list.getModel().getSize() > 0) {
+						list.setSelectedIndex(lastIndex);
+						return;
+					}
+				}
 
-            public void valueChanged(ListSelectionEvent e) {
-                if (e.getValueIsAdjusting()) {
-                    return;
-                }
+				setFinishEnabled(!list.getSelectionModel().isSelectionEmpty());
+				lastIndex = list.getSelectedIndex();
+			}
+		});
 
-                if (list.getSelectionModel().isSelectionEmpty() && lastIndex > -1) {
-                    if (list.getModel().getSize() > 0) {
-                        list.setSelectedIndex(lastIndex);
-                        return;
-                    }
-                }
+		list.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					getFinishCommand().execute();
+				}
+			}
+		});
 
-                setFinishEnabled(!list.getSelectionModel().isSelectionEmpty());
-                lastIndex = list.getSelectedIndex();
-            }
-        });
+		if (renderer != null) {
+			list.setCellRenderer(renderer);
+		}
 
-        list.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    getFinishCommand().execute();
-                }
-            }
-        });
+		setFinishEnabled(false);
 
-        if (renderer != null) {
-            list.setCellRenderer(renderer);
-        }
+		if (!items.isEmpty()) {
+			list.setSelectedIndex(0);
+		}
 
-        setFinishEnabled(false);
+		return new JScrollPane(list);
+	}
 
-        if (!items.isEmpty()) {
-            list.setSelectedIndex(0);
-        }
+	protected Object getSelectedObject() {
+		return items.get(list.getSelectedIndex());
+	}
 
-        return new JScrollPane(list);
-    }
-
-    protected Object getSelectedObject() {
-        return items.get(list.getSelectedIndex());
-    }
-
-    protected final JList getList() {
-        return list;
-    }
+	protected final JList getList() {
+		return list;
+	}
 }

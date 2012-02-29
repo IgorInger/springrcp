@@ -28,32 +28,32 @@ import org.springframework.util.Assert;
  */
 public class RequiredIfTrue extends AbstractPropertyConstraint {
 
-    private Constraint constraint;
+	private Constraint constraint;
 
-    /**
-     * Tests that the property is present if the provided predicate is
-     * satisified.
-     *
-     * @param predicate
-     *            the condition
-     */
-    public RequiredIfTrue(String propertyName, Constraint predicate) {
-        super(propertyName);
-        setConstraint(predicate);
-    }
+	/**
+	 * Tests that the property is present if the provided predicate is
+	 * satisified.
+	 *
+	 * @param predicate
+	 *            the condition
+	 */
+	public RequiredIfTrue(String propertyName, Constraint predicate) {
+		super(propertyName);
+		setConstraint(predicate);
+	}
 
-    protected RequiredIfTrue(String propertyName) {
-        super(propertyName);
-    }
+	protected RequiredIfTrue(String propertyName) {
+		super(propertyName);
+	}
 
-    public Constraint getConstraint() {
-        return constraint;
-    }
+	public Constraint getConstraint() {
+		return constraint;
+	}
 
-    protected void setConstraint(Constraint predicate) {
-        Assert.notNull(predicate, "predicate is required");
-        this.constraint = predicate;
-    }
+	protected void setConstraint(Constraint predicate) {
+		Assert.notNull(predicate, "predicate is required");
+		this.constraint = predicate;
+	}
 
     /**
      * Determine if this rule is dependent on the given property name. True if either the
@@ -69,18 +69,18 @@ public class RequiredIfTrue extends AbstractPropertyConstraint {
         return super.isDependentOn( propertyName ) || dependent;
     }
 
-    protected boolean test(PropertyAccessStrategy domainObjectAccessStrategy) {
-        if (constraint.test(domainObjectAccessStrategy)) {
-            return Required.instance().test(
-                       domainObjectAccessStrategy
-                       .getPropertyValue(getPropertyName()));
-        }
+	protected boolean test(PropertyAccessStrategy domainObjectAccessStrategy) {
+		if (constraint.test(domainObjectAccessStrategy)) {
+			return Required.instance().test(
+					domainObjectAccessStrategy
+					.getPropertyValue(getPropertyName()));
+		}
 
         return true;
-    }
+	}
 
-    public String toString() {
-        return "required if (" + constraint + ")";
-    }
+	public String toString() {
+		return "required if (" + constraint + ")";
+	}
 
 }

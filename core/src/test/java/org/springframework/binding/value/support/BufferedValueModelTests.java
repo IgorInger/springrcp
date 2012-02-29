@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,7 +27,7 @@ import org.springframework.richclient.test.SpringRichTestCase;
 
 /**
  * Tests class {@link BufferedValueModel}.
- *
+ * 
  * @author Jeanette Winzenburg
  * @author Karsten Lentzsch
  * @author Oliver Hutchison
@@ -39,18 +39,18 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
 
     private ValueModel wrapped;
     private CommitTrigger commitTrigger;
-
+        
     protected void doSetUp() throws Exception {
         wrapped = new ValueHolder(INITIAL_VALUE);
         commitTrigger = new CommitTrigger();
     }
-
+    
     public void testGetWrappedValueModel() {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
-
+        
         assertSame(wrapped, buffer.getWrappedValueModel());
         assertSame(wrapped, buffer.getInnerMostWrappedValueModel());
-
+        
         ValueModel nestedValueModel = new AbstractValueModelWrapper(wrapped) {};
         buffer = new BufferedValueModel(nestedValueModel);
         assertSame(nestedValueModel, buffer.getWrappedValueModel());
@@ -85,7 +85,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
 
     /**
      * Tests that the BufferedValueModel returns the buffered values
-     * once a value has been assigned.
+     * once a value has been assigned. 
      */
     public void testReturnsBufferedValueIfValueAssigned() {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
@@ -110,7 +110,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
             "Buffer value == new value once a value has been assigned.",
             buffer.getValue(),
             newValue3);
-
+        
         Object newValue4 = "change2";
         buffer.setValue(newValue4);
         assertSame(
@@ -143,7 +143,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
 
     /**
      * Tests that the BufferedValueModel returns the wrapped's values
-     * after a commit.
+     * after a commit. 
      */
     public void testReturnsWrappedValueAfterCommit() {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
@@ -169,7 +169,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
 
     /**
      * Tests that the BufferedValueModel returns the wrapped's values
-     * after a flush.
+     * after a flush. 
      */
     public void testReturnsWrappedValueAfterFlush() {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
@@ -191,7 +191,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
     // Testing Proper Value Commit and Flush **********************************
 
     /**
-     * Tests the core of the buffering feature: buffer modifications
+     * Tests the core of the buffering feature: buffer modifications 
      * do not affect the wrapped before a commit.
      */
     public void testWrappedValuesUnchangedBeforeCommit() {
@@ -241,8 +241,8 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
             "Wrapped value is the new value after the first commit.",
             wrapped.getValue(),
             newValue1);
-
-        // Set the buffer to the current wrapped value to check whether
+        
+        // Set the buffer to the current wrapped value to check whether 
         // the starts buffering, even if there's no value difference.
         Object newValue2 = wrapped.getValue();
         buffer.setValue(newValue2);
@@ -263,7 +263,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         buffer.setValue(newValue1);
         assertSame(
             "Buffer value reflects changes before the first flush.",
-            buffer.getValue(),
+            buffer.getValue(), 
             newValue1);
         revert();
         assertEquals(
@@ -271,13 +271,13 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
             buffer.getValue(),
             wrapped.getValue());
 
-        // Set the buffer to the current wrapped value to check whether
+        // Set the buffer to the current wrapped value to check whether 
         // the starts buffering, even if there's no value difference.
         Object newValue2 = wrapped.getValue();
         buffer.setValue(newValue2);
         assertSame(
             "Buffer value reflects changes before the flush.",
-            buffer.getValue(),
+            buffer.getValue(), 
             newValue2);
         revert();
         assertEquals(
@@ -302,13 +302,13 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         assertFalse(
             "Wrapped changes do not affect the buffering state.",
             buffer.isBuffering());
-
+        
         wrapped.setValue(null);
         assertFalse(
             "Wrapped change to null does not affect the buffering state.",
             buffer.isBuffering());
     }
-
+    
     /**
      * Tests that the buffer is buffering once a value has been assigned.
      */
@@ -318,18 +318,18 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         assertTrue(
             "Setting a value (even the wrapped's value) turns on buffering.",
             buffer.isBuffering());
-
+        
         buffer.setValue("change2");
         assertTrue(
             "Changing the value doesn't affect the buffering state.",
             buffer.isBuffering());
-
+        
         buffer.setValue(wrapped.getValue());
         assertTrue(
             "Resetting the value to the wrapped's value should affect buffering.",
             !buffer.isBuffering());
     }
-
+    
     /**
      * Tests that the buffer is not buffering after a commit.
      */
@@ -344,12 +344,12 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         Object newValue = "change1";
         wrapped.setValue(newValue);
         assertFalse(
-            "The buffer does not buffer after a commit and wrapped change1.",
+        "The buffer does not buffer after a commit and wrapped change1.",
             buffer.isBuffering());
-
+        
         wrapped.setValue(null);
         assertFalse(
-            "The buffer does not buffer after a commit and wrapped change2.",
+        "The buffer does not buffer after a commit and wrapped change2.",
             buffer.isBuffering());
     }
 
@@ -367,25 +367,25 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         Object newValue = "change1";
         wrapped.setValue(newValue);
         assertFalse(
-            "The buffer does not buffer after a flush and wrapped change1.",
+        "The buffer does not buffer after a flush and wrapped change1.",
             buffer.isBuffering());
-
+        
         wrapped.setValue(null);
         assertFalse(
-            "The buffer does not buffer after a flush and wrapped change2.",
+        "The buffer does not buffer after a flush and wrapped change2.",
             buffer.isBuffering());
     }
 
     /**
-     * Tests that changing the buffering state fires changes of
+     * Tests that changing the buffering state fires changes of 
      * the <i>buffering</i> property.
      */
     public void testFiresBufferingChanges() {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
-
+        
         TestPropertyChangeListener pcl = new TestPropertyChangeListener(BufferedValueModel.BUFFERING_PROPERTY);
         buffer.addPropertyChangeListener(BufferedValueModel.BUFFERING_PROPERTY, pcl);
-
+        
         assertEquals("Initial state.", 0, pcl.eventCount());
         buffer.getValue();
         assertEquals("Reading initial value.", 0, pcl.eventCount());
@@ -399,7 +399,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         assertEquals("After setting the second value.", 1, pcl.eventCount());
         buffer.getValue();
         assertEquals("Reading buffered value.", 1, pcl.eventCount());
-
+                
         wrapped.setValue(buffer.getValue());
         assertEquals("Changing wrapped to same as buffer.", 2, pcl.eventCount());
 
@@ -414,13 +414,13 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         assertEquals("After flushing.", 4, pcl.eventCount());
         buffer.getValue();
         assertEquals("Reading unbuffered value.", 4, pcl.eventCount());
-
+        
         buffer.setValue("before real commit");
         assertEquals("With new change to be committed", 5, pcl.eventCount());
         commit();
         assertEquals("With new change committed", 6, pcl.eventCount());
     }
-
+        
     public void testSetValueSendsProperValueChangeEvents() {
         Object obj1  = new Integer(1);
         Object obj2a = new Integer(2);
@@ -429,11 +429,11 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         testSetValueSendsProperEvents(obj1, null,   true);
         testSetValueSendsProperEvents(obj1, obj1,   false);
         testSetValueSendsProperEvents(obj1, obj2a,  true);
-        testSetValueSendsProperEvents(obj2a, obj2b, false);
+        testSetValueSendsProperEvents(obj2a, obj2b, false); 
         testSetValueSendsProperEvents(null, null,   false);
     }
 
-
+    
     public void testValueChangeSendsProperValueChangeEvents() {
         Object obj1  = new Integer(1);
         Object obj2a = new Integer(2);
@@ -442,9 +442,9 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         testValueChangeSendsProperEvents(obj1, null,   true);
         testValueChangeSendsProperEvents(obj1, obj1,   false);
         testValueChangeSendsProperEvents(obj1, obj2a,  true);
-        testValueChangeSendsProperEvents(obj2a, obj2b, false);
+        testValueChangeSendsProperEvents(obj2a, obj2b, false); 
         testValueChangeSendsProperEvents(null, null,   false);
-
+        
         // Now replace the default value change detector with one that
         // only uses true equivalence.
         ValueChangeDetector oldVCD = (ValueChangeDetector)ApplicationServicesLocator.services().getService(ValueChangeDetector.class);
@@ -453,13 +453,13 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         testValueChangeSendsProperEvents(obj1, null,   true);
         testValueChangeSendsProperEvents(obj1, obj1,   false);
         testValueChangeSendsProperEvents(obj1, obj2a,  true);
-        testValueChangeSendsProperEvents(obj2a, obj2b, true);
+        testValueChangeSendsProperEvents(obj2a, obj2b, true); 
         testValueChangeSendsProperEvents(null, null,   false);
 
         getApplicationServices().setValueChangeDetector(oldVCD);
     }
 
-
+  
     // Commit Trigger Tests *************************************************
 
 
@@ -469,7 +469,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
     public void testCommitTriggerChange() {
         CommitTrigger trigger1 = new CommitTrigger();
         CommitTrigger trigger2 = new CommitTrigger();
-
+        
         BufferedValueModel buffer = new BufferedValueModel(wrapped, trigger1);
         assertSame(
             "Commit trigger has been changed.",
@@ -481,7 +481,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
             "Commit trigger has been changed.",
             buffer.getCommitTrigger(),
             trigger2);
-
+        
         buffer.setCommitTrigger(null);
         assertSame(
             "Commit trigger has been changed.",
@@ -496,31 +496,31 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
     public void testListensToCurrentCommitTrigger() {
         CommitTrigger trigger1 = new CommitTrigger();
         CommitTrigger trigger2 = new CommitTrigger();
-
+        
         BufferedValueModel buffer = new BufferedValueModel(wrapped, trigger1);
         buffer.setValue("change1");
         Object wrappedValue = wrapped.getValue();
         Object bufferedValue = buffer.getValue();
         trigger2.commit();
         assertEquals(
-            "Changing the unrelated trigger2 to commit has no effect on the wrapped.",
+            "Changing the unrelated trigger2 to commit has no effect on the wrapped.", 
             wrapped.getValue(),
             wrappedValue);
         assertSame(
-            "Changing the unrelated trigger2 to commit has no effect on the buffer.",
+            "Changing the unrelated trigger2 to commit has no effect on the buffer.", 
             buffer.getValue(),
             bufferedValue);
-
+        
         trigger2.revert();
         assertEquals(
-            "Changing the unrelated trigger2 to revert has no effect on the wrapped.",
+            "Changing the unrelated trigger2 to revert has no effect on the wrapped.", 
             wrapped.getValue(),
             wrappedValue);
         assertSame(
-            "Changing the unrelated trigger2 to revert has no effect on the buffer.",
+            "Changing the unrelated trigger2 to revert has no effect on the buffer.", 
             buffer.getValue(),
             bufferedValue);
-
+        
         // Change the commit trigger to trigger2.
         buffer.setCommitTrigger(trigger2);
         assertSame(
@@ -530,56 +530,56 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
 
         trigger1.commit();
         assertEquals(
-            "Changing the unrelated trigger1 to commit has no effect on the wrapped.",
+            "Changing the unrelated trigger1 to commit has no effect on the wrapped.", 
             wrapped.getValue(),
             wrappedValue);
         assertSame(
-            "Changing the unrelated trigger1 to commit has no effect on the buffer.",
+            "Changing the unrelated trigger1 to commit has no effect on the buffer.", 
             buffer.getValue(),
             bufferedValue);
-
+        
         trigger1.revert();
         assertEquals(
-            "Changing the unrelated trigger1 to revert has no effect on the wrapped.",
+            "Changing the unrelated trigger1 to revert has no effect on the wrapped.", 
             wrapped.getValue(),
             wrappedValue);
         assertSame(
-            "Changing the unrelated trigger1 to revert has no effect on the buffer.",
+            "Changing the unrelated trigger1 to revert has no effect on the buffer.", 
             buffer.getValue(),
             bufferedValue);
-
+        
         // Commit using trigger2.
         trigger2.commit();
         assertEquals(
-            "Changing the current trigger2 to commit commits the buffered value.",
+            "Changing the current trigger2 to commit commits the buffered value.", 
             buffer.getValue(),
             wrapped.getValue());
-
+        
         buffer.setValue("change2");
         wrappedValue = wrapped.getValue();
         trigger2.revert();
         assertEquals(
-            "Changing the current trigger2 to revert flushes the buffered value.",
+            "Changing the current trigger2 to revert flushes the buffered value.", 
             buffer.getValue(),
             wrapped.getValue());
         assertEquals(
-            "Changing the current trigger2 to revert flushes the buffered value.",
+            "Changing the current trigger2 to revert flushes the buffered value.", 
             buffer.getValue(),
             wrappedValue);
     }
 
 
     // Tests Proper Update Notifications **************************************
-
+    
     /**
-     * Checks that wrapped changes fire value changes
+     * Checks that wrapped changes fire value changes 
      * if no value has been assigned.
      */
     public void testPropagatesWrappedChangesIfNoValueAssigned() {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
         TestPropertyChangeListener pcl = new TestPropertyChangeListener(ValueModel.VALUE_PROPERTY);
         buffer.addValueChangeListener(pcl);
-
+        
         wrapped.setValue("change1");
         assertEquals("Value change.", 1, pcl.eventCount());
 
@@ -601,7 +601,7 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
         TestPropertyChangeListener pcl = new TestPropertyChangeListener(ValueModel.VALUE_PROPERTY);
         buffer.addValueChangeListener(pcl);
-
+        
         buffer.setValue("new buffer");
         wrapped.setValue("change1");
         assertEquals("Value change.", 2, pcl.eventCount());
@@ -627,11 +627,11 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         buffer.setValue("value1");
         TestPropertyChangeListener pcl = new TestPropertyChangeListener(ValueModel.VALUE_PROPERTY);
         buffer.addValueChangeListener(pcl);
-
+        
         assertEquals("No initial change.", 0, pcl.eventCount());
         commit();
         assertEquals("First commit: no change.", 0, pcl.eventCount());
-
+        
         buffer.setValue("value2");
         assertEquals("Setting a value: a change.", 1, pcl.eventCount());
         commit();
@@ -640,27 +640,27 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
 
     public void testCommitFiresChangeOnDifferentOldAndNewValues() {
         BufferedValueModel buffer = createDefaultBufferedValueModel(
-                                        new ToUpperCaseStringHolder());
+                new ToUpperCaseStringHolder());
         buffer.setValue("initialValue");
         TestPropertyChangeListener pcl = new TestPropertyChangeListener(ValueModel.VALUE_PROPERTY);
         buffer.addValueChangeListener(pcl);
         buffer.setValue("value1");
         assertEquals("One event fired",
-                     1,
-                     pcl.eventCount());
+                1,
+                pcl.eventCount());
         assertEquals("First value set.",
-                     "value1",
-                     pcl.lastEvent().getNewValue());
+                "value1",
+                pcl.lastEvent().getNewValue());
         commit();
         assertEquals("Commit fires if the wrapped modifies the value.",
-                     2,
-                     pcl.eventCount());
+                2,
+                pcl.eventCount());
         assertEquals("Old value is the buffered value.",
-                     "value1",
-                     pcl.lastEvent().getOldValue());
+                "value1",
+                pcl.lastEvent().getOldValue());
         assertEquals("New value is the modified value.",
-                     "VALUE1",
-                     pcl.lastEvent().getNewValue());
+                "VALUE1",
+                pcl.lastEvent().getNewValue());
     }
 
     /**
@@ -670,13 +670,13 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
     public void testFlushFiresTrueValueChanges() {
         BufferedValueModel buffer = createDefaultBufferedValueModel();
         TestPropertyChangeListener pcl = new TestPropertyChangeListener(ValueModel.VALUE_PROPERTY);
-
+        
         wrapped.setValue("new wrapped");
         buffer.setValue("new buffer");
         buffer.addValueChangeListener(pcl);
         revert();
         assertEquals("First flush changes value.", 1, pcl.eventCount());
-
+        
         buffer.setValue(wrapped.getValue());
         assertEquals("Resetting value: no change.", 1, pcl.eventCount());
         revert();
@@ -691,9 +691,9 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         revert();
         assertEquals("Third flush: no change.", 3, pcl.eventCount());
     }
-
+    
     // Misc Tests *************************************************************
-
+ 
     /**
      * Tests read actions on a read-only model.
      */
@@ -701,25 +701,25 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         TestBean bean = new TestBean();
         ValueModel readOnlyModel = new BeanPropertyAccessStrategy(bean).getPropertyValueModel("readOnly");
         BufferedValueModel buffer = new BufferedValueModel(readOnlyModel, commitTrigger);
-
+        
         assertSame(
-            "Can read values from a read-only model.",
+            "Can read values from a read-only model.", 
             buffer.getValue(),
             readOnlyModel.getValue());
-
+        
         Object newValue1 = "new value";
         buffer.setValue(newValue1);
         assertSame(
-            "Can read values from a read-only model when buffering.",
+            "Can read values from a read-only model when buffering.", 
             buffer.getValue(),
             newValue1);
-
+        
         revert();
         assertSame(
-            "Can read values from a read-only model after a flush.",
+            "Can read values from a read-only model after a flush.", 
             buffer.getValue(),
             bean.getReadOnly());
-
+        
         buffer.setValue("new value2");
         try {
             commit();
@@ -730,37 +730,37 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
     }
 
     // Test Implementations ***************************************************
-
+    
     private void testSetValueSendsProperEvents(Object oldValue, Object newValue, boolean eventExpected) {
-        BufferedValueModel valueModel =
+        BufferedValueModel valueModel = 
             new BufferedValueModel(new ValueHolder(oldValue), new CommitTrigger());
         testSendsProperEvents(valueModel, oldValue, newValue, eventExpected);
     }
-
+    
     private void testValueChangeSendsProperEvents(Object oldValue, Object newValue, boolean eventExpected) {
         BufferedValueModel defaultModel = createDefaultBufferedValueModel();
         defaultModel.setValue(oldValue);
         testSendsProperEvents(defaultModel, oldValue, newValue, eventExpected);
     }
-
+    
     private void testSendsProperEvents(BufferedValueModel valueModel, Object oldValue, Object newValue, boolean eventExpected) {
         TestPropertyChangeListener pcl = new TestPropertyChangeListener(ValueModel.VALUE_PROPERTY);
         valueModel.addValueChangeListener(pcl);
         int expectedEventCount = eventExpected ? 1 : 0;
-
+        
         valueModel.setValue(newValue);
         assertEquals(
-            "Expected event count after ( " +
-            oldValue + " -> " + newValue + ").",
-            expectedEventCount,
-            pcl.eventCount());
+                "Expected event count after ( " + 
+                oldValue + " -> " + newValue + ").", 
+                expectedEventCount, 
+                pcl.eventCount());
         if (eventExpected) {
             assertEquals("Event's old value.", oldValue, pcl.lastEvent().getOldValue());
             assertEquals("Event's new value.", newValue, pcl.lastEvent().getNewValue());
         }
     }
-
-
+    
+    
     // Helper Code ************************************************************
 
     private void commit() {
@@ -775,28 +775,28 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
         wrapped.setValue(RESET_VALUE);
         return new BufferedValueModel(wrapped, commitTrigger);
     }
-
+    
     private BufferedValueModel createDefaultBufferedValueModel(ValueModel wrapped) {
         wrapped.setValue(RESET_VALUE);
         return new BufferedValueModel(wrapped, commitTrigger);
     }
-
+    
     // A String typed ValueModel that modifies set values to uppercase.
     private static class ToUpperCaseStringHolder extends AbstractValueModel {
-
+        
         private String text;
-
+        
         public Object getValue() {
             return text;
         }
-
+        
         public void setValue(Object newValue) {
             String newText = ((String) newValue).toUpperCase();
             Object oldText = text;
             text = newText;
             fireValueChange(oldText, newText);
         }
-
+        
     }
 
     /**
@@ -807,5 +807,5 @@ public final class BufferedValueModelTests extends SpringRichTestCase {
             return oldValue != newValue;
         }
     }
-
+    
 }

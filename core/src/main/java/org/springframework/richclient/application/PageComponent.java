@@ -53,8 +53,8 @@ public interface PageComponent extends PropertyChangePublisher, DescribedElement
     public void setDescriptor(PageComponentDescriptor pageComponentDescriptor);
 
     public String getId();
-
+    
     boolean canClose();
-
+    
     public void close();
 }

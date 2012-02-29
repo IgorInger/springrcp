@@ -7,21 +7,23 @@ import javax.swing.JComponent;
  * {@link org.springframework.richclient.command.CommandGroupModelBuilder}that
  * is specifically designed to build swing GUI components based on the passed in
  * command-group.
- *
+ * 
  * Basically it wraps the buildXXXModel method hierarchy of the
  * {@link org.springframework.richclient.command.CommandGroupModelBuilder}into
  * a buildXXXComponent structure that does the necessary typecasting allong the
  * way.
- *
+ * 
  * @see org.springframework.richclient.command.CommandGroupModelBuilder
  */
-public abstract class CommandGroupJComponentBuilder extends CommandGroupModelBuilder {
+public abstract class CommandGroupJComponentBuilder extends CommandGroupModelBuilder
+{
 
     /**
      * JComponent-building variant of the
      * {@link CommandGroupModelBuilder#buildModel(CommandGroup)}
      */
-    public JComponent buildComponent(CommandGroup commandGroup) {
+    public JComponent buildComponent(CommandGroup commandGroup)
+    {
         return (JComponent) buildModel(commandGroup);
     }
 
@@ -49,7 +51,8 @@ public abstract class CommandGroupJComponentBuilder extends CommandGroupModelBui
      * Implementation wrapping around the
      * {@link #buildRootComponent(AbstractCommand)}
      */
-    protected final Object buildRootModel(CommandGroup commandGroup) {
+    protected final Object buildRootModel(CommandGroup commandGroup)
+    {
         return buildRootComponent(commandGroup);
     }
 
@@ -57,7 +60,8 @@ public abstract class CommandGroupJComponentBuilder extends CommandGroupModelBui
      * Implementation wrapping around the
      * {@link #buildGroupComponent(JComponent, CommandGroup, int)}
      */
-    protected final Object buildGroupModel(Object parentModel, CommandGroup commandGroup, int level) {
+    protected final Object buildGroupModel(Object parentModel, CommandGroup commandGroup, int level)
+    {
         return buildGroupComponent((JComponent) parentModel, commandGroup, level);
     }
 
@@ -65,7 +69,8 @@ public abstract class CommandGroupJComponentBuilder extends CommandGroupModelBui
      * Implementation wrapping around the
      * {@link #buildChildComponent(JComponent, AbstractCommand, int)dModel(AbstractCommand)}
      */
-    protected final Object buildChildModel(Object parentModel, AbstractCommand command, int level) {
+    protected final Object buildChildModel(Object parentModel, AbstractCommand command, int level)
+    {
         return buildChildComponent((JComponent) parentModel, command, level);
     }
 }

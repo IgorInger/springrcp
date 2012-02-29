@@ -13,14 +13,15 @@ import org.springframework.richclient.image.config.ImageConfigurable;
  * component.
  */
 public interface TitledWidget
-    extends
-    Widget,
-    Guarded,
-    Messagable,
-    TitleConfigurable,
-    ImageConfigurable,
-    DescriptionConfigurable,
-    BeanNameAware {
+        extends
+        Widget,
+        Guarded,
+        Messagable,
+        TitleConfigurable,
+        ImageConfigurable,
+        DescriptionConfigurable,
+        BeanNameAware
+{
     ValidationResultsReporter newSingleLineResultsReporter(Messagable messagable);
 
     String getId();

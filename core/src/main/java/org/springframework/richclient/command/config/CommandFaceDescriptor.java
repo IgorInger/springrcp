@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,14 +33,14 @@ import org.springframework.richclient.core.VisualizedElement;
 import org.springframework.richclient.util.Assert;
 
 /**
- * A parameter object that contains the information to describe the visual representation of a
+ * A parameter object that contains the information to describe the visual representation of a 
  * command object.
- *
- *
+ * 
+ * 
  * @author Keith Donald
  */
 public class CommandFaceDescriptor extends AbstractPropertyChangePublisher implements DescribedElement,
-    VisualizedElement, CommandLabelConfigurable, DescriptionConfigurable, CommandIconConfigurable, ColorConfigurable {
+        VisualizedElement, CommandLabelConfigurable, DescriptionConfigurable, CommandIconConfigurable, ColorConfigurable {
 
     /** The property name used when firing events for the {@code labelInfo} property. */
     public static final String LABEL_INFO_PROPERTY = "labelInfo";
@@ -56,19 +56,19 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
 
     /** The property name used when firing events for the {@code largeIconInfo} property. */
     public static final String LARGE_ICON_INFO_PROPERTY = "largeIconInfo";
-
+    
     /** The property name used when firing events for the {@code background} property. */
     public static final String BACKGROUND_PROPERTY = "background";
-
+    
     /** The property name used when firing events for the {@code foreground} property. */
     public static final String FOREGROUND_PROPERTY = "foreground";
 
     private String caption;
 
     private String description;
-
+    
     private Color background;
-
+    
     private Color foreground;
 
     private CommandButtonLabelInfo labelInfo;
@@ -79,10 +79,10 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
 
     /**
      * Creates a new {@code CommandFaceDescriptor} that uses the given encoded label descriptor
-     * to provide the label properties.
+     * to provide the label properties. 
      *
      * @param encodedLabel The encoded label descriptor. May be null or empty to define a blank label.
-     *
+     * 
      * @see CommandButtonLabelInfo#valueOf(String)
      */
     public CommandFaceDescriptor(String encodedLabel) {
@@ -96,7 +96,7 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
      * @param encodedLabel The encoded label descriptor. May be null or empty.
      * @param icon The main default icon to be displayed by the command. May be null.
      * @param caption The caption to be displayed on rollover of the command. May be null or empty.
-     *
+     * 
      * @see CommandButtonLabelInfo#valueOf(String)
      */
     public CommandFaceDescriptor(String encodedLabel, Icon icon, String caption) {
@@ -115,7 +115,7 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
     }
 
     /**
-     * Creates a new {@code CommandFaceDescriptor} whose label information is provided by the
+     * Creates a new {@code CommandFaceDescriptor} whose label information is provided by the 
      * given {@link CommandButtonLabelInfo} instance.
      *
      * @param labelInfo The label information for the command.
@@ -126,7 +126,7 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
     }
 
     /**
-     * Returns true if no command label information is provided by this descriptor.
+     * Returns true if no command label information is provided by this descriptor. 
      *
      * @return true if there is no label information, false otherwise.
      */
@@ -175,7 +175,7 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
 
     /**
      * Returns the zero-based index of the mnemonic character within the label text associated with
-     * the command.
+     * the command. 
      *
      * @return The mnemonic index, or -1 if no mnemonic index is associated with the command.
      */
@@ -187,41 +187,44 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
      * {@inheritDoc}
      */
     public Image getImage() {
-
+        
         if (this.iconInfo == null) {
             return null;
-        } else {
+        }
+        else {
             return iconInfo.getImage();
         }
-
+        
     }
 
     /**
      * {@inheritDoc}
      */
     public Icon getIcon() {
-
+        
         if (this.iconInfo == null) {
             return null;
-        } else {
+        }
+        else {
             return iconInfo.getIcon();
         }
-
+        
     }
 
     /**
-     * Returns the main default large icon associated with the command.
+     * Returns the main default large icon associated with the command. 
      *
      * @return The large icon, or null.
      */
     public Icon getLargeIcon() {
-
+        
         if (this.largeIconInfo == null) {
             return null;
-        } else {
+        }
+        else {
             return largeIconInfo.getIcon();
         }
-
+        
     }
 
     /**
@@ -281,26 +284,26 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
     /**
      * {@inheritDoc}
      */
-    public void setBackground(Color background) {
-        Color old = this.background;
-        this.background = background;
-        firePropertyChange(BACKGROUND_PROPERTY, old, this.background);
-    }
+	public void setBackground(Color background) {
+		Color old = this.background;
+		this.background = background;
+		firePropertyChange(BACKGROUND_PROPERTY, old, this.background);
+	}
 
     /**
      * {@inheritDoc}
      */
-    public void setForeground(Color foreground) {
-        Color old = this.foreground;
-        this.foreground = foreground;
-        firePropertyChange(FOREGROUND_PROPERTY, old, this.foreground);
-    }
+	public void setForeground(Color foreground) {
+		Color old = this.foreground;
+		this.foreground = foreground;
+		firePropertyChange(FOREGROUND_PROPERTY, old, this.foreground);		
+	}
 
     /**
      * Sets the label information for the command using the given encoded label descriptor.
      *
      * @param encodedLabelInfo The encoded label descriptor. May be null or empty.
-     *
+     * 
      * @see CommandButtonLabelInfo#valueOf(String)
      */
     public void setButtonLabelInfo(String encodedLabelInfo) {
@@ -356,7 +359,8 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
                 // New IconInfo fires event
                 setIconInfo(new CommandButtonIconInfo(icon));
             }
-        } else {
+        }
+        else {
             old = iconInfo.getIcon();
             this.iconInfo.setIcon(icon);
         }
@@ -375,7 +379,8 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
                 // new IconInfo fires event
                 setLargeIconInfo(new CommandButtonIconInfo(icon));
             }
-        } else {
+        }
+        else {
             old = largeIconInfo.getIcon();
             this.largeIconInfo.setIcon(icon);
         }
@@ -386,7 +391,7 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
      * Configures the given button with the label information contained in this descriptor.
      *
      * @param button The button to be configured. Must not be null.
-     *
+     * 
      * @throws IllegalArgumentException if {@code button} is null.
      */
     public void configureLabel(AbstractButton button) {
@@ -398,7 +403,7 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
      * Configures the given button with the icon information contained in this descriptor.
      *
      * @param button The button to be configured. Must not be null.
-     *
+     * 
      * @throws IllegalArgumentException if {@code button} is null.
      */
     public void configureIcon(AbstractButton button) {
@@ -412,43 +417,44 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
      * @param button The button to be configured. Must not be null.
      * @param useLargeIcons Set to true to configure the button with large icons. False will use
      * default size icons.
-     *
+     * 
      * @throws IllegalArgumentException if {@code button} is null.
      */
     public void configureIconInfo(AbstractButton button, boolean useLargeIcons) {
-
+        
         Assert.required(button, "button");
-
+        
         if (useLargeIcons) {
             largeIconInfo.configure(button);
-        } else {
+        }
+        else {
             iconInfo.configure(button);
         }
     }
-
+    
     /**
      * Configures the given button with colours for background and foreground if available.
-     *
+     * 
      * @param button The button to be configured. Must not be null.
      */
     public void configureColor(AbstractButton button) {
         Assert.required(button, "button");
         if (foreground != null) {
-            button.setForeground(foreground);
+        	button.setForeground(foreground);
         }
         if (background != null) {
-            button.setBackground(background);
+        	button.setBackground(background);
         }
     }
 
     /**
-     * Configures the given button and command using the given configurer and the information
+     * Configures the given button and command using the given configurer and the information 
      * contained in this instance.
      *
      * @param button The button to be configured. Must not be null.
      * @param command The command to be configured. May be null.
      * @param configurer The configurer. Must not be null.
-     *
+     * 
      * @throws IllegalArgumentException if {@code button} or {@code configurer} are null.
      */
     public void configure(AbstractButton button, AbstractCommand command, CommandButtonConfigurer configurer) {
@@ -461,7 +467,7 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
      * Configures the given action with the information contained in this descriptor.
      *
      * @param action The action to be configured. Must not be null.
-     *
+     * 
      * @throws IllegalArgumentException if {@code action} is null.
      */
     public void configure(Action action) {
@@ -480,6 +486,6 @@ public class CommandFaceDescriptor extends AbstractPropertyChangePublisher imple
      */
     public String toString() {
         return new ToStringCreator(this).append("caption", caption).append("description", description).append(
-                   "buttonLabelInfo", labelInfo).append("buttonIconInfo", iconInfo).toString();
+                "buttonLabelInfo", labelInfo).append("buttonIconInfo", iconInfo).toString();
     }
 }

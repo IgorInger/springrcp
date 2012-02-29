@@ -9,8 +9,10 @@ import org.springframework.util.StringUtils;
 import javax.swing.*;
 import javax.swing.plaf.ButtonUI;
 
-public class JTaskPaneCommandButtonConfigurer extends DefaultCommandButtonConfigurer {
-    public void configure(AbstractButton button, AbstractCommand command, CommandFaceDescriptor faceDescriptor) {
+public class JTaskPaneCommandButtonConfigurer extends DefaultCommandButtonConfigurer
+{
+    public void configure(AbstractButton button, AbstractCommand command, CommandFaceDescriptor faceDescriptor)
+    {
 
         Assert.notNull(button, "The button to configure cannot be null.");
         Assert.notNull(faceDescriptor, "The command face descriptor cannot be null.");
@@ -26,9 +28,12 @@ public class JTaskPaneCommandButtonConfigurer extends DefaultCommandButtonConfig
             faceDescriptor.configureIconInfo(button, true);
         else
             faceDescriptor.configureIcon(button);
-        try {
+        try
+        {
             button.setUI((ButtonUI) Class.forName((String) UIManager.get("LinkButtonUI")).newInstance());
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
 
         }
     }

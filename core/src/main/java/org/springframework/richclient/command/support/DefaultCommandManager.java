@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -74,7 +74,7 @@ public class DefaultCommandManager implements CommandManager, BeanPostProcessor,
         Assert.notNull(commandServices, "A command services implementation is required");
         this.commandServices = commandServices;
     }
-
+    
     public CommandServices getCommandServices() {
         if(commandServices == null) {
             commandServices = (CommandServices) ApplicationServicesLocator.services().getService(CommandServices.class);
@@ -101,15 +101,15 @@ public class DefaultCommandManager implements CommandManager, BeanPostProcessor,
     public void setBeanFactory(BeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
-
-    public ComponentFactory getComponentFactory() {
-        return getCommandServices().getComponentFactory();
+    
+    public ComponentFactory getComponentFactory(){
+    	return getCommandServices().getComponentFactory();
     }
 
     public ButtonFactory getToolBarButtonFactory() {
         return getCommandServices().getButtonFactory();
     }
-
+    
     public ButtonFactory getButtonFactory() {
         return getCommandServices().getButtonFactory();
     }
@@ -141,10 +141,12 @@ public class DefaultCommandManager implements CommandManager, BeanPostProcessor,
         try {
             return (CommandFaceDescriptor)beanFactory.getBean(command.getId() + "." + faceDescriptorId,
                     CommandFaceDescriptor.class);
-        } catch (NoSuchBeanDefinitionException e) {
+        }
+        catch (NoSuchBeanDefinitionException e) {
             try {
                 return (CommandFaceDescriptor)beanFactory.getBean(faceDescriptorId, CommandFaceDescriptor.class);
-            } catch (NoSuchBeanDefinitionException ex) {
+            }
+            catch (NoSuchBeanDefinitionException ex) {
                 return null;
             }
         }
@@ -204,7 +206,7 @@ public class DefaultCommandManager implements CommandManager, BeanPostProcessor,
     public CommandGroup createCommandGroup(String groupId, Object[] members) {
         Assert.notNull(groupId, "Registered command groups must have an id.");
         CommandGroup newGroup = new CommandGroupFactoryBean(groupId, this.commandRegistry, this, members)
-        .getCommandGroup();
+                .getCommandGroup();
         registerCommand(newGroup);
         return newGroup;
     }
@@ -233,7 +235,8 @@ public class DefaultCommandManager implements CommandManager, BeanPostProcessor,
         if (bean instanceof CommandGroupFactoryBean) {
             CommandGroupFactoryBean factory = (CommandGroupFactoryBean)bean;
             factory.setCommandRegistry(commandRegistry);
-        } else if (bean instanceof AbstractCommand) {
+        }
+        else if (bean instanceof AbstractCommand) {
             configure((AbstractCommand)bean);
         }
         return bean;
@@ -273,5 +276,5 @@ public class DefaultCommandManager implements CommandManager, BeanPostProcessor,
     public boolean isTypeMatch(String commandId, Class targetType) {
         return this.commandRegistry.isTypeMatch(commandId, targetType);
     }
-
+    
 }

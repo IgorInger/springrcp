@@ -42,7 +42,8 @@ import java.beans.PropertyChangeListener;
 import java.util.*;
 import java.util.List;
 
-public final class GlazedListTableWidget extends AbstractWidget implements TableWidget {
+public final class GlazedListTableWidget extends AbstractWidget implements TableWidget
+{
     private JXTable theTable = new JXTable();
 
     private JScrollPane tableScroller;
@@ -71,7 +72,8 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
 
     private JLabel countLabel;
 
-    static {
+    static
+    {
         UIManager.put("JXTable.column.horizontalScroll", RcpSupport.getMessage("JXTable.horizontalScroll.label"));
         UIManager.put("JXTable.column.packAll", RcpSupport.getMessage("JXTable.packAll.label"));
         UIManager.put("JXTable.column.packSelected", RcpSupport.getMessage("JXTable.packSelected.label"));
@@ -81,25 +83,31 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
      * CellEditorListener op de selectiekolom om de selectieListeners gezamelijk
      * te triggeren .
      */
-    private CellEditorListener userSelectionCellEditorListener = new CellEditorListener() {
+    private CellEditorListener userSelectionCellEditorListener = new CellEditorListener()
+    {
 
-        public void editingStopped(ChangeEvent e) {
+        public void editingStopped(ChangeEvent e)
+        {
             fireUserSelectionChangedEvent();
         }
 
-        public void editingCanceled(ChangeEvent e) {
+        public void editingCanceled(ChangeEvent e)
+        {
         }
     };
 
     private Set dirtyRows = new HashSet();
 
-    private CellEditorListener dirtyRowCellEditorListener = new CellEditorListener() {
+    private CellEditorListener dirtyRowCellEditorListener = new CellEditorListener()
+    {
 
-        public void editingCanceled(ChangeEvent e) {
+        public void editingCanceled(ChangeEvent e)
+        {
         }
 
 
-        public void editingStopped(ChangeEvent e) {
+        public void editingStopped(ChangeEvent e)
+        {
             dirtyRows.add(getSelectedRows()[0]);
         }
     };
@@ -110,76 +118,94 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
      */
     private List<PropertyChangeListener> userSelectionListeners;
 
-    public GlazedListTableWidget(List<? extends Object> rows, TableDescription tableDesc) {
+    public GlazedListTableWidget(List<? extends Object> rows, TableDescription tableDesc)
+    {
         this(rows, tableDesc, tableDesc.getDefaultComparator());
     }
 
     public GlazedListTableWidget(List<? extends Object> rows, TableDescription tableDesc,
-                                 Comparator comparator) {
+                                 Comparator comparator)
+    {
         this(tableDesc.getDataType(), rows, GlazedListsSupport.makeTableFormat(tableDesc), GlazedListsSupport
-             .makeFilterProperties(tableDesc), comparator, tableDesc.hasSelectColumn());
+                .makeFilterProperties(tableDesc), comparator, tableDesc.hasSelectColumn());
         // Als de tablewidget met ons eigen TableDescription class is gemaakt
         // kunnen we additionele dingen als width/resizable/renderer en editor
         // zetten
         // bedenking: zouden we tabledesc van een iterator voorzien om over de
         // kolommen te lopen?
         TableCellEditor columnEditor = null;
-        for (int i = 0; i < tableDesc.getColumnCount(); ++i) {
+        for (int i = 0; i < tableDesc.getColumnCount(); ++i)
+        {
             TableColumnExt column = (TableColumnExt) theTable.getColumns(true).get(i);
             int columnWidth = tableDesc.getMaxColumnWidth(i);
-            if (columnWidth > 0) {
+            if (columnWidth > 0)
+            {
                 column.setMaxWidth(columnWidth);
             }
             columnWidth = tableDesc.getMinColumnWidth(i);
-            if (columnWidth > 0) {
+            if (columnWidth > 0)
+            {
                 column.setMinWidth(columnWidth);
             }
             column.setResizable(tableDesc.isResizable(i));
             column.setVisible(tableDesc.isVisible(i));
             columnEditor = tableDesc.getColumnEditor(i);
-            if (columnEditor != null) {
-                if (tableDesc.isSelectColumn(i)) {
+            if (columnEditor != null)
+            {
+                if (tableDesc.isSelectColumn(i))
+                {
                     columnEditor.addCellEditorListener(userSelectionCellEditorListener);
-                } else {
+                }
+                else
+                {
                     columnEditor.addCellEditorListener(dirtyRowCellEditorListener);
                 }
                 column.setCellEditor(columnEditor);
             }
-            if (tableDesc.getColumnRenderer(i) != null) {
+            if (tableDesc.getColumnRenderer(i) != null)
+            {
                 TableCellRenderer renderer = tableDesc.getColumnRenderer(i);
                 column.setCellRenderer(renderer);
-                if (renderer instanceof DefaultTableCellRenderer) {
+                if (renderer instanceof DefaultTableCellRenderer)
+                {
                     int align = ((DefaultTableCellRenderer) renderer).getHorizontalAlignment();
-                    switch (align) {
-                    case SwingConstants.CENTER:
-                        column.setHeaderRenderer(wrapInSortArrowHeaderRenderer(TableCellRenderers.CENTER_ALIGNED_HEADER_RENDERER));
-                        break;
-                    case SwingConstants.RIGHT:
-                        column.setHeaderRenderer(wrapInSortArrowHeaderRenderer(TableCellRenderers.RIGHT_ALIGNED_HEADER_RENDERER));
-                        break;
-                    default:
-                        break;
+                    switch (align)
+                    {
+                        case SwingConstants.CENTER:
+                            column.setHeaderRenderer(wrapInSortArrowHeaderRenderer(TableCellRenderers.CENTER_ALIGNED_HEADER_RENDERER));
+                            break;
+                        case SwingConstants.RIGHT:
+                            column.setHeaderRenderer(wrapInSortArrowHeaderRenderer(TableCellRenderers.RIGHT_ALIGNED_HEADER_RENDERER));
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
         }
     }
 
-    private TableCellRenderer wrapInSortArrowHeaderRenderer(TableCellRenderer renderer) {
-        if (tableComparatorChooser != null) {
+    private TableCellRenderer wrapInSortArrowHeaderRenderer(TableCellRenderer renderer)
+    {
+        if (tableComparatorChooser != null)
+        {
             return tableComparatorChooser.createSortArrowHeaderRenderer(renderer);
-        } else {
+        }
+        else
+        {
             return renderer;
         }
     }
 
     public GlazedListTableWidget(Class dataType, List<? extends Object> rows, TableFormat format,
-                                 String[] filterProperties) {
+                                 String[] filterProperties)
+    {
         this(dataType, rows, format, filterProperties, null, false);
     }
 
     public GlazedListTableWidget(Class dataType, List<? extends Object> rows, TableFormat format,
-                                 String[] filterProperties, Comparator comparator, boolean addHighlightSelectColumn) {
+                                 String[] filterProperties, Comparator comparator, boolean addHighlightSelectColumn)
+    {
         theTable.setColumnControlVisible(true);
         theTable.getSelectionMapper().setEnabled(false);
         commandConfigurer = (CommandConfigurer) Application.services().getService(CommandConfigurer.class);
@@ -188,17 +214,20 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
         sortedList = new SortedList<Object>(dataList, comparator);
         this.shownList = sortedList;
 
-        if (filterProperties != null) {
+        if (filterProperties != null)
+        {
             textFilterField = new JXSearchField(RcpSupport.getMessage("glazedListTableWidget.textFilterField.prompt"));
-            textFilterField.addFocusListener(new FocusAdapter() {
+            textFilterField.addFocusListener(new FocusAdapter()
+            {
                 @Override
-                public void focusGained(FocusEvent e) {
+                public void focusGained(FocusEvent e)
+                {
                     textFilterField.selectAll();
                 }
             });
             shownList = new FilterList<Object>(shownList,
-                                               new TextComponentMatcherEditor(textFilterField, GlazedLists.textFilterator(dataType,
-                                                       filterProperties)));
+                    new TextComponentMatcherEditor(textFilterField, GlazedLists.textFilterator(dataType,
+                            filterProperties)));
         }
 
         selectionModel = new EventSelectionModel<Object>(shownList);
@@ -208,36 +237,44 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
         tableModel = new EventJXTableModel<Object>(shownList, format);
         theTable.setModel(tableModel);
 
-        if (addHighlightSelectColumn) {
+        if (addHighlightSelectColumn)
+        {
             Highlighter selectHighlighter = new ColorHighlighter(HIGHLIGHTSELECTCOLUMN, new Color(0xF0, 0xF0, 0xE0), Color.BLACK);
             setHighlighters(HighlighterFactory.createSimpleStriping(), selectHighlighter);
             initializeSelectColumnCommands();
-        } else {
-            setHighlighters(HighlighterFactory.createSimpleStriping());
         }
+        else
+        {
+            setHighlighters(HighlighterFactory.createSimpleStriping());
+        }  
 
-        if (sortedList != null) {
+        if (sortedList != null)
+        {
             theTable.setSortable(false);
             theTable.getTableHeader().setDefaultRenderer(TableCellRenderers.LEFT_ALIGNED_HEADER_RENDERER);
             tableComparatorChooser = TableComparatorChooser
-                                     .install(theTable, sortedList, TableComparatorChooser.MULTIPLE_COLUMN_MOUSE_WITH_UNDO);
+                    .install(theTable, sortedList, TableComparatorChooser.MULTIPLE_COLUMN_MOUSE_WITH_UNDO);
             // the following is a fix for the selection sort and navigation problem
-            tableComparatorChooser.addSortActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+            tableComparatorChooser.addSortActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e)
+                {
                     EventList<Object> selected = selectionModel.getSelected();
                     int[] indexes = new int[selected.size()];
                     int i = 0;
-                    for (Object o : selected) {
+                    for (Object o : selected)
+                    {
                         indexes[i++] = shownList.indexOf(o);
                     }
                     selectionModel.clearSelection();
-                    for (int index : indexes) {
+                    for (int index : indexes)
+                    {
                         selectionModel.addSelectionInterval(index, index);
                     }
                 }
             });
-        }
-
+        }       
+        
         theTable.setPreferredScrollableViewportSize(new Dimension(50, 50));
         tableScroller = new JScrollPane(theTable);
         theTable.setHorizontalScrollEnabled(true);
@@ -250,18 +287,25 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
      * NOTE: this is experimental as there is a problem with glazedlists and jxtable.
      * (see note on ExtendedJXTable above)
      */
-    public void setRowHeightEnabled(boolean rowHeightEnabled) {
+    public void setRowHeightEnabled(boolean rowHeightEnabled)
+    {
         theTable.setRowHeightEnabled(true);
     }
 
-    private class SelectionNavigationListener implements ListSelectionListener {
+    private class SelectionNavigationListener implements ListSelectionListener
+    {
 
-        public void valueChanged(ListSelectionEvent e) {
+        public void valueChanged(ListSelectionEvent e)
+        {
             // enkel op einde van reeks selection veranderingen reageren.
-            if (!e.getValueIsAdjusting()) {
-                if (selectionModel.getSelected().size() == 1) {
+            if (!e.getValueIsAdjusting())
+            {
+                if (selectionModel.getSelected().size() == 1)
+                {
                     selectionMonitor.setValue(selectionModel.getSelected().get(0));
-                } else {
+                }
+                else
+                {
                     Object[] selectedRows = selectionModel.getSelected().toArray();
                     selectionMonitor.setValue(selectedRows.length > 0 ? selectedRows : null);
                 }
@@ -284,56 +328,68 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
 
     private TableComparatorChooser tableComparatorChooser;
 
-    static class HighlightSelectColumn implements HighlightPredicate {
+    static class HighlightSelectColumn implements HighlightPredicate
+    {
 
-        public boolean isHighlighted(Component renderer, ComponentAdapter adapter) {
+        public boolean isHighlighted(Component renderer, ComponentAdapter adapter)
+        {
             Object selectedValue = adapter.getValueAt(adapter.row, 0);
             return Boolean.TRUE.equals(selectedValue);
         }
     }
 
-    public void setHighlighters(Highlighter... highlighters) {
+    public void setHighlighters(Highlighter... highlighters)
+    {
         this.theTable.setHighlighters(highlighters);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean isEmpty() {
+    public boolean isEmpty()
+    {
         return this.dataList.isEmpty();
     }
 
     /**
      * {@inheritDoc}
      */
-    public int nrOfRows() {
+    public int nrOfRows()
+    {
         return this.tableModel.getRowCount();
     }
 
-    private void initializeNavigationCommands() {
+    private void initializeNavigationCommands()
+    {
         this.navigationCommands = new AbstractCommand[4];
-        this.navigationCommands[NAVIGATE_FIRST] = new ActionCommand(NAVIGATE_FIRSTROW_CMDID) {
+        this.navigationCommands[NAVIGATE_FIRST] = new ActionCommand(NAVIGATE_FIRSTROW_CMDID)
+        {
 
             @Override
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 selectionModel.setSelectionInterval(0, 0);
                 scrollToSelectedRow();
             }
         };
-        this.navigationCommands[NAVIGATE_PREVIOUS] = new ActionCommand(NAVIGATE_PREVIOUSROW_CMDID) {
+        this.navigationCommands[NAVIGATE_PREVIOUS] = new ActionCommand(NAVIGATE_PREVIOUSROW_CMDID)
+        {
 
             @Override
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 int newIndex = selectionModel.getAnchorSelectionIndex() - 1;
                 newIndex = (newIndex < 0) ? 0 : newIndex;
                 selectionModel.setSelectionInterval(newIndex, newIndex);
                 scrollToSelectedRow();
             }
         };
-        this.navigationCommands[NAVIGATE_NEXT] = new ActionCommand(NAVIGATE_NEXTROW_CMDID) {
+        this.navigationCommands[NAVIGATE_NEXT] = new ActionCommand(NAVIGATE_NEXTROW_CMDID)
+        {
 
             @Override
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 int newIndex = selectionModel.getAnchorSelectionIndex() + 1;
                 int lastIndex = shownList.size() - 1;
                 newIndex = (newIndex > lastIndex) ? lastIndex : newIndex;
@@ -341,49 +397,61 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
                 scrollToSelectedRow();
             }
         };
-        this.navigationCommands[NAVIGATE_LAST] = new ActionCommand(NAVIGATE_LASTROW_CMDID) {
+        this.navigationCommands[NAVIGATE_LAST] = new ActionCommand(NAVIGATE_LASTROW_CMDID)
+        {
 
             @Override
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 int lastIndex = shownList.size() - 1;
                 selectionModel.setSelectionInterval(lastIndex, lastIndex);
                 scrollToSelectedRow();
             }
         };
 
-        for (int i = 0; i < this.navigationCommands.length; i++) {
+        for (int i = 0; i < this.navigationCommands.length; i++)
+        {
             this.commandConfigurer.configure(this.navigationCommands[i]);
             this.navigationCommands[i].setEnabled(false);
         }
         this.navigationCommandGroup = CommandGroup.createCommandGroup(this.navigationCommands);
     }
 
-    private void fireUserSelectionChangedEvent() {
-        if (userSelectionListeners != null) {
-            for (Iterator listeners = userSelectionListeners.iterator(); listeners.hasNext();) {
+    private void fireUserSelectionChangedEvent()
+    {
+        if (userSelectionListeners != null)
+        {
+            for (Iterator listeners = userSelectionListeners.iterator(); listeners.hasNext();)
+            {
                 PropertyChangeListener listener = (PropertyChangeListener) listeners.next();
                 listener.propertyChange(new PropertyChangeEvent(this, "selection", null, null));
             }
         }
     }
 
-    public void addUserSelectionListener(PropertyChangeListener listener) {
-        if (userSelectionListeners == null) {
+    public void addUserSelectionListener(PropertyChangeListener listener)
+    {
+        if (userSelectionListeners == null)
+        {
             userSelectionListeners = new ArrayList<PropertyChangeListener>();
         }
         userSelectionListeners.add(listener);
     }
 
-    private void initializeSelectColumnCommands() {
+    private void initializeSelectColumnCommands()
+    {
         final WritableTableFormat writableTableFormat = (WritableTableFormat) this.tableModel
                 .getTableFormat();
-        AbstractCommand selectAll = new ActionCommand(SELECT_ALL_ID) {
+        AbstractCommand selectAll = new ActionCommand(SELECT_ALL_ID)
+        {
 
             @Override
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 shownList.getReadWriteLock().writeLock().lock();
                 Iterator i = shownList.iterator();
-                while (i.hasNext()) {
+                while (i.hasNext())
+                {
                     writableTableFormat.setColumnValue(i.next(), Boolean.TRUE, 0);
                 }
                 shownList.getReadWriteLock().writeLock().unlock();
@@ -392,13 +460,16 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
             }
         };
         this.commandConfigurer.configure(selectAll);
-        AbstractCommand selectNone = new ActionCommand(SELECT_NONE_ID) {
+        AbstractCommand selectNone = new ActionCommand(SELECT_NONE_ID)
+        {
 
             @Override
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 shownList.getReadWriteLock().writeLock().lock();
                 Iterator i = shownList.iterator();
-                while (i.hasNext()) {
+                while (i.hasNext())
+                {
                     writableTableFormat.setColumnValue(i.next(), Boolean.FALSE, 0);
                 }
                 shownList.getReadWriteLock().writeLock().unlock();
@@ -407,18 +478,21 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
             }
         };
         this.commandConfigurer.configure(selectNone);
-        AbstractCommand selectInverse = new ActionCommand(SELECT_INVERSE_ID) {
+        AbstractCommand selectInverse = new ActionCommand(SELECT_INVERSE_ID)
+        {
 
             @Override
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 shownList.getReadWriteLock().writeLock().lock();
                 Iterator i = shownList.iterator();
-                while (i.hasNext()) {
+                while (i.hasNext())
+                {
                     Object rowObject = i.next();
                     Object columnValue = writableTableFormat.getColumnValue(rowObject, 0);
                     writableTableFormat.setColumnValue(rowObject, Boolean.TRUE.equals(columnValue)
-                                                       ? Boolean.FALSE
-                                                       : Boolean.TRUE, 0);
+                            ? Boolean.FALSE
+                            : Boolean.TRUE, 0);
                 }
                 shownList.getReadWriteLock().writeLock().unlock();
                 theTable.repaint();
@@ -426,274 +500,367 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
             }
         };
         this.commandConfigurer.configure(selectInverse);
-        this.selectColumnCommandGroup = CommandGroup.createCommandGroup(new Object[] {selectAll, selectNone,
-                                        selectInverse
-                                                                                     });
+        this.selectColumnCommandGroup = CommandGroup.createCommandGroup(new Object[]{selectAll, selectNone,
+                selectInverse});
     }
 
-    public final void setRows(Collection newRows) {
+    public final void setRows(Collection newRows)
+    {
         this.dataList.getReadWriteLock().writeLock().lock();
-        try {
+        try
+        {
             this.dirtyRows.clear();
             theTable.clearSelection();
             this.dataList.clear();
             this.dataList.addAll(newRows);
 
             scrollToSelectedRow(); // new rows, scroll back to top
-        } finally {
+        }
+        finally
+        {
             this.dataList.getReadWriteLock().writeLock().unlock();
         }
     }
 
-    public final List getRows() {
+    public final List getRows()
+    {
         return new ArrayList<Object>(this.dataList);
     }
 
-    public final List getVisibleRows() {
+    public final List getVisibleRows()
+    {
         return new ArrayList<Object>(this.shownList);
     }
 
-    public void addRowObject(Object newObject) {
+    public void addRowObject(Object newObject)
+    {
         this.dataList.getReadWriteLock().writeLock().lock();
-        try {
+        try
+        {
             this.dataList.add(newObject);
-        } finally {
+        }
+        finally
+        {
             this.dataList.getReadWriteLock().writeLock().unlock();
         }
     }
 
-    public void addRows(Collection rows) {
+    public void addRows(Collection rows)
+    {
         this.dataList.getReadWriteLock().writeLock().lock();
-        try {
+        try
+        {
             this.dataList.addAll(rows);
-        } finally {
+        }
+        finally
+        {
             this.dataList.getReadWriteLock().writeLock().unlock();
         }
     }
 
-    public void removeRowObject(Object objectToRemove) {
+    public void removeRowObject(Object objectToRemove)
+    {
         this.dataList.getReadWriteLock().writeLock().lock();
-        try {
+        try
+        {
             dirtyRows.remove(objectToRemove);
             this.dataList.remove(objectToRemove);
-        } finally {
+        }
+        finally
+        {
             this.dataList.getReadWriteLock().writeLock().unlock();
         }
     }
 
-    public int selectRowObject(Object toPointTo, Observer originatingObserver) {
+    public int selectRowObject(Object toPointTo, Observer originatingObserver)
+    {
         int index = this.shownList.indexOf(toPointTo);
         selectRowObject(index, originatingObserver);
         return index;
     }
 
-    public void selectRowObject(final int index, final Observer originatingObserver) {
-        Runnable doSelectRowObject = new Runnable() {
+    public void selectRowObject(final int index, final Observer originatingObserver)
+    {
+        Runnable doSelectRowObject = new Runnable()
+        {
 
-            public void run() {
-                if (originatingObserver != null) {
+            public void run()
+            {
+                if (originatingObserver != null)
+                {
                     selectionMonitor.deleteObserver(originatingObserver);
                 }
 
-                if ((index > -1) && (shownList.size() > index)) {
+                if ((index > -1) && (shownList.size() > index))
+                {
                     selectionModel.setSelectionInterval(index, index);
-                } else {
+                }
+                else
+                {
                     selectionModel.clearSelection();
                 }
                 scrollToSelectedRow();
 
-                if (originatingObserver != null) {
+                if (originatingObserver != null)
+                {
                     selectionMonitor.addObserver(originatingObserver);
                 }
             }
         };
-        if (SwingUtilities.isEventDispatchThread()) {
+        if (SwingUtilities.isEventDispatchThread())
+        {
             doSelectRowObject.run();
-        } else {
+        }
+        else
+        {
             SwingUtilities.invokeLater(doSelectRowObject);
         }
 
     }
 
-    public void addSelection(final Object[] rows, final Observer originatingObserver) {
-        Runnable doAddSelection = new Runnable() {
-            public void run() {
-                if (originatingObserver != null) {
+    public void addSelection(final Object[] rows, final Observer originatingObserver)
+    {
+        Runnable doAddSelection = new Runnable()
+        {
+            public void run()
+            {
+                if (originatingObserver != null)
+                {
                     selectionMonitor.deleteObserver(originatingObserver);
                 }
-                for (int i = 0; i < rows.length; i++) {
+                for (int i = 0; i < rows.length; i++)
+                {
                     int index = shownList.indexOf(rows[i]);
                     selectionModel.addSelectionInterval(index, index);
                 }
-                if (originatingObserver != null) {
+                if (originatingObserver != null)
+                {
                     selectionMonitor.addObserver(originatingObserver);
                 }
             }
         };
-        if (SwingUtilities.isEventDispatchThread()) {
+        if (SwingUtilities.isEventDispatchThread())
+        {
             doAddSelection.run();
-        } else {
+        }
+        else
+        {
             SwingUtilities.invokeLater(doAddSelection);
         }
     }
 
-    public boolean hasSelection() {
+    public boolean hasSelection()
+    {
         return !this.selectionModel.isSelectionEmpty();
     }
 
-    public synchronized void scrollToSelectedRow() {
-        Runnable doScrollToSelectedRow = new Runnable() {
-            public void run() {
-                if (theTable.isVisible()) {
+    public synchronized void scrollToSelectedRow()
+    {
+        Runnable doScrollToSelectedRow = new Runnable()
+        {
+            public void run()
+            {
+                if (theTable.isVisible())
+                {
                     int selectedRow = theTable.getSelectedRow();
-                    if (selectedRow != -1) {
+                    if (selectedRow != -1)
+                    {
                         Rectangle cellRect = theTable.getCellRect(selectedRow, 0, true);
                         Rectangle viewRect = tableScroller.getViewport().getViewRect();
-                        if (!viewRect.contains(cellRect)) {
-                            if (cellRect.y < viewRect.y) { // cell is above view (or cut above)
+                        if (!viewRect.contains(cellRect))
+                        {
+                            if (cellRect.y < viewRect.y) // cell is above view (or cut above)
+                            {
                                 tableScroller.getViewport().setViewPosition(cellRect.getLocation());
-                            } else { // cell is below view (or cut below)
+                            }
+                            else // cell is below view (or cut below)
+                            {
                                 tableScroller.getViewport().scrollRectToVisible(cellRect);
                             }
                         }
-                    } else {
+                    }
+                    else
+                    {
                         tableScroller.getViewport().setViewPosition(new Point(0, 0));
                     }
                 }
             }
         };
-        if (SwingUtilities.isEventDispatchThread()) {
+        if (SwingUtilities.isEventDispatchThread())
+        {
             doScrollToSelectedRow.run();
-        } else {
+        }
+        else
+        {
             SwingUtilities.invokeLater(doScrollToSelectedRow);
         }
     }
 
-    public void replaceRowObject(Object oldObject, Object newObject, Observer originatingObserver) {
+    public void replaceRowObject(Object oldObject, Object newObject, Observer originatingObserver)
+    {
         this.dataList.getReadWriteLock().writeLock().lock();
-        try {
+        try
+        {
             dirtyRows.remove(oldObject);
             int index = this.dataList.indexOf(oldObject);
-            if (index != -1) {
+            if (index != -1)
+            {
                 boolean wasSelected = this.selectionModel.isSelectedIndex(this.shownList.indexOf(oldObject));
 
-                if (wasSelected && (originatingObserver != null)) {
+                if (wasSelected && (originatingObserver != null))
+                {
                     this.selectionMonitor.deleteObserver(originatingObserver);
                 }
 
                 this.dataList.set(index, newObject);
 
-                if (wasSelected) {
+                if (wasSelected)
+                {
                     int indexToSelect = this.shownList.indexOf(newObject);
                     this.selectionModel.addSelectionInterval(indexToSelect, indexToSelect);
-                    if (originatingObserver != null) {
+                    if (originatingObserver != null)
+                    {
                         this.selectionMonitor.addObserver(originatingObserver);
                     }
                 }
             }
-        } finally {
+        }
+        finally
+        {
             this.dataList.getReadWriteLock().writeLock().unlock();
         }
     }
 
-    public void replaceRows(final Collection oldObject, final Collection newObject) {
-        Runnable doReplaceRows = new Runnable() {
-            public void run() {
+    public void replaceRows(final Collection oldObject, final Collection newObject)
+    {
+        Runnable doReplaceRows = new Runnable()
+        {
+            public void run()
+            {
                 dataList.getReadWriteLock().writeLock().lock();
-                try {
+                try
+                {
                     dirtyRows.clear();
                     dataList.removeAll(oldObject);
                     dataList.addAll(newObject);
-                } finally {
+                }
+                finally
+                {
                     dataList.getReadWriteLock().writeLock().unlock();
                 }
             }
         };
-        if (SwingUtilities.isEventDispatchThread()) {
+        if (SwingUtilities.isEventDispatchThread())
+        {
             doReplaceRows.run();
-        } else {
+        }
+        else
+        {
             SwingUtilities.invokeLater(doReplaceRows);
         }
     }
 
-    public void unSelectAll() {
-        Runnable doUnselectAll = new Runnable() {
-            public void run() {
+    public void unSelectAll()
+    {
+        Runnable doUnselectAll = new Runnable()
+        {
+            public void run()
+            {
                 selectionModel.clearSelection();
             }
         };
-        if (SwingUtilities.isEventDispatchThread()) {
+        if (SwingUtilities.isEventDispatchThread())
+        {
             doUnselectAll.run();
-        } else {
+        }
+        else
+        {
             SwingUtilities.invokeLater(doUnselectAll);
         }
     }
 
-    public Object[] getSelectedRows() {
+    public Object[] getSelectedRows()
+    {
         return this.selectionModel.getSelected().toArray();
     }
 
-    public JComponent getComponent() {
+    public JComponent getComponent()
+    {
         return this.tableScroller;
     }
 
-    public JTable getTable() {
+    public JTable getTable()
+    {
         return this.theTable;
     }
 
-    public void addSelectionObserver(Observer observer) {
+    public void addSelectionObserver(Observer observer)
+    {
         this.selectionMonitor.addObserver(observer);
     }
 
-    public void removeSelectionObserver(Observer observer) {
+    public void removeSelectionObserver(Observer observer)
+    {
         this.selectionMonitor.deleteObserver(observer);
     }
 
-    public void addTableModelListener(TableModelListener listener) {
+    public void addTableModelListener(TableModelListener listener)
+    {
         this.tableModel.addTableModelListener(listener);
     }
 
-    public void removeTableModelListener(TableModelListener listener) {
+    public void removeTableModelListener(TableModelListener listener)
+    {
         this.tableModel.removeTableModelListener(listener);
     }
 
-    public void updateTable() {
+    public void updateTable()
+    {
         this.tableModel.fireTableDataChanged();
     }
 
-    public JTextField getTextFilterField() {
+    public JTextField getTextFilterField()
+    {
         return textFilterField;
     }
 
-    public AbstractCommand[] getNavigationCommands() {
+    public AbstractCommand[] getNavigationCommands()
+    {
         return navigationCommands;
     }
 
-    public JComponent getNavigationButtonBar() {
+    public JComponent getNavigationButtonBar()
+    {
         return getNavigationButtonBar(Sizes.PREFERRED, BorderFactory.createEmptyBorder());
     }
 
-    public JComponent getNavigationButtonBar(Size size, Border border) {
+    public JComponent getNavigationButtonBar(Size size, Border border)
+    {
         return this.navigationCommandGroup.createButtonBar(size, border);
     }
 
-    public CommandGroup getNavigationCommandGroup() {
+    public CommandGroup getNavigationCommandGroup()
+    {
         return this.navigationCommandGroup;
     }
 
-    public CommandGroup getSelectColumnCommandGroup() {
+    public CommandGroup getSelectColumnCommandGroup()
+    {
         return this.selectColumnCommandGroup;
     }
 
-    public JComponent getSelectButtonBar() {
+    public JComponent getSelectButtonBar()
+    {
         return this.selectColumnCommandGroup.createButtonBar(Sizes.PREFERRED, BorderFactory
                 .createEmptyBorder());
     }
 
-    public JComponent getButtonBar() {
-        if (this.selectColumnCommandGroup != null) {
+    public JComponent getButtonBar()
+    {
+        if (this.selectColumnCommandGroup != null)
+        {
             JPanel buttons = new JPanel(new FormLayout("fill:pref, 3dlu, fill:pref, 3dlu, fill:pref",
-                                        "fill:pref:grow"));
+                    "fill:pref:grow"));
             CellConstraints cc = new CellConstraints();
             buttons.add(getSelectButtonBar(), cc.xy(1, 1));
             buttons.add(new JSeparator(SwingConstants.VERTICAL), cc.xy(3, 1));
@@ -703,29 +870,38 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
         return getNavigationButtonBar();
     }
 
-    public JLabel getListSummaryLabel() {
-        if (countLabel == null) {
+    public JLabel getListSummaryLabel()
+    {
+        if (countLabel == null)
+        {
             countLabel = createCountLabel();
         }
         return countLabel;
     }
 
-    private JLabel createCountLabel() {
+    private JLabel createCountLabel()
+    {
         final JLabel label = new JLabel("");
 
         setTextForListSummaryLabel(label);
 
-        shownList.addListEventListener(new ListEventListener<Object>() {
-            public void listChanged(ListEvent<Object> evt) {
-                if (!evt.isReordering()) {
+        shownList.addListEventListener(new ListEventListener<Object>()
+        {
+            public void listChanged(ListEvent<Object> evt)
+            {
+                if (!evt.isReordering())
+                {
                     setTextForListSummaryLabel(label);
                 }
             }
         });
 
-        theTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
+        theTable.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+        {
+            public void valueChanged(ListSelectionEvent e)
+            {
+                if (!e.getValueIsAdjusting())
+                {
                     setTextForListSummaryLabel(label);
                 }
             }
@@ -735,32 +911,38 @@ public final class GlazedListTableWidget extends AbstractWidget implements Table
         return label;
     }
 
-    private void setTextForListSummaryLabel(final JLabel label) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
+    private void setTextForListSummaryLabel(final JLabel label)
+    {
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 Integer index = 0;
                 Integer selectedCount = 0;
                 Integer totalCount = shownList.size();
 
-                if (getSelectedRows() != null && getSelectedRows().length > 0) {
+                if (getSelectedRows() != null && getSelectedRows().length > 0)
+                {
                     index = shownList.indexOf(getSelectedRows()[0]);
                     index++;
                     selectedCount = getSelectedRows().length;
                 }
 
-                label.setText(RcpSupport.getMessage("glazedListTableWidget", "listSummary", "label", new Object[] {index, selectedCount, totalCount}));
+                label.setText(RcpSupport.getMessage("glazedListTableWidget", "listSummary", "label", new Object[]{index, selectedCount, totalCount}));
             }
         });
     }
 
 
     @Override
-    public void onAboutToShow() {
+    public void onAboutToShow()
+    {
         super.onAboutToShow();
         this.theTable.requestFocusInWindow();
     }
 
-    public Set getDirtyRows() {
+    public Set getDirtyRows()
+    {
         return dirtyRows;
     }
 

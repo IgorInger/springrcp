@@ -9,20 +9,25 @@ import org.springframework.richclient.taskpane.TaskPaneNavigatorApplicationLifec
 import java.awt.*;
 import java.util.Arrays;
 
-public class DataEditorApplicationLifecycleAdvisor extends TaskPaneNavigatorApplicationLifecycleAdvisor {
+public class DataEditorApplicationLifecycleAdvisor extends TaskPaneNavigatorApplicationLifecycleAdvisor
+{
     private JXLoginDialog jxLoginDialog;
 
     @Override
-    public void onWindowOpened(ApplicationWindow window) {
+    public void onWindowOpened(ApplicationWindow window)
+    {
         super.onWindowOpened(window);
         window.getControl().setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 
     @Override
-    public void onPreStartup() {
-        jxLoginDialog = new JXLoginDialog(new LoginService() {
+     public void onPreStartup()
+    {
+        jxLoginDialog = new JXLoginDialog(new LoginService()
+        {
             @Override
-            public boolean authenticate(String name, char[] password, String server) throws Exception {
+            public boolean authenticate(String name, char[] password, String server) throws Exception
+            {
                 Thread.sleep(2000);
                 return true;
             }
@@ -30,7 +35,8 @@ public class DataEditorApplicationLifecycleAdvisor extends TaskPaneNavigatorAppl
         jxLoginDialog.getPanel().setServers(Arrays.asList("Server1", "Server2"));
         jxLoginDialog.setModal(true);
         jxLoginDialog.setVisible(true);
-        if(jxLoginDialog.getStatus() != JXLoginPane.Status.SUCCEEDED) {
+        if(jxLoginDialog.getStatus() != JXLoginPane.Status.SUCCEEDED)
+        {
             System.exit(1);
         }
     }

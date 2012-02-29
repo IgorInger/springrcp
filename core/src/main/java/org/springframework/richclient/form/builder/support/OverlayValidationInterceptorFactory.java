@@ -36,7 +36,8 @@ import org.springframework.richclient.util.RcpSupport;
 import org.springframework.richclient.dialog.DefaultMessageAreaModel;
 import org.springframework.richclient.dialog.Messagable;
 
-public class OverlayValidationInterceptorFactory implements FormComponentInterceptorFactory {
+public class OverlayValidationInterceptorFactory implements FormComponentInterceptorFactory
+{
     public FormComponentInterceptor getInterceptor(FormModel formModel) {
         return new OverlayValidationInterceptor(formModel);
     }
@@ -63,7 +64,8 @@ public class OverlayValidationInterceptorFactory implements FormComponentInterce
                     }
                 };
                 component.addPropertyChangeListener("ancestor", waitUntilHasParentListener);
-            } else {
+            }
+            else {
                 attachOverlay(overlay, component);
             }
         }
@@ -76,7 +78,7 @@ public class OverlayValidationInterceptorFactory implements FormComponentInterce
                 componentToOverlay = hasParentScrollPane(component) ? getParentScrollPane(component) : component;
             int yOffset = componentToOverlay.getPreferredSize().height;
             OverlayHelper.attachOverlay(overlay, componentToOverlay, SwingConstants.NORTH_WEST, 0, Math.min(yOffset,
-                                        new JTextField().getPreferredSize().height));
+                    new JTextField().getPreferredSize().height));
         }
 
         private JScrollPane getParentScrollPane(JComponent component) {
@@ -85,30 +87,35 @@ public class OverlayValidationInterceptorFactory implements FormComponentInterce
 
         private boolean hasParentScrollPane(JComponent component) {
             return component.getParent() != null && component.getParent() instanceof JViewport
-                   && component.getParent().getParent() instanceof JScrollPane;
+                    && component.getParent().getParent() instanceof JScrollPane;
         }
     }
 
-    private static class ErrorReportingOverlay extends JLabel implements Messagable, Guarded, MayHaveMessagableTab {
+    private static class ErrorReportingOverlay extends JLabel implements Messagable, Guarded, MayHaveMessagableTab
+    {
 
         private DefaultMessageAreaModel messageBuffer = new DefaultMessageAreaModel(this);
         private MessagableTab messagableTab = null;
         private int tabIndex = 0;
 
-        public boolean isEnabled() {
+        public boolean isEnabled()
+        {
             return true;
         }
 
-        public void setEnabled(boolean enabled) {
+        public void setEnabled(boolean enabled)
+        {
             setVisible(!enabled);
         }
 
-        public void setMessagableTab(MessagableTab messagableTab, int tabIndex) {
+        public void setMessagableTab(MessagableTab messagableTab, int tabIndex)
+        {
             this.messagableTab = messagableTab;
             this.tabIndex = tabIndex;
         }
 
-        public void setMessage(Message message) {
+        public void setMessage(Message message)
+        {
             // geef de messgage door aan de omringende tabbedpane als ie er is
             if (this.messagableTab != null)
                 this.messagableTab.setMessage(this, message, this.tabIndex);

@@ -11,19 +11,22 @@ import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.util.Locale;
 
-public class PromptTextFieldFormComponentInterceptor extends TextComponentInterceptor {
+public class PromptTextFieldFormComponentInterceptor extends TextComponentInterceptor
+{
     private MessageSource messageSource;
     private FormModel formModel;
     private static final String DEFAULT_PROMPT_KEY = "prompt";
     private String promptKey;
 
-    public String getPromptKey() {
+    public String getPromptKey()
+    {
         if(promptKey == null)
             return DEFAULT_PROMPT_KEY;
         return promptKey;
     }
 
-    public void setPromptKey(String promptKey) {
+    public void setPromptKey(String promptKey)
+    {
         this.promptKey = promptKey;
     }
 
@@ -34,7 +37,7 @@ public class PromptTextFieldFormComponentInterceptor extends TextComponentInterc
 
     protected void processComponent(String propertyName, JTextComponent textComponent) {
         String prompt = messageSource.getMessage(new DefaultMessageSourceResolvable(getMessageKeys(formModel,
-                        propertyName), ""), Locale.getDefault());
+                propertyName), ""), Locale.getDefault());
 
         if (StringUtils.hasText(prompt)) {
             PromptSupport.setFontStyle(Font.ITALIC, textComponent);
@@ -44,7 +47,6 @@ public class PromptTextFieldFormComponentInterceptor extends TextComponentInterc
 
     protected String[] getMessageKeys(FormModel formModel, String propertyName) {
         return new String[] { formModel.getId() + "." + propertyName + "." + getPromptKey(),
-                              propertyName + "." + getPromptKey()
-                            };
+                              propertyName + "." + getPromptKey()};
     }
 }

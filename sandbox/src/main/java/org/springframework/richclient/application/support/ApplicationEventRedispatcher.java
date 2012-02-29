@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -36,15 +36,15 @@ import org.springframework.context.ApplicationListener;
  * ApplicationEventDispatcher and in the property setter method, call the
  * {@link #addListener(ApplicationListener)} method on itself (or a delegate handler).
  * Like this:
- *
+ * 
  * <pre>
  * public void setApplicationEventRedispatcher( ApplicationEventRedispatcher dispatcher ) {
  *     dispatcher.addListener(this);
  * }
  * </pre>
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public class ApplicationEventRedispatcher implements ApplicationListener {
 
@@ -53,7 +53,7 @@ public class ApplicationEventRedispatcher implements ApplicationListener {
 
     /**
      * Handle an application event, dispatch it to all our delegates.
-     *
+     * 
      * @param event to dispatch
      */
     public void onApplicationEvent( ApplicationEvent event ) {
@@ -65,7 +65,7 @@ public class ApplicationEventRedispatcher implements ApplicationListener {
 
     /**
      * Add a listener to our set.
-     *
+     * 
      * @param l Listener to add
      */
     public void addListener( ApplicationListener l ) {
@@ -74,7 +74,7 @@ public class ApplicationEventRedispatcher implements ApplicationListener {
 
     /**
      * Remove a listener from our set.
-     *
+     * 
      * @param l Listener to remove
      */
     public void removeListener( ApplicationListener l ) {

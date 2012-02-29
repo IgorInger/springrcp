@@ -24,28 +24,28 @@ package org.springframework.richclient.command;
  *
  */
 public class CommandNotOfRequiredTypeException extends CommandException {
-
+    
     private static final long serialVersionUID = 6891900212653390852L;
-
+    
     private final String commandId;
     private final Class requiredType;
     private final Class actualType;
-
+    
     private static String createMessage(String commandId, Class requiredType, Class actualType) {
-
+        
         return "The command with id ["
                + commandId
-               + "] was expected to be of type ["
+               + "] was expected to be of type [" 
                + requiredType
                + "] but was of type ["
                + actualType
                + "]";
-
+               
     }
 
     /**
      * Creates a new {@code CommandNotOfRequiredTypeException}.
-     *
+     * 
      * @param commandId The id of the command.
      * @param requiredType The required type of the command.
      * @param actualType The actual type of the command.
@@ -72,7 +72,7 @@ public class CommandNotOfRequiredTypeException extends CommandException {
     public String getCommandId() {
         return this.commandId;
     }
-
+    
     /**
      * Returns the type that the command was expected to be.
      * @return Returns the value of the requiredType field, possibly null.
@@ -80,5 +80,5 @@ public class CommandNotOfRequiredTypeException extends CommandException {
     public Class getRequiredType() {
         return this.requiredType;
     }
-
+    
 }

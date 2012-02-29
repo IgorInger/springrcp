@@ -25,7 +25,8 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 public abstract class ActionCommand extends AbstractCommand implements ActionCommandExecutor,
-    ParameterizableActionCommandExecutor {
+        ParameterizableActionCommandExecutor
+{
     public static final String ACTION_COMMAND_PROPERTY = "actionCommand";
 
     public static final String ACTION_COMMAND_PARAMETER_KEY = "actionCommand";
@@ -46,68 +47,85 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
 
     private boolean displaysInputDialog;
 
-    public ActionCommand() {
+    public ActionCommand()
+    {
         super();
     }
 
-    public ActionCommand(String commandId) {
+    public ActionCommand(String commandId)
+    {
         super(commandId);
     }
 
-    public ActionCommand(String id, CommandFaceDescriptor face) {
+    public ActionCommand(String id, CommandFaceDescriptor face)
+    {
         super(id, face);
     }
 
-    public ActionCommand(String id, String encodedLabel) {
+    public ActionCommand(String id, String encodedLabel)
+    {
         super(id, encodedLabel);
     }
 
-    public ActionCommand(String id, String encodedLabel, Icon icon, String caption) {
+    public ActionCommand(String id, String encodedLabel, Icon icon, String caption)
+    {
         super(id, encodedLabel, icon, caption);
     }
 
-    public void addParameter(Object key, Object value) {
+    public void addParameter(Object key, Object value)
+    {
         parameters.put(key, value);
     }
 
-    protected Object getParameter(Object key) {
+    protected Object getParameter(Object key)
+    {
         return parameters.get(key);
     }
 
-    protected Map getParameters() {
+    protected Map getParameters()
+    {
         return Collections.unmodifiableMap(parameters);
     }
 
-    protected Object getParameter(Object key, Object defaultValue) {
+    protected Object getParameter(Object key, Object defaultValue)
+    {
         Object value = parameters.get(key);
         return value != null ? value : defaultValue;
     }
 
-    public void addCommandInterceptor(ActionCommandInterceptor l) {
-        if (commandInterceptors == null) {
+    public void addCommandInterceptor(ActionCommandInterceptor l)
+    {
+        if (commandInterceptors == null)
+        {
             commandInterceptors = new ArrayList<ActionCommandInterceptor>(6);
         }
         commandInterceptors.add(l);
     }
 
-    public void removeCommandInterceptor(ActionCommandInterceptor l) {
+    public void removeCommandInterceptor(ActionCommandInterceptor l)
+    {
         Assert.notNull(commandInterceptors, "The command interceptors list has not yet been initialized");
         commandInterceptors.remove(l);
     }
 
-    protected void onButtonAttached(AbstractButton button) {
+    protected void onButtonAttached(AbstractButton button)
+    {
         super.onButtonAttached(button);
         button.setActionCommand(actionCommand);
         button.addActionListener(actionPerformedHandler);
-        if (displaysInputDialog) {
-            if (button.getText() != null && !button.getText().endsWith(ELLIPSES)) {
+        if (displaysInputDialog)
+        {
+            if (button.getText() != null && !button.getText().endsWith(ELLIPSES))
+            {
                 button.setText(getText() + ELLIPSES);
             }
         }
     }
 
-    ActionListener actionPerformedHandler = new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    ActionListener actionPerformedHandler = new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
             addParameter(ACTION_EVENT_PARAMETER_KEY, e);
             addParameter(MODIFIERS_PARAMETER_KEY, e.getModifiers());
             addParameter(ACTION_COMMAND_PARAMETER_KEY, ActionCommand.this);
@@ -115,27 +133,34 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
         }
     };
 
-    protected int getModifiers() {
+    protected int getModifiers()
+    {
         return (Integer) getParameter(MODIFIERS_PARAMETER_KEY, 0);
     }
 
-    public Action getActionAdapter() {
-        if (swingActionAdapter == null) {
+    public Action getActionAdapter()
+    {
+        if (swingActionAdapter == null)
+        {
             this.swingActionAdapter = new SwingActionAdapter(this);
         }
         return swingActionAdapter;
     }
 
-    public String getActionCommand() {
+    public String getActionCommand()
+    {
         return actionCommand;
     }
 
-    public void setActionCommand(String newCommandName) {
-        if (!ObjectUtils.nullSafeEquals(actionCommand, newCommandName)) {
+    public void setActionCommand(String newCommandName)
+    {
+        if (!ObjectUtils.nullSafeEquals(actionCommand, newCommandName))
+        {
             String old = actionCommand;
             actionCommand = newCommandName;
             Iterator iter = buttonIterator();
-            while (iter.hasNext()) {
+            while (iter.hasNext())
+            {
                 AbstractButton button = (AbstractButton) iter.next();
                 button.setActionCommand(actionCommand);
             }
@@ -143,56 +168,71 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
         }
     }
 
-    public void setDefaultButtonIn(RootPaneContainer container) {
+    public void setDefaultButtonIn(RootPaneContainer container)
+    {
         JRootPane rootPane = container.getRootPane();
         JButton button = (JButton) getButtonIn(rootPane);
-        if (button != null) {
+        if (button != null)
+        {
             rootPane.setDefaultButton(button);
         }
     }
 
-    public void setDefaultButton() {
+    public void setDefaultButton()
+    {
         Iterator it = buttonIterator();
-        while (it.hasNext()) {
+        while (it.hasNext())
+        {
             Object o = it.next();
-            if (o instanceof JButton) {
+            if (o instanceof JButton)
+            {
                 JButton button = (JButton) o;
                 JRootPane pane = SwingUtilities.getRootPane(button);
-                if (pane != null) {
+                if (pane != null)
+                {
                     pane.setDefaultButton(button);
                 }
             }
         }
     }
 
-    public void setDisplaysInputDialog(boolean displaysInputDialog) {
+    public void setDisplaysInputDialog(boolean displaysInputDialog)
+    {
         this.displaysInputDialog = displaysInputDialog;
     }
 
-    public boolean isDisplaysInputDialog() {
+    public boolean isDisplaysInputDialog()
+    {
         return displaysInputDialog;
     }
 
-    public final void execute(Map parameters) {
+    public final void execute(Map parameters)
+    {
         this.parameters.putAll(parameters);
         execute();
     }
 
-    public final void execute() {
-        if (onPreExecute()) {
+    public final void execute()
+    {
+        if (onPreExecute())
+        {
             doExecuteCommand();
             onPostExecute();
         }
         parameters.clear();
     }
 
-    protected final boolean onPreExecute() {
-        if (commandInterceptors == null) {
+    protected final boolean onPreExecute()
+    {
+        if (commandInterceptors == null)
+        {
             return true;
         }
-        for (Object commandInterceptor : commandInterceptors) {
+        for (Object commandInterceptor : commandInterceptors)
+        {
             ActionCommandInterceptor listener = (ActionCommandInterceptor) commandInterceptor;
-            if (!listener.preExecution(this)) {
+            if (!listener.preExecution(this))
+            {
                 return false;
             }
         }
@@ -201,11 +241,14 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
 
     protected abstract void doExecuteCommand();
 
-    protected final void onPostExecute() {
-        if (commandInterceptors == null) {
+    protected final void onPostExecute()
+    {
+        if (commandInterceptors == null)
+        {
             return;
         }
-        for (Object commandInterceptor : commandInterceptors) {
+        for (Object commandInterceptor : commandInterceptors)
+        {
             ActionCommandInterceptor interceptor = (ActionCommandInterceptor) commandInterceptor;
             interceptor.postExecution(this);
         }
@@ -218,7 +261,8 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
      * @return <code>true</code> if the shift key was down, <code>false</code>
      *         otherwise
      */
-    protected boolean isShiftDown() {
+    protected boolean isShiftDown()
+    {
         return (getModifiers() & ActionEvent.SHIFT_MASK) != 0;
     }
 
@@ -229,7 +273,8 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
      * @return <code>true</code> if the control key was down, <code>false</code>
      *         otherwise
      */
-    protected boolean isControlDown() {
+    protected boolean isControlDown()
+    {
         return (getModifiers() & ActionEvent.CTRL_MASK) != 0;
     }
 
@@ -240,7 +285,8 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
      * @return <code>true</code> if the meta key was down, <code>false</code>
      *         otherwise
      */
-    protected boolean isMetaDown() {
+    protected boolean isMetaDown()
+    {
         return (getModifiers() & ActionEvent.META_MASK) != 0;
     }
 
@@ -252,8 +298,9 @@ public abstract class ActionCommand extends AbstractCommand implements ActionCom
      *         otherwise
      */
 
-    protected boolean isAltDown() {
+    protected boolean isAltDown()
+    {
         return (getModifiers() & ActionEvent.ALT_MASK) != 0;
-    }
+}
 
 }

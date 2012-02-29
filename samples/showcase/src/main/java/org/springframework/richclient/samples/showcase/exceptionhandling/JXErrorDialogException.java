@@ -10,15 +10,15 @@ import org.springframework.richclient.exceptionhandling.JXErrorDialogExceptionHa
  */
 public class JXErrorDialogException extends RuntimeException {
 
-    public JXErrorDialogException() {
-        this("JXErrorDialogException message");
-    }
+	public JXErrorDialogException() {
+		this("JXErrorDialogException message");
+	}
 
-    public JXErrorDialogException(String message) {
-        this(message, new UnsupportedOperationException("JXErrorDialogException cause message."));
-    }
+	public JXErrorDialogException(String message) {
+		this(message, new UnsupportedOperationException("JXErrorDialogException cause message."));
+	}
 
-    public JXErrorDialogException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public JXErrorDialogException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }

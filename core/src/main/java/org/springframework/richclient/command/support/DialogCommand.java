@@ -11,19 +11,19 @@ import org.springframework.richclient.dialog.ApplicationDialog;
  */
 public class DialogCommand extends ActionCommand {
 
-    private ApplicationDialog dialog;
+	private ApplicationDialog dialog;
 
-    /**
-     * Set the dialog to open.
-     */
-    public void setDialog(ApplicationDialog dialog) {
-        this.dialog = dialog;
-    }
+	/**
+	 * Set the dialog to open.
+	 */
+	public void setDialog(ApplicationDialog dialog) {
+		this.dialog = dialog;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected void doExecuteCommand() {
-        dialog.showDialog();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void doExecuteCommand() {
+		dialog.showDialog();
+	}
 }

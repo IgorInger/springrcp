@@ -10,7 +10,8 @@ public class ValidatingObject {
 
     private int intValue;
 
-    public ValidatingObject() {
+    public ValidatingObject()
+    {
         stringValue = "invalid";
         intValue = 12;
     }

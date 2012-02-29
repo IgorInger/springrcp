@@ -24,7 +24,7 @@ import javax.swing.JComponent;
 
 /**
  * Default <code>FormUIProvider</code> implementation.
- *
+ * 
  * @author Peter De Bruycker
  */
 public class DefaultFormUIProvider extends AbstractFormUIProvider {

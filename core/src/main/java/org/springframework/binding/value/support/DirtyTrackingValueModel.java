@@ -21,7 +21,8 @@ import org.springframework.binding.value.ValueModel;
 /**
  * Adds the <code>dirty</code> aspect to a valueModel, tracking changes when needed.
  */
-public interface DirtyTrackingValueModel extends ValueModel, PropertyChangePublisher {
+public interface DirtyTrackingValueModel extends ValueModel, PropertyChangePublisher
+{
 
     /** The name of the bound property <em>dirty</em>. */
     String DIRTY_PROPERTY = "dirty";

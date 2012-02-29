@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -39,7 +39,7 @@ public class ListItemUpDownButtonPanel extends AbstractControlFactory {
     private static final String DOWN_BUTTON_MESSAGE_CODE = "button.down";
 
     private static final String UP_BUTTON_MESSAGE_CODE = "button.up";
-
+    
     private final ListSelectionListener listSelectionChangeHandler = new ListSelectionChangeHandler();
 
     private final UpAction upAction = new UpAction();
@@ -83,15 +83,18 @@ public class ListItemUpDownButtonPanel extends AbstractControlFactory {
         if (!isContiguousSelection(getList())) {
             upButton.setEnabled(false);
             downButton.setEnabled(false);
-        } else {
+        }
+        else {
             if (getList().getMinSelectionIndex() == 0) {
                 upButton.setEnabled(false);
-            } else {
+            }
+            else {
                 upButton.setEnabled(true);
             }
             if (getList().getMaxSelectionIndex() == (getListModel().size() - 1)) {
                 downButton.setEnabled(false);
-            } else {
+            }
+            else {
                 downButton.setEnabled(true);
             }
         }
@@ -126,7 +129,8 @@ public class ListItemUpDownButtonPanel extends AbstractControlFactory {
             if (!e.getValueIsAdjusting()) {
                 if (list.isSelectionEmpty()) {
                     onEmptySelection();
-                } else {
+                }
+                else {
                     onSelection();
                 }
             }

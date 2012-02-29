@@ -14,7 +14,8 @@ import java.util.Map;
  * based on that value.
  */
 @SuppressWarnings("unchecked")
-public class SliderBinder implements Binder {
+public class SliderBinder implements Binder
+{
 
     private int maxValue;
     private int minValue;
@@ -23,7 +24,8 @@ public class SliderBinder implements Binder {
 
     private SliderLabelFactory sliderLabelFactory;
 
-    public Binding bind(FormModel formModel, String formPropertyPath, Map context) {
+    public Binding bind(FormModel formModel, String formPropertyPath, Map context)
+    {
         SliderBinding binding = new SliderBinding(formModel, formPropertyPath);
         binding.setMaxValue(maxValue);
         binding.setMinValue(minValue);
@@ -34,32 +36,38 @@ public class SliderBinder implements Binder {
         return binding;
     }
 
-    public Binding bind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
+    public Binding bind(JComponent control, FormModel formModel, String formPropertyPath, Map context)
+    {
         throw new UnsupportedOperationException("Deze binder voorziet in zijn eigen component");
     }
 
     /** Sets the maximum value of the slider */
-    public void setMaxValue(int maxValue) {
+    public void setMaxValue(int maxValue)
+    {
         this.maxValue = maxValue;
     }
 
     /** Sets the minimum value of the slider */
-    public void setMinValue(int minValue) {
+    public void setMinValue(int minValue)
+    {
         this.minValue = minValue;
     }
 
     /** Sets whether the control is readonly */
-    public void setReadOnly(boolean readOnly) {
+    public void setReadOnly(boolean readOnly)
+    {
         this.readOnly = readOnly;
     }
 
     /** Sets the major tick value of the slider */
-    public void setMajorTickSpacing(int maxTickSpacing) {
+    public void setMajorTickSpacing(int maxTickSpacing)
+    {
         this.maxTickSpacing = maxTickSpacing;
     }
 
     /** Set the factory for the custom labels */
-    public void setSliderLabelFactory(SliderLabelFactory sliderLabelFactory) {
+    public void setSliderLabelFactory(SliderLabelFactory sliderLabelFactory)
+    {
         this.sliderLabelFactory = sliderLabelFactory;
     }
 

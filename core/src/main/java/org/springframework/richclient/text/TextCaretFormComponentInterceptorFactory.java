@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2007 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -35,14 +35,14 @@ import org.springframework.richclient.form.builder.FormComponentInterceptorFacto
  * <code>Document</code> updates, and setting the caret position to 0 (i.e. the
  * beginning of the text) if the text is updated when the text component doesn't have the
  * focus (i.e. the text is not changed by the user).
- *
+ * 
  * @author Peter De Bruycker
  */
 public class TextCaretFormComponentInterceptorFactory implements FormComponentInterceptorFactory {
 
     /**
      * Create a new <code>TextCaretFixerComponentInterceptor</code> instance
-     *
+     * 
      * @return the interceptor
      */
     public FormComponentInterceptor getInterceptor( FormModel formModel ) {

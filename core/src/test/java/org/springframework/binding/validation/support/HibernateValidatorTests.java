@@ -71,13 +71,15 @@ public class HibernateValidatorTests extends TestCase {
 
     }
 
-    private void setOnlyHibernateValidator() {
+    private void setOnlyHibernateValidator()
+    {
         hibernateRulesValidator = new HibernateRulesValidator(model, ValidatingObject.class);
         model.setValidator(hibernateRulesValidator);
         model.setValidating(true);
     }
 
-    private void setRulesAndHibernateValidator() {
+    private void setRulesAndHibernateValidator()
+    {
         Rules rules = new Rules(ValidatingObject.class);
         Constraints c = Constraints.instance();
         rules.add(c.eq("intValue", 8));
@@ -159,7 +161,8 @@ public class HibernateValidatorTests extends TestCase {
     }
 
 
-    public void testRulesTriggeredNullFormObject() {
+    public void testRulesTriggeredNullFormObject()
+    {
         setRulesAndHibernateValidator();
         model.setFormObject(null);
         model.setEnabled(true);
@@ -170,7 +173,8 @@ public class HibernateValidatorTests extends TestCase {
      * AssertTrue tests are not bound to a property, but can be coped with by
      * using rules
      */
-    public void testRulesAndHibernateValidation() {
+    public void testRulesAndHibernateValidation()
+    {
         setRulesAndHibernateValidator();
         ValidatingObject invalid = new ValidatingObject();
         invalid.setStringValue("valid");

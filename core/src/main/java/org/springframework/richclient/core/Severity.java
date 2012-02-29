@@ -25,36 +25,36 @@ import org.springframework.core.enums.ShortCodedLabeledEnum;
  */
 public class Severity extends ShortCodedLabeledEnum {
 
-    /** The label associated with the info level. */
-    public static final String INFO_LABEL = "info";
+	/** The label associated with the info level. */
+	public static final String INFO_LABEL = "info";
 
-    /** The label associated with the warning level. */
-    public static final String WARNING_LABEL = "warning";
+	/** The label associated with the warning level. */
+	public static final String WARNING_LABEL = "warning";
 
-    /** The label associated with the error level. */
-    public static final String ERROR_LABEL = "error";
+	/** The label associated with the error level. */
+	public static final String ERROR_LABEL = "error";
 
-    private static final long serialVersionUID = 86569930382195510L;
+	private static final long serialVersionUID = 86569930382195510L;
 
-    /** Info-level severity. */
-    public static final Severity INFO = new Severity(0, INFO_LABEL);
+	/** Info-level severity. */
+	public static final Severity INFO = new Severity(0, INFO_LABEL);
 
-    /** Warning-level severity. */
-    public static final Severity WARNING = new Severity(50, WARNING_LABEL);
+	/** Warning-level severity. */
+	public static final Severity WARNING = new Severity(50, WARNING_LABEL);
 
-    /** Error-level severity. */
-    public static final Severity ERROR = new Severity(100, ERROR_LABEL);
+	/** Error-level severity. */
+	public static final Severity ERROR = new Severity(100, ERROR_LABEL);
 
-    /**
-     * Constructor.
-     *
-     * @param magnitude how does it relate to other {@link Severity} levels, a
-     * higher magnitude means more severe.
-     * @param label label to associate with, may be used to access resources
-     * like messages/icons.
-     */
-    protected Severity(int magnitude, String label) {
-        super(magnitude, label);
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param magnitude how does it relate to other {@link Severity} levels, a
+	 * higher magnitude means more severe.
+	 * @param label label to associate with, may be used to access resources
+	 * like messages/icons.
+	 */
+	protected Severity(int magnitude, String label) {
+		super(magnitude, label);
+	}
 
 }

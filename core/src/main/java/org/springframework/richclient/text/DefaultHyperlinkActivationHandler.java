@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,7 +27,7 @@ import org.springframework.richclient.util.BrowserLauncher;
  * An implementation of HyperlinkListener that will open a web browser
  * when a URL is activated or, when an anchor link is activated scoll the
  * pane to display the anchor location.
- *
+ * 
  * @author Oliver Hutchison
  */
 public class DefaultHyperlinkActivationHandler implements HyperlinkListener {
@@ -63,12 +63,13 @@ public class DefaultHyperlinkActivationHandler implements HyperlinkListener {
     protected void handleOtheActivated(HyperlinkEvent e) {
         // do nothing
     }
-
+    
     public void hyperlinkUpdate(HyperlinkEvent e) {
         if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
             if (e.getDescription().startsWith("#")) {
                 handleAnchorActivated(e, e.getDescription().substring(1));
-            } else if (e.getURL() != null) {
+            }
+            else if (e.getURL() != null) {
                 handleUrlActivated(e, e.getURL());
             } else {
                 handleOtheActivated(e);

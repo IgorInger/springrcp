@@ -26,34 +26,34 @@ import org.springframework.richclient.application.mdi.contextmenu.DesktopCommand
 
 /**
  * Factory for <code>DesktopApplicationPage</code> instances
- *
+ * 
  * @author Peter De Bruycker
  */
 public class DesktopApplicationPageFactory implements ApplicationPageFactory {
-    private int dragMode = JDesktopPane.LIVE_DRAG_MODE;
-    private DesktopCommandGroupFactory desktopCommandGroupFactory;
+	private int dragMode = JDesktopPane.LIVE_DRAG_MODE;
+	private DesktopCommandGroupFactory desktopCommandGroupFactory;
 
-    public int getDragMode() {
-        return dragMode;
-    }
+	public int getDragMode() {
+		return dragMode;
+	}
 
-    public void setDragMode(int dragMode) {
-        this.dragMode = dragMode;
-    }
+	public void setDragMode(int dragMode) {
+		this.dragMode = dragMode;
+	}
 
-    public ApplicationPage createApplicationPage(ApplicationWindow window, PageDescriptor descriptor) {
-        return new DesktopApplicationPage(window, descriptor, dragMode, desktopCommandGroupFactory);
-    }
-
-    public void setDesktopCommandGroupFactory(DesktopCommandGroupFactory desktopCommandGroupFactory) {
-        this.desktopCommandGroupFactory = desktopCommandGroupFactory;
-    }
-
-    public DesktopCommandGroupFactory getDesktopCommandGroupFactory() {
-        if(desktopCommandGroupFactory == null) {
-            desktopCommandGroupFactory = new DefaultDesktopCommandGroupFactory();
-        }
-
-        return desktopCommandGroupFactory;
-    }
+	public ApplicationPage createApplicationPage(ApplicationWindow window, PageDescriptor descriptor) {
+		return new DesktopApplicationPage(window, descriptor, dragMode, desktopCommandGroupFactory);
+	}
+	
+	public void setDesktopCommandGroupFactory(DesktopCommandGroupFactory desktopCommandGroupFactory) {
+		this.desktopCommandGroupFactory = desktopCommandGroupFactory;
+	}
+	
+	public DesktopCommandGroupFactory getDesktopCommandGroupFactory() {
+		if(desktopCommandGroupFactory == null) {
+			desktopCommandGroupFactory = new DefaultDesktopCommandGroupFactory();
+		}
+		
+		return desktopCommandGroupFactory;
+	}
 }

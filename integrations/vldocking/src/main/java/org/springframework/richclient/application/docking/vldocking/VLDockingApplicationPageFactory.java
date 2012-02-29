@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2008 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -35,7 +35,7 @@ import com.vlsolutions.swing.docking.DockingContext;
 
 /**
  * <tt>ApplicationPageFactory</tt> that creates instances of <tt>VLDockingApplicationPage</tt>.
- *
+ * 
  * @author Rogan Dawes
  */
 public class VLDockingApplicationPageFactory implements ApplicationPageFactory {
@@ -47,7 +47,7 @@ public class VLDockingApplicationPageFactory implements ApplicationPageFactory {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.springframework.richclient.application.ApplicationPageFactory#createApplicationPage(org.springframework.richclient.application.ApplicationWindow,
      *      org.springframework.richclient.application.PageDescriptor)
      */
@@ -79,7 +79,7 @@ public class VLDockingApplicationPageFactory implements ApplicationPageFactory {
 
     /**
      * Saves the docking layout of a docking page fo the application
-     *
+     * 
      * @param appWindow
      *            The application window (needed to hook in for the docking context)
      */
@@ -101,26 +101,29 @@ public class VLDockingApplicationPageFactory implements ApplicationPageFactory {
             buffOs.close();
             logger.debug("Wrote docking context to config file " + desktopLayoutFile);
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             logger.warn("Error writing VLDocking config", e);
-        } finally {
+        }
+        finally {
             try {
                 buffOs.close();
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
             }
         }
     }
 
     /**
      * Creates the config directory, if it doesn't exist already
-     *
+     * 
      * @param configFile
      *            The file for which to create the path
      */
     private void checkForConfigPath(File configFile) {
         String desktopLayoutFilePath = configFile.getAbsolutePath();
         String configDirPath = desktopLayoutFilePath.substring(0, desktopLayoutFilePath.lastIndexOf(System
-                               .getProperty("file.separator")));
+                .getProperty("file.separator")));
         File configDir = new File(configDirPath);
 
         // create config dir if it does not exist
@@ -135,7 +138,7 @@ public class VLDockingApplicationPageFactory implements ApplicationPageFactory {
         if (pages == null) {
             return null;
         }
-
+        
         return (VLDockingApplicationPage) pages.get(descriptor.getId());
     }
 

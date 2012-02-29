@@ -26,55 +26,60 @@ import org.springframework.util.StringUtils;
  */
 public class Like implements Constraint {
 
-    public static final LikeType STARTS_WITH = new LikeType("startsWith");
+	public static final LikeType STARTS_WITH = new LikeType("startsWith");
 
-    public static final LikeType ENDS_WITH = new LikeType("endsWith");
+	public static final LikeType ENDS_WITH = new LikeType("endsWith");
 
-    public static final LikeType CONTAINS = new LikeType("contains");
+	public static final LikeType CONTAINS = new LikeType("contains");
 
-    private LikeType type;
+	private LikeType type;
 
-    private String stringToMatch;
+	private String stringToMatch;
 
-    public Like(LikeType type, String likeString) {
-        this.type = type;
-        this.stringToMatch = likeString;
-    }
+	public Like(LikeType type, String likeString) {
+		this.type = type;
+		this.stringToMatch = likeString;
+	}
 
-    public Like(String encodedLikeString) {
-        if (encodedLikeString.startsWith("%")) {
-            if (encodedLikeString.endsWith("%")) {
-                this.type = CONTAINS;
-            } else {
-                this.type = ENDS_WITH;
-            }
-        } else if (encodedLikeString.endsWith("%")) {
-            this.type = STARTS_WITH;
-        } else {
-            this.type = CONTAINS;
-        }
-        stringToMatch = StringUtils.deleteAny(encodedLikeString, "%");
-    }
+	public Like(String encodedLikeString) {
+		if (encodedLikeString.startsWith("%")) {
+			if (encodedLikeString.endsWith("%")) {
+				this.type = CONTAINS;
+			}
+			else {
+				this.type = ENDS_WITH;
+			}
+		}
+		else if (encodedLikeString.endsWith("%")) {
+			this.type = STARTS_WITH;
+		}
+		else {
+			this.type = CONTAINS;
+		}
+		stringToMatch = StringUtils.deleteAny(encodedLikeString, "%");
+	}
 
-    public boolean test(Object argument) {
-        String value = String.valueOf(argument);
-        if (type == STARTS_WITH) {
-            return value.startsWith(stringToMatch);
-        } else if (type == ENDS_WITH) {
-            return value.endsWith(stringToMatch);
-        } else {
-            return value.indexOf(stringToMatch) != -1;
-        }
-    }
+	public boolean test(Object argument) {
+		String value = String.valueOf(argument);
+		if (type == STARTS_WITH) {
+			return value.startsWith(stringToMatch);
+		}
+		else if (type == ENDS_WITH) {
+			return value.endsWith(stringToMatch);
+		}
+		else {
+			return value.indexOf(stringToMatch) != -1;
+		}
+	}
 
-    public LikeType getType() {
-        return type;
-    }
+	public LikeType getType() {
+		return type;
+	}
 
-    public String getString() {
-        return stringToMatch;
-    }
-
+	public String getString() {
+		return stringToMatch;
+	}
+    
     public static class LikeType extends StringCodedLabeledEnum {
         private LikeType(String code) {
             super(code, null);

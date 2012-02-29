@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -42,13 +42,13 @@ import org.springframework.security.providers.ProviderManager;
  * Instances of this class should be configured with an instance of
  * {@link org.springframework.security.AuthenticationManager} to be used to handle authentication
  * (login) requests. This would be done like this:
- *
+ * 
  * <pre>
  *         &lt;bean id=&quot;securityManager&quot;
  *               class=&quot;org.springframework.richclient.security.support.DefaultApplicationSecurityManager&quot;&gt;
  *            &lt;property name=&quot;authenticationManager&quot; ref=&quot;authenticationManager&quot;/&gt;
  *         &lt;/bean&gt;
- *
+ *         
  *         &lt;bean id=&quot;authenticationManager&quot;
  *           class=&quot;org.springframework.security.providers.ProviderManager&quot;&gt;
  *           &lt;property name=&quot;providers&quot;&gt;
@@ -57,12 +57,12 @@ import org.springframework.security.providers.ProviderManager;
  *               &lt;/list&gt;
  *           &lt;/property&gt;
  *       &lt;/bean&gt;
- *
+ *       
  *       &lt;bean id=&quot;remoteAuthenticationProvider&quot;
  *           class=&quot;org.springframework.security.providers.rcp.RemoteAuthenticationProvider&quot;&gt;
  *           &lt;property name=&quot;remoteAuthenticationManager&quot; ref=&quot;remoteAuthenticationManager&quot; /&gt;
  *       &lt;/bean&gt;
- *
+ *    
  *       &lt;bean id=&quot;remoteAuthenticationManager&quot;
  *           class=&quot;org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean&quot;&gt;
  *           &lt;property name=&quot;serviceUrl&quot;&gt;
@@ -73,7 +73,7 @@ import org.springframework.security.providers.ProviderManager;
  *           &lt;/property&gt;
  *       &lt;/bean&gt;
  * </pre>
- *
+ * 
  * If this is not done, then an attempt will be made to "auto-configure" by locating an
  * appropriate authentication manager in the application context. In order, a search will
  * be made for a bean that implements one of these classes:
@@ -84,9 +84,9 @@ import org.springframework.security.providers.ProviderManager;
  * </ol>
  * The first instance to be located will be used to handle authentication requests.
  * <p>
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public class DefaultApplicationSecurityManager implements ApplicationSecurityManager, InitializingBean {
 
@@ -112,7 +112,7 @@ public class DefaultApplicationSecurityManager implements ApplicationSecurityMan
      * several classes) in the application context. This auto-configuration is also
      * attempted after the bean is constructed by the context if the authenticationManager
      * property has not been set. See {@see #afterPropertiesSet()}.
-     *
+     * 
      * @param autoConfigure pass true to perform auto-configuration
      * @throws IllegalArgumentException If the auto-configuration fails
      * @see #afterPropertiesSet()
@@ -144,7 +144,7 @@ public class DefaultApplicationSecurityManager implements ApplicationSecurityMan
      * then a {@link AuthenticationFailedEvent} is published and the exception is
      * rethrown. If the authentication succeeds, then an {@link AuthenticationEvent} is
      * published, followed by a {@link LoginEvent}.
-     *
+     * 
      * @param authentication token to use for the login attempt
      * @return Authentication token resulting from a successful call to
      *         {@link AuthenticationManager#authenticate(org.springframework.security.Authentication)}.
@@ -212,7 +212,7 @@ public class DefaultApplicationSecurityManager implements ApplicationSecurityMan
     /**
      * Determine if the currently authenticated user has the role provided. Note that role
      * comparisons are case sensitive.
-     *
+     * 
      * @param role to check
      * @return true if the user has the role requested
      */
@@ -259,7 +259,7 @@ public class DefaultApplicationSecurityManager implements ApplicationSecurityMan
      * specifically wired in, then look for beans to "auto-wire" in. Look for a bean of
      * one of the following types (in order): {@link ProviderManager},
      * {@link AuthenticationProvider}, and {@link AuthenticationManager}.
-     *
+     * 
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
     public void afterPropertiesSet() {
@@ -271,8 +271,7 @@ public class DefaultApplicationSecurityManager implements ApplicationSecurityMan
 
             // Try the class types in sequence
             Class[] types = new Class[] { ProviderManager.class, AuthenticationProvider.class,
-                                          AuthenticationManager.class
-                                        };
+                    AuthenticationManager.class };
 
             for( int i = 0; i < types.length; i++ ) {
                 if( tryToWire( types[i] ) ) {

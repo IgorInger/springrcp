@@ -6,7 +6,8 @@ package org.springframework.richclient.components;
  *
  * @author Jan Hoskens
  */
-public interface Focussable {
+public interface Focussable
+{
     /**
      * Set the focus on a default component
      *

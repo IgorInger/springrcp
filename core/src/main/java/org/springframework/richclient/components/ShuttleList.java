@@ -45,7 +45,7 @@ import javax.swing.event.ListSelectionListener;
  * <p>
  * Normal selection model listeners are used to report changes to interested
  * objects.
- *
+ * 
  * @author lstreepy
  * @author Benoit Xhenseval (Small modifications for text + icons config)
  * @author Geoffrey De Smet
@@ -106,7 +106,7 @@ public class ShuttleList extends JPanel {
 
     /**
      * Returns the object that renders the list items.
-     *
+     * 
      * @return the <code>ListCellRenderer</code>
      * @see #setCellRenderer
      */
@@ -120,7 +120,7 @@ public class ShuttleList extends JPanel {
      * The default value of this property is provided by the ListUI delegate,
      * i.e. by the look and feel implementation.
      * <p>
-     *
+     * 
      * @param cellRenderer the <code>ListCellRenderer</code> that paints list
      *        cells
      * @see #getCellRenderer
@@ -134,7 +134,7 @@ public class ShuttleList extends JPanel {
 
     /**
      * Returns the data model.
-     *
+     * 
      * @return the <code>ListModel</code> that provides the displayed list of
      *         items
      */
@@ -145,7 +145,7 @@ public class ShuttleList extends JPanel {
     /**
      * Sets the model that represents the contents or "value" of the list and
      * clears the list selection.
-     *
+     * 
      * @param model the <code>ListModel</code> that provides the list of items
      *        for display
      * @exception IllegalArgumentException if <code>model</code> is
@@ -169,7 +169,7 @@ public class ShuttleList extends JPanel {
     /**
      * Sets the preferred number of rows in the list that can be displayed
      * without a scrollbar.
-     *
+     * 
      * @param visibleRowCount an integer specifying the preferred number of
      *        visible rows
      */
@@ -188,7 +188,7 @@ public class ShuttleList extends JPanel {
 
     /**
      * Set the comparator to use for comparing list elements.
-     *
+     * 
      * @param comparator to use
      */
     public void setComparator(Comparator comparator) {
@@ -198,7 +198,7 @@ public class ShuttleList extends JPanel {
     /**
      * Set the icon to use on the edit button. If no icon is specified, then
      * just the label will be used otherwise the text will be a tooltip.
-     *
+     * 
      * @param editIcon Icon to use on edit button
      */
     public void setEditIcon(Icon editIcon, String text) {
@@ -218,7 +218,7 @@ public class ShuttleList extends JPanel {
 
     /**
      * Add labels on top of the 2 lists. If not present, do not show the labels.
-     *
+     * 
      * @param chosenLabel
      * @param sourceLabel
      */
@@ -252,14 +252,14 @@ public class ShuttleList extends JPanel {
 
         Dimension fullPanelSize = getPreferredSize();
         fullPanelSize.width =
-            dSourcePanel.width + dChosenPanel.width + (editButton != null ? editButton.getPreferredSize().width : 0)
-            + (buttonPanel != null ? buttonPanel.getPreferredSize().width : 0) + 20;
+                dSourcePanel.width + dChosenPanel.width + (editButton != null ? editButton.getPreferredSize().width : 0)
+                        + (buttonPanel != null ? buttonPanel.getPreferredSize().width : 0) + 20;
         setPreferredSize(fullPanelSize);
     }
 
     /**
      * Build our component panel.
-     *
+     * 
      * @return component
      */
     protected JComponent buildComponent() {
@@ -340,9 +340,9 @@ public class ShuttleList extends JPanel {
 
     /**
      * Construct the control button panel.
-     *
+     * 
      * @return JPanel
-     *
+     * 
      */
     protected JPanel buildButtonPanel() {
         buttonPanel = new JPanel();
@@ -507,7 +507,7 @@ public class ShuttleList extends JPanel {
 
     /**
      * Get the index of a given object in the underlying data model.
-     *
+     * 
      * @param o Object to locate
      * @return index of object in model, -1 if not found
      */
@@ -558,7 +558,7 @@ public class ShuttleList extends JPanel {
 
     /**
      * Returns the value of the current selection model.
-     *
+     * 
      * @return the <code>ListSelectionModel</code> that implements list
      *         selections
      */
@@ -569,7 +569,7 @@ public class ShuttleList extends JPanel {
     /**
      * Adds a listener to the list that's notified each time a change to the
      * selection occurs.
-     *
+     * 
      * @param listener the <code>ListSelectionListener</code> to add
      */
     public void addListSelectionListener(ListSelectionListener listener) {
@@ -579,7 +579,7 @@ public class ShuttleList extends JPanel {
     /**
      * Removes a listener from the list that's notified each time a change to
      * the selection occurs.
-     *
+     * 
      * @param listener the <code>ListSelectionListener</code> to remove
      */
     public void removeListSelectionListener(ListSelectionListener listener) {
@@ -597,7 +597,7 @@ public class ShuttleList extends JPanel {
 
     /**
      * Selects a set of cells.
-     *
+     * 
      * @param indices an array of the indices of the cells to select
      */
     public void setSelectedIndices(int[] indices) {
@@ -608,7 +608,7 @@ public class ShuttleList extends JPanel {
     /**
      * Returns an array of the values for the selected cells. The returned
      * values are sorted in increasing index order.
-     *
+     * 
      * @return the selected values or an empty list if nothing is selected
      */
     public Object[] getSelectedValues() {

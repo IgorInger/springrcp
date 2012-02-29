@@ -72,7 +72,7 @@ public class GridBagLayoutBuilderTests extends TestCase {
     }
 
     private void check(GridBagConstraints gbc, final int x, final int y, final int width, final int height,
-                       boolean expandX, boolean expandY) {
+            boolean expandX, boolean expandY) {
         assertEquals(x, gbc.gridx);
         assertEquals(y, gbc.gridy);
         assertEquals(width, gbc.gridwidth);

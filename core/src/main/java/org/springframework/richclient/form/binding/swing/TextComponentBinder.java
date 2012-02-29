@@ -35,7 +35,7 @@ public class TextComponentBinder extends AbstractBinder {
     private boolean readOnly;
     private boolean selectAllOnFocus;
 
-    public TextComponentBinder() {
+    public TextComponentBinder() {    
         super(String.class);
     }
 
@@ -49,8 +49,9 @@ public class TextComponentBinder extends AbstractBinder {
         return textComponentBinding;
     }
 
-    protected JTextComponent createTextComponent() {
-        return getComponentFactory().createTextField();
+    protected JTextComponent createTextComponent()
+    {
+         return getComponentFactory().createTextField();
     }
 
     protected JComponent createControl(Map context) {
@@ -61,43 +62,53 @@ public class TextComponentBinder extends AbstractBinder {
         return textComponent;
     }
 
-    public boolean isConvertEmptyStringToNull() {
+    public boolean isConvertEmptyStringToNull()
+    {
         return convertEmptyStringToNull;
     }
 
-    public void setConvertEmptyStringToNull(boolean convertEmptyStringToNull) {
+    public void setConvertEmptyStringToNull(boolean convertEmptyStringToNull)
+    {
         this.convertEmptyStringToNull = convertEmptyStringToNull;
     }
 
-    public String getPromptKey() {
+    public String getPromptKey()
+    {
         return promptKey;
     }
 
-    public void setPromptKey(String promptKey) {
+    public void setPromptKey(String promptKey)
+    {
         this.promptKey = promptKey;
     }
 
-    public DocumentFactory getDocumentFactory() {
+    public DocumentFactory getDocumentFactory()
+    {
         return documentFactory;
     }
 
-    public void setDocumentFactory(DocumentFactory documentFactory) {
+    public void setDocumentFactory(DocumentFactory documentFactory)
+    {
         this.documentFactory = documentFactory;
     }
 
-    public boolean isReadOnly() {
+    public boolean isReadOnly()
+    {
         return readOnly;
     }
 
-    public void setReadOnly(boolean readOnly) {
+    public void setReadOnly(boolean readOnly)
+    {
         this.readOnly = readOnly;
     }
 
-    public boolean isSelectAllOnFocus() {
+    public boolean isSelectAllOnFocus()
+    {
         return selectAllOnFocus;
     }
 
-    public void setSelectAllOnFocus(boolean selectAllOnFocus) {
+    public void setSelectAllOnFocus(boolean selectAllOnFocus)
+    {
         this.selectAllOnFocus = selectAllOnFocus;
     }
 }

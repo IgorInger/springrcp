@@ -192,7 +192,7 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
      * @return "this" to make it easier to string together append calls
      */
     public GridBagLayoutBuilder append(Component component, int colSpan, int rowSpan, boolean expandX, boolean expandY,
-                                       Insets insets) {
+            Insets insets) {
         if (expandX && expandY)
             return append(component, colSpan, rowSpan, 1.0, 1.0, insets);
         else if (expandX)
@@ -218,7 +218,7 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
      * @return "this" to make it easier to string together append calls
      */
     public GridBagLayoutBuilder append(Component component, int x, int y, int colSpan, int rowSpan, boolean expandX,
-                                       boolean expandY, Insets insets) {
+            boolean expandY, Insets insets) {
         if (expandX && expandY)
             return append(component, x, y, colSpan, rowSpan, 1.0, 1.0, insets);
         else if (expandX)
@@ -264,7 +264,7 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
      * @see GridBagConstraints#weighty
      */
     public GridBagLayoutBuilder append(Component component, int colSpan, int rowSpan, double xweight, double yweight,
-                                       Insets insets) {
+            Insets insets) {
         return append(component, getCurrentCol(), getCurrentRow(), colSpan, rowSpan, xweight, yweight, insets);
     }
 
@@ -349,15 +349,18 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
             label.setHorizontalAlignment(SwingConstants.RIGHT);
             append(label, col, row, 1, 1, false, expandY, insets);
             append(field, col + 1, row, colSpan, rowSpan, expandX, expandY, insets);
-        } else if (labelOrientation == LabelOrientation.RIGHT) {
+        }
+        else if (labelOrientation == LabelOrientation.RIGHT) {
             label.setHorizontalAlignment(SwingConstants.LEFT);
             append(field, col, row, colSpan, rowSpan, expandX, expandY, insets);
             append(label, col + colSpan, row, 1, rowSpan, false, expandY, insets);
-        } else if (labelOrientation == LabelOrientation.TOP) {
+        }
+        else if (labelOrientation == LabelOrientation.TOP) {
             label.setHorizontalAlignment(SwingConstants.LEFT);
             append(label, col, row, colSpan, 1, expandX, false, insets);
             append(field, col, row + 1, colSpan, rowSpan, expandX, expandY, insets);
-        } else if (labelOrientation == LabelOrientation.BOTTOM) {
+        }
+        else if (labelOrientation == LabelOrientation.BOTTOM) {
             label.setHorizontalAlignment(SwingConstants.LEFT);
             append(field, col, row, colSpan, rowSpan, expandX, expandY, insets);
             append(label, col, row + rowSpan, colSpan, 1, expandX, false, insets);
@@ -384,7 +387,7 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
      * @see GridBagConstraints#weighty
      */
     public GridBagLayoutBuilder append(Component component, int x, int y, int colSpan, int rowSpan, double xweight,
-                                       double yweight, Insets insets) {
+            double yweight, Insets insets) {
         final List rowList = getRow(y);
         ensureCapacity(rowList, Math.max(x, maxCol) + 1);
 
@@ -407,7 +410,7 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
     }
 
     private void insertPlaceholdersIfNeeded(final int rowSpan, final int y, final int col, final Component component,
-                                            final int colSpan) {
+            final int colSpan) {
         if (rowSpan > 1) {
             growRowsIfNeeded(rowSpan);
             for (int i = 1; i < (y + rowSpan); i++) {
@@ -416,7 +419,7 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
                 if (row.get(col) != null) {
                     // sanity check -- shouldn't ever happen
                     throw new IllegalStateException("Trying to overwrite another component: " + component + ", " + col
-                                                    + " " + y);
+                            + " " + y);
                 }
                 for (int j = 0; j < colSpan; j++) {
                     row.set(col + j, NULL_ITEM);
@@ -671,12 +674,12 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
                 final GridBagConstraints gbc = item.gbc;
 
                 if (gbc.gridy + gbc.gridheight - 1 == lastRowIndex) {
-                    formatLastRow(gbc);
-                }
+					formatLastRow(gbc);
+				}
 
-                if (gbc.gridx + gbc.gridwidth - 1 == lastColIndex) {
-                    formatLastColumn(gbc, currentColIndex);
-                }
+				if (gbc.gridx + gbc.gridwidth - 1 == lastColIndex) {
+					formatLastColumn(gbc, currentColIndex);
+				}
 
                 if (LOG.isDebugEnabled()) {
                     LOG.debug("Adding to panel: " + getDebugString(item.component, gbc));
@@ -694,14 +697,17 @@ public class GridBagLayoutBuilder implements LayoutBuilder {
             final String name = jcomp.getName();
             if (name != null && !"".equals(jcomp.getName())) {
                 buffer.append(name);
-            } else {
+            }
+            else {
                 if (jcomp instanceof JLabel) {
                     buffer.append(((JLabel)jcomp).getText());
-                } else {
+                }
+                else {
                     buffer.append(jcomp.toString());
                 }
             }
-        } else {
+        }
+        else {
             buffer.append(component.toString());
         }
 

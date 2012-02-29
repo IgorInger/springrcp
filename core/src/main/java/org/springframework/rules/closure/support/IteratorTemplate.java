@@ -25,52 +25,52 @@ import java.util.Iterator;
  */
 public class IteratorTemplate extends AbstractElementGeneratorWorkflow {
 
-    /** Collection of objects to iterate over. */
-    private Collection collection;
+	/** Collection of objects to iterate over. */
+	private Collection collection;
 
-    /** Iterator on the collection. */
-    private Iterator it;
+	/** Iterator on the collection. */
+	private Iterator it;
 
-    /**
-     * Constructor.
-     *
-     * @param collection the elements to iterate over.
-     */
-    public IteratorTemplate(Collection collection) {
-        this.collection = collection;
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param collection the elements to iterate over.
+	 */
+	public IteratorTemplate(Collection collection) {
+		this.collection = collection;
+	}
 
-    /**
-     * Constructor. When passing an Iterator, the Template will be a run-once
-     * instance.
-     *
-     * @param it Iterator over the elements.
-     */
-    public IteratorTemplate(Iterator it) {
-        super(true);
-        this.it = it;
-    }
+	/**
+	 * Constructor. When passing an Iterator, the Template will be a run-once
+	 * instance.
+	 *
+	 * @param it Iterator over the elements.
+	 */
+	public IteratorTemplate(Iterator it) {
+		super(true);
+		this.it = it;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected void doSetup() {
-        if (this.collection != null) {
-            this.it = this.collection.iterator();
-        }
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void doSetup() {
+		if (this.collection != null) {
+			this.it = this.collection.iterator();
+		}
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected boolean hasMoreWork() {
-        return it.hasNext();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	protected boolean hasMoreWork() {
+		return it.hasNext();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected Object doWork() {
-        return it.next();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	protected Object doWork() {
+		return it.next();
+	}
 }

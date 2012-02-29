@@ -24,7 +24,7 @@ import org.springframework.richclient.command.ActionCommand;
 /**
  * Command to show a <code>JInternalFrame</code>, i.e. restore it, and bring it to the
  * front.
- *
+ * 
  * @author Peter De Bruycker
  */
 public class ShowFrameCommand extends ActionCommand {

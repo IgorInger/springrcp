@@ -21,39 +21,36 @@ import com.jgoodies.forms.layout.Sizes;
 
 public class ToolbarSample extends ApplicationDialog {
 
-    private String[] commandIds = new String[] { "basicApplicationDialogCommand", "basicConfirmationDialogCommand",
-            "basicInputApplicationDialogCommand"
-                                               };
+	private String[] commandIds = new String[] { "basicApplicationDialogCommand", "basicConfirmationDialogCommand",
+			"basicInputApplicationDialogCommand" };
 
-    @Override
-    protected JComponent createDialogContentPane() {
-        JPanel panel = new JPanel(new FormLayout(new ColumnSpec[] { new ColumnSpec(ColumnSpec.LEFT, Sizes.DEFAULT,
-                    ColumnSpec.DEFAULT_GROW)
-        }, new RowSpec[] { FormFactory.DEFAULT_ROWSPEC, FormFactory.LINE_GAP_ROWSPEC,
-                           FormFactory.DEFAULT_ROWSPEC
-                         }));
-        CommandManager commandManager = Application.instance().getActiveWindow().getCommandManager();
-        List<Object> members = new ArrayList<Object>();
-        for (int i = 0; i < commandIds.length; i++) {
-            members.add(commandManager.getCommand(commandIds[i]));
-        }
+	@Override
+	protected JComponent createDialogContentPane() {
+		JPanel panel = new JPanel(new FormLayout(new ColumnSpec[] { new ColumnSpec(ColumnSpec.LEFT, Sizes.DEFAULT,
+				ColumnSpec.DEFAULT_GROW) }, new RowSpec[] { FormFactory.DEFAULT_ROWSPEC, FormFactory.LINE_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC }));
+		CommandManager commandManager = Application.instance().getActiveWindow().getCommandManager();
+		List<Object> members = new ArrayList<Object>();
+		for (int i = 0; i < commandIds.length; i++) {
+			members.add(commandManager.getCommand(commandIds[i]));
+		}
 
-        CellConstraints cc = new CellConstraints();
+		CellConstraints cc = new CellConstraints();
 
-        CommandGroupFactoryBean commandGroupFactory = new CommandGroupFactoryBean("toolbar", members.toArray());
-        panel.add(commandGroupFactory.getCommandGroup().createToolBar(), cc.xy(1, 1));
+		CommandGroupFactoryBean commandGroupFactory = new CommandGroupFactoryBean("toolbar", members.toArray());
+		panel.add(commandGroupFactory.getCommandGroup().createToolBar(), cc.xy(1, 1));
 
-        JTextField toolbarTextField = new JTextField(20);
-        toolbarTextField.setText("input");
-        members.add(toolbarTextField);
-        commandGroupFactory = new CommandGroupFactoryBean("toolbar2", members.toArray());
-        panel.add(commandGroupFactory.getCommandGroup().createToolBar(), cc.xy(1, 3));
+		JTextField toolbarTextField = new JTextField(20);
+		toolbarTextField.setText("input");
+		members.add(toolbarTextField);
+		commandGroupFactory = new CommandGroupFactoryBean("toolbar2", members.toArray());
+		panel.add(commandGroupFactory.getCommandGroup().createToolBar(), cc.xy(1, 3));
 
-        return panel;
-    }
+		return panel;
+	}
 
-    @Override
-    protected boolean onFinish() {
-        return true;
-    }
+	@Override
+	protected boolean onFinish() {
+		return true;
+	}
 }

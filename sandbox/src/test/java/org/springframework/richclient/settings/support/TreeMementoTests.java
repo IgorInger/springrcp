@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -30,35 +30,35 @@ import org.springframework.richclient.settings.TransientSettings;
 public class TreeMementoTests extends TestCase {
 
     private JTree tree;
-    private TreeMemento memento;
+	private TreeMemento memento;
 
     public void testConstructor() {
-        try {
-            new WindowMemento(null);
-            fail("Should throw IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-            // test passes
-        }
+		try {
+			new WindowMemento(null);
+			fail("Should throw IllegalArgumentException");
+		} catch (IllegalArgumentException e) {
+			// test passes
+		}
 
-        try {
-            tree.setName(null);
-            new TreeMemento(tree, "");
-            fail("Should throw IllegalArgumentException: tree has no name");
-        } catch (Exception e) {
-            // test passes
-        }
+		try {
+			tree.setName(null);
+			new TreeMemento(tree, "");
+			fail("Should throw IllegalArgumentException: tree has no name");
+		} catch (Exception e) {
+			// test passes
+		}
 
-        tree.setName("tree0");
+		tree.setName("tree0");
 
-        TreeMemento memento = new TreeMemento(tree);
-        assertEquals(tree, memento.getTree());
-        assertEquals("tree0", memento.getKey());
-
-        memento = new TreeMemento(tree, "key");
-        assertEquals(tree, memento.getTree());
-        assertEquals("key", memento.getKey());
-    }
-
+		TreeMemento memento = new TreeMemento(tree);
+		assertEquals(tree, memento.getTree());
+		assertEquals("tree0", memento.getKey());
+		
+		memento = new TreeMemento(tree, "key");
+		assertEquals(tree, memento.getTree());
+		assertEquals("key", memento.getKey());
+	}
+    
     public void testSaveSelectionState() {
         TransientSettings settings = new TransientSettings();
 
@@ -146,7 +146,7 @@ public class TreeMementoTests extends TestCase {
 
         DefaultTreeModel treeModel = new DefaultTreeModel(root);
         tree = new JTree(treeModel);
-
+        
         memento = new TreeMemento(tree, "tree");
     }
 }

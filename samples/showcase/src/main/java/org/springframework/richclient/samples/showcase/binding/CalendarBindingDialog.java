@@ -37,83 +37,82 @@ import org.springframework.richclient.form.builder.TableFormBuilder;
 
 public class CalendarBindingDialog extends TitledApplicationDialog {
 
-    private class Values {
-        private String name;
+	private class Values {
+		private String name;
 
-        private String surname;
+		private String surname;
 
-        private Date birthday;
+		private Date birthday;
 
-        public String getName() {
-            return name;
-        }
+		public String getName() {
+			return name;
+	}
 
-        public void setName(String name) {
-            this.name = name;
-        }
+		public void setName(String name) {
+			this.name = name;
+		}
 
-        public String getSurname() {
-            return surname;
-        }
+		public String getSurname() {
+			return surname;
+		}
 
-        public void setSurname(String surname) {
-            this.surname = surname;
-        }
+		public void setSurname(String surname) {
+			this.surname = surname;
+		}
 
-        public Date getBirthday() {
-            return birthday;
-        }
+		public Date getBirthday() {
+			return birthday;
+		}
 
-        public void setBirthday(Date birthday) {
-            this.birthday = birthday;
-        }
+		public void setBirthday(Date birthday) {
+			this.birthday = birthday;
+		}
 
-    }
+	}
 
-    private class MessageValueModelForm extends AbstractForm {
+	private class MessageValueModelForm extends AbstractForm {
 
-        public MessageValueModelForm() {
-            super(FormModelHelper.createFormModel(new Values()));
-        }
+		public MessageValueModelForm() {
+			super(FormModelHelper.createFormModel(new Values()));
+		}
 
-        @Override
-        protected JComponent createFormControl() {
-            TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
-            builder.add("name");
-            builder.row();
-            builder.add("surname");
-            builder.row();
+		@Override
+		protected JComponent createFormControl() {
+			TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
+			builder.add("name");
+			builder.row();
+			builder.add("surname");
+			builder.row();
 
-            Map<String, Object> context = new HashMap<String, Object>();
-            context.put(NachoCalendarDateFieldBinder.SHOW_OK_CANCEL_KEY, Boolean.TRUE);
-            context.put(NachoCalendarDateFieldBinder.SHOW_WEEKNUMBERS_KEY, Boolean.TRUE);
+			Map<String, Object> context = new HashMap<String, Object>();
+			context.put(NachoCalendarDateFieldBinder.SHOW_OK_CANCEL_KEY, Boolean.TRUE);
+			context.put(NachoCalendarDateFieldBinder.SHOW_WEEKNUMBERS_KEY, Boolean.TRUE);
 //			context.put(NachoCalendarDateFieldBinder.DATE_FORMAT, "MM'/'yyyy");
-            context.put(NachoCalendarDateFieldBinder.WORKING_DAYS_KEY, new boolean[] {true, true, true, false, false, false, false});
-            final SwingBindingFactory bf = (SwingBindingFactory) getBindingFactory();
-            Binding b = bf.createBinding("birthday", context);
-            builder.add(b);
+			context.put(NachoCalendarDateFieldBinder.WORKING_DAYS_KEY, new boolean[] {true, true, true, false, false, false, false});
+			final SwingBindingFactory bf = (SwingBindingFactory) getBindingFactory();
+			Binding b = bf.createBinding("birthday", context);
+			builder.add(b);
 //			builder.add("birthday");
-            builder.row();
-            ConfigurableFormModel formModel = getFormModel();
-            ValueModel derivedValueModel = new MessageFormatValueModel("{0} {1} was born on {2}", new ValueModel[] {
-                        getValueModel("name"), getValueModel("surname"), getValueModel("birthday")
-                    });
-            FieldMetadata fieldMetaData = new ReadOnlyFieldMetadata(getFormModel(), String.class);
-            formModel.add("derivedBirthday", derivedValueModel, fieldMetaData);
-            builder.add("derivedBirthday");
-            return builder.getForm();
-        }
+			builder.row();
+			ConfigurableFormModel formModel = getFormModel();
+			ValueModel derivedValueModel = new MessageFormatValueModel("{0} {1} was born on {2}", new ValueModel[] {
+					getValueModel("name"), getValueModel("surname"), getValueModel("birthday") });
+			FieldMetadata fieldMetaData = new ReadOnlyFieldMetadata(getFormModel(), String.class);
+			formModel.add("derivedBirthday", derivedValueModel, fieldMetaData);
+			builder.add("derivedBirthday");
+			return builder.getForm();
+		}
 
-    }
+	}
 
-    @Override
-    protected JComponent createTitledDialogContentPane() {
-        return (new MessageValueModelForm()).getControl();
-    }
+	@Override
+	protected JComponent createTitledDialogContentPane() {
+		return (new MessageValueModelForm()).getControl();
+	}
 
-    @Override
-    protected boolean onFinish() {
-        return true;
-    }
+	@Override
+	protected boolean onFinish() {
+		return true;
+	}
 
 }

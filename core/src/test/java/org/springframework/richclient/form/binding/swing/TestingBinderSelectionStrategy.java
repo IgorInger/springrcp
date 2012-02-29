@@ -36,9 +36,9 @@ public class TestingBinderSelectionStrategy implements BinderSelectionStrategy {
     public Binder selectBinder(Class controlType, FormModel formModel, String propertyName) {
         return new TestableBinder(controlType);
     }
-
+    
     private class TestableBinder implements Binder {
-        private Class controlType;
+        private Class controlType; 
 
         public TestableBinder(Class controlType) {
             this.controlType = controlType;
@@ -55,6 +55,6 @@ public class TestingBinderSelectionStrategy implements BinderSelectionStrategy {
         public Class getRequiredSourceClass() {
             // TODO Auto-generated method stub
             return null;
-        }
+        }        
     }
 }

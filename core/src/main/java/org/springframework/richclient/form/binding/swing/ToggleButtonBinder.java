@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
 
 /**
  * @author Mathias Broekelmann
- *
+ * 
  */
 public class ToggleButtonBinder extends AbstractBinder {
 
@@ -56,7 +56,7 @@ public class ToggleButtonBinder extends AbstractBinder {
     }
 
     protected void applyContext(ToggleButtonBinding toggleButtonBinding, FormModel formModel, String formPropertyPath,
-                                Map context) {
+            Map context) {
     }
 
     protected JComponent createControl(Map context) {

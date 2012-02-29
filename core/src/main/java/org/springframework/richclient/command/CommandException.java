@@ -21,7 +21,7 @@ import org.springframework.richclient.application.ApplicationException;
 /**
  * Indicates that a runtime or configuration error has occurred within the Command
  * framework. This is a fairly generic exception. Before creating and throwing an instance
- * of this type, consider if a more specific subclass would be more appropriate.
+ * of this type, consider if a more specific subclass would be more appropriate. 
  *
  * @author Kevin Stembridge
  * @since 0.3
@@ -66,5 +66,5 @@ public class CommandException extends ApplicationException {
     public CommandException(Throwable cause) {
         super(cause);
     }
-
+    
 }

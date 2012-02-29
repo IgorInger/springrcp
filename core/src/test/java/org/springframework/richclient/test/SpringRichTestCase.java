@@ -32,7 +32,7 @@ import org.springframework.richclient.application.support.DefaultApplicationServ
  * Convenient base implementation for Spring Rich test cases; automatically configures the
  * application services singleton and provides hooks for common test case setup
  * requirements.
- *
+ * 
  * @author Oliver Hutchison
  */
 public abstract class SpringRichTestCase extends TestCase {
@@ -54,7 +54,7 @@ public abstract class SpringRichTestCase extends TestCase {
             final ApplicationLifecycleAdvisor advisor = createApplicationLifecycleAdvisor();
             final Application application = new Application(advisor);
             advisor.setApplication(application);
-
+            
             Application.instance().setApplicationContext(applicationContext);
             applicationServices.setApplicationContext(applicationContext);
 
@@ -69,11 +69,11 @@ public abstract class SpringRichTestCase extends TestCase {
         }
     }
 
-    /**
+	/**
      * returns the application context to use for testing
-     *
+     * 
      * overwrite to specify a different application context
-     *
+     * 
      * @return this implementation returns an instance of StaticApplicationContext
      */
     protected ConfigurableApplicationContext createApplicationContext() {
@@ -87,8 +87,8 @@ public abstract class SpringRichTestCase extends TestCase {
     protected ApplicationLifecycleAdvisor createApplicationLifecycleAdvisor() {
         return new DefaultApplicationLifecycleAdvisor();
     }
-
-
+    
+    
 
     /**
      * Register the application services needed for our tests.
@@ -126,7 +126,7 @@ public abstract class SpringRichTestCase extends TestCase {
     /**
      * Should be implemented in subclasses as an alternative to the final method
      * {@link #setUp()}
-     *
+     * 
      * @throws Exception
      */
     protected void doSetUp() throws Exception {

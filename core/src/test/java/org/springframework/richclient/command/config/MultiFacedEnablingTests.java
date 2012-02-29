@@ -24,7 +24,8 @@ import org.springframework.richclient.test.SpringRichTestCase;
  * MultiFacedEnablingTests was built to check up on the issue reported as <a
  * href="http://opensource.atlassian.com/projects/spring/browse/RCP-73">RCP-73 </a>.
  */
-public class MultiFacedEnablingTests extends SpringRichTestCase {
+public class MultiFacedEnablingTests extends SpringRichTestCase
+{
     private static final String ALTERNATE_ID = "otherId";
     private static final String MAIN_ID = "someid";
 
@@ -36,10 +37,13 @@ public class MultiFacedEnablingTests extends SpringRichTestCase {
      * <li>disable/enable the command --> check if all buttons follow up on the changes</li>
      * </ol>
      */
-    public void testMultifacedCommandDisabling() {
-        ActionCommand command = new ActionCommand(MAIN_ID) {
+    public void testMultifacedCommandDisabling()
+    {
+        ActionCommand command = new ActionCommand(MAIN_ID)
+        {
 
-            protected void doExecuteCommand() {
+            protected void doExecuteCommand()
+            {
                 // does nothing during this test anyway
             }
         };
@@ -49,10 +53,10 @@ public class MultiFacedEnablingTests extends SpringRichTestCase {
         // test this dude's enabling
         command.setEnabled(false);
         assertFalse("standard face button didn't follow up on the command's disabling", standardButton
-                    .isEnabled());
+                .isEnabled());
         command.setEnabled(true);
         assertTrue("standard face button didn't follow up on the command's enabling", standardButton
-                   .isEnabled());
+                .isEnabled());
 
         // register an alternative face to this command
         CommandFaceDescriptor face = new CommandFaceDescriptor();
@@ -64,10 +68,10 @@ public class MultiFacedEnablingTests extends SpringRichTestCase {
         // test this newly faced dude
         command.setEnabled(false);
         assertFalse("alternative face button didn't follow up on the command's disabling", otherFacedButton
-                    .isEnabled());
+                .isEnabled());
         command.setEnabled(true);
         assertTrue("alternative face button didn't follow up on the command's enabling", otherFacedButton
-                   .isEnabled());
+                .isEnabled());
 
     }
 }

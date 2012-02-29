@@ -13,9 +13,9 @@ import org.springframework.rules.RulesSource;
 
 /**
  * Test cases for {@link DefaultApplicationServices}
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public class DefaultApplicationServicesTests extends SpringRichTestCase {
 

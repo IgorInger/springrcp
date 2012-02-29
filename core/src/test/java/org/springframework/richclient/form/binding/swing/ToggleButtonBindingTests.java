@@ -24,7 +24,7 @@ import org.springframework.binding.form.support.DefaultFormModel;
 
 /**
  * @author Mathias Broekelmann
- *
+ * 
  */
 public class ToggleButtonBindingTests extends BindingAbstractTests {
 

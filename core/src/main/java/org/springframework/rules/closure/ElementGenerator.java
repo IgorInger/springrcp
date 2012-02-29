@@ -51,59 +51,59 @@ import org.springframework.rules.constraint.Constraint;
  */
 public interface ElementGenerator extends ClosureTemplate {
 
-    /**
-     * Does this process produce an element matching the given criteria?
-     *
-     * @param constraint the criteria
-     * @return <code>true</code> if yes, <code>false</code> otherwise
-     */
-    boolean anyTrue(Constraint constraint);
+	/**
+	 * Does this process produce an element matching the given criteria?
+	 *
+	 * @param constraint the criteria
+	 * @return <code>true</code> if yes, <code>false</code> otherwise
+	 */
+	boolean anyTrue(Constraint constraint);
 
-    /**
-     * Does this process produce all elements matching the given criteria?
-     *
-     * @param constraint the criteria
-     * @return <code>true</code> if yes, <code>false</code> otherwise
-     */
-    boolean allTrue(Constraint constraint);
+	/**
+	 * Does this process produce all elements matching the given criteria?
+	 *
+	 * @param constraint the criteria
+	 * @return <code>true</code> if yes, <code>false</code> otherwise
+	 */
+	boolean allTrue(Constraint constraint);
 
-    /**
-     * Find the first element that matches the given criteria.
-     *
-     * @param constraint the criteria
-     * @return the first element, or null if none found.
-     */
-    Object findFirst(Constraint constraint);
+	/**
+	 * Find the first element that matches the given criteria.
+	 *
+	 * @param constraint the criteria
+	 * @return the first element, or null if none found.
+	 */
+	Object findFirst(Constraint constraint);
 
-    /**
-     * Find the first element that matches the given criteria, return
-     * <code>defaultIfNoneFound</code> if none found.
-     *
-     * @param constraint the constraint
-     * @param defaultIfNoneFound none found object
-     * @return the first match, or defaultIfNoneFound if no match found
-     */
-    Object findFirst(Constraint constraint, Object defaultIfNoneFound);
+	/**
+	 * Find the first element that matches the given criteria, return
+	 * <code>defaultIfNoneFound</code> if none found.
+	 *
+	 * @param constraint the constraint
+	 * @param defaultIfNoneFound none found object
+	 * @return the first match, or defaultIfNoneFound if no match found
+	 */
+	Object findFirst(Constraint constraint, Object defaultIfNoneFound);
 
-    /**
-     * Find all elements produced by ths template that match the specified
-     * criteria.
-     *
-     * @param constraint the criteria
-     * @return the elements
-     */
-    ElementGenerator findAll(Constraint constraint);
+	/**
+	 * Find all elements produced by ths template that match the specified
+	 * criteria.
+	 *
+	 * @param constraint the criteria
+	 * @return the elements
+	 */
+	ElementGenerator findAll(Constraint constraint);
 
-    /**
-     * Execute the template until the specified condition is true
-     *
-     * @param templateCallback the callback
-     * @param constraint the constraint condition
-     */
-    void runUntil(Closure templateCallback, Constraint constraint);
+	/**
+	 * Execute the template until the specified condition is true
+	 *
+	 * @param templateCallback the callback
+	 * @param constraint the constraint condition
+	 */
+	void runUntil(Closure templateCallback, Constraint constraint);
 
-    /**
-     * Stop this process after it has started.
-     */
-    void stop() throws IllegalStateException;
+	/**
+	 * Stop this process after it has started.
+	 */
+	void stop() throws IllegalStateException;
 }

@@ -5,9 +5,9 @@ import org.springframework.richclient.samples.showcase.util.Reporter;
 
 public class GenericKeyMapBindingDialog extends AbstractReporterTitledApplicationDialog {
 
-    @Override
-    protected Reporter getReporter() {
-        return null;
-    }
+	@Override
+	protected Reporter getReporter() {
+		return null;
+	}
 
 }

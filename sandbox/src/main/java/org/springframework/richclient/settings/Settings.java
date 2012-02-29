@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,113 +24,113 @@ import org.springframework.core.enums.LabeledEnum;
  * @author Peter De Bruycker
  */
 public interface Settings {
-    void setString(String key, String value);
+	void setString(String key, String value);
 
-    String getString(String key);
+	String getString(String key);
 
-    void setDefaultString(String key, String value);
+	void setDefaultString(String key, String value);
 
-    String getDefaultString(String key);
+	String getDefaultString(String key);
 
-    void setInt(String key, int value);
+	void setInt(String key, int value);
 
-    int getInt(String key);
+	int getInt(String key);
 
-    void setLong(String key, long value);
+	void setLong(String key, long value);
 
-    long getLong(String key);
+	long getLong(String key);
 
-    void setDefaultInt(String key, int value);
+	void setDefaultInt(String key, int value);
 
-    int getDefaultInt(String key);
+	int getDefaultInt(String key);
 
-    void setDefaultLong(String key, long value);
+	void setDefaultLong(String key, long value);
 
-    long getDefaultLong(String key);
+	long getDefaultLong(String key);
 
-    void setFloat(String key, float value);
+	void setFloat(String key, float value);
 
-    float getFloat(String key);
+	float getFloat(String key);
 
-    void setDefaultFloat(String key, float value);
+	void setDefaultFloat(String key, float value);
 
-    float getDefaultFloat(String key);
+	float getDefaultFloat(String key);
 
-    void setDouble(String key, double value);
+	void setDouble(String key, double value);
 
-    double getDouble(String key);
+	double getDouble(String key);
 
-    void setDefaultDouble(String key, double value);
+	void setDefaultDouble(String key, double value);
 
-    double getDefaultDouble(String key);
+	double getDefaultDouble(String key);
 
-    void setBoolean(String key, boolean value);
+	void setBoolean(String key, boolean value);
 
-    boolean getBoolean(String key);
+	boolean getBoolean(String key);
 
-    void setDefaultBoolean(String key, boolean value);
+	void setDefaultBoolean(String key, boolean value);
 
-    boolean getDefaultBoolean(String key);
+	boolean getDefaultBoolean(String key);
 
-    void setLabeledEnum(String key, LabeledEnum value);
+	void setLabeledEnum(String key, LabeledEnum value);
 
-    LabeledEnum getLabeledEnum(String key);
+	LabeledEnum getLabeledEnum(String key);
 
-    void setDefaultLabeledEnum(String key, LabeledEnum value);
+	void setDefaultLabeledEnum(String key, LabeledEnum value);
 
-    LabeledEnum getDefaultLabeledEnum(String key);
+	LabeledEnum getDefaultLabeledEnum(String key);
 
-    boolean isDefault(String key);
+	boolean isDefault(String key);
 
-    /**
-     * Returns the keys in this <code>Settings</code>.
-     *
-     * @return the keys
-     */
-    String[] getKeys();
+	/**
+	 * Returns the keys in this <code>Settings</code>.
+	 * 
+	 * @return the keys
+	 */
+	String[] getKeys();
 
-    /**
-     * Returns the registered default keys in this <code>Settings</code>.
-     *
-     * @return the keys
-     */
-    String[] getDefaultKeys();
+	/**
+	 * Returns the registered default keys in this <code>Settings</code>.
+	 * 
+	 * @return the keys
+	 */
+	String[] getDefaultKeys();
 
-    /**
-     * Returns the "sum" of {link #getKeys()} and {link #getDefaultKeys()}.
-     *
-     * @return all keys
-     */
-    String[] getAllKeys();
+	/**
+	 * Returns the "sum" of {link #getKeys()} and {link #getDefaultKeys()}.
+	 * 
+	 * @return all keys
+	 */
+	String[] getAllKeys();
 
-    void save() throws IOException;
+	void save() throws IOException;
 
-    void load() throws IOException;
+	void load() throws IOException;
 
-    Settings getSettings(String name);
-
+	Settings getSettings(String name);
+    
     /**
      * Removes this <code>Settings</code> from the backing store.
      */
     void removeSettings();
 
-    String getName();
+	String getName();
 
-    Settings getParent();
+	Settings getParent();
 
-    void addPropertyChangeListener(PropertyChangeListener l);
+	void addPropertyChangeListener(PropertyChangeListener l);
 
-    void addPropertyChangeListener(String key, PropertyChangeListener l);
+	void addPropertyChangeListener(String key, PropertyChangeListener l);
 
-    void removePropertyChangeListener(PropertyChangeListener l);
+	void removePropertyChangeListener(PropertyChangeListener l);
 
-    void removePropertyChangeListener(String key, PropertyChangeListener l);
+	void removePropertyChangeListener(String key, PropertyChangeListener l);
 
-    boolean contains(String key);
+	boolean contains(String key);
 
-    void remove(String key);
+	void remove(String key);
 
-    boolean isRoot();
-
-    String[] getChildSettings();
+	boolean isRoot();
+	
+	String[] getChildSettings();
 }

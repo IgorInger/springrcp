@@ -18,7 +18,8 @@ import java.io.InputStreamReader;
  * @see #setContent(org.springframework.core.io.Resource)
  * @see #setContent(String)
  */
-public class HTMLViewWidget extends AbstractWidget {
+public class HTMLViewWidget extends AbstractWidget
+{
     /** Pane in which the HTML will be shown. */
     private JTextPane textPane;
 
@@ -27,11 +28,13 @@ public class HTMLViewWidget extends AbstractWidget {
 
     private boolean hasContent;
 
-    public HTMLViewWidget() {
+    public HTMLViewWidget()
+    {
         this(false);
     }
 
-    public HTMLViewWidget(boolean readOnly) {
+    public HTMLViewWidget(boolean readOnly)
+    {
         this.textPane = new JTextPane();
         this.textPane.setEditorKit(new HTMLEditorKit());
         this.textPane.setEditable(!readOnly);
@@ -47,48 +50,61 @@ public class HTMLViewWidget extends AbstractWidget {
         this.mainComponent = scrollPane;
     }
 
-    public HTMLViewWidget(Resource resource) {
+    public HTMLViewWidget(Resource resource)
+    {
         this();
         setContent(resource);
     }
 
-    public HTMLViewWidget(Resource resource, boolean readOnly) {
+    public HTMLViewWidget(Resource resource, boolean readOnly)
+    {
         this(readOnly);
         setContent(resource);
     }
 
-    public HTMLViewWidget(String htmlText) {
+    public HTMLViewWidget(String htmlText)
+    {
         this();
         setContent(htmlText);
     }
 
-    public HTMLViewWidget(String htmlText, boolean readOnly) {
+    public HTMLViewWidget(String htmlText, boolean readOnly)
+    {
         this(readOnly);
         setContent(htmlText);
     }
 
-    public void setContent(Resource resource) {
+    public void setContent(Resource resource)
+    {
 
         String text = null;
-        try {
-            if (resource != null && resource.exists()) {
+        try
+        {
+            if (resource != null && resource.exists())
+            {
                 text = FileCopyUtils.copyToString(new BufferedReader(new InputStreamReader(resource
-                                                  .getInputStream())));
+                        .getInputStream())));
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             logger.warn("Error reading resource: " + resource, e);
             throw new RuntimeException("Error reading resource " + resource, e);
-        } finally {
+        }
+        finally
+        {
             setContent(text);
         }
     }
 
-    public void setContent(String htmlText) {
+    public void setContent(String htmlText)
+    {
         this.textPane.setText(htmlText);
         this.hasContent = (htmlText != null && htmlText.length() > 0);
     }
 
-    public JComponent getComponent() {
+    public JComponent getComponent()
+    {
         return this.hasContent ? this.mainComponent : new JPanel();
     }
 }

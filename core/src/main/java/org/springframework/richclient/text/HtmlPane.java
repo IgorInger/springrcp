@@ -33,8 +33,8 @@ import javax.swing.text.DefaultCaret;
 import javax.swing.text.html.HTMLDocument;
 
 /**
- * An extension of JTextPane for displaying HTML with the system LaF.
- *
+ * An extension of JTextPane for displaying HTML with the system LaF. 
+ * 
  * @author Oliver Hutchison
  */
 public class HtmlPane extends JTextPane {
@@ -55,7 +55,7 @@ public class HtmlPane extends JTextPane {
 
     /**
      * Creates a new HtmlPane.
-     *
+     * 
      * @param installHyperlinkActivationHandler
      *            whether to install a default hyperlink activation handler.
      */
@@ -122,7 +122,8 @@ public class HtmlPane extends JTextPane {
     private void setCaretInternal() {
         if (allowSelection) {
             super.setCaret(caret);
-        } else {
+        }
+        else {
             super.setCaret(new NoSelectionCaret());
         }
     }
@@ -133,11 +134,12 @@ public class HtmlPane extends JTextPane {
     protected void installLaFStyleSheet() {
         Font defaultFont = UIManager.getFont("Button.font");
         String stylesheet = "body {  font-family: " + defaultFont.getName() + "; font-size: " + defaultFont.getSize()
-                            + "pt;  }" + "a, p, li { font-family: " + defaultFont.getName() + "; font-size: "
-                            + defaultFont.getSize() + "pt;  }";
+                + "pt;  }" + "a, p, li { font-family: " + defaultFont.getName() + "; font-size: "
+                + defaultFont.getSize() + "pt;  }";
         try {
             ((HTMLDocument)getDocument()).getStyleSheet().loadRules(new StringReader(stylesheet), null);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
         }
     }
 
@@ -185,7 +187,8 @@ public class HtmlPane extends JTextPane {
         public void hyperlinkUpdate(HyperlinkEvent e) {
             if (e.getEventType().equals(HyperlinkEvent.EventType.ENTERED)) {
                 hyperlinkActive = true;
-            } else if (e.getEventType().equals(HyperlinkEvent.EventType.EXITED)) {
+            }
+            else if (e.getEventType().equals(HyperlinkEvent.EventType.EXITED)) {
                 hyperlinkActive = false;
             }
         }

@@ -227,7 +227,7 @@ public abstract class AbstractApplicationWindow implements ApplicationWindow, Wi
     protected PageDescriptor getPageDescriptor( String pageDescriptorId ) {
         ApplicationContext ctx = Application.instance().getApplicationContext();
         Assert.state( ctx.containsBean( pageDescriptorId ), "Do not know about page or view descriptor with name '"
-                      + pageDescriptorId + "' - check your context config" );
+                + pageDescriptorId + "' - check your context config" );
         Object desc = ctx.getBean( pageDescriptorId );
         if( desc instanceof PageDescriptor ) {
             return (PageDescriptor) desc;
@@ -235,7 +235,7 @@ public abstract class AbstractApplicationWindow implements ApplicationWindow, Wi
             return new SingleViewPageDescriptor( (ViewDescriptor) desc );
         } else {
             throw new IllegalArgumentException( "Page id '" + pageDescriptorId
-                                                + "' is not backed by an ApplicationPageDescriptor" );
+                    + "' is not backed by an ApplicationPageDescriptor" );
         }
     }
 
@@ -317,23 +317,23 @@ public abstract class AbstractApplicationWindow implements ApplicationWindow, Wi
     }
 
     /**
-     * Close this window. First checks with the advisor by calling the
-     * {@link ApplicationLifecycleAdvisor#onPreWindowClose(ApplicationWindow)}
-     * method. Then tries to close it's currentPage. If both are successfull,
-     * the window will be disposed and removed from the {@link WindowManager}.
-     *
-     * @return boolean <code>true</code> if both, the advisor and the
-     * currentPage allow the closing action.
-     */
+	 * Close this window. First checks with the advisor by calling the
+	 * {@link ApplicationLifecycleAdvisor#onPreWindowClose(ApplicationWindow)}
+	 * method. Then tries to close it's currentPage. If both are successfull,
+	 * the window will be disposed and removed from the {@link WindowManager}.
+	 *
+	 * @return boolean <code>true</code> if both, the advisor and the
+	 * currentPage allow the closing action.
+	 */
     public boolean close() {
         boolean canClose = getAdvisor().onPreWindowClose( this );
         if( canClose ) {
-            // check if page can be closed
+        	// check if page can be closed
             if( currentPage != null ) {
                 canClose = currentPage.close();
                 // page cannot be closed, exit method and do not dispose
                 if (!canClose)
-                    return canClose;
+                	return canClose;
             }
 
             if( control != null ) {

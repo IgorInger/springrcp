@@ -55,34 +55,34 @@ public class InMemoryClinic extends SimpleJdbcClinic {
 
         // Schema: Petclinic
         template
-        .execute("CREATE TABLE vets (id INT NOT NULL IDENTITY PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30))");
+                .execute("CREATE TABLE vets (id INT NOT NULL IDENTITY PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30))");
         template.execute("CREATE TABLE specialties (id INT NOT NULL IDENTITY PRIMARY KEY, name VARCHAR(80))");
 
         template.execute("CREATE TABLE vet_specialties (vet_id INT NOT NULL, specialty_id INT NOT NULL)");
         template
-        .execute("alter table vet_specialties add constraint fk_vet_specialties_vets foreign key (vet_id) references vets(id)");
+                .execute("alter table vet_specialties add constraint fk_vet_specialties_vets foreign key (vet_id) references vets(id)");
         template
-        .execute("alter table vet_specialties add constraint fk_vet_specialties_specialties foreign key (specialty_id) references specialties(id)");
+                .execute("alter table vet_specialties add constraint fk_vet_specialties_specialties foreign key (specialty_id) references specialties(id)");
 
         template.execute("CREATE TABLE types (id INT NOT NULL IDENTITY PRIMARY KEY, name VARCHAR(80))");
         template
-        .execute("CREATE TABLE owners (id INT NOT NULL IDENTITY PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), address VARCHAR(255), city VARCHAR(80), telephone VARCHAR(20))");
+                .execute("CREATE TABLE owners (id INT NOT NULL IDENTITY PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(30), address VARCHAR(255), city VARCHAR(80), telephone VARCHAR(20))");
 
         template
-        .execute("CREATE TABLE pets (id INT NOT NULL IDENTITY PRIMARY KEY, name VARCHAR(30), birth_date DATE, type_id INT NOT NULL, owner_id INT NOT NULL)");
+                .execute("CREATE TABLE pets (id INT NOT NULL IDENTITY PRIMARY KEY, name VARCHAR(30), birth_date DATE, type_id INT NOT NULL, owner_id INT NOT NULL)");
         template.execute("alter table pets add constraint fk_pets_owners foreign key (owner_id) references owners(id)");
         template.execute("alter table pets add constraint fk_pets_types foreign key (type_id) references types(id)");
 
         template
-        .execute("CREATE TABLE visits (id INT NOT NULL IDENTITY PRIMARY KEY, pet_id INT NOT NULL, visit_date DATE, description VARCHAR(255))");
+                .execute("CREATE TABLE visits (id INT NOT NULL IDENTITY PRIMARY KEY, pet_id INT NOT NULL, visit_date DATE, description VARCHAR(255))");
         template.execute("alter table visits add constraint fk_visits_pets foreign key (pet_id) references pets(id)");
 
         // Schema: Spring Security
         template
-        .execute("CREATE TABLE users (username VARCHAR(50) NOT NULL PRIMARY KEY, password VARCHAR(50) NOT NULL, enabled BIT NOT NULL)");
+                .execute("CREATE TABLE users (username VARCHAR(50) NOT NULL PRIMARY KEY, password VARCHAR(50) NOT NULL, enabled BIT NOT NULL)");
         template.execute("CREATE TABLE authorities (username VARCHAR(50) NOT NULL, authority VARCHAR(50) NOT NULL)");
         template
-        .execute("alter table authorities add constraint fk_authorities_users foreign key (username) references users(username)");
+                .execute("alter table authorities add constraint fk_authorities_users foreign key (username) references users(username)");
 
         // Data: Petclinic
         template.execute("INSERT INTO vets VALUES (1, 'James', 'Carter')");
@@ -110,24 +110,24 @@ public class InMemoryClinic extends SimpleJdbcClinic {
         template.execute("INSERT INTO types VALUES (6, 'hamster');");
 
         template
-        .execute("INSERT INTO owners VALUES (1, 'Keith', 'Donald', '110 W. Liberty St.', 'Madison', '6085551023');");
+                .execute("INSERT INTO owners VALUES (1, 'Keith', 'Donald', '110 W. Liberty St.', 'Madison', '6085551023');");
         template
-        .execute("INSERT INTO owners VALUES (2, 'Keri', 'Donald', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');");
+                .execute("INSERT INTO owners VALUES (2, 'Keri', 'Donald', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');");
         template
-        .execute("INSERT INTO owners VALUES (3, 'Ronald', 'McDonald', '2693 Commerce St.', 'McFarland', '6085558763');");
+                .execute("INSERT INTO owners VALUES (3, 'Ronald', 'McDonald', '2693 Commerce St.', 'McFarland', '6085558763');");
         template
-        .execute("INSERT INTO owners VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198');");
+                .execute("INSERT INTO owners VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198');");
         template
-        .execute("INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765');");
+                .execute("INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765');");
         template
-        .execute("INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654');");
+                .execute("INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654');");
         template.execute("INSERT INTO owners VALUES (7, 'Peter', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387');");
         template
-        .execute("INSERT INTO owners VALUES (8, 'Scott', 'Escobito', '345 Maple St.', 'Madison', '6085557683');");
+                .execute("INSERT INTO owners VALUES (8, 'Scott', 'Escobito', '345 Maple St.', 'Madison', '6085557683');");
         template
-        .execute("INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435');");
+                .execute("INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435');");
         template
-        .execute("INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487');");
+                .execute("INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487');");
 
         template.execute("INSERT INTO pets VALUES (1, 'Leo', '2000-09-07', 1, 1)");
         template.execute("INSERT INTO pets VALUES (2, 'Basil', '2002-08-06', 6, 2)");

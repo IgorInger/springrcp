@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,7 +24,7 @@ import org.springframework.richclient.application.config.DefaultApplicationLifec
 /**
  * Custom application lifecycle implementation that configures the sample app at
  * well defined points within its lifecycle.
- *
+ * 
  * @author Keith Donald
  */
 public class SimpleLifecycleAdvisor extends DefaultApplicationLifecycleAdvisor {
@@ -38,7 +38,7 @@ public class SimpleLifecycleAdvisor extends DefaultApplicationLifecycleAdvisor {
      * properties on the configurer) and it provides a hook where code that
      * needs to be executed prior to the window opening can be plugged in (like
      * a startup wizard, for example).
-     *
+     * 
      * @param configurer The application window configurer
      */
     public void onPreWindowOpen( ApplicationWindowConfigurer configurer ) {
@@ -59,7 +59,7 @@ public class SimpleLifecycleAdvisor extends DefaultApplicationLifecycleAdvisor {
      * available for use. If you need to force the execution of a command prior
      * to the display of an application window (like a login command), this is
      * where you'd do it.
-     *
+     * 
      * @param window The window who's commands have just been created
      */
     public void onCommandsCreated( ApplicationWindow window ) {
@@ -70,7 +70,7 @@ public class SimpleLifecycleAdvisor extends DefaultApplicationLifecycleAdvisor {
 
     /**
      * Called after the actual window control has been created.
-     *
+     * 
      * @param window The window being processed
      */
     public void onWindowCreated( ApplicationWindow window ) {
@@ -81,7 +81,7 @@ public class SimpleLifecycleAdvisor extends DefaultApplicationLifecycleAdvisor {
 
     /**
      * Called immediately after making the window visible.
-     *
+     * 
      * @param window The window being processed
      */
     public void onWindowOpened( ApplicationWindow window ) {
@@ -94,7 +94,7 @@ public class SimpleLifecycleAdvisor extends DefaultApplicationLifecycleAdvisor {
      * Called when the window is being closed. This hook allows control over
      * whether the window is allowed to close. By returning false from this
      * method, the window will not be closed.
-     *
+     * 
      * @return boolean indicator if window should be closed. <code>true</code>
      *         to allow the close, <code>false</code> to prevent the close.
      */

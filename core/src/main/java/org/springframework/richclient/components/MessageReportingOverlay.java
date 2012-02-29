@@ -34,7 +34,7 @@ import org.springframework.richclient.util.OverlayHelper;
  * <p>
  * Use {@link OverlayHelper#attachOverlay(javax.swing.JComponent, javax.swing.JComponent, int, int, int)} to put this
  * component as an overlay of an other component
- *
+ * 
  * @author Oliver Hutchison
  * @author Mathias Broekelmann
  */
@@ -43,7 +43,7 @@ public class MessageReportingOverlay extends JLabel implements Messagable, Guard
 
     /**
      * Return the used icon source
-     *
+     * 
      * @return the icon source, must not null
      */
     public IconSource getIconSource() {
@@ -55,7 +55,7 @@ public class MessageReportingOverlay extends JLabel implements Messagable, Guard
 
     /**
      * Define the iconsource for getting the icon of the overlay
-     *
+     * 
      * @param iconSource
      *            the icon source, if null the default icon source from {@link ApplicationServices} will be used
      */
@@ -80,7 +80,7 @@ public class MessageReportingOverlay extends JLabel implements Messagable, Guard
     /**
      * set the message wich will be used as the content of the overlay. The message text will be used as tooltip and the
      * severity is used to determine which icon should be shown
-     *
+     * 
      * @param message
      *            the message, if null tooltip will be empty and icon will be null
      */

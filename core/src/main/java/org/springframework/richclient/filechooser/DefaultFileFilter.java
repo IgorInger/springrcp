@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,7 +26,7 @@ import javax.swing.filechooser.FileFilter;
 /**
  * Basic implementation of a FileFilter that provides a list of valid file
  * extensions and a description to the JFileChooser.
- *
+ * 
  * @see javax.swing.filechooser.FileFilter
  */
 public class DefaultFileFilter extends FileFilter {
@@ -39,7 +39,7 @@ public class DefaultFileFilter extends FileFilter {
     /**
      * Creates a file filter. If no filters are added, then all files are
      * accepted.
-     *
+     * 
      * @see #addExtension
      */
     public DefaultFileFilter() {
@@ -51,7 +51,7 @@ public class DefaultFileFilter extends FileFilter {
      * <p>
      * Note that "." or "*." before the extension is not needed and will be
      * removed.
-     *
+     * 
      * @see #addExtension
      */
     public DefaultFileFilter(String extension) {
@@ -64,7 +64,7 @@ public class DefaultFileFilter extends FileFilter {
      * <p>
      * Note that "." or "*." before the extension is not needed and will be
      * removed.
-     *
+     * 
      * @see #addExtension
      */
     public DefaultFileFilter(String extension, String description) {
@@ -82,7 +82,7 @@ public class DefaultFileFilter extends FileFilter {
      * <p>
      * Note that "." or "*." before the extension is not needed and will be
      * removed.
-     *
+     * 
      * @see #addExtension
      */
     public DefaultFileFilter(String[] extensions) {
@@ -96,7 +96,7 @@ public class DefaultFileFilter extends FileFilter {
      * <p>
      * Note that "." or "*." before the extension is not needed and will be
      * removed.
-     *
+     * 
      * @see #addExtension
      */
     public DefaultFileFilter(String[] extensions, String description) {
@@ -110,7 +110,7 @@ public class DefaultFileFilter extends FileFilter {
     /**
      * Return true if this file should be shown in the directory pane, false if
      * it shouldn't. Directories are always accepted.
-     *
+     * 
      * @see FileFilter#accept
      */
     public boolean accept(File f) {
@@ -128,7 +128,7 @@ public class DefaultFileFilter extends FileFilter {
 
     /**
      * Return the extension portion of the file's name .
-     *
+     * 
      * @see FileFilter#accept
      */
     private String getExtension(File f) {
@@ -147,13 +147,13 @@ public class DefaultFileFilter extends FileFilter {
      * <p>
      * For example: the following code will create a filter that filters out all
      * files except those that end in ".jpg" and ".tif":
-     *
+     * 
      * <pre>
      * DefaultFileFilter filter = new DefaultFileFilter();
      * filter.addExtension(&quot;jpg&quot;);
      * filter.addExtension(&quot;tif&quot;);
      * </pre>
-     *
+     * 
      * Note that "." or "*." before the extension is not needed and will be
      * removed.
      */
@@ -169,7 +169,7 @@ public class DefaultFileFilter extends FileFilter {
      * <p>
      * Note that "." or "*." before the extension is not needed and will be
      * removed.
-     *
+     * 
      * @param extension
      *            the extension
      */
@@ -194,7 +194,7 @@ public class DefaultFileFilter extends FileFilter {
 
     /**
      * Returns the registered extensions.
-     *
+     * 
      * @return the extensions
      */
     public List getExtensions() {
@@ -204,7 +204,7 @@ public class DefaultFileFilter extends FileFilter {
     /**
      * Returns the human readable description of this filter. For example: "JPEG
      * and GIF Image Files (*.jpg, *.gif)"
-     *
+     * 
      * @return a description of the file extensions permitted by this filter.
      */
     public String getDescription() {
@@ -237,7 +237,7 @@ public class DefaultFileFilter extends FileFilter {
     /**
      * Sets the human readable description of this filter. For example:
      * filter.setDescription("Gif and JPG Images");
-     *
+     * 
      * @param desc
      *            the description.
      */
@@ -253,7 +253,7 @@ public class DefaultFileFilter extends FileFilter {
      * setDescription();
      * <p>
      * Default is <code>true</code>.
-     *
+     * 
      * @param b
      *            true or false
      */

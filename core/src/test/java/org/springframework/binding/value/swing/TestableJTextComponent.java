@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,7 +27,7 @@ import javax.swing.text.Document;
 
 /**
  * A JFormattedTextField that has methods to simulate user interaction
- *
+ * 
  * @author Oliver Hutchison
  */
 public class TestableJTextComponent extends JFormattedTextField {
@@ -63,7 +63,8 @@ public class TestableJTextComponent extends JFormattedTextField {
             try {
                 doc.insertString(getCaretPosition(), new String(text.substring(i, i + 1)), null);
                 setCaretPosition(getCaretPosition() + 1);
-            } catch (BadLocationException e) {
+            }
+            catch (BadLocationException e) {
                 throw new UnsupportedOperationException(e.getMessage());
             }
         }
@@ -77,7 +78,8 @@ public class TestableJTextComponent extends JFormattedTextField {
         try {
             doc.remove(getCaretPosition() - 1, 1);
             setCaretPosition(getCaretPosition() - 1);
-        } catch (BadLocationException e) {
+        }
+        catch (BadLocationException e) {
             throw new UnsupportedOperationException(e.getMessage());
         }
     }

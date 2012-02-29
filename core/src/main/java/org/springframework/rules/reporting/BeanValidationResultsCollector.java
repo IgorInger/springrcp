@@ -46,7 +46,7 @@ public class BeanValidationResultsCollector extends ValidationResultsCollector {
 
     public void setResultsBuilder(ValidationResultsBuilder builder) {
         Assert.isTrue(builder instanceof BeanValidationResultsBuilder,
-                      "Builder must be a bean validation results builder");
+                "Builder must be a bean validation results builder");
         super.setResultsBuilder(builder);
     }
 
@@ -57,7 +57,7 @@ public class BeanValidationResultsCollector extends ValidationResultsCollector {
             protected void handle(Object beanPropertyConstraint) {
                 collectPropertyResultsInternal((PropertyConstraint)beanPropertyConstraint);
             }
-        } .forEach(rules.iterator());
+        }.forEach(rules.iterator());
         return getBeanResultsBuilder();
     }
 

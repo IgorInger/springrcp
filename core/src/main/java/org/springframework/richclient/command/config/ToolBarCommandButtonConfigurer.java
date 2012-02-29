@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2007 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -50,60 +50,60 @@ import org.springframework.richclient.image.ShadowedIcon;
  * icon attached, no shadow effect is applied</td>
  * </tr>
  * </table>
- *
+ * 
  * @author Keith Donald
  * @author Peter De Bruycker
  */
 public class ToolBarCommandButtonConfigurer extends DefaultCommandButtonConfigurer {
-    private boolean showText = false;
+	private boolean showText = false;
 
-    private boolean textBelowIcon = true;
+	private boolean textBelowIcon = true;
 
-    private boolean enableShadow = false;
+	private boolean enableShadow = false;
 
-    public boolean isEnableShadow() {
-        return enableShadow;
-    }
+	public boolean isEnableShadow() {
+		return enableShadow;
+	}
 
-    public void setEnableShadow(boolean enableShadow) {
-        this.enableShadow = enableShadow;
-    }
+	public void setEnableShadow(boolean enableShadow) {
+		this.enableShadow = enableShadow;
+	}
 
-    public void setTextBelowIcon(boolean textBelowIcon) {
-        this.textBelowIcon = textBelowIcon;
-    }
+	public void setTextBelowIcon(boolean textBelowIcon) {
+		this.textBelowIcon = textBelowIcon;
+	}
 
-    public boolean isTextBelowIcon() {
-        return textBelowIcon;
-    }
+	public boolean isTextBelowIcon() {
+		return textBelowIcon;
+	}
 
-    public void setShowText(boolean showText) {
-        this.showText = showText;
-    }
+	public void setShowText(boolean showText) {
+		this.showText = showText;
+	}
 
-    public boolean isShowText() {
-        return showText;
-    }
+	public boolean isShowText() {
+		return showText;
+	}
 
-    public void configure(AbstractButton button, AbstractCommand command, CommandFaceDescriptor faceDescriptor) {
-        super.configure(button, command, faceDescriptor);
+	public void configure(AbstractButton button, AbstractCommand command, CommandFaceDescriptor faceDescriptor) {
+		super.configure(button, command, faceDescriptor);
 
-        if (textBelowIcon) {
-            button.setHorizontalTextPosition(JButton.CENTER);
-            button.setVerticalTextPosition(JButton.BOTTOM);
-        }
+		if (textBelowIcon) {
+			button.setHorizontalTextPosition(JButton.CENTER);
+			button.setVerticalTextPosition(JButton.BOTTOM);
+		}
 
-        if (!showText) {
-            if (button.getIcon() != null) {
-                button.setText(null);
-            }
-        }
+		if (!showText) {
+			if (button.getIcon() != null) {
+				button.setText(null);
+			}
+		}
 
-        if (enableShadow && button.getIcon() != null && button.getRolloverIcon() == null) {
-            button.setRolloverEnabled(true);
-            button.setRolloverIcon(new ShadowedIcon(button.getIcon()));
-        }
+		if (enableShadow && button.getIcon() != null && button.getRolloverIcon() == null) {
+			button.setRolloverEnabled(true);
+			button.setRolloverIcon(new ShadowedIcon(button.getIcon()));
+		}
 
-        button.setMargin(new Insets(2, 5, 2, 5));
-    }
+		button.setMargin(new Insets(2, 5, 2, 5));
+	}
 }

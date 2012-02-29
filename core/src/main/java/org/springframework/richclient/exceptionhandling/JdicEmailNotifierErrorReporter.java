@@ -59,7 +59,7 @@ public class JdicEmailNotifierErrorReporter implements ErrorReporter, BeanNameAw
     private MessageSourceAccessor messageSourceAccessor;
 
     private boolean outlookWorkaroundEnabled = true;
-
+    
     private String id = null;
 
     public void setOutlookWorkaroundEnabled(boolean outlookWorkaroundEnabled) {
@@ -83,7 +83,7 @@ public class JdicEmailNotifierErrorReporter implements ErrorReporter, BeanNameAw
     public void afterPropertiesSet() {
         if (messageSourceAccessor == null) {
             messageSourceAccessor = (MessageSourceAccessor) ApplicationServicesLocator.services().getService(
-                                        MessageSourceAccessor.class);
+                    MessageSourceAccessor.class);
         }
     }
 
@@ -97,15 +97,16 @@ public class JdicEmailNotifierErrorReporter implements ErrorReporter, BeanNameAw
                 boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
                 if (isWindows) {
                     doOutlookWorkaround = JOptionPane.showConfirmDialog(null,
-                                          getMessageByKeySuffix(".isOutlook.message"),
-                                          getMessageByKeySuffix(".isOutlook.title"),
-                                          JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)
-                                          == JOptionPane.YES_OPTION;
+                            getMessageByKeySuffix(".isOutlook.message"),
+                            getMessageByKeySuffix(".isOutlook.title"),
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)
+                            == JOptionPane.YES_OPTION;
                 }
             }
             String[] mailToTokens = mailTo.split(";");
             List<String> toAddrs = new ArrayList<String>(mailToTokens.length);
-            for (String mailToToken : mailToTokens) {
+            for (String mailToToken : mailToTokens)
+            {
                 String trimmedMailToToken = mailToToken.trim();
                 if (!StringUtils.isEmpty(trimmedMailToToken)) {
                     if (doOutlookWorkaround) {

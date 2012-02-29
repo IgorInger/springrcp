@@ -22,7 +22,7 @@ import java.util.Collections;
  * @author Jan Hoskens
  */
 public class DocumentBindingDialog extends TitledApplicationDialog {
-
+    
     class StringValues {
 
         String regExp = "[0-9A-z]";
@@ -61,11 +61,11 @@ public class DocumentBindingDialog extends TitledApplicationDialog {
         private final JPanel childPanel = new JPanel(new FormLayout("fill:default:grow","fill:default:grow"));
 
         public ParentForm() {
-            super(FormModelHelper.createFormModel(new StringValues()));
-        }
+			super(FormModelHelper.createFormModel(new StringValues()));
+		}
 
-        @Override
-        protected JComponent createFormControl() {
+		@Override
+		protected JComponent createFormControl() {
             JPanel panel = new JPanel(new FormLayout("fill:default:grow","default, 4dlu, default, 4dlu, 30dlu:grow"));
             TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
             builder.add("regExp");
@@ -76,10 +76,10 @@ public class DocumentBindingDialog extends TitledApplicationDialog {
             panel.add(createBuildBindingCommand().createButton(), cc.xy(1,3));
             panel.add(childPanel, cc.xy(1,5));
             return panel;
-        }
+		}
 
         private ActionCommand createBuildBindingCommand() {
-            ActionCommand actionCommand = new ActionCommand("buildBinding") {
+            ActionCommand actionCommand = new ActionCommand("buildBinding"){
                 protected void doExecuteCommand() {
                     String pattern = (String)getValue("regExp");
                     boolean upperCaseOnly = (Boolean) getValue("convertToUppercase");
@@ -92,7 +92,7 @@ public class DocumentBindingDialog extends TitledApplicationDialog {
                 }
             };
             ((CommandConfigurer) ApplicationServicesLocator.services().getService(CommandConfigurer.class))
-            .configure(actionCommand);
+                    .configure(actionCommand);
             return actionCommand;
         }
 
@@ -118,13 +118,13 @@ public class DocumentBindingDialog extends TitledApplicationDialog {
         }
     }
 
-    @Override
-    protected JComponent createTitledDialogContentPane() {
-        return (new ParentForm()).getControl();
-    }
+	@Override
+	protected JComponent createTitledDialogContentPane() {
+		return (new ParentForm()).getControl();
+	}
 
-    @Override
-    protected boolean onFinish() {
-        return true;
-    }
+	@Override
+	protected boolean onFinish() {
+		return true;
+	}
 }

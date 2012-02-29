@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -32,7 +32,7 @@ import org.springframework.richclient.util.WindowUtils;
 /**
  * A simple implementation of a help contents frame for an application using
  * javahelp.
- *
+ * 
  * @author Keith Donald
  */
 public class HelpContents {
@@ -68,13 +68,14 @@ public class HelpContents {
                 helpFrame.getContentPane().add(jhelp);
                 helpFrame.setIconImage(getApplicationImage());
                 helpFrame.pack();
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
             helpFrame.getGlassPane().setCursor(Cursor.getDefaultCursor());
         }
         if (!helpFrame.isVisible()) {
-            WindowUtils.centerOnParent(helpFrame, parent);
+        	WindowUtils.centerOnParent(helpFrame, parent);
             helpFrame.setVisible(true);
         }
         if ((helpFrame.getExtendedState() & Frame.NORMAL) == 0) {

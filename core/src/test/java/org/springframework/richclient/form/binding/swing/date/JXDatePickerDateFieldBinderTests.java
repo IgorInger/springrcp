@@ -24,24 +24,24 @@ import org.jdesktop.swingx.JXDatePicker;
 /**
  * Testcase for <code>JXDatePickerDateFieldBinder</code> and
  * <code>JXDatePickerDateFieldBinding</code>
- *
+ * 
  * @author Peter De Bruycker
  */
 public class JXDatePickerDateFieldBinderTests extends AbstractDateFieldBindingTestCase {
 
-    protected AbstractDateFieldBinder createBinder() {
-        return new JXDatePickerDateFieldBinder();
-    }
+	protected AbstractDateFieldBinder createBinder() {
+		return new JXDatePickerDateFieldBinder();
+	}
 
-    protected Date getValue(JComponent dateField) {
-        return ((JXDatePicker) dateField).getDate();
-    }
+	protected Date getValue(JComponent dateField) {
+		return ((JXDatePicker) dateField).getDate();
+	}
 
-    protected void setValue(JComponent dateField, Date date) {
-        ((JXDatePicker) dateField).setDate(date);
-    }
+	protected void setValue(JComponent dateField, Date date) {
+		((JXDatePicker) dateField).setDate(date);
+	}
 
-    protected boolean isReadOnly(JComponent dateField) {
-        return !((JXDatePicker) dateField).isEditable();
-    }
+	protected boolean isReadOnly(JComponent dateField) {
+		return !((JXDatePicker) dateField).isEditable();
+	}
 }

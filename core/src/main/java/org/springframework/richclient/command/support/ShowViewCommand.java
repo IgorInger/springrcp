@@ -26,11 +26,11 @@ import org.springframework.richclient.util.Assert;
  * An action command for displaying a {@link View} based on a provided {@link ViewDescriptor}.
  */
 public class ShowViewCommand extends ApplicationWindowAwareCommand implements InitializingBean {
-
+    
     private ViewDescriptor viewDescriptor;
-
+    
     /**
-     * Creates a new uninitialized {@code ShowViewCommand}. The {@code applicationWindow} and
+     * Creates a new uninitialized {@code ShowViewCommand}. The {@code applicationWindow} and 
      * {@code viewDescriptor} properties must be set before using the new instance.
      */
     public ShowViewCommand() {
@@ -38,14 +38,14 @@ public class ShowViewCommand extends ApplicationWindowAwareCommand implements In
     }
 
     /**
-     * Creates a new {@code ShowViewCommand} with the given view descriptor and associated
+     * Creates a new {@code ShowViewCommand} with the given view descriptor and associated 
      * application window. The new instance will have a command identifier equal to the id from
      * the view descriptor, the command will be enabled by default.
      *
-     * @param viewDescriptor The object describing the view that this command will be
+     * @param viewDescriptor The object describing the view that this command will be 
      * responsible for showing.
      * @param applicationWindow The application window that the command belongs to.
-     *
+     * 
      * @throw IllegalArgumentException if {@code viewDescriptor} or {@code applicationWindow} are null.
      */
     public ShowViewCommand(ViewDescriptor viewDescriptor, ApplicationWindow applicationWindow) {
@@ -54,7 +54,7 @@ public class ShowViewCommand extends ApplicationWindowAwareCommand implements In
         setApplicationWindow(applicationWindow);
         setEnabled(true);
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -69,12 +69,12 @@ public class ShowViewCommand extends ApplicationWindowAwareCommand implements In
      * descriptor.
      *
      * @param viewDescriptor The view descriptor, cannot be null.
-     *
+     * 
      * @throws IllegalArgumentException if {@code viewDescriptor} is null.
      */
     public final void setViewDescriptor(ViewDescriptor viewDescriptor) {
         Assert.required(viewDescriptor, "viewDescriptor");
-        setId(viewDescriptor.getId());
+        setId(viewDescriptor.getId()); 
         setLabel(viewDescriptor.getShowViewCommandLabel());
         setIcon(viewDescriptor.getIcon());
         setCaption(viewDescriptor.getCaption());
@@ -85,7 +85,7 @@ public class ShowViewCommand extends ApplicationWindowAwareCommand implements In
      * Causes the view described by this instance's view descriptor to be shown.
      */
     protected void doExecuteCommand() {
-        //FIXME getApplicationWindow can potentially return null. This should probably be
+        //FIXME getApplicationWindow can potentially return null. This should probably be 
         //made an invariant on the ApplicationWindowAwareCommand, that it never returns null.
         //Same applies to ApplicationWindow.getPage(), can also return null
         getApplicationWindow().getPage().showView(this.viewDescriptor.getId());

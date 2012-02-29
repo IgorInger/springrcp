@@ -13,19 +13,19 @@ import org.springframework.richclient.util.RcpSupport;
 
 /**
  * Binder to configure {@link StringSelectionListBinding}.
- *
+ * 
  * @author jh
- *
+ * 
  */
-public class StringSelectionListBinder extends AbstractBinder {
+public class StringSelectionListBinder extends AbstractBinder
+{
 
     /**
      * Constant to use when having a combobox mapped to a {@link Boolean} which
      * needs three state logic.
      */
-    public static final Collection TRUE_FALSE_NULL = Arrays.asList(new Object[] {Boolean.TRUE, Boolean.FALSE,
-            null
-                                                                                });
+    public static final Collection TRUE_FALSE_NULL = Arrays.asList(new Object[]{Boolean.TRUE, Boolean.FALSE,
+            null});
 
     private String labelId = null;
     private Collection keys = null;
@@ -34,71 +34,88 @@ public class StringSelectionListBinder extends AbstractBinder {
     private boolean addNull = false;
 
     /**
-     *
+     * 
      * @param addNull indien deze waarde op true staat, dan wordt null aan de selectiemogelijkheden toegevoegd.
      * Wordt deze voor de labels en keys geplaatst, dan komt deze eerst, anders laatst.
      */
-    public void setAddNull(boolean addNull) {
+    public void setAddNull(boolean addNull)
+    {
         this.addNull = addNull;
-
+        
         if (addNull && labels != null && keys == null)
             throw new IllegalStateException("Keys should be defined before labels!");
-
+        
         // indien keys reeds gezet zijn (dus null moet achteraan toegevoegd worden
-        if (addNull && keys != null) {
+        if (addNull && keys != null)
+        {
             keys.add(null);
-            // eventueel aan labels toevoegen
+            // eventueel aan labels toevoegen 
             if (labels != null)
-                labels.add(null);
+                labels.add(null);    
         }
     }
 
-    public StringSelectionListBinder() {
+    public StringSelectionListBinder()
+    {
         super(null);
     }
 
-    public void setLabelId(String labelId) {
+    public void setLabelId(String labelId)
+    {
         this.labelId = labelId;
     }
 
-    protected String getLabelId() {
+    protected String getLabelId()
+    {
         return labelId;
     }
 
     @Override
-    protected JComponent createControl(Map context) {
+    protected JComponent createControl(Map context)
+    {
         return new JComboBox();
     }
 
-    public void setLabels(Collection labels) {
-        if (addNull) {
+    public void setLabels(Collection labels)
+    {
+        if (addNull)
+        {
             this.labels = new ArrayList();
             this.labels.add(null);
             this.labels.addAll(labels);
-        } else {
-            this.labels = labels;
         }
+        else
+        {
+            this.labels = labels;    
+        }        
     }
 
-    protected Collection getLabels() {
+    protected Collection getLabels()
+    {
         return labels;
     }
 
-    public void setKeys(Collection keys) {
-        if (addNull) {
+    public void setKeys(Collection keys)
+    {
+        if (addNull)
+        {
             this.keys = new ArrayList();
             this.keys.add(null);
             this.keys.addAll(keys);
-        } else {
-            this.keys = keys;
+        }
+        else
+        {
+            this.keys = keys;    
         }
     }
 
-    protected Collection getKeys() {
+    protected Collection getKeys()
+    {
         return keys;
     }
 
-    public void setMap(Map map) {
+    public void setMap(Map map)
+    {
         List<Map.Entry> mapEntries = sortMapEntriesOnValues(map);
         setKeys(new ArrayList());
         setLabels(new ArrayList());
@@ -119,25 +136,29 @@ public class StringSelectionListBinder extends AbstractBinder {
         return entries;
     }
 
-    public static class MapEntryValueComparator implements Comparator<Map.Entry> {
+    public static class MapEntryValueComparator implements Comparator<Map.Entry>
+    {
         public int compare(Map.Entry entryLeft, Map.Entry entryRight) {
             return ((Comparable) entryLeft.getValue()).compareTo(entryRight.getValue());
         }
     }
 
-    public void setSubSetOfMap(Collection sortedKeys, Map map) {
+    public void setSubSetOfMap(Collection sortedKeys, Map map)
+    {
         setKeys(sortedKeys);
         setLabels(StringSelectionListBinding.getLabelsFromMap(sortedKeys, map));
     }
 
-    public void setDefaultKeyIndex(int defaultKeyIndex) {
+    public void setDefaultKeyIndex(int defaultKeyIndex)
+    {
         this.defaultKeyIndex = defaultKeyIndex;
     }
 
     @Override
-    protected Binding doBind(JComponent component, FormModel formModel, String formPropertyPath, Map context) {
+    protected Binding doBind(JComponent component, FormModel formModel, String formPropertyPath, Map context)
+    {
         StringSelectionListBinding stringSelectionListBinding = new StringSelectionListBinding(
-            (JComboBox) component, formModel, formPropertyPath, isReadOnly());
+                (JComboBox) component, formModel, formPropertyPath, isReadOnly());
         stringSelectionListBinding.setId(getLabelId());
         stringSelectionListBinding.setDefaultKeyIndex(defaultKeyIndex);
         if (getKeys() != null)

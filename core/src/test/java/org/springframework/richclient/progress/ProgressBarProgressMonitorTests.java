@@ -37,14 +37,15 @@ public class ProgressBarProgressMonitorTests {
         try {
             new ProgressBarProgressMonitor(null);
             fail("Should throw IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             // test passes
         }
     }
 
     @Test
     public void testConstructor() {
-        GuiActionRunner.execute(new GuiTask() {
+         GuiActionRunner.execute(new GuiTask() {
             @Override
             protected void executeInEDT() throws Throwable {
                 JProgressBar progressBar = new JProgressBar();

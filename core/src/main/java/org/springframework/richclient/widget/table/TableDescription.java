@@ -8,7 +8,8 @@ import java.util.Comparator;
 /**
  * TableDescription
  */
-public interface TableDescription {
+public interface TableDescription
+{
     /**
      * @return Type van row objects
      */

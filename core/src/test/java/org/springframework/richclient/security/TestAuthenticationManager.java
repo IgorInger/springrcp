@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,17 +26,17 @@ import org.springframework.security.providers.TestingAuthenticationToken;
 
 /**
  * Test implementation giving us control over the authentication results.
- *
+ * 
  * @author Larry Streepy
  */
 public class TestAuthenticationManager implements AuthenticationManager {
 
     /** Test role */
     public static final String ROLE_EXPECTED = "ROLE_EXPECTED";
-
+    
     /** Token to use to force a successful authentication. */
     public static final Authentication VALID_USER1 = new TestingAuthenticationToken( "USER1", "FOO",
-    new GrantedAuthority[] { new GrantedAuthorityImpl( ROLE_EXPECTED ) } );
+        new GrantedAuthority[] { new GrantedAuthorityImpl( ROLE_EXPECTED ) } );
 
     /** Token to use to force a successful authentication. */
     public static final Authentication VALID_USER2 = new TestingAuthenticationToken( "USER2", "FOO");
@@ -52,7 +52,7 @@ public class TestAuthenticationManager implements AuthenticationManager {
      */
     public static Authentication makeAuthentication( String user, String password, String role ) {
         return new TestingAuthenticationToken( user, password,
-        new GrantedAuthority[] { new GrantedAuthorityImpl( role ) } );
+            new GrantedAuthority[] { new GrantedAuthorityImpl( role ) } );
     }
 
     /**

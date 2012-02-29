@@ -36,7 +36,7 @@ import org.springframework.util.Assert;
  * This class accepts an existing {@link View} instance, and returns this in the {@link #createPageComponent()} method.
  * <p>
  * Normally you should never use this class directly.
- *
+ * 
  * @author Peter De Bruycker
  */
 public class SimpleViewDescriptor implements ViewDescriptor {
@@ -50,7 +50,7 @@ public class SimpleViewDescriptor implements ViewDescriptor {
 
         this.id = id;
         this.view = view;
-
+        
         view.setDescriptor(this);
     }
 

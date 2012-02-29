@@ -22,8 +22,8 @@ import javax.swing.JComponent;
 import org.springframework.binding.form.FormModel;
 
 /**
- * A BindingFactory creates bindings for a specific FormModel.
- *
+ * A BindingFactory creates bindings for a specific FormModel. 
+ * 
  * @author Oliver Hutchison
  */
 public interface BindingFactory {
@@ -34,32 +34,32 @@ public interface BindingFactory {
     FormModel getFormModel();
 
     /**
-     * Returns a binding for the provided formPropertyPath.
+     * Returns a binding for the provided formPropertyPath.  
      */
     Binding createBinding(String formPropertyPath);
-
+    
     /**
-     * Returns a binding for the provided formPropertyPath.
+     * Returns a binding for the provided formPropertyPath.  
      */
     Binding createBinding(String formPropertyPath, Map context);
 
     /**
-     * Returns a binding to a control of type controlType for the provided formPropertyPath
+     * Returns a binding to a control of type controlType for the provided formPropertyPath 
      */
     Binding createBinding(Class controlType, String formPropertyPath);
-
+    
     /**
-     * Returns a binding to a control of type controlType for the provided formPropertyPath
+     * Returns a binding to a control of type controlType for the provided formPropertyPath 
      */
-    Binding createBinding(Class controlType, String formPropertyPath, Map context);
+    Binding createBinding(Class controlType, String formPropertyPath, Map context);    
 
     /**
-     * Returns a binding between the provided control and the provided formPropertyPath
+     * Returns a binding between the provided control and the provided formPropertyPath 
      */
     Binding bindControl(JComponent control, String formPropertyPath);
-
+    
     /**
-     * Returns a binding between the provided control and the provided formPropertyPath
+     * Returns a binding between the provided control and the provided formPropertyPath 
      */
     Binding bindControl(JComponent control, String formPropertyPath, Map context);
 }

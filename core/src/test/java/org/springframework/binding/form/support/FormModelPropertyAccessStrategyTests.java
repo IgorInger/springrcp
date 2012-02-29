@@ -7,16 +7,19 @@ import org.springframework.binding.PropertyMetadataAccessStrategy;
 import org.springframework.binding.support.TestBean;
 
 
-public class FormModelPropertyAccessStrategyTests extends TestCase {
+public class FormModelPropertyAccessStrategyTests extends TestCase
+{
 
-    protected AbstractFormModel getFormModel(Object formObject) {
+    protected AbstractFormModel getFormModel(Object formObject) 
+    {
         return new TestAbstractFormModel(formObject);
     }
-
+    
     /**
      * Test to ensure that the AccessStrategy works correctly with writeable/readable properties.     *
      */
-    public void testReadOnlyPropertyAccess() {
+    public void testReadOnlyPropertyAccess()
+    {
         AbstractFormModel model = getFormModel(new TestBean());
         PropertyAccessStrategy propertyAccessStrategy = model.getPropertyAccessStrategy();
         PropertyMetadataAccessStrategy metaDataAccessStrategy = propertyAccessStrategy.getMetadataAccessStrategy();

@@ -29,15 +29,15 @@ import org.springframework.binding.value.ValueModel;
 /**
  * Implementation of a BufferedCollectionValueModel that performs a deep copy on the
  * elements of the collection.
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public class DeepCopyBufferedCollectionValueModel extends BufferedCollectionValueModel {
 
     /**
      * Constructs a new DeepCopyBufferedCollectionValueModel.
-     *
+     * 
      * @param wrappedModel the value model to wrap
      * @param wrappedType the class of the value contained by wrappedModel; this must be
      *            assignable to <code>java.util.Collection</code> or
@@ -50,7 +50,7 @@ public class DeepCopyBufferedCollectionValueModel extends BufferedCollectionValu
     /**
      * Prepare the backing collection for installation into the listListModel. Create a
      * new collection that contains a deep copy of the elements in the given collection.
-     *
+     * 
      * @param col The collection of objects to process
      * @return processed collection
      */
@@ -67,7 +67,7 @@ public class DeepCopyBufferedCollectionValueModel extends BufferedCollectionValu
      * using serialization, so the object to be copied must implement Serializable. If it
      * does not, then the original object will be returned. Any other error results in
      * null being returned.
-     *
+     * 
      * @param value
      * @return deep copy
      */

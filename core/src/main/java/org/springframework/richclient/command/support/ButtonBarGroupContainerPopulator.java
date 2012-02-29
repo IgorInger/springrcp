@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -45,15 +45,17 @@ public class ButtonBarGroupContainerPopulator extends SimpleGroupContainerPopula
         this.columnSpec = new ColumnSpec(minimumSize);
     }
 
-    public void setColumnSpec(final ColumnSpec columnSpec) {
+    public void setColumnSpec(final ColumnSpec columnSpec)
+    {
         this.columnSpec = columnSpec;
     }
-
-    public void setRowSpec(final RowSpec rowSpec) {
+    
+    public void setRowSpec(final RowSpec rowSpec)
+    {
         if (rowSpec != null)
             builder.getLayout().setRowSpec(1, rowSpec);
     }
-
+    
     public JPanel getButtonBar() {
         return builder.getPanel();
     }
@@ -73,11 +75,13 @@ public class ButtonBarGroupContainerPopulator extends SimpleGroupContainerPopula
             Object o = buttons.get(i);
             if (o instanceof String && o == CommandGroupFactoryBean.SEPARATOR_MEMBER_CODE) {
                 builder.addUnrelatedGap();
-            } else if (o instanceof AbstractButton) {
+            }
+            else if (o instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton)o;
                 if (this.columnSpec != null) {
                     addCustomGridded(button);
-                } else {
+                }
+                else {
                     builder.addGridded(button);
                 }
                 if (i < buttons.size() - 1) {

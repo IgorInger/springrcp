@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,9 +27,9 @@ import javax.swing.JTextField;
  * Provides auto-completion for an editable combobox. Based on public domain postings.
  * Original author unknown.  Also copied some code from {@link ComboBoxAutoCompletion}
  * to deal with focus loss.
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public class EditableComboBoxAutoCompletion extends KeyAdapter {
 
@@ -41,7 +41,7 @@ public class EditableComboBoxAutoCompletion extends KeyAdapter {
 
     /**
      * Adds autocompletion support to the given <code>combobox</code>.
-     *
+     * 
      * @param comboBox the combobox to augment
      */
     public EditableComboBoxAutoCompletion(JComboBox comboBox) {
@@ -55,7 +55,7 @@ public class EditableComboBoxAutoCompletion extends KeyAdapter {
      * Handle a key release event. See if what they've type so far matches anything in the
      * selectable items list. If so, then show the popup and select the item. If not, then
      * hide the popup.
-     *
+     * 
      * @param e key event
      */
     public void keyReleased(KeyEvent e) {
@@ -92,7 +92,7 @@ public class EditableComboBoxAutoCompletion extends KeyAdapter {
 
     /**
      * See if one string begins with another, ignoring case.
-     *
+     * 
      * @param str1 The string to test
      * @param str2 The prefix to test for
      * @return true if str1 starts with str2, ingnoring case
@@ -103,7 +103,7 @@ public class EditableComboBoxAutoCompletion extends KeyAdapter {
 
     /**
      * Highlight the text from the given start location to the end of the text.
-     *
+     * 
      * @param start Starting location to highlight
      */
     private void highlightText(int start) {

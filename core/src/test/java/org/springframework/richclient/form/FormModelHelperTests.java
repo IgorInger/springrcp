@@ -15,14 +15,16 @@ public class FormModelHelperTests extends TestCase {
         try {
             FormModelHelper.getChild(null, "");
             fail("Should have thrown an IllegalArgumentException");
-        } catch (IllegalArgumentException exp) {
+        }
+        catch (IllegalArgumentException exp) {
             // should have happened
         }
 
         try {
             FormModelHelper.getChild(new DefaultFormModel(), null);
             fail("Should have thrown an IllegalArgumentException");
-        } catch (IllegalArgumentException exp) {
+        }
+        catch (IllegalArgumentException exp) {
             // should have happened
         }
 

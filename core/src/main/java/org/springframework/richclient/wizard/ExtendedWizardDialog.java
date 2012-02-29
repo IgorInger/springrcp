@@ -20,43 +20,49 @@ import com.jgoodies.forms.builder.DefaultFormBuilder;
  * @author Schaubroeck N.V.
  */
 public class ExtendedWizardDialog extends
-    org.springframework.richclient.wizard.WizardDialog {
+        org.springframework.richclient.wizard.WizardDialog
+{
     private Map<String, Component> indexComponents = new HashMap<String, Component>();
     private Map<String, Component> indexNumbers = new HashMap<String, Component>();
     private JLabel stepNofMax = new JLabel();
     private String id = null;
 
-    public ExtendedWizardDialog() {
+    public ExtendedWizardDialog()
+    {
         super();
     }
 
-    public ExtendedWizardDialog(Wizard wizard) {
+    public ExtendedWizardDialog(Wizard wizard)
+    {
         this(wizard, null);
     }
 
-    public ExtendedWizardDialog(Wizard wizard, String id) {
+    public ExtendedWizardDialog(Wizard wizard, String id)
+    {
         super(wizard);
         this.id = id;
         if (this.id != null)
             ((ApplicationObjectConfigurer) ApplicationServicesLocator.services().getService(ApplicationObjectConfigurer.class)).configure(this, this.id);
     }
 
-    public void setWizard(Wizard wizard) {
+    public void setWizard(Wizard wizard)
+    {
         super.setWizard(wizard);
         this.wizard = wizard;
     }
 
-    protected JComponent createDialogContentPane() {
+    protected JComponent createDialogContentPane()
+    {
         JPanel wizardPanel = new JPanel(new FormLayout(
-                                            new ColumnSpec[] {
-                                                new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
-                                                ColumnSpec.decode("fill:pref"),
-                                                new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
-                                            },
-                                            new RowSpec[] {
-                                                new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-                                                RowSpec.decode("fill:pref")
-                                            }));
+                new ColumnSpec[]{
+                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
+                        ColumnSpec.decode("fill:pref"),
+                        new ColumnSpec(ColumnSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW)
+                },
+                new RowSpec[]{
+                        new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                        RowSpec.decode("fill:pref")
+                }));
         CellConstraints cc = new CellConstraints();
         wizardPanel.add(new JSeparator(SwingConstants.VERTICAL), cc.xy(2, 1));
         wizardPanel.add(super.createDialogContentPane(), cc.xy(3, 1));
@@ -65,27 +71,29 @@ public class ExtendedWizardDialog extends
         return wizardPanel;
     }
 
-    private Component createWizardIndex() {
+    private Component createWizardIndex()
+    {
         JPanel indexPanel = new JPanel(new FormLayout(
-                                           new ColumnSpec[] {
-                                               new ColumnSpec(ColumnSpec.CENTER, Sizes.DEFAULT, FormSpec.NO_GROW)
-                                           },
-                                           new RowSpec[] {
-                                               new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
-                                               FormFactory.UNRELATED_GAP_ROWSPEC,
-                                               new RowSpec(RowSpec.CENTER, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
-                                               FormFactory.UNRELATED_GAP_ROWSPEC,
-                                               new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
-                                           }));
+                new ColumnSpec[]{
+                        new ColumnSpec(ColumnSpec.CENTER, Sizes.DEFAULT, FormSpec.NO_GROW)
+                },
+                new RowSpec[]{
+                        new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
+                        FormFactory.UNRELATED_GAP_ROWSPEC,
+                        new RowSpec(RowSpec.CENTER, Sizes.DEFAULT, FormSpec.DEFAULT_GROW),
+                        FormFactory.UNRELATED_GAP_ROWSPEC,
+                        new RowSpec(RowSpec.FILL, Sizes.DEFAULT, FormSpec.NO_GROW),
+                }));
         CellConstraints cc = new CellConstraints();
         GuiStandardUtils.attachBorder(indexPanel, BorderFactory.createEmptyBorder(5, 5, 5, 5));
         indexPanel.add(createWizardTitle(), cc.xy(1, 1));
         WizardPage[] pages = wizard.getPages();
         DefaultFormBuilder builder = new DefaultFormBuilder(new FormLayout(
-                    "right:pref, 3dlu, left:pref", ""));
+                "right:pref, 3dlu, left:pref", ""));
         JLabel indexNumber;
         JLabel indexTitle;
-        for (int i = 0; i < pages.length; ++i) {
+        for (int i = 0; i < pages.length; ++i)
+        {
             indexNumber = new JLabel(Integer.toString(i + 1) + ".");
             indexNumber.setName(Integer.toString(i + 1));
             indexTitle = new JLabel(pages[i].getTitle());
@@ -102,11 +110,13 @@ public class ExtendedWizardDialog extends
     }
 
     /** @return  */
-    private JLabel createWizardTitle() {
+    private JLabel createWizardTitle()
+    {
         return new JLabel(getTitle());
     }
 
-    private Component createStepNofMPanel(int m) {
+    private Component createStepNofMPanel(int m)
+    {
         JPanel panel = new JPanel(new FormLayout("fill:pref, fill:pref:grow, fill:pref", "center:pref:none"));
         CellConstraints cc = new CellConstraints();
         panel.add(new JLabel("Stap "), cc.xy(1, 1));
@@ -115,10 +125,12 @@ public class ExtendedWizardDialog extends
         return panel;
     }
 
-    public void showPage(WizardPage page) {
+    public void showPage(WizardPage page)
+    {
         JComponent component;
         String pageTitle;
-        if (getCurrentPage() != null) {
+        if (getCurrentPage() != null)
+        {
             pageTitle = getCurrentPage().getTitle();
             component = (JComponent) indexComponents.get(pageTitle);
             component.setFont(component.getFont().deriveFont(Font.PLAIN));

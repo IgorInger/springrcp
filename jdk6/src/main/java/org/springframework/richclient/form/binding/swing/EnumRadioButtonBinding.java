@@ -51,7 +51,7 @@ public class EnumRadioButtonBinding extends CustomBinding {
     private MessageSourceAccessor messageSourceAccessor;
 
     public EnumRadioButtonBinding(JPanel contentPanel, FormModel formModel, String formPropertyPath,
-                                  Class<?> propertyType, List<Enum> selectableEnumsList) {
+            Class<?> propertyType, List<Enum> selectableEnumsList) {
         super(formModel, formPropertyPath, propertyType);
         this.contentPanel = contentPanel;
         this.propertyType = propertyType;
@@ -68,7 +68,8 @@ public class EnumRadioButtonBinding extends CustomBinding {
         ContainerJRadioButton<Enum> button;
         if (enumValue == null) {
             button = radioButtons.get(null);
-        } else {
+        }
+        else {
             button = radioButtons.get(enumValue.name());
         }
         if (button != null) {
@@ -90,7 +91,7 @@ public class EnumRadioButtonBinding extends CustomBinding {
     private JPanel createBindingControl() {
         group = new ButtonGroup();
         FormLayout layout = new FormLayout(new ColumnSpec[] { FormFactory.DEFAULT_COLSPEC },
-                                           getDefaultRowsWithGap(radioButtons.keySet().size()));
+                getDefaultRowsWithGap(radioButtons.keySet().size()));
         int count = 1;
         contentPanel.setLayout(layout);
         for (ContainerJRadioButton<Enum> button : radioButtons.values()) {
@@ -134,9 +135,10 @@ public class EnumRadioButtonBinding extends CustomBinding {
             if (enumValue == null) {
                 text = messageSourceAccessor.getMessage(propertyType.getName() + ".null", "null");
                 button.setText(text == null ? propertyType.getName() + ".null" : text);
-            } else {
+            }
+            else {
                 text = messageSourceAccessor.getMessage(propertyType.getName() + "." + enumValue.name(), enumValue
-                                                        .name());
+                        .name());
                 button.setText(text == null ? propertyType.getName() + "." + enumValue.name() : text);
             }
             button.setContainedObject(enumValue);

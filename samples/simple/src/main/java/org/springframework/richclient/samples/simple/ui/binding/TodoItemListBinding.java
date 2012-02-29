@@ -8,8 +8,10 @@ import org.springframework.richclient.samples.simple.ui.TodoForm;
 import org.springframework.richclient.widget.table.PropertyColumnTableDescription;
 import org.springframework.richclient.widget.table.TableDescription;
 
-public class TodoItemListBinding extends AbstractGlazedListsBinding {
-    public TodoItemListBinding(FormModel formModel, String formPropertyPath) {
+public class TodoItemListBinding extends AbstractGlazedListsBinding
+{
+    public TodoItemListBinding(FormModel formModel, String formPropertyPath)
+    {
         super(formModel, formPropertyPath);
         setDialogId("todoItemListBindingDialog");
         setAddSupported(true);
@@ -18,7 +20,8 @@ public class TodoItemListBinding extends AbstractGlazedListsBinding {
         setShowDetailSupported(true);
     }
 
-    protected TableDescription getTableDescription() {
+    protected TableDescription getTableDescription()
+    {
         PropertyColumnTableDescription desc = new PropertyColumnTableDescription("todoListBinding", TodoItem.class);
         desc.addPropertyColumn("name");
         desc.addPropertyColumn("description");
@@ -28,17 +31,20 @@ public class TodoItemListBinding extends AbstractGlazedListsBinding {
     // detail form behavior
 
     @Override
-    protected Object getNewFormObject() {
+    protected Object getNewFormObject()
+    {
         return new TodoItem();
     }
 
     @Override
-    protected AbstractForm createAddEditForm() {
+    protected AbstractForm createAddEditForm()
+    {
         return new TodoForm();
     }
-
+    
     @Override
-    protected AbstractForm createDetailForm() {
+    protected AbstractForm createDetailForm()
+    {
         AbstractForm f = new TodoForm();
         f.getFormModel().setReadOnly(true);
         return f;

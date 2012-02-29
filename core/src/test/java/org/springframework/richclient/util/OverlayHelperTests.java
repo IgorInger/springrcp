@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -53,7 +53,7 @@ public class OverlayHelperTests extends SpringRichTestCase {
      * the component that was in the viewport, add it to a JLayeredPane, and then add that JLayeredPane to the viewport
      * instead. This introduced a bug if the viewport's view happened to implement the Scrollable interface, since
      * JScrollPane does <i>not</i> implement the Scrollable interface. See issue RCP-344.
-     *
+     * 
      * @throws Exception
      */
     public void testRegressionScrollableProxy() throws Exception {
@@ -100,29 +100,29 @@ public class OverlayHelperTests extends SpringRichTestCase {
                 };
             }
         };
-
+        
         final int lpcount = rootPane.getLayeredPane().getComponentCountInLayer(JLayeredPane.PALETTE_LAYER.intValue());
-
+        
         OverlayHelper.attachOverlay(overlay, component, 0, 0, 0);
-
+        
         assertEquals(lpcount, rootPane.getLayeredPane().getComponentCountInLayer(JLayeredPane.PALETTE_LAYER.intValue()));
         rootPane.getContentPane().add(component);
         // updateOverlay is "invokedLater", so wait for it...
         waitUntilEventQueueIsEmpty();
         assertEquals(lpcount + 1, rootPane.getLayeredPane().getComponentCountInLayer(JLayeredPane.PALETTE_LAYER.intValue()));
-
+        
         rootPane.getContentPane().remove(component);
-
+        
         // the remove operation make be invoked later, so wait for it...
         waitUntilEventQueueIsEmpty();
-
+        
         // Clear out our strong references so it gets garbage collected.
         component = null;
         overlay = null;
-
+        
         // Make sure the overlay was removed from the layered pane.
         assertEquals("It appears the overlay was not removed from the layered pane when its component was removed from the content pane", lpcount, rootPane.getLayeredPane().getComponentCountInLayer(JLayeredPane.PALETTE_LAYER.intValue()));
-
+        
         // Make sure no other references are held... wait up to 15 seconds for
         // the object to be garbage collected.
         // Note: we may want to remove this section from the test as it
@@ -144,7 +144,7 @@ public class OverlayHelperTests extends SpringRichTestCase {
 
     /**
      * Ensures that OverlayHelper supports the Scrollable interface and properly proxies Scrollable methods.
-     *
+     * 
      * @throws Exception
      */
     private void performScrollableTest() throws Exception {
@@ -177,7 +177,7 @@ public class OverlayHelperTests extends SpringRichTestCase {
         assertEquals(5, ((Scrollable) viewportView).getScrollableUnitIncrement(null, 0, 0));
         assertEquals(30, ((Scrollable) viewportView).getScrollableBlockIncrement(null, 0, 0));
         assertEquals(view.getPreferredScrollableViewportSize(), ((Scrollable) viewportView)
-                     .getPreferredScrollableViewportSize());
+                .getPreferredScrollableViewportSize());
     }
 
     private void waitUntilEventQueueIsEmpty() throws InterruptedException, InvocationTargetException {
@@ -198,7 +198,7 @@ public class OverlayHelperTests extends SpringRichTestCase {
     /**
      * Ensures that OverlayHelper will NOT implement the Scrollable interface if the view component does not implement
      * the Scrollable interface.
-     *
+     * 
      * @throws Exception
      */
     private void performNonScrollableTest() throws Exception {

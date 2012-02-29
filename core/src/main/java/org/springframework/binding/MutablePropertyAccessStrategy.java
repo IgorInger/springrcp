@@ -34,46 +34,46 @@ import org.springframework.binding.value.ValueModel;
  */
 public interface MutablePropertyAccessStrategy extends PropertyAccessStrategy {
 
-    /**
-     * Get the <code>ValueModel</code> used to access the domainObject.
-     *
-     * @return the <code>ValueModel</code> of the domainObject.
-     */
-    ValueModel getDomainObjectHolder();
+	/**
+	 * Get the <code>ValueModel</code> used to access the domainObject.
+	 *
+	 * @return the <code>ValueModel</code> of the domainObject.
+	 */
+	ValueModel getDomainObjectHolder();
 
-    /**
-     * Get the <code>ValueModel</code> to access the given property. Possibly
-     * creating the valueModel if needed.
-     *
-     * @param propertyPath property to access.
-     * @return <code>ValueModel</code> that handles the given property.
-     * @throws BeansException
-     */
-    ValueModel getPropertyValueModel(String propertyPath) throws BeansException;
+	/**
+	 * Get the <code>ValueModel</code> to access the given property. Possibly
+	 * creating the valueModel if needed.
+	 *
+	 * @param propertyPath property to access.
+	 * @return <code>ValueModel</code> that handles the given property.
+	 * @throws BeansException
+	 */
+	ValueModel getPropertyValueModel(String propertyPath) throws BeansException;
 
-    /**
-     * Get a <code>MutablePropertyAccessStrategy</code> for the given
-     * property.
-     *
-     * TODO check why this exists and where this is used.
-     *
-     * @param propertyPath property.
-     * @return <code>MutablePropertyAccessStrategy</code> for the given
-     * property.
-     * @throws BeansException
-     */
-    MutablePropertyAccessStrategy getPropertyAccessStrategyForPath(String propertyPath) throws BeansException;
+	/**
+	 * Get a <code>MutablePropertyAccessStrategy</code> for the given
+	 * property.
+	 *
+	 * TODO check why this exists and where this is used.
+	 *
+	 * @param propertyPath property.
+	 * @return <code>MutablePropertyAccessStrategy</code> for the given
+	 * property.
+	 * @throws BeansException
+	 */
+	MutablePropertyAccessStrategy getPropertyAccessStrategyForPath(String propertyPath) throws BeansException;
 
-    /**
-     * Return a new <code>MutablePropertyAccessStrategy</code> for the given
-     * valueModel.
-     *
-     * TODO check why this exists and where this is used.
-     *
-     * @param domainObjectHolder a <code>ValueModel</code> containing the
-     * domainObject.
-     * @return a newly created <code>MutablePropertyAccessStrategy</code>.
-     */
-    MutablePropertyAccessStrategy newPropertyAccessStrategy(ValueModel domainObjectHolder);
+	/**
+	 * Return a new <code>MutablePropertyAccessStrategy</code> for the given
+	 * valueModel.
+	 *
+	 * TODO check why this exists and where this is used.
+	 *
+	 * @param domainObjectHolder a <code>ValueModel</code> containing the
+	 * domainObject.
+	 * @return a newly created <code>MutablePropertyAccessStrategy</code>.
+	 */
+	MutablePropertyAccessStrategy newPropertyAccessStrategy(ValueModel domainObjectHolder);
 
 }

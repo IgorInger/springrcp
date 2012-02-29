@@ -9,14 +9,17 @@ import javax.swing.text.JTextComponent;
  *
  * @author Lieven Doclo
  */
-public class JXSearchFieldBinder extends TextComponentBinder {
-    protected JXSearchFieldBinder() {
+public class JXSearchFieldBinder extends TextComponentBinder
+{
+    protected JXSearchFieldBinder()
+    {
         super();
         setSelectAllOnFocus(true);
     }
 
     @Override
-    protected JTextComponent createTextComponent() {
+    protected JTextComponent createTextComponent()
+    {
         return new JXSearchField();
     }
 }

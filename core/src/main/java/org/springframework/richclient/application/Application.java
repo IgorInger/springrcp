@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
  * <p>
  * The application provides a point of reference and context for an entire application. It
  * provides an interface to open application windows.
- *
+ * 
  * @author Keith Donald
  */
 public class Application implements InitializingBean, ApplicationContextAware {
@@ -58,7 +58,7 @@ public class Application implements InitializingBean, ApplicationContextAware {
 
     /**
      * Load the single application instance.
-     *
+     * 
      * @param instance The application
      */
     public static void load( Application instance ) {
@@ -67,13 +67,13 @@ public class Application implements InitializingBean, ApplicationContextAware {
 
     /**
      * Return the single application instance.
-     *
+     * 
      * @return The application
      */
     public static Application instance() {
         Assert
-        .state(isLoaded(),
-               "The global rich client application instance has not yet been initialized; it must be created and loaded first.");
+                .state(isLoaded(),
+                        "The global rich client application instance has not yet been initialized; it must be created and loaded first.");
         return SOLE_INSTANCE;
     }
 
@@ -83,18 +83,18 @@ public class Application implements InitializingBean, ApplicationContextAware {
 
     /**
      * Return a global service locator for application services.
-     *
+     * 
      * @return The application services locator.
      */
     public static ApplicationServices services() {
-        if (!ApplicationServicesLocator.isLoaded()) {
-            ApplicationServicesLocator.load(new ApplicationServicesLocator(new DefaultApplicationServices()));
-        }
+    	if (!ApplicationServicesLocator.isLoaded()) {
+    		ApplicationServicesLocator.load(new ApplicationServicesLocator(new DefaultApplicationServices()));
+    	}
         return ApplicationServicesLocator.services();
     }
-
+    
     public Application() {
-        this(new DefaultApplicationLifecycleAdvisor());
+    	this(new DefaultApplicationLifecycleAdvisor());
     }
 
     public Application( ApplicationLifecycleAdvisor advisor ) {
@@ -132,7 +132,7 @@ public class Application implements InitializingBean, ApplicationContextAware {
 
     public void afterPropertiesSet() throws Exception {
         Assert.notNull(this.lifecycleAdvisor,
-                       "The application advisor is required, for processing of application lifecycle events");
+                "The application advisor is required, for processing of application lifecycle events");
         getLifecycleAdvisor().setApplication(this);
         getLifecycleAdvisor().onPreInitialize(this);
     }
@@ -153,21 +153,23 @@ public class Application implements InitializingBean, ApplicationContextAware {
             return descriptor.getImage();
 
         try {
-            ImageSource isrc = (ImageSource) services().getService(ImageSource.class);
-            return isrc.getImage(DEFAULT_APPLICATION_IMAGE_KEY);
-        } catch (NoSuchImageResourceException e) {
-            return null;
+        	ImageSource isrc = (ImageSource) services().getService(ImageSource.class);
+        	return isrc.getImage(DEFAULT_APPLICATION_IMAGE_KEY);
+        }
+        catch (NoSuchImageResourceException e) {
+        	return null;
         }
     }
 
     public void openWindow( String pageDescriptorId ) {
         ApplicationWindow newWindow = initWindow(createNewWindow());
         if ( pageDescriptorId == null ) {
-            ApplicationPageFactory pageFactory
-                = (ApplicationPageFactory)services().getService(ApplicationPageFactory.class);
-            newWindow.showPage(pageFactory.createApplicationPage(newWindow, new MultiViewPageDescriptor()));
-        } else {
-            newWindow.showPage(pageDescriptorId);
+        	ApplicationPageFactory pageFactory
+        		= (ApplicationPageFactory)services().getService(ApplicationPageFactory.class);
+        	newWindow.showPage(pageFactory.createApplicationPage(newWindow, new MultiViewPageDescriptor()));
+        }
+        else {
+        	newWindow.showPage(pageDescriptorId);
         }
     }
 
@@ -178,7 +180,7 @@ public class Application implements InitializingBean, ApplicationContextAware {
 
     protected ApplicationWindow createNewWindow() {
         ApplicationWindowFactory windowFactory = (ApplicationWindowFactory) services().getService(
-                    ApplicationWindowFactory.class);
+                ApplicationWindowFactory.class);
         return windowFactory.createApplicationWindow();
     }
 
@@ -189,7 +191,7 @@ public class Application implements InitializingBean, ApplicationContextAware {
     /**
      * ActiveWindow is tracked by windowManager. When a window gains focus, the manager
      * will receive this window as the active one.
-     *
+     * 
      * @return the activeWindow.
      */
     public ApplicationWindow getActiveWindow() {
@@ -199,7 +201,8 @@ public class Application implements InitializingBean, ApplicationContextAware {
     /**
      * @return true if the application is in a force shutdown mode.
      */
-    public boolean isForceShutdown() {
+    public boolean isForceShutdown()
+    {
         return forceShutdown;
     }
 

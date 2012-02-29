@@ -23,11 +23,11 @@ public abstract class AbstractConfigurableBeanPostProcessor implements BeanPostP
     /**
      * Attempts to load the message corresponding to the given message code using this instance's {@link MessageSource}
      * and locale.
-     *
+     * 
      * @param messageCode
      *            The message code that will be used to retrieve the message. Must not be null.
      * @return The message for the given code, or null if the message code could not be found.
-     *
+     * 
      * @throws IllegalArgumentException
      *             if {@code messageCode} is null.
      */
@@ -41,11 +41,12 @@ public abstract class AbstractConfigurableBeanPostProcessor implements BeanPostP
 
         try {
             return messageSource.getMessage(messageCode, null, Locale.getDefault());
-        } catch (NoSuchMessageException e) {
+        }
+        catch (NoSuchMessageException e) {
 
             if (logger.isInfoEnabled()) {
                 logger.info("The message source is unable to find message code [" + messageCode
-                            + "]. Ignoring and returning null.");
+                        + "]. Ignoring and returning null.");
             }
 
             return null;

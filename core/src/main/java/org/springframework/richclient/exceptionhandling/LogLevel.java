@@ -17,11 +17,13 @@ public enum LogLevel {
 
     private final Level jdkLogLevel;
 
-    private LogLevel(Level jdkLogLevel) {
+    private LogLevel(Level jdkLogLevel)
+    {
         this.jdkLogLevel = jdkLogLevel;
     }
 
-    public Level getJdkLogLevel() {
+    public Level getJdkLogLevel()
+    {
         return jdkLogLevel;
     }
 

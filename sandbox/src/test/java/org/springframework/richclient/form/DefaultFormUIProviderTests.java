@@ -20,7 +20,7 @@ public class DefaultFormUIProviderTests extends TestCase {
         assertEquals(panel.getStringField(), formUIProvider.getComponent("stringProperty"));
         assertEquals(panel.getComboBox(), formUIProvider.getComponent("comboProperty"));
         assertEquals(panel.getCheckBox(), formUIProvider.getComponent("booleanProperty"));
-
+        
         // find nested components
         assertEquals(panel.getNestedField(), formUIProvider.getComponent("nestedField"));
     }
@@ -68,7 +68,7 @@ public class DefaultFormUIProviderTests extends TestCase {
         assertEquals(context, formUIProvider.getContext("comboProperty"));
 
         assertNotNull("if no context provided, must return empty map", formUIProvider.getContext("stringProperty"));
-        assertTrue("if no context provided, must return empty map",
+        assertTrue("if no context provided, must return empty map", 
                    formUIProvider.getContext("stringProperty").isEmpty());
     }
 }

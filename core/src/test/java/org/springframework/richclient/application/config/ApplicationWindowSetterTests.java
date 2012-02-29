@@ -42,27 +42,28 @@ public class ApplicationWindowSetterTests extends TestCase {
      * Confirms that the constructor throws an IllegalArgumentException when passed a null window.
      */
     public void testConstructor() {
-
+        
         try {
             new ApplicationWindowSetter(null);
             Assert.fail("Should have thrown an IllegalArgumentException for null ApplicationWindow");
-        } catch(IllegalArgumentException e) {
+        }
+        catch(IllegalArgumentException e) {
             //test passes
         }
-
+        
     }
-
+    
     /**
-     * Confirms that the postProcessBeforeInitialization method correctly sets the window on the
-     * windowAware object.
+     * Confirms that the postProcessBeforeInitialization method correctly sets the window on the 
+     * windowAware object. 
      */
     public void testPostProcessBeforeInit() {
-
+        
         //create required mocks
         ApplicationWindow window = (ApplicationWindow) EasyMock.createMock(ApplicationWindow.class);
-        ApplicationWindowAware windowAware
-            = (ApplicationWindowAware) EasyMock.createMock(ApplicationWindowAware.class);
-
+        ApplicationWindowAware windowAware 
+                = (ApplicationWindowAware) EasyMock.createMock(ApplicationWindowAware.class);
+        
         //confirm null bean is ok
         ApplicationWindowSetter windowSetter = new ApplicationWindowSetter(window);
         EasyMock.replay(windowAware);
@@ -70,21 +71,21 @@ public class ApplicationWindowSetterTests extends TestCase {
         windowSetter.postProcessBeforeInitialization(null, "bogusBeanName");
         EasyMock.verify(windowAware);
         EasyMock.verify(window);
-
+        
         //confirm that the windowAware has its window set
         EasyMock.reset(window);
         EasyMock.reset(windowAware);
-
+        
         windowAware.setApplicationWindow(window);
-
+        
         EasyMock.replay(window);
         EasyMock.replay(windowAware);
-
+        
         windowSetter.postProcessBeforeInitialization(windowAware, "bogusBeanName");
-
+        
         EasyMock.verify(window);
         EasyMock.verify(windowAware);
-
+        
     }
 
 }

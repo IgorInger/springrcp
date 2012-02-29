@@ -11,30 +11,30 @@ import org.springframework.richclient.wizard.AbstractWizardPage;
 
 public class InstallWizard extends AbstractWizard {
 
-    private Resource licenseResource;
+	private Resource licenseResource;
 
-    public void setLicenseResource(Resource licenseResource) {
-        this.licenseResource = licenseResource;
-    }
+	public void setLicenseResource(Resource licenseResource) {
+		this.licenseResource = licenseResource;
+	}
 
-    public void addPages() {
-        addPage(new SetupLicenseWizardPage(licenseResource));
-        addPage(new DirectoryInputPage());
-    }
+	public void addPages() {
+		addPage(new SetupLicenseWizardPage(licenseResource));
+		addPage(new DirectoryInputPage());
+	}
 
-    protected boolean onFinish() {
-        return true;
-    }
+	protected boolean onFinish() {
+		return true;
+	}
 
-    private class DirectoryInputPage extends AbstractWizardPage {
-        public DirectoryInputPage() {
-            super("directoryInputPage");
-        }
+	private class DirectoryInputPage extends AbstractWizardPage {
+		public DirectoryInputPage() {
+			super("directoryInputPage");
+		}
 
-        protected JComponent createControl() {
-            JPanel panel = new JPanel();
-            panel.add(new JLabel("directory input"));
-            return panel;
-        }
-    }
+		protected JComponent createControl() {
+			JPanel panel = new JPanel();
+			panel.add(new JLabel("directory input"));
+			return panel;
+		}
+	}
 }

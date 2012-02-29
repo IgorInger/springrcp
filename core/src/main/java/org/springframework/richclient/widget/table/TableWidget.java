@@ -20,7 +20,8 @@ import java.util.Observer;
  * of {@link java.lang.Object#equals(java.lang.Object)} and
  * {@link java.lang.Object#hashCode()} for the data-list's objects.
  */
-public interface TableWidget<T> extends Widget {
+public interface TableWidget<T> extends Widget
+{
     /**
      * Sets the rows to be shown in the table
      *

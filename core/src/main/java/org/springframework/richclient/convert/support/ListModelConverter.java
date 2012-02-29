@@ -28,15 +28,14 @@ import java.util.List;
 
 /**
  * @author Mathias Broekelmann
- *
+ * 
  */
 public class ListModelConverter extends AbstractConverter {
 
     private static final Class[] TARGET_CLASSES = new Class[] { ListModel.class };
 
     private static final Class[] SOURCE_CLASSES = new Class[] { Collection.class, List.class, Object[].class,
-            ListModel.class, Object.class
-                                                              };
+            ListModel.class, Object.class };
 
     private final ReflectiveVisitorHelper visitorHelper = new ReflectiveVisitorHelper();
 

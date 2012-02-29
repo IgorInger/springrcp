@@ -26,11 +26,11 @@ import org.springframework.util.Assert;
 /**
  * <code>FormComponentInterceptorFactory</code> implementation that can include or
  * exclude form models.
- *
+ * 
  * @author Peter De Bruycker
  */
 public abstract class ConfigurableFormComponentInterceptorFactory implements FormComponentInterceptorFactory,
-    InitializingBean {
+        InitializingBean {
     private String[] excludedFormModelIds;
 
     private String[] includedFormModelIds;
@@ -44,7 +44,7 @@ public abstract class ConfigurableFormComponentInterceptorFactory implements For
      * <code>null</code>. <br>
      * If the included ids are specified and don't contain the given form model, returns
      * <code>null</code>. <br>
-     *
+     * 
      * @param formModel the <code>FormModel</code>
      * @return a <code>FormComponentInterceptor</code> for the given
      *         <code>FormModel</code>
@@ -69,7 +69,7 @@ public abstract class ConfigurableFormComponentInterceptorFactory implements For
     /**
      * Returns a <code>FormComponentInterceptor</code> for the given
      * <code>FormModel</code>.
-     *
+     * 
      * @param formModel the <code>FormModel</code>
      * @return the <code>FormComponentInterceptor</code>
      */
@@ -77,12 +77,12 @@ public abstract class ConfigurableFormComponentInterceptorFactory implements For
 
     public void afterPropertiesSet() throws Exception {
         Assert.state( excludedFormModelIds == null || includedFormModelIds == null,
-                      "only one of excludedFormModelIds or includedFormModelIds can be given" );
+                "only one of excludedFormModelIds or includedFormModelIds can be given" );
     }
 
     /**
      * Returns the excluded <code>FormModel</code> ids.
-     *
+     * 
      * @return the excluded ids
      */
     public String[] getExcludedFormModelIds() {
@@ -94,7 +94,7 @@ public abstract class ConfigurableFormComponentInterceptorFactory implements For
      * <p>
      * Either <code>excludedFormModelIds</code> or <code>includedFormModelIds</code>
      * should be set.
-     *
+     * 
      * @param excludedFormModelIds the excluded ids
      */
     public void setExcludedFormModelIds( String[] excludedFormModelIds ) {
@@ -103,7 +103,7 @@ public abstract class ConfigurableFormComponentInterceptorFactory implements For
 
     /**
      * Returns the included <code>FormModel</code> ids.
-     *
+     * 
      * @return the included ids
      */
     public String[] getIncludedFormModelIds() {
@@ -115,7 +115,7 @@ public abstract class ConfigurableFormComponentInterceptorFactory implements For
      * <p>
      * Either <code>excludedFormModelIds</code> or <code>includedFormModelIds</code>
      * should be set.
-     *
+     * 
      * @param includedFormModelIds the excluded ids
      */
     public void setIncludedFormModelIds( String[] includedFormModelIds ) {

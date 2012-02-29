@@ -6,53 +6,67 @@ import org.springframework.richclient.widget.editor.provider.AbstractDataProvide
 
 import java.util.List;
 
-public class ItemDataProvider extends AbstractDataProvider {
+public class ItemDataProvider extends AbstractDataProvider
+{
     private ItemService service;
 
-    public ItemDataProvider(ItemService service) {
+    public ItemDataProvider(ItemService service)
+    {
         this.service = service;
     }
 
-    public boolean supportsFiltering() {
+    public boolean supportsFiltering()
+    {
         return true;
     }
 
-    public List getList(Object criteria) {
-        if (criteria instanceof ItemFilter) {
+    public List getList(Object criteria)
+    {
+        if (criteria instanceof ItemFilter)
+        {
             ItemFilter itemFilter = (ItemFilter) criteria;
             return service.findItems(itemFilter);
-        } else {
+        }
+        else
+        {
             throw new IllegalArgumentException("This provider can only filter through ItemFilter, not " + criteria.getClass());
         }
     }
 
-    public boolean supportsUpdate() {
+    public boolean supportsUpdate()
+    {
         return true;
     }
 
-    public boolean supportsCreate() {
+    public boolean supportsCreate()
+    {
         return true;
     }
 
-    public boolean supportsClone() {
+    public boolean supportsClone()
+    {
         return false;
     }
 
-    public boolean supportsDelete() {
+    public boolean supportsDelete()
+    {
         return true;
     }
 
-    @Override
-    public Object doCreate(Object newData) {
+     @Override
+    public Object doCreate(Object newData)
+    {
         return newData;
     }
 
     @Override
-    public void doDelete(Object dataToRemove) {
+    public void doDelete(Object dataToRemove)
+    {
     }
 
     @Override
-    public Object doUpdate(Object updatedData) {
+    public Object doUpdate(Object updatedData)
+    {
         return updatedData;
     }
 }

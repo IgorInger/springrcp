@@ -8,14 +8,15 @@ import java.util.List;
  * {@link org.springframework.richclient.widget.editor.DefaultDataEditorWidget} as a central access point to the services that provide the data.
  * </p>
  */
-public interface DataProvider extends DataProviderEventSource {
+public interface DataProvider extends DataProviderEventSource
+{
 
     /**
      * <p>
      * Each DataProvider can specify a policy that dictates when to refresh the data list. This policy must be
      * taken into account by any class using the DataProvider in order to keep the data in a consistent state.
      * </p>
-     *
+     * 
      * <ul>
      * <li><em>NEVER</em> No automatic refresh, user should trigger a refresh when needed.</li>
      * <li><em>ON_EMPTY</em> Fetch the data once. This usually means when your client-side data list is
@@ -36,7 +37,7 @@ public interface DataProvider extends DataProviderEventSource {
      * return the selectedObject directly if it is already detailed. On the other hand if forceLoad is
      * <code>true</code> you MUST fetch the detailed object from the back-end. If your object doesn't have a
      * specific detail the same logic must be applied to allow the fetching of a fresh individual object.
-     *
+     * 
      * @param selectedObject
      *            the object that must be used to fetch the detailed one.
      * @param forceLoad

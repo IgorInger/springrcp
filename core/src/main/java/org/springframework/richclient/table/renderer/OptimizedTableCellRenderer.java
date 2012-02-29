@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,14 +26,14 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * A table cell renderer that has been optimized for performance
- *
+ * 
  * @author Keith Donald
  * <p>
  * XXX: please describe what is being optimized here and how it should be used.
- *
+ * 
  * @deprecated OptimizedTableCellRenderer messes up cell rendering see
  *             {@linkplain http://opensource.atlassian.com/projects/spring/browse/RCP-354}
- *
+ * 
  */
 public class OptimizedTableCellRenderer extends DefaultTableCellRenderer {
     protected Border focusBorder = UIManager.getBorder("Table.focusCellHighlightBorder");
@@ -50,20 +50,21 @@ public class OptimizedTableCellRenderer extends DefaultTableCellRenderer {
         if (isSelected) {
             setForeground(table.getSelectionForeground());
             setBackground(table.getSelectionBackground());
-        } else {
+        }
+        else {
             setForeground(table.getForeground());
             setBackground(table.getBackground());
         }
-        setFont(table.getFont());
-        if (hasFocus) {
-            setBorder( UIManager.getBorder("Table.focusCellHighlightBorder") );
-            if (table.isCellEditable(row, column)) {
-                super.setForeground( UIManager.getColor("Table.focusCellForeground") );
-                super.setBackground( UIManager.getColor("Table.focusCellBackground") );
-            }
-        } else {
-            setBorder(noFocusBorder);
-        }
+    	setFont(table.getFont());
+    	if (hasFocus) {
+    	    setBorder( UIManager.getBorder("Table.focusCellHighlightBorder") );
+    	    if (table.isCellEditable(row, column)) {
+    	        super.setForeground( UIManager.getColor("Table.focusCellForeground") );
+    	        super.setBackground( UIManager.getColor("Table.focusCellBackground") );
+    	    }
+    	} else {
+    	    setBorder(noFocusBorder);
+    	}
     }
 
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,

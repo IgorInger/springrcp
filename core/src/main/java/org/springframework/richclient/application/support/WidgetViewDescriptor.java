@@ -4,13 +4,15 @@ import org.springframework.richclient.application.PageComponent;
 import org.springframework.richclient.widget.Widget;
 import org.springframework.richclient.widget.WidgetView;
 
-public final class WidgetViewDescriptor extends DefaultViewDescriptor {
+public final class WidgetViewDescriptor extends DefaultViewDescriptor
+{
     /**
      * Widget to create the view.
      */
     private Widget widget;
-
-    public WidgetViewDescriptor(String id, Widget widget) {
+    
+    public WidgetViewDescriptor(String id, Widget widget)
+    {
         setId(id);
         this.widget = widget;
     }
@@ -18,7 +20,8 @@ public final class WidgetViewDescriptor extends DefaultViewDescriptor {
     /**
      * {@inheritDoc}
      */
-    public PageComponent createPageComponent() {
+    public PageComponent createPageComponent()
+    {
         AbstractView sv = new WidgetView(this.widget);
         sv.setDescriptor(this);
         return sv;

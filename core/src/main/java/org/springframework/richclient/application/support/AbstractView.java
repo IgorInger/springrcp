@@ -110,7 +110,7 @@ public abstract class AbstractView extends AbstractControlFactory implements Vie
     /**
      * Template method called once when this view is initialized; allows subclasses to register local executors for
      * shared commands with the view context.
-     *
+     * 
      * @param context
      *            the view context
      */
@@ -148,7 +148,7 @@ public abstract class AbstractView extends AbstractControlFactory implements Vie
 
     /**
      * {@inheritDoc}
-     *
+     * 
      * This implementation does nothing.
      */
     public void setInput(Object input) {

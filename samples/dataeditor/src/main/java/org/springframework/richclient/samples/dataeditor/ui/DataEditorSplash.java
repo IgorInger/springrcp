@@ -30,7 +30,8 @@ import org.springframework.richclient.util.WindowUtils;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-public class DataEditorSplash implements MonitoringSplashScreen {
+public class DataEditorSplash implements MonitoringSplashScreen
+{
     private JXBusyLabel busyLabel = new JXBusyLabel(new Dimension(180,180));
     private JXLabel titleLabel = new JXLabel("Data Editor");
     private JProgressBar progressBar = new JProgressBar();
@@ -39,10 +40,11 @@ public class DataEditorSplash implements MonitoringSplashScreen {
 
     private Resource image;
 
-    public DataEditorSplash() {
+    public DataEditorSplash()
+    {
         BusyPainter painter = new BusyPainter(
-            new RoundRectangle2D.Float(0, 0,28.0f,8.6f,10.0f,10.0f),
-            new Ellipse2D.Float(15.0f,15.0f,70.0f,70.0f));
+        new RoundRectangle2D.Float(0, 0,28.0f,8.6f,10.0f,10.0f),
+        new Ellipse2D.Float(15.0f,15.0f,70.0f,70.0f));
         painter.setTrailLength(4);
         painter.setPoints(8);
         painter.setFrame(7);
@@ -61,46 +63,58 @@ public class DataEditorSplash implements MonitoringSplashScreen {
 //        progressLabel.setBackground(new Color(0x425DA9));
     }
 
-    public ProgressMonitor getProgressMonitor() {
-        return new ProgressMonitor() {
-            private int currentWork = 0;
+    public ProgressMonitor getProgressMonitor()
+    {
+         return new ProgressMonitor()
+         {
+             private int currentWork = 0;
 
-            public void taskStarted(String name, int totalWork) {
-                progressBar.setMaximum(totalWork);
-                progressBar.setValue(0);
-                this.currentWork = 0;
-                busyLabel.setBusy(true);
-                progressBar.setString(name);
-            }
+             public void taskStarted(String name, int totalWork)
+             {
+                 progressBar.setMaximum(totalWork);
+                 progressBar.setValue(0);
+                 this.currentWork = 0;
+                 busyLabel.setBusy(true);
+                 progressBar.setString(name);
+             }
 
-            public void subTaskStarted(String name) {
-                progressBar.setString(name);
-            }
+             public void subTaskStarted(String name)
+             {
+                 progressBar.setString(name);
+             }
 
-            public void worked(int work) {
-                currentWork += work;
-                progressBar.setValue(currentWork);
-            }
+             public void worked(int work)
+             {
+                 currentWork += work;
+                 progressBar.setValue(currentWork);
+             }
 
-            public void done() {
-                busyLabel.setBusy(false);
-            }
+             public void done()
+             {
+                 busyLabel.setBusy(false);
+             }
 
-            public boolean isCanceled() {
-                return false;
-            }
+             public boolean isCanceled()
+             {
+                 return false;
+             }
 
-            public void setCanceled(boolean b) {
-            }
-        };
+             public void setCanceled(boolean b)
+             {
+             }
+         };
     }
 
-    protected Component createContentPane() {
+    protected Component createContentPane()
+    {
         JXPanel panel = new JXPanel(new FormLayout("center:200px:nogrow, left:3dlu:nogrow, fill:200px:nogrow", "center:200px:nogrow, center:20px:nogrow"));
         JXImagePanel ip = new JXImagePanel();
-        try {
+        try
+        {
             ip.setImage(ImageIO.read(image.getInputStream()));
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         ip.setStyle(JXImagePanel.Style.SCALED);
@@ -117,34 +131,40 @@ public class DataEditorSplash implements MonitoringSplashScreen {
         return panel;
     }
 
-    public void splash() {
+    public void splash()
+    {
         frame = new JXFrame();
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.setUndecorated(true);
+		frame.setUndecorated(true);
         frame.setRootPane(new JXRootPane());
         frame.getRootPaneExt().setDoubleBuffered(true);
         frame.getRootPaneExt().setBackground(new Color(255,255,255,255));
         frame.getRootPaneExt().setOpaque(false);
-        frame.getContentPane().add(createContentPane());
-        frame.pack();
-        WindowUtils.centerOnScreen(frame);
-        try {
+	    frame.getContentPane().add(createContentPane());
+		frame.pack();
+		WindowUtils.centerOnScreen(frame);
+        try
+        {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         SwingUtilities.updateComponentTreeUI(frame);
         frame.setVisible(true);
     }
 
-    public void dispose() {
+    public void dispose()
+    {
         if (frame != null) {
-            frame.dispose();
-            frame = null;
-        }
+			frame.dispose();
+			frame = null;
+		}
     }
 
-    public void setImage(Resource image) {
+    public void setImage(Resource image)
+    {
         this.image = image;
     }
 }

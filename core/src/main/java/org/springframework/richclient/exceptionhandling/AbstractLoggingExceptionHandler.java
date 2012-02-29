@@ -31,7 +31,7 @@ public abstract class AbstractLoggingExceptionHandler extends AbstractRegisterab
     public void setLogLevel(LogLevel logLevel) {
         this.logLevel = logLevel;
     }
-
+    
     /**
      * If set the throwable will first be purged before handling it.
      * @param exceptionPurger
@@ -64,7 +64,7 @@ public abstract class AbstractLoggingExceptionHandler extends AbstractRegisterab
             // Preventing infinite loop case 2 (see javadoc)
             // The original uncaughtException method has not yet returned
             String detectionLogMessage = "Infinite exception handling loop detected. "
-                                         + "The ExceptionHandler has probably thrown the following exception itself:";
+                    + "The ExceptionHandler has probably thrown the following exception itself:";
             try {
                 logger.error(detectionLogMessage, throwable);
             } catch (Throwable ignoredThrowable) {
@@ -128,26 +128,26 @@ public abstract class AbstractLoggingExceptionHandler extends AbstractRegisterab
             logMessage = "Uncaught throwable handled.";
         }
         switch (logLevel) {
-        case TRACE:
-            logger.trace(logMessage, throwable);
-            break;
-        case DEBUG:
-            logger.debug(logMessage, throwable);
-            break;
-        case INFO:
-            logger.info(logMessage, throwable);
-            break;
-        case WARN:
-            logger.warn(logMessage, throwable);
-            break;
-        case ERROR:
-            logger.error(logMessage, throwable);
-            break;
-        case FATAL:
-            logger.fatal(logMessage, throwable);
-            break;
-        default:
-            logger.error("Unrecognized log level (" + logLevel + ") for throwable", throwable);
+            case TRACE:
+                logger.trace(logMessage, throwable);
+                break;
+            case DEBUG:
+                logger.debug(logMessage, throwable);
+                break;
+            case INFO:
+                logger.info(logMessage, throwable);
+                break;
+            case WARN:
+                logger.warn(logMessage, throwable);
+                break;
+            case ERROR:
+                logger.error(logMessage, throwable);
+                break;
+            case FATAL:
+                logger.fatal(logMessage, throwable);
+                break;
+            default:
+                logger.error("Unrecognized log level (" + logLevel + ") for throwable", throwable);
         }
     }
 

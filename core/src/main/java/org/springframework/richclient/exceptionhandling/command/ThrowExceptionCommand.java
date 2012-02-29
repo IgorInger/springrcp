@@ -19,40 +19,47 @@ import org.springframework.richclient.application.ApplicationWindow;
  * &lt;property name="visible" value="${development.mode}" /&gt;
  * @author gds
  */
-public class ThrowExceptionCommand extends ApplicationWindowAwareCommand {
+public class ThrowExceptionCommand extends ApplicationWindowAwareCommand
+{
 
     private static final String THROWABLE_MESSAGE = "Throwable message made by ThrowExceptionCommand";
 
     @Override
-    protected void doExecuteCommand() {
+    protected void doExecuteCommand()
+    {
         List<Class<? extends Throwable>> throwableClassList = askUserThrowableClassList();
         if (throwableClassList != null) {
             throwThrowable(throwableClassList);
         }
     }
 
-    private List<Class<? extends Throwable>> askUserThrowableClassList() {
+    private List<Class<? extends Throwable>> askUserThrowableClassList()
+    {
         String throwableClassListString = (String) JOptionPane.showInputDialog(resolveParentFrame(),
-                                          "Please fill in the full classname of the exception to throw:\n"
-                                          + "Causes can optionally be appended by semicolons(;). For example:\n"
-                                          + "  org.springframework.remoting.RemoteLookupFailureException;"
-                                          + "java.rmi.ConnectException;java.net.ConnectException",
-                                          "Which exception do you want to throw?",
-                                          JOptionPane.INFORMATION_MESSAGE, null, null, "java.lang.IllegalStateException");
+                "Please fill in the full classname of the exception to throw:\n"
+                + "Causes can optionally be appended by semicolons(;). For example:\n"
+                + "  org.springframework.remoting.RemoteLookupFailureException;"
+                + "java.rmi.ConnectException;java.net.ConnectException",
+                "Which exception do you want to throw?",
+                JOptionPane.INFORMATION_MESSAGE, null, null, "java.lang.IllegalStateException");
         if (throwableClassListString == null) {
             // User cancelled
             return null;
         }
         List<Class<? extends Throwable>> throwableClassList = new ArrayList<Class<? extends Throwable>>();
         String[] throwableClassListStringTokens = throwableClassListString.split(";");
-        for (String throwableClassListStringToken : throwableClassListStringTokens) {
+        for (String throwableClassListStringToken : throwableClassListStringTokens)
+        {
             Class<? extends Throwable> throwableClass;
-            try {
+            try
+            {
                 throwableClass = (Class<? extends Throwable>) Class.forName(throwableClassListStringToken);
-            } catch (ClassNotFoundException e) {
+            }
+            catch (ClassNotFoundException e)
+            {
                 throw new IllegalArgumentException(
-                    "ThrowExceptionCommand failure: Class (" + throwableClassListStringToken
-                    + ") does not exist.", e);
+                        "ThrowExceptionCommand failure: Class (" + throwableClassListStringToken
+                                + ") does not exist.", e);
             }
             throwableClassList.add(throwableClass);
         }
@@ -64,23 +71,33 @@ public class ThrowExceptionCommand extends ApplicationWindowAwareCommand {
         return (activeWindow == null) ? null : activeWindow.getControl();
     }
 
-    private void throwThrowable(List<Class<? extends Throwable>> throwableClassList) {
+    private void throwThrowable(List<Class<? extends Throwable>> throwableClassList)
+    {
         Class<? extends Throwable> throwableClass = throwableClassList.remove(0);
         Throwable throwable;
-        try {
+        try
+        {
             throwable = buildThrowable(throwableClassList, throwableClass);
-        } catch (InstantiationException e) {
+        }
+        catch (InstantiationException e)
+        {
             throw new IllegalArgumentException(
-                "ThrowExceptionCommand failure: Could not build throwable chain.", e);
-        } catch (IllegalAccessException e) {
+                    "ThrowExceptionCommand failure: Could not build throwable chain.", e);
+        }
+        catch (IllegalAccessException e)
+        {
             throw new IllegalArgumentException(
-                "ThrowExceptionCommand failure: Could not build throwable chain.", e);
-        } catch (NoSuchMethodException e) {
+                    "ThrowExceptionCommand failure: Could not build throwable chain.", e);
+        }
+        catch (NoSuchMethodException e)
+        {
             throw new IllegalArgumentException(
-                "ThrowExceptionCommand failure: Could not build throwable chain.", e);
-        } catch (InvocationTargetException e) {
+                    "ThrowExceptionCommand failure: Could not build throwable chain.", e);
+        }
+        catch (InvocationTargetException e)
+        {
             throw new IllegalArgumentException(
-                "ThrowExceptionCommand failure: Could not build throwable chain.", e);
+                    "ThrowExceptionCommand failure: Could not build throwable chain.", e);
         }
         if (throwable instanceof RuntimeException) {
             throw (RuntimeException) throwable;
@@ -88,19 +105,20 @@ public class ThrowExceptionCommand extends ApplicationWindowAwareCommand {
             throw (Error) throwable;
         } else {
             throw new IllegalArgumentException("ThrowExceptionCommand failure: The root throwable ("
-                                               + throwableClass + ") should extend RuntimeException or Error.");
+                    + throwableClass + ") should extend RuntimeException or Error.");
         }
     }
 
     private Throwable buildThrowable(List<Class<? extends Throwable>> throwableClassList,
-                                     Class<? extends Throwable> throwableClass)
-    throws InstantiationException, IllegalAccessException, InvocationTargetException,
-        NoSuchMethodException {
+            Class<? extends Throwable> throwableClass)
+            throws InstantiationException, IllegalAccessException, InvocationTargetException,
+            NoSuchMethodException
+    {
         Throwable throwable;
         if (throwableClassList.isEmpty()) {
             try {
                 throwable = throwableClass.getDeclaredConstructor(String.class).newInstance(
-                                THROWABLE_MESSAGE);
+                        THROWABLE_MESSAGE);
             } catch (NoSuchMethodException e) {
                 throwable = throwableClass.newInstance();
             }
@@ -108,11 +126,11 @@ public class ThrowExceptionCommand extends ApplicationWindowAwareCommand {
             Throwable cause = buildThrowAndCatch(throwableClassList);
             try {
                 throwable = throwableClass.getDeclaredConstructor(String.class, Throwable.class)
-                            .newInstance(THROWABLE_MESSAGE, cause);
+                        .newInstance(THROWABLE_MESSAGE, cause);
             } catch (NoSuchMethodException e) {
                 try {
                     throwable = throwableClass.getDeclaredConstructor(String.class, Exception.class)
-                                .newInstance(THROWABLE_MESSAGE, cause);
+                            .newInstance(THROWABLE_MESSAGE, cause);
                 } catch (NoSuchMethodException e2) {
                     try {
                         throwable = throwableClass.getDeclaredConstructor(Throwable.class).newInstance(cause);
@@ -126,8 +144,9 @@ public class ThrowExceptionCommand extends ApplicationWindowAwareCommand {
     }
 
     private Throwable buildThrowAndCatch(List<Class<? extends Throwable>> throwableClassList)
-    throws IllegalAccessException, InstantiationException,
-        NoSuchMethodException, InvocationTargetException {
+            throws IllegalAccessException, InstantiationException,
+            NoSuchMethodException, InvocationTargetException
+    {
         Class<? extends Throwable> throwableClass = throwableClassList.remove(0);
         Throwable throwable = buildThrowable(throwableClassList, throwableClass);
         try {

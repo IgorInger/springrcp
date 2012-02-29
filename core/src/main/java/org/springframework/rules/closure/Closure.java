@@ -27,11 +27,11 @@ package org.springframework.rules.closure;
  */
 public interface Closure {
 
-    /**
-     * Evaluate the function with the provided argument, returning the result.
-     *
-     * @param argument the argument
-     * @return the function return value
-     */
-    Object call(Object argument);
+	/**
+	 * Evaluate the function with the provided argument, returning the result.
+	 *
+	 * @param argument the argument
+	 * @return the function return value
+	 */
+	Object call(Object argument);
 }

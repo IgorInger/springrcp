@@ -22,12 +22,12 @@ package org.springframework.rules.closure;
  */
 public interface ClosureTemplate {
 
-    /**
-     * Execute the template with the specific closure callback for the insertion
-     * of custom processing code.
-     *
-     * @param templateCallback The procedure callback.
-     */
-    void run(Closure templateCallback);
+	/**
+	 * Execute the template with the specific closure callback for the insertion
+	 * of custom processing code.
+	 *
+	 * @param templateCallback The procedure callback.
+	 */
+	void run(Closure templateCallback);
 
 }

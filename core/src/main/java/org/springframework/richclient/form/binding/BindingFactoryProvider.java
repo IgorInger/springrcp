@@ -21,7 +21,7 @@ import org.springframework.binding.form.FormModel;
  * Implementations provide {@link BindingFactory} instances on demand.
  * @author Larry Streepy
  * @see ApplicationServices#getBindingFactoryProvider()
- *
+ * 
  */
 public interface BindingFactoryProvider {
 

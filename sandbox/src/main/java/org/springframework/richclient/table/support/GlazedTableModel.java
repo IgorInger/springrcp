@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -44,7 +44,7 @@ import org.springframework.util.ClassUtils;
  * <p>
  * Column header text is generated from the column property names in the method {@link createColumnNames}. Using the
  * field face source configured, or the default application field face source if none was configured.
- *
+ * 
  * @author Peter De Bruycker
  * @author Larry Streepy
  * @author Mathias Broekelmann
@@ -70,7 +70,7 @@ public class GlazedTableModel extends EventTableModel {
     /**
      * Constructor using the provided row data and column property names. The model Id will be set from the class name
      * of the given <code>beanClass</code>.
-     *
+     * 
      * @param beanClass
      * @param rows
      * @param columnPropertyNames
@@ -81,7 +81,7 @@ public class GlazedTableModel extends EventTableModel {
 
     /**
      * Constructor using the given model data and a null model Id.
-     *
+     * 
      * @param rows
      *            The data for the model
      * @param columnPropertyNames
@@ -95,7 +95,7 @@ public class GlazedTableModel extends EventTableModel {
 
     /**
      * Fully specified Constructor.
-     *
+     * 
      * @param rows
      *            The data for the model
      * @param columnPropertyNames
@@ -140,7 +140,7 @@ public class GlazedTableModel extends EventTableModel {
 
     /**
      * Get the model Id.
-     *
+     * 
      * @return model Id
      */
     public String getModelId() {
@@ -149,7 +149,7 @@ public class GlazedTableModel extends EventTableModel {
 
     /**
      * May be overridden to achieve control over editable columns.
-     *
+     * 
      * @param row
      *            the current row
      * @param column
@@ -171,7 +171,7 @@ public class GlazedTableModel extends EventTableModel {
     /**
      * Create the text for the column headers. Use the model Id (if any) and the column property name to generate a
      * series of message keys. Resolve those keys using the configured message source.
-     *
+     * 
      * @param propertyColumnNames
      * @return array of column header text
      */
@@ -188,7 +188,7 @@ public class GlazedTableModel extends EventTableModel {
     /**
      * Construct the table format to use for this table model. This base implementation returns an instance of
      * {@link DefaultTableFormat}.
-     *
+     * 
      * @return
      */
     protected TableFormat createTableFormat() {
@@ -260,7 +260,7 @@ public class GlazedTableModel extends EventTableModel {
          * using introspection using the property name associated with the specified column. If no prorotype has been
          * specified, then the current objects in the table will be inspected to determine the class of values in that
          * column. If no non-null column value is available, then <code>Object.class</code> is returned.
-         *
+         * 
          * @param column
          *            The index of the column being edited.
          * @return Class of the values in the column
@@ -298,7 +298,7 @@ public class GlazedTableModel extends EventTableModel {
          * Get the comparator to use on values in the given column. If a comparator for this column has been installed
          * by calling {@link #setComparator(int, Comparator)}, then it is returned. If not, then a default comparator
          * (assuming the objects implement Comparable) is returned.
-         *
+         * 
          * @param column
          *            the column
          * @return the {@link Comparator} to use or <code>null</code> for an unsortable column.
@@ -310,7 +310,7 @@ public class GlazedTableModel extends EventTableModel {
 
         /**
          * Set the comparator to use for a given column.
-         *
+         * 
          * @param column
          *            The column for which the compartor is to be used
          * @param comparator

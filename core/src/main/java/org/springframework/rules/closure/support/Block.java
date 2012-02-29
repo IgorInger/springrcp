@@ -24,22 +24,22 @@ package org.springframework.rules.closure.support;
  */
 public abstract class Block extends AbstractClosure {
 
-    /**
-     * {@inheritDoc}
-     *
-     * @return allways <code>null</code>, only code is executed.
-     */
-    public final Object call(Object argument) {
-        handle(argument);
-        return null;
-    }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @return allways <code>null</code>, only code is executed.
+	 */
+	public final Object call(Object argument) {
+		handle(argument);
+		return null;
+	}
 
-    /**
-     * Method to override in block subclasses that return no result: this method
-     * is intended encapsulate the block's processing.
-     *
-     * @param argument the argument to process
-     */
-    protected abstract void handle(Object argument);
+	/**
+	 * Method to override in block subclasses that return no result: this method
+	 * is intended encapsulate the block's processing.
+	 *
+	 * @param argument the argument to process
+	 */
+	protected abstract void handle(Object argument);
 
 }

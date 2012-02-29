@@ -32,14 +32,14 @@ public class AdjustFontSizeCommand extends ActionCommand {
                 final Font font = UIManager.getFont(objs[i]);
                 UIManager.put(objs[i], new FontUIResource(font.deriveFont((float)(font.getSize() + adjustAmount))));
             }
-        }
+        }        
         System.out.println(Sizes.getUnitConverter().dialogUnitYAsPixel(10, new JLabel()));
         ApplicationWindow[] applicationWindows = Application.instance().getWindowManager().getWindows();
         for (int i = 0; i < applicationWindows.length; i++) {
             ApplicationWindow window = applicationWindows[i];
             SwingUtilities.updateComponentTreeUI(window.getControl());
             window.getControl().repaint();
-        }
+        }        
     }
 
     protected void doExecuteCommand() {
@@ -49,10 +49,12 @@ public class AdjustFontSizeCommand extends ActionCommand {
         if (fontAdjustmentParam != null) {
             if (fontAdjustmentParam instanceof Number) {
                 fontAdjustment = ((Number)fontAdjustmentParam).doubleValue();
-            } else {
+            }
+            else {
                 fontAdjustment = Double.parseDouble(fontAdjustmentParam.toString());
             }
-        } else {
+        }
+        else {
             fontAdjustment = getFontAdjustment();
         }
 

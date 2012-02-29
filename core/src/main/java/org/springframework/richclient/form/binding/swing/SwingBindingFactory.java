@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -50,9 +50,9 @@ import org.springframework.util.Assert;
 
 /**
  * A convenient implementation of <code>BindingFactory</code>. Provides a set
- * of methods that address the typical binding requirements of Swing based
+ * of methods that address the typical binding requirements of Swing based 
  * forms.
- *
+ * 
  * @author Oliver Hutchison
  */
 public class SwingBindingFactory extends AbstractBindingFactory {
@@ -105,9 +105,9 @@ public class SwingBindingFactory extends AbstractBindingFactory {
     }
 
     /**
-     *
+     * 
      * @param formProperty the property to be bound
-     * @param selectableItems a Collection or array containing the list of items
+     * @param selectableItems a Collection or array containing the list of items 
      * that may be selected
      */
     public Binding createBoundComboBox(String formProperty, Object selectableItems) {
@@ -121,7 +121,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
 
     public Binding createBoundComboBox(String formProperty, String selectableItemsProperty, String renderedItemProperty) {
         return createBoundComboBox(formProperty, getFormModel().getValueModel(selectableItemsProperty),
-                                   renderedItemProperty);
+                renderedItemProperty);
     }
 
     public Binding createBoundComboBox(String formProperty, Object selectableItems, String renderedProperty) {
@@ -138,7 +138,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
 
     /**
      * This method will most likely move over to FormModel
-     *
+     * 
      * @deprecated
      */
     public ObservableList createBoundListModel(String formProperty) {
@@ -147,7 +147,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
         if (!(valueModel instanceof BufferedCollectionValueModel)) {
             // XXX: HACK!
             valueModel = new BufferedCollectionValueModel((((DefaultFormModel) formModel).getFormObjectPropertyAccessStrategy()).getPropertyValueModel(
-                        formProperty), formModel.getFieldMetadata(formProperty).getPropertyType());
+                    formProperty), formModel.getFieldMetadata(formProperty).getPropertyType());
             formModel.add(formProperty, valueModel);
         }
         return (ObservableList)valueModel.getValue();
@@ -175,7 +175,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      * {@link javax.swing.ListSelectionModel#MULTIPLE_INTERVAL_SELECTION} will
      * be used, otherwise
      * {@link javax.swing.ListSelectionModel#SINGLE_SELECTION} will be used.
-     *
+     * 
      * @param selectionFormProperty form property to hold user's selection.
      *                              This property must either be compatible
      *                              with the item objects contained in
@@ -184,8 +184,8 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      *                              sense), or must be a
      *                              <code>Collection</code> type, which allows
      *                              for multiple selection.
-     * @param selectableItems 		a Collection or array containing the items
-     *                              with which to populate the list.
+     * @param selectableItems 		a Collection or array containing the items 
+     *                              with which to populate the list.              
      * @return
      */
     public Binding createBoundList(String selectionFormProperty, Object selectableItems) {
@@ -215,7 +215,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      * {@link javax.swing.ListSelectionModel#MULTIPLE_INTERVAL_SELECTION} will
      * be used, otherwise
      * {@link javax.swing.ListSelectionModel#SINGLE_SELECTION} will be used.
-     *
+     * 
      * @param selectionFormProperty form property to hold user's selection.
      *                              This property must either be compatible
      *                              with the item objects contained in
@@ -225,15 +225,15 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      *                              <code>Collection</code> type, which allows
      *                              for multiple selection.
      * @param selectableItemsHolder <code>ValueModel</code> containing the
-     *                              items with which to populate the list.
+     *                              items with which to populate the list. 
      * @param renderedProperty      the property to be queried for each item
      *                              in the list, the result of which will be
      *                              used to render that item in the UI
-     *
+     *                              
      * @return
      */
     public Binding createBoundList(String selectionFormProperty, ValueModel selectableItemsHolder,
-                                   String renderedProperty) {
+            String renderedProperty) {
         return createBoundList(selectionFormProperty, selectableItemsHolder, renderedProperty, null);
     }
 
@@ -254,7 +254,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      * {@link javax.swing.ListSelectionModel#MULTIPLE_INTERVAL_SELECTION} will
      * be used, otherwise
      * {@link javax.swing.ListSelectionModel#SINGLE_SELECTION} will be used.
-     *
+     * 
      * @param selectionFormProperty form property to hold user's selection.
      *                              This property must either be compatible
      *                              with the item objects contained in
@@ -264,8 +264,8 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      *                              <code>Collection</code> type, which allows
      *                              for multiple selection.
      * @param selectableItemsHolder <code>ValueModel</code> containing the
-     *                              items with which to populate the list.
-     *
+     *                              items with which to populate the list. 
+     *                              
      * @return
      */
     public Binding createBoundList(String selectionFormProperty, ValueModel selectableItemsHolder) {
@@ -273,7 +273,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
     }
 
     /**
-     * Binds the value(s) specified in <code>selectableItems</code> to
+     * Binds the value(s) specified in <code>selectableItems</code> to 
      * a {@link JList}, with any
      * user selection being placed in the form property referred to by
      * <code>selectionFormProperty</code>.  Each item in the list will be
@@ -285,7 +285,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      * preselect items in the list - if <code>selectionFormProperty</code>
      * is not empty when the list is bound, then its content will be used
      * for the initial selection.
-     *
+     * 
      * @param selectionFormProperty form property to hold user's selection.
      *                              This property must either be compatible
      *                              with the item objects contained in
@@ -295,9 +295,9 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      *                              <code>Collection</code> type, which allows
      *                              for multiple selection.
      * @param selectableItems       <code>Object</code> containing the
-     *                              item(s) with which to populate the list.
-     *                              Can be an instance Collection, Object[],
-     *                              a ValueModel or Object
+     *                              item(s) with which to populate the list. 
+     *                              Can be an instance Collection, Object[], 
+     *                              a ValueModel or Object 
      * @param renderedProperty      the property to be queried for each item
      *                              in the list, the result of which will be
      *                              used to render that item in the UI.
@@ -315,11 +315,11 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      *                              property, otherwise
      *                              {@link javax.swing.ListSelectionModel#SINGLE_SELECTION}
      *                              will be used.
-     *
+     *                              
      * @return
      */
     public Binding createBoundList(String selectionFormProperty, Object selectableItems,
-                                   String renderedProperty, Integer forceSelectMode) {
+            String renderedProperty, Integer forceSelectMode) {
         final Map context = new HashMap();
         if (forceSelectMode != null) {
             context.put(ListBinder.SELECTION_MODE_KEY, forceSelectMode);
@@ -360,9 +360,9 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      *         display properties.
      */
     public Binding createBoundShuttleList( String selectionFormProperty, ValueModel selectableItemsHolder,
-                                           String renderedProperty ) {
+            String renderedProperty ) {
         Map context = ShuttleListBinder.createBindingContext(getFormModel(), selectionFormProperty,
-                      selectableItemsHolder, renderedProperty);
+                selectableItemsHolder, renderedProperty);
         return createBinding(ShuttleList.class, selectionFormProperty, context);
     }
 
@@ -429,7 +429,8 @@ public class SwingBindingFactory extends AbstractBindingFactory {
     /**
      * @see #createBinding(String, String, Map)
      */
-    public Binding createBinding(String propertyPath, String binderId) {
+    public Binding createBinding(String propertyPath, String binderId)
+    {
         return this.createBinding(propertyPath, binderId, Collections.EMPTY_MAP);
     }
 
@@ -441,7 +442,8 @@ public class SwingBindingFactory extends AbstractBindingFactory {
      * @param context Context data (can be empty map)
      * @return Specific binding
      */
-    public Binding createBinding(String propertyPath, String binderId, Map context) {
+    public Binding createBinding(String propertyPath, String binderId, Map context)
+    {
         Assert.notNull(context, "Context must not be null");
         Binder binder = ((SwingBinderSelectionStrategy)getBinderSelectionStrategy()).getIdBoundBinder(binderId);
         Binding binding = binder.bind(getFormModel(), propertyPath, context);
@@ -461,7 +463,7 @@ public class SwingBindingFactory extends AbstractBindingFactory {
             Assert.isInstanceOf(ComboBoxEditor.class, argument);
             return new BeanPropertyValueComboBoxEditor((ComboBoxEditor) argument, renderedProperty);
         }
-
+        
         String getRenderedProperty() {
             return renderedProperty;
         }

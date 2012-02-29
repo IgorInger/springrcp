@@ -40,11 +40,11 @@ public class FormattedTextFieldBinder extends AbstractBinder {
     protected Binding doBind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
         Assert.isTrue(control instanceof JFormattedTextField, "Control must be an instance of JFormattedTextField.");
         return new FormattedTextFieldBinding((JFormattedTextField)control, formModel, formPropertyPath,
-                                             getRequiredSourceClass());
+                getRequiredSourceClass());
     }
 
     protected JComponent createControl(Map context) {
         return getComponentFactory().createFormattedTextField(
-                   (AbstractFormatterFactory)context.get(FORMATTER_FACTORY_KEY));
+                (AbstractFormatterFactory)context.get(FORMATTER_FACTORY_KEY));
     }
 }

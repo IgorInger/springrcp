@@ -27,8 +27,7 @@ public class ShuttleSortableTableModelTests extends TestCase {
     public void testNullComparisonWithComparator() {
         Object[] columnNames = new Object[] { "first name", "last name" };
         Object[][] data = new Object[][] { { "Peter", "De Bruycker" },
-            { "Jan", "Hoskens" }, { null, "test" }
-        };
+                { "Jan", "Hoskens" }, { null, "test" } };
 
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
 
@@ -64,8 +63,7 @@ public class ShuttleSortableTableModelTests extends TestCase {
     public void testNullComparisonWithoutComparator() {
         Object[] columnNames = new Object[] { "first name", "last name", "test bean" };
         Object[][] data = new Object[][] { { "Peter", "De Bruycker", new TestBean("1") },
-            { "Jan", "Hoskens", new TestBean("2") }, { null, "test", null }
-        };
+                { "Jan", "Hoskens", new TestBean("2") }, { null, "test", null } };
 
         TableModel tableModel = new DefaultTableModel(data, columnNames) {
             public Class getColumnClass(int columnIndex) {

@@ -35,7 +35,7 @@ public class InterceptorOverlayHelper {
     }
 
     public static void attachOverlay( final JComponent overlay, final JComponent component, final int center,
-                                      final int xOffset, final int yOffset ) {
+            final int xOffset, final int yOffset ) {
         if( component.getParent() == null ) {
             PropertyChangeListener waitUntilHasParentListener = new PropertyChangeListener() {
                 public void propertyChange( PropertyChangeEvent e ) {
@@ -62,6 +62,6 @@ public class InterceptorOverlayHelper {
 
     private static boolean hasParentScrollPane( JComponent component ) {
         return component.getParent() != null && component.getParent() instanceof JViewport
-               && component.getParent().getParent() instanceof JScrollPane;
+                && component.getParent().getParent() instanceof JScrollPane;
     }
 }

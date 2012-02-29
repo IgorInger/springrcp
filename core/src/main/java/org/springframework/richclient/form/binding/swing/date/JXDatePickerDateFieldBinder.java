@@ -10,20 +10,20 @@ import java.util.Map;
 
 public class JXDatePickerDateFieldBinder extends AbstractDateFieldBinder {
 
-    public JXDatePickerDateFieldBinder() {
-        super(new String[] { DATE_FORMAT });
-    }
+	public JXDatePickerDateFieldBinder() {
+		super(new String[] { DATE_FORMAT });
+	}
+	
+	protected JComponent createControl(Map context) {
+		return new JXDatePicker();
+	}
 
-    protected JComponent createControl(Map context) {
-        return new JXDatePicker();
-    }
+	protected Binding doBind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
+		Assert.isTrue(control instanceof JXDatePicker, "Control must be an instance of JXDatePicker.");
+		JXDatePickerDateFieldBinding binding = new JXDatePickerDateFieldBinding((JXDatePicker) control, formModel,
+				formPropertyPath);
+		applyContext(binding, context);
 
-    protected Binding doBind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
-        Assert.isTrue(control instanceof JXDatePicker, "Control must be an instance of JXDatePicker.");
-        JXDatePickerDateFieldBinding binding = new JXDatePickerDateFieldBinding((JXDatePicker) control, formModel,
-                formPropertyPath);
-        applyContext(binding, context);
-
-        return binding;
-    }
+		return binding;
+	}
 }

@@ -49,7 +49,7 @@ public class CustomDatePickerBinder extends AbstractBinder {
                     public void propertyChange(PropertyChangeEvent evt) {
                         controlValueChanged(datePicker.getDate());
                     }
-                });
+                });               
                 return datePicker;
             }
 

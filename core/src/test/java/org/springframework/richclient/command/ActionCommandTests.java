@@ -21,45 +21,45 @@ import junit.framework.TestCase;
 
 /**
  * Testcase for ActionCommand
- *
+ * 
  * @author Peter De Bruycker
  */
 public class ActionCommandTests extends TestCase {
 
-    public void testOnButtonAttached() {
-        final boolean[] executed = { false };
+	public void testOnButtonAttached() {
+		final boolean[] executed = { false };
 
-        ActionCommand command = new ActionCommand() {
-            protected void doExecuteCommand() {
-                executed[0] = true;
-            }
-        };
-        command.setActionCommand("theActionCommand");
+		ActionCommand command = new ActionCommand() {
+			protected void doExecuteCommand() {
+				executed[0] = true;
+			}
+		};
+		command.setActionCommand("theActionCommand");
 
-        JButton button = new JButton("test");
+		JButton button = new JButton("test");
 
-        command.onButtonAttached(button);
+		command.onButtonAttached(button);
 
-        assertEquals("theActionCommand", button.getActionCommand());
+		assertEquals("theActionCommand", button.getActionCommand());
 
-        button.doClick();
-        assertTrue(executed[0]);
-    }
+		button.doClick();
+		assertTrue(executed[0]);
+	}
 
-    public void testOnButtonAttachedWithDisplayDialog() {
-        ActionCommand command = new ActionCommand() {
-            protected void doExecuteCommand() {
-                // do nothing
-            }
-        };
-        command.setDisplaysInputDialog(true);
+	public void testOnButtonAttachedWithDisplayDialog() {
+		ActionCommand command = new ActionCommand() {
+			protected void doExecuteCommand() {
+				// do nothing
+			}
+		};
+		command.setDisplaysInputDialog(true);
 
-        JButton button = new JButton();
-        button.setText(null);
+		JButton button = new JButton();
+		button.setText(null);
 
-        command.onButtonAttached(button);
+		command.onButtonAttached(button);
 
-        assertEquals(null, button.getText());
-    }
+		assertEquals(null, button.getText());
+	}
 
 }

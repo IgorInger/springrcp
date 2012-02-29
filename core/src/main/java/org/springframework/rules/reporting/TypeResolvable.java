@@ -23,10 +23,10 @@ package org.springframework.rules.reporting;
  */
 public interface TypeResolvable {
 
-    /**
-     * Returns this object's logical type identifier.
-     *
-     * @return The type identifier
-     */
-    public String getType();
+	/**
+	 * Returns this object's logical type identifier.
+	 *
+	 * @return The type identifier
+	 */
+	public String getType();
 }

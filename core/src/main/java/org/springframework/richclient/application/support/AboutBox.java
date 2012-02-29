@@ -155,7 +155,7 @@ public class AboutBox {
                 try {
                     scroller = new HtmlScroller(false, 2000, 15, 10);
                     String text = FileCopyUtils.copyToString(new BufferedReader(new InputStreamReader(aboutTextPath
-                                  .getInputStream())));
+                            .getInputStream())));
                     scroller.setHtml(text);
                 } catch( IOException e ) {
                     final IllegalStateException exp = new IllegalStateException("About text not accessible: "
@@ -177,11 +177,12 @@ public class AboutBox {
             if( scroller != null ) {
                 try {
                     String text = FileCopyUtils.copyToString(new BufferedReader(new InputStreamReader(aboutTextPath
-                                  .getInputStream())));
+                            .getInputStream())));
                     scroller.setHtml(text);
-                } catch (IOException e) {
+                }
+                catch (IOException e) {
                     final IllegalStateException exp =
-                        new IllegalStateException("About text not accessible: "+e.getMessage());
+                            new IllegalStateException("About text not accessible: "+e.getMessage());
                     exp.setStackTrace(e.getStackTrace());
                     throw exp;
                 }
@@ -303,7 +304,8 @@ public class AboutBox {
         public void hyperlinkUpdate(HyperlinkEvent e) {
             if (e.getEventType().equals(HyperlinkEvent.EventType.ENTERED)) {
                 enteredLink();
-            } else if (e.getEventType().equals(HyperlinkEvent.EventType.EXITED)) {
+            }
+            else if (e.getEventType().equals(HyperlinkEvent.EventType.EXITED)) {
                 exitedLink();
             }
         }

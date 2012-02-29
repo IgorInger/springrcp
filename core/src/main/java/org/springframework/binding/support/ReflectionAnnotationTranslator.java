@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -82,21 +82,21 @@ import java.util.Map;
  * <tr><td>com.mypkg.OtherAnnotation.aprop2</td><td>=</td><td>100</td></tr>
  * </table>
  * </ul>
- *
+ * 
  * @author andy
  * @since May 8, 2006 4:08:53 PM
  */
 public class ReflectionAnnotationTranslator implements AnnotationTranslator {
     public final static String SINGLE_VALUE_METHOD_NAME = "value";
-
+    
     public void translate(final Annotation annotation, final Map<String, Object> result) {
         try {
             final Class<? extends Annotation> type = annotation.annotationType();
             final Method[] methods = type.getDeclaredMethods();
             final String name = type.getName();
-
+            
             result.put("@" + name, annotation);
-
+            
             if(methods.length == 0) {
                 result.put(name, Boolean.TRUE);
             } else if(methods.length == 1 && SINGLE_VALUE_METHOD_NAME.equals(methods[0].getName())) {

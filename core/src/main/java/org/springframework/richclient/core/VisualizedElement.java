@@ -28,14 +28,14 @@ import javax.swing.Icon;
  */
 public interface VisualizedElement {
 
-    /**
-     * Returns the image associated with the application component, or null.
-     */
-    public Image getImage();
+	/**
+	 * Returns the image associated with the application component, or null.
+	 */
+	public Image getImage();
 
-    /**
-     * Returns the icon associated with the application component, or null.
-     */
-    public Icon getIcon();
+	/**
+	 * Returns the icon associated with the application component, or null.
+	 */
+	public Icon getIcon();
 
 }

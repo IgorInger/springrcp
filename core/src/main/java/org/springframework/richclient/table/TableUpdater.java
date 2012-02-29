@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -79,7 +79,8 @@ public class TableUpdater extends Thread {
                 waitForUpdatesEnabled();
                 waitForIdleEventQueue();
                 publishChanges();
-            } catch (InterruptedException ie) {
+            }
+            catch (InterruptedException ie) {
             }
         }
     }
@@ -89,7 +90,8 @@ public class TableUpdater extends Thread {
             while (!this.updatesEnabled) {
                 try {
                     wait();
-                } catch (InterruptedException ie) {
+                }
+                catch (InterruptedException ie) {
                 }
             }
         }
@@ -100,7 +102,8 @@ public class TableUpdater extends Thread {
         while (queue.peekEvent() != null) {
             try {
                 sleep(eqSleepTime);
-            } catch (InterruptedException ie) {
+            }
+            catch (InterruptedException ie) {
             }
         }
     }
@@ -120,16 +123,20 @@ public class TableUpdater extends Thread {
         try {
             // publish the changes on the event dispatching thread
             SwingUtilities.invokeAndWait(publishRunnable);
-        } catch (InterruptedException ie) {
-        } catch (InvocationTargetException ite) {
+        }
+        catch (InterruptedException ie) {
+        }
+        catch (InvocationTargetException ite) {
         }
 
         try {
             // Wait until the system has completed processing of any
             // events we triggered as part of publishing changes.
             SwingUtilities.invokeAndWait(emptyRunnable);
-        } catch (InterruptedException ie) {
-        } catch (InvocationTargetException ite) {
+        }
+        catch (InterruptedException ie) {
+        }
+        catch (InvocationTargetException ite) {
         }
 
         /*
