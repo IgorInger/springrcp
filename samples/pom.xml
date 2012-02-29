@@ -12,7 +12,7 @@
   <name>Spring Rich Client samples</name>
   <description>Spring Rich Client samples</description>
   <modules>
-    <!--<module>petclinic</module>-->
+    <module>petclinic</module>
     <module>simple</module>
     <module>vldocking</module>
     <module>swingdocking</module>

@@ -40,7 +40,7 @@ import javax.swing.tree.TreePath;
 import org.springframework.binding.form.HierarchicalFormModel;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.core.closure.support.Block;
+import org.springframework.rules.closure.support.Block;
 import org.springframework.richclient.application.PageComponentContext;
 import org.springframework.richclient.application.event.LifecycleApplicationEvent;
 import org.springframework.richclient.application.support.AbstractView;

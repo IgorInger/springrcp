@@ -17,7 +17,7 @@ package org.springframework.richclient.samples.petclinic.domain;
 
 import java.util.Date;
 
-import org.springframework.core.closure.Constraint;
+import org.springframework.rules.constraint.Constraint;
 import org.springframework.rules.Rules;
 import org.springframework.rules.support.DefaultRulesSource;
 import org.springframework.samples.petclinic.Owner;
