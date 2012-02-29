@@ -16,13 +16,14 @@ import java.util.List;
  * <li>Get the component using {@link #getComponent()}</li>
  * </ol>
  */
-public interface Widget {
-    static Widget EMPTY_WIDGET = new AbstractWidget() {
+public interface Widget
+{
+    static Widget EMPTY_WIDGET = new AbstractWidget(){
 
-        public JComponent getComponent() {
+        public JComponent getComponent()
+        {
             return new JPanel();
-        }
-    };
+        }};
 
     /**
      * @return A not <code>null</code> graphical component built using the

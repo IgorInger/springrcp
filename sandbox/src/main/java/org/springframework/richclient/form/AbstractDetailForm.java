@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -40,9 +40,9 @@ import org.springframework.util.StringUtils;
  * The various form commands can be secured by specifying security controller id's for
  * the command.  Use the {@link AbstractForm#getCommitSecurityControllerId()} and
  * {@link AbstractForm#getNewFormObjectCommand()}.
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public abstract class AbstractDetailForm extends AbstractForm implements PropertyChangePublisher {
 
@@ -74,14 +74,14 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
      * Construct a detail form using the provided parent form model (we will construct our
      * own form model as a child of the parent model). The provided masterList will be
      * installed as the set of editable form objects.
-     *
+     * 
      * @param parentFormModel
      * @param formId
      * @param childFormObjectHolder
      * @param masterList ObservableList holding the editable items
      */
     public AbstractDetailForm(HierarchicalFormModel parentFormModel, String formId, ValueModel childFormObjectHolder,
-                              ObservableList masterList) {
+            ObservableList masterList) {
         super( parentFormModel, formId, childFormObjectHolder );
         setMasterList( masterList );
         setEditingFormObjectIndexHolder(indexHolder);
@@ -89,7 +89,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
 
     /**
      * Set the master list model.
-     *
+     * 
      * @param masterList list to use as our master data
      */
     protected void setMasterList(ObservableList masterList) {
@@ -99,7 +99,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
 
     /**
      * Set the selected object index.
-     *
+     * 
      * @param index of selected item
      */
     public void setSelectedIndex(int index) {
@@ -118,7 +118,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
     /**
      * Get the value holder containing the editing index. This allows triggers to monitor
      * for changes in the index of the object we are editing.
-     *
+     * 
      * @return
      */
     public ValueHolder getEditingIndexHolder() {
@@ -165,7 +165,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
 
     /**
      * Set the current edit state.
-     *
+     * 
      * @param new edit state
      */
     protected void setEditState(int editState) {
@@ -178,7 +178,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
     /**
      * Get the current edit state: one of {@link #STATE_CLEAR}, {@link #STATE_CREATE},
      * or {@link #STATE_EDIT}.
-     *
+     * 
      * @return current state
      */
     public int getEditState() {
@@ -213,7 +213,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
      * this because this command is not used directly, so it shouldn't be controlled.
      * The {@link AbstractMasterForm} is responsible for the real (invocable)
      * instance of this command.
-     *
+     * 
      * @return null
      */
     protected String getNewFormObjectSecurityControllerId() {
@@ -222,7 +222,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
 
     /**
      * Return the configured cancel command, creating it if necessary.
-     *
+     * 
      * @return cancel command
      */
     public ActionCommand getCancelCommand() {
@@ -235,7 +235,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
     /**
      * Create the cancel command. This will cancel the "create new" operation and reset
      * the form.
-     *
+     * 
      * @return cancel command action
      */
     protected ActionCommand createCancelCommand() {
@@ -267,8 +267,7 @@ public abstract class AbstractDetailForm extends AbstractForm implements Propert
         cancelCommand = getCancelCommand();
 
         formCommandGroup = CommandGroup.createCommandGroup( null, new AbstractCommand[] {cancelCommand,
-                           revertCommand, commitCommand
-                                                                                        } );
+                revertCommand, commitCommand} );
         JComponent buttonBar = formCommandGroup.createButtonBar();
         GuiStandardUtils.attachDialogBorder( buttonBar );
         return buttonBar;

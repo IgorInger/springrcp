@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@ import org.springframework.util.FileCopyUtils;
 /**
  * A resource decorator that represents an underlying graphical AWT image, such
  * as a GIF, JPEG, or PNG.
- *
+ * 
  * @author Keith Donald
  */
 public class AwtImageResource extends AbstractResource implements ImageObserver {
@@ -46,7 +46,7 @@ public class AwtImageResource extends AbstractResource implements ImageObserver 
     /**
      * Constructs a AwtImageResource for the following io.core.Resource. This
      * assumes the wrapped resource actually points to a underlying image.
-     *
+     * 
      * @param resource
      *            The wrapped resource.
      * @throws IllegalArgumentException,
@@ -94,10 +94,10 @@ public class AwtImageResource extends AbstractResource implements ImageObserver 
 
     /**
      * Loads the image from the underlying <code>core.io.Resource.</code>
-     *
+     * 
      * This method does not cache. Calling it successively will result in a new
      * image being loaded each time.
-     *
+     * 
      * @throws java.io.IOException
      *             If an error occurred while reading from the resource input
      *             stream.
@@ -114,7 +114,7 @@ public class AwtImageResource extends AbstractResource implements ImageObserver 
      * This method loads the image fully into memory. This improves UI
      * responsiveness when the image is needed by the GUI event-dispatching
      * thread.
-     *
+     * 
      * @param stream
      *            The input stream.
      * @return The resulting <code>Image</code> object.
@@ -133,7 +133,8 @@ public class AwtImageResource extends AbstractResource implements ImageObserver 
         while (!imageLoaded && !imageError) {
             try {
                 wait();
-            } catch (InterruptedException ex) {
+            }
+            catch (InterruptedException ex) {
             }
         }
         if (imageError) {
@@ -146,7 +147,8 @@ public class AwtImageResource extends AbstractResource implements ImageObserver 
         if ((infoflags & (ALLBITS | FRAMEBITS)) != 0) {
             imageLoaded = true;
             notifyAll();
-        } else {
+        }
+        else {
             if ((infoflags & ERROR) != 0) {
                 imageError = true;
                 notifyAll();

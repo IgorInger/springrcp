@@ -1,12 +1,12 @@
 /*
  * Copyright 2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,15 +26,15 @@ import java.util.Map;
 
 /**
  * Binder for the JIDE check box list with selectable.
- *
+ * 
  * This is a copy, paste and modification from the Spring RCP ListBinder.
- *
+ * 
  * @author Jonny Wray
  *
  */
 public class CheckBoxListSelectableBinder extends AbstractListBinder {
 
-    public static final String RENDERER_KEY = "renderer";
+	public static final String RENDERER_KEY = "renderer";
 
     public static final String SELECTION_MODE_KEY = "selectionMode";
 
@@ -74,7 +74,7 @@ public class CheckBoxListSelectableBinder extends AbstractListBinder {
             } else {
                 try {
                     listBinding.setSelectionMode(((Integer) ListSelectionModel.class.getField(
-                                                      (String) contextSelectionMode).get(null)).intValue());
+                            (String) contextSelectionMode).get(null)).intValue());
                 } catch (IllegalAccessException e) {
                     throw new IllegalArgumentException("Unable to access selection mode field in ListSelectionModel", e);
                 } catch (NoSuchFieldException e) {
@@ -92,7 +92,7 @@ public class CheckBoxListSelectableBinder extends AbstractListBinder {
     }
 
     protected JComponent createControl(Map context) {
-        return new CheckBoxListWithSelectable();
+    	return new CheckBoxListWithSelectable();
     }
 
     public ListCellRenderer getRenderer() {

@@ -150,7 +150,7 @@ public class MessageDialog extends ApplicationDialog {
     }
 
     protected void disposeDialogContentPane() {
-        messageAreaPane = null;
+    	messageAreaPane = null;
     }
 
     /**

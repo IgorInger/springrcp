@@ -83,7 +83,7 @@ public class DefaultFormModelTests extends AbstractFormModelTests {
     }
 
     public void testValidationMessages() {
-        DefaultFormModel fm = (DefaultFormModel) getFormModel(new TestBean());
+    	DefaultFormModel fm = (DefaultFormModel) getFormModel(new TestBean());
         ValidationResultsModel r = fm.getValidationResults();
         TestValidator v = new TestValidator();
         fm.setValidator(v);
@@ -124,7 +124,7 @@ public class DefaultFormModelTests extends AbstractFormModelTests {
     }
 
     public void testRaiseClearValidationMessage() {
-        DefaultFormModel fm = (DefaultFormModel) getFormModel(new TestBean());
+    	DefaultFormModel fm = (DefaultFormModel) getFormModel(new TestBean());
         ValidationResultsModel r = fm.getValidationResults();
         TestValidator v = new TestValidator();
         fm.setValidator(v);
@@ -220,7 +220,7 @@ public class DefaultFormModelTests extends AbstractFormModelTests {
         DefaultFormModel fm = (DefaultFormModel) getFormModel(new TestBean());
         TestConversionService cs = new TestConversionService();
         cs.executer = new ConversionExecutor(String.class, Integer.class, new ExceptionConverter(String.class,
-                                             Integer.class));
+                Integer.class));
         fm.setConversionService(cs);
         final ValueModel vm = fm.getValueModel("simpleProperty", Integer.class);
 
@@ -274,7 +274,7 @@ public class DefaultFormModelTests extends AbstractFormModelTests {
 
     private void assertContainsMessage(String message, Set messages) {
         assertTrue("Set of messages does not contain expected message '" + message + "'", messages
-                   .contains(new DefaultValidationMessage("simpleProperty", Severity.ERROR, message)));
+                .contains(new DefaultValidationMessage("simpleProperty", Severity.ERROR, message)));
     }
 
     public static class TestValidator implements Validator {
@@ -318,7 +318,7 @@ public class DefaultFormModelTests extends AbstractFormModelTests {
             setBindingErrorMessageProvider(new BindingErrorMessageProvider() {
 
                 public ValidationMessage getErrorMessage(FormModel formModel, String propertyName,
-                Object valueBeingSet, Exception e) {
+                        Object valueBeingSet, Exception e) {
                     return new DefaultValidationMessage(propertyName, Severity.ERROR, "");
                 }
 

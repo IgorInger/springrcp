@@ -103,7 +103,7 @@ public abstract class ConfirmationDialog extends ApplicationDialog {
     }
 
     protected void disposeDialogContentPane() {
-        messageAreaPane = null;
+    	messageAreaPane = null;
     }
 
     protected final boolean onFinish() {

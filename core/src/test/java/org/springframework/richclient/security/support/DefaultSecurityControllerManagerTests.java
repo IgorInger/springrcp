@@ -69,9 +69,9 @@ public class DefaultSecurityControllerManagerTests extends TestCase {
      */
     public void testGetSecurityController() {
         SecurityController write = (SecurityController) applicationContext.getBean( "writeController",
-                                   SecurityController.class );
+            SecurityController.class );
         SecurityController admin = (SecurityController) applicationContext.getBean( "adminController",
-                                   SecurityController.class );
+            SecurityController.class );
 
         // test defaulting to bean id if no alias registered
         assertEquals( "Should be same controller", write, manager.getSecurityController( "writeController" ) );
@@ -188,9 +188,9 @@ public class DefaultSecurityControllerManagerTests extends TestCase {
 
     public static class TestApplicationLifecycleAdvisor extends DefaultApplicationLifecycleAdvisor {
 
-        public TestApplicationLifecycleAdvisor() {
-            setWindowCommandManagerBeanName("windowCommandManager");
-        }
+    	public TestApplicationLifecycleAdvisor() {
+    		setWindowCommandManagerBeanName("windowCommandManager");
+    	}
 
         public void onPreWindowOpen(ApplicationWindowConfigurer configurer) {
             // Do nothing

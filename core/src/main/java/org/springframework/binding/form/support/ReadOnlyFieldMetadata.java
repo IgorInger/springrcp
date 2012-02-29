@@ -14,54 +14,54 @@ import java.util.Map;
  */
 public class ReadOnlyFieldMetadata extends AbstractPropertyChangePublisher implements FieldMetadata {
 
-    private Class propertyType;
+	private Class propertyType;
 
-    private boolean enabled = true;
+	private boolean enabled = true;
 
-    private boolean oldEnabled;
+	private boolean oldEnabled;
 
-    private FormModel formModel;
+	private FormModel formModel;
 
-    private final PropertyChangeListener formChangeHandler = new FormModelChangeHandler();
+	private final PropertyChangeListener formChangeHandler = new FormModelChangeHandler();
 
     private final Map userMetadata = new HashMap();
 
-    public ReadOnlyFieldMetadata(FormModel formModel, Class propertyType) {
-        this(formModel, propertyType, null);
-    }
+	public ReadOnlyFieldMetadata(FormModel formModel, Class propertyType) {
+		this(formModel, propertyType, null);
+	}
 
-    public ReadOnlyFieldMetadata(FormModel formModel, Class propertyType, Map userMetadata) {
-        this.propertyType = propertyType;
-        this.formModel = formModel;
-        this.formModel.addPropertyChangeListener(ENABLED_PROPERTY, formChangeHandler);
+	public ReadOnlyFieldMetadata(FormModel formModel, Class propertyType, Map userMetadata) {
+		this.propertyType = propertyType;
+		this.formModel = formModel;
+		this.formModel.addPropertyChangeListener(ENABLED_PROPERTY, formChangeHandler);
         if(userMetadata != null) {
             this.userMetadata.putAll(userMetadata);
         }
-    }
+	}
 
-    public Map getAllUserMetadata() {
-        return userMetadata;
-    }
+	public Map getAllUserMetadata() {
+		return userMetadata;
+	}
 
-    public Class getPropertyType() {
-        return propertyType;
-    }
+	public Class getPropertyType() {
+		return propertyType;
+	}
 
-    public Object getUserMetadata(String key) {
-        return userMetadata.get(key);
-    }
+	public Object getUserMetadata(String key) {
+		return userMetadata.get(key);
+	}
 
-    public boolean isDirty() {
-        return false;
-    }
+	public boolean isDirty() {
+		return false;
+	}
 
     public boolean isEnabled() {
         return enabled && formModel.isEnabled();
     }
 
-    public boolean isReadOnly() {
-        return true;
-    }
+	public boolean isReadOnly() {
+		return true;
+	}
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
@@ -69,8 +69,8 @@ public class ReadOnlyFieldMetadata extends AbstractPropertyChangePublisher imple
         oldEnabled = isEnabled();
     }
 
-    public void setReadOnly(boolean readOnly) {
-    }
+	public void setReadOnly(boolean readOnly) {
+	}
 
     /**
      * Responsible for listening for changes to the enabled

@@ -107,7 +107,7 @@ public class BeanPropertyValueComboBoxEditor implements ComboBoxEditor {
             }
         }
     }
-
+    
     /**
      * @return the property name
      */

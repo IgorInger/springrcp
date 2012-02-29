@@ -29,9 +29,10 @@ import java.beans.PropertyChangeListener;
  * </p>
  */
 public class TitledWidgetApplicationDialog extends ApplicationDialog
-    implements
-    DescriptionConfigurable,
-    Messagable {
+        implements
+        DescriptionConfigurable,
+            Messagable
+{
 
     /** Default Id for ok command. */
     public static final String OK_COMMAND_ID = "okCommand";
@@ -75,7 +76,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
      * @param widget
      *            The widget to show in the dialog
      */
-    public TitledWidgetApplicationDialog(Widget widget) {
+    public TitledWidgetApplicationDialog(Widget widget)
+    {
         this(widget, OK_MODE);
     }
 
@@ -88,7 +90,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
      *            The mode of the dialog:
      *            <code>OK_MODE, CANCEL_MODE of SELECT_CANCEL_MODE</code>.
      */
-    public TitledWidgetApplicationDialog(Widget widget, int mode) {
+    public TitledWidgetApplicationDialog(Widget widget, int mode)
+    {
         this(widget, mode, mode == SELECT_CANCEL_MODE ? SELECT_COMMAND_ID : EXIT_COMMAND_ID, EXIT_COMMAND_ID);
     }
 
@@ -105,7 +108,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
      * @param cancelId
      *            specific id for the cancel command.
      */
-    public TitledWidgetApplicationDialog(Widget widget, int mode, String finishId, String cancelId) {
+    public TitledWidgetApplicationDialog(Widget widget, int mode, String finishId, String cancelId)
+    {
         this.widget = widget;
         this.mode = mode;
         this.finishId = finishId;
@@ -116,17 +120,18 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
             this.titledWidgetId = null;
     }
 
-    public Widget getWidget() {
+    public Widget getWidget()
+    {
         return this.widget;
     }
 
-    protected JComponent createButtonBar() {
+    protected JComponent createButtonBar()
+    {
         CommandGroup widgetCommands = CommandGroup.createCommandGroup(null, widget.getCommands());
         CommandGroup dialogCommands = CommandGroup.createCommandGroup(getCommandGroupMembers());
-        JPanel panel = new JPanel(new FormLayout(new ColumnSpec[] {FormFactory.DEFAULT_COLSPEC,
-                                  FormFactory.GLUE_COLSPEC, FormFactory.UNRELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC
-                                                                  },
-                                  new RowSpec[] {FormFactory.DEFAULT_ROWSPEC}));
+        JPanel panel = new JPanel(new FormLayout(new ColumnSpec[]{FormFactory.DEFAULT_COLSPEC,
+                FormFactory.GLUE_COLSPEC, FormFactory.UNRELATED_GAP_COLSPEC, FormFactory.DEFAULT_COLSPEC},
+                new RowSpec[]{FormFactory.DEFAULT_ROWSPEC}));
         CellConstraints cc = new CellConstraints();
         panel.add(widgetCommands.createButtonBar(), cc.xy(1, 1));
         panel.add(dialogCommands.createButtonBar(), cc.xy(4, 1));
@@ -134,87 +139,99 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
         return panel;
     }
 
-    protected Object[] getCommandGroupMembers() {
+    protected Object[] getCommandGroupMembers()
+    {
         if (this.mode == SELECT_CANCEL_MODE)
-            return new Object[] {getFinishCommand(), getSelectNoneCommand(), getCancelCommand()};
+            return new Object[]{getFinishCommand(), getSelectNoneCommand(), getCancelCommand()};
         if (this.mode == OK_MODE)
-            return new Object[] {getFinishCommand()};
+            return new Object[]{getFinishCommand()};
         if (this.mode == CANCEL_MODE)
-            return new Object[] {getCancelCommand()};
-        return new Object[] {getCancelCommand()};
+            return new Object[]{getCancelCommand()};
+        return new Object[]{getCancelCommand()};
     }
 
-    protected ActionCommand getSelectNoneCommand() {
-        if (selectNoneCommand == null) {
-            selectNoneCommand = new ActionCommand(getSelectNoneCommandId()) {
-                public void doExecuteCommand() {
-                    onSelectNone();
-                }
-            };
-            selectNoneCommand.setSecurityControllerId(getFinishSecurityControllerId());
-        }
-        return selectNoneCommand;
+    protected ActionCommand getSelectNoneCommand()
+    {
+    	if (selectNoneCommand == null)
+    	{
+    		selectNoneCommand = new ActionCommand(getSelectNoneCommandId()) {
+    			public void doExecuteCommand() {
+    				onSelectNone();
+    			}
+    		};
+    		selectNoneCommand.setSecurityControllerId(getFinishSecurityControllerId());
+    	}
+    	return selectNoneCommand;
     }
 
     private String getSelectNoneCommandId() {
-        return SELECT_NONE_COMMAND_ID;
-    }
+		return SELECT_NONE_COMMAND_ID;
+	}
 
-    protected void addDialogComponents() {
+    protected void addDialogComponents()
+    {
         JComponent dialogContentPane = createDialogContentPane();
-        if (getPreferredSize() != null) {
+        if (getPreferredSize() != null)
+        {
             dialogContentPane.setSize(getPreferredSize());
         }
-        if (!(this.widget instanceof TitledWidget)) {
+        if (!(this.widget instanceof TitledWidget))
+        {
             GuiStandardUtils.attachDialogBorder(dialogContentPane);
         }
         getDialogContentPane().add(dialogContentPane);
         getDialogContentPane().add(createButtonBar(), BorderLayout.SOUTH);
         if (this.titledWidgetId != null)
             ((ApplicationObjectConfigurer) Application.services().getService(
-                 ApplicationObjectConfigurer.class)).configure(this.widget, this.titledWidgetId);
+                    ApplicationObjectConfigurer.class)).configure(this.widget, this.titledWidgetId);
     }
 
-    protected void onAboutToShow() {
+    protected void onAboutToShow()
+    {
         super.onAboutToShow();
         if (this.mode == SELECT_CANCEL_MODE && widget instanceof SelectionWidget)
             ((SelectionWidget) widget).setSelectionCommand(getFinishCommand());
         widget.onAboutToShow();
     }
 
-    protected void onWindowClosing() {
+    protected void onWindowClosing()
+    {
         widget.onAboutToHide();
         if (this.mode == SELECT_CANCEL_MODE && widget instanceof SelectionWidget)
             ((SelectionWidget) widget).removeSelectionCommand();
         super.onWindowClosing();
     }
 
-    protected boolean onFinish() {
+    protected boolean onFinish()
+    {
         return true;
     }
 
-    /**
-     * Hook called upon executing the select none command. This should normally
-     * de-select anything and execute the finish behaviour.
-     *
-     * @return
-     */
-    protected boolean onSelectNone() {
-        getFinishCommand().execute();
-        return true;
+	/**
+	 * Hook called upon executing the select none command. This should normally
+	 * de-select anything and execute the finish behaviour.
+	 *
+	 * @return
+	 */
+    protected boolean onSelectNone()
+    {
+		getFinishCommand().execute();
+		return true;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected JComponent createDialogContentPane() {
+    protected JComponent createDialogContentPane()
+    {
         return widget.getComponent();
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         super.setTitle(title);
         if ((this.widget instanceof TitleConfigurable) && (this.titledWidgetId == null))
             ((TitleConfigurable) this.widget).setTitle(title);
@@ -223,21 +240,24 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
     /**
      * {@inheritDoc}
      */
-    protected String getFinishCommandId() {
+    protected String getFinishCommandId()
+    {
         return this.finishId;
     }
 
     /**
      * {@inheritDoc}
      */
-    protected String getCancelCommandId() {
+    protected String getCancelCommandId()
+    {
         return this.cancelId;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void setCaption(String shortDescription) {
+    public void setCaption(String shortDescription)
+    {
         if (this.widget instanceof DescriptionConfigurable)
             ((DescriptionConfigurable) this.widget).setCaption(shortDescription);
     }
@@ -245,7 +265,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
     /**
      * {@inheritDoc}
      */
-    public void setDescription(String longDescription) {
+    public void setDescription(String longDescription)
+    {
         if (this.widget instanceof DescriptionConfigurable)
             ((DescriptionConfigurable) this.widget).setDescription(longDescription);
     }
@@ -253,7 +274,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
     /**
      * {@inheritDoc}
      */
-    public void setMessage(Message message) {
+    public void setMessage(Message message)
+    {
         if (this.widget instanceof Messagable)
             ((Messagable) this.widget).setMessage(message);
     }
@@ -261,7 +283,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
     /**
      * {@inheritDoc}
      */
-    public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener) {
+    public void addPropertyChangeListener(PropertyChangeListener propertyChangeListener)
+    {
         if (this.widget instanceof Messagable)
             ((Messagable) this.widget).addPropertyChangeListener(propertyChangeListener);
     }
@@ -269,7 +292,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
     /**
      * {@inheritDoc}
      */
-    public void addPropertyChangeListener(String property, PropertyChangeListener propertyChangeListener) {
+    public void addPropertyChangeListener(String property, PropertyChangeListener propertyChangeListener)
+    {
         if (this.widget instanceof Messagable)
             ((Messagable) this.widget).addPropertyChangeListener(property, propertyChangeListener);
     }
@@ -277,7 +301,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
     /**
      * {@inheritDoc}
      */
-    public void removePropertyChangeListener(PropertyChangeListener propertyChangeListener) {
+    public void removePropertyChangeListener(PropertyChangeListener propertyChangeListener)
+    {
         if (this.widget instanceof Messagable)
             ((Messagable) this.widget).removePropertyChangeListener(propertyChangeListener);
     }
@@ -285,7 +310,8 @@ public class TitledWidgetApplicationDialog extends ApplicationDialog
     /**
      * {@inheritDoc}
      */
-    public void removePropertyChangeListener(String property, PropertyChangeListener propertyChangeListener) {
+    public void removePropertyChangeListener(String property, PropertyChangeListener propertyChangeListener)
+    {
         if (this.widget instanceof Messagable)
             ((Messagable) this.widget).removePropertyChangeListener(property, propertyChangeListener);
     }

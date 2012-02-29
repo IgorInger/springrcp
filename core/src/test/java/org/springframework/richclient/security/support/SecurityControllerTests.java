@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package org.springframework.richclient.security.support;
 
@@ -16,7 +16,7 @@ import org.springframework.security.providers.TestingAuthenticationToken;
 
 /**
  * @author Larry Streepy
- *
+ * 
  */
 public class SecurityControllerTests extends TestCase {
 
@@ -176,7 +176,7 @@ public class SecurityControllerTests extends TestCase {
         }
 
         public void decide(Authentication authentication, Object object, ConfigAttributeDefinition config)
-        throws AccessDeniedException {
+                throws AccessDeniedException {
             if( !decisionValue) {
                 throw new AccessDeniedException( "access denied" );
             }

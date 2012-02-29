@@ -13,5 +13,5 @@ public enum LogLevel {
     WARN,
     ERROR,
     FATAL
-
+    
 }

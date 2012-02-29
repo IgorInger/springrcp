@@ -92,10 +92,10 @@ public class VLDockingApplicationPage extends AbstractApplicationPage implements
         if (dockable == null) {
             return false;
         }
-        // Don't request focus here, the DockingDesktop already shifts focus. If requesting focus at this point,
-        //  the DockingDesktop catches this event and fires another focus event. This might cause loops when
+        // Don't request focus here, the DockingDesktop already shifts focus. If requesting focus at this point, 
+        //  the DockingDesktop catches this event and fires another focus event. This might cause loops when 
         // maximizing/minimizing/restoring because at that point a remove of the component is done which shifts
-        // focus and after setting the correct docking state, a focus request is done.
+        // focus and after setting the correct docking state, a focus request is done. 
         // see RCP-558
         return true;
     }
@@ -233,11 +233,11 @@ public class VLDockingApplicationPage extends AbstractApplicationPage implements
     }
 
     private class DockableListener implements DockableStateChangeListener, DockableStateWillChangeListener,
-        DockableSelectionListener {
+            DockableSelectionListener {
 
         /*
          * (non-Javadoc)
-         *
+         * 
          * @see com.vlsolutions.swing.docking.event.DockableStateWillChangeListener#dockableStateWillChange(com.vlsolutions.swing.docking.event.DockableStateWillChangeEvent)
          */
         public void dockableStateWillChange(DockableStateWillChangeEvent event) {
@@ -255,7 +255,7 @@ public class VLDockingApplicationPage extends AbstractApplicationPage implements
 
         /*
          * (non-Javadoc)
-         *
+         * 
          * @see com.vlsolutions.swing.docking.event.DockableStateChangeListener#dockableStateChanged(com.vlsolutions.swing.docking.event.DockableStateChangeEvent)
          */
         public void dockableStateChanged(DockableStateChangeEvent event) {
@@ -272,7 +272,7 @@ public class VLDockingApplicationPage extends AbstractApplicationPage implements
 
         /*
          * (non-Javadoc)
-         *
+         * 
          * @see com.vlsolutions.swing.docking.event.DockableSelectionListener#selectionChanged(com.vlsolutions.swing.docking.event.DockableSelectionEvent)
          */
         public void selectionChanged(DockableSelectionEvent e) {
@@ -306,7 +306,7 @@ public class VLDockingApplicationPage extends AbstractApplicationPage implements
 
         /*
          * (non-Javadoc)
-         *
+         * 
          * @see org.springframework.richclient.application.vldocking.VLDockingLayoutManager#addDockable(com.vlsolutions.swing.docking.DockingDesktop,
          *      com.vlsolutions.swing.docking.Dockable)
          */
@@ -316,7 +316,7 @@ public class VLDockingApplicationPage extends AbstractApplicationPage implements
 
         /*
          * (non-Javadoc)
-         *
+         * 
          * @see org.springframework.richclient.application.vldocking.VLDockingLayoutManager#removeDockable(com.vlsolutions.swing.docking.DockingDesktop,
          *      com.vlsolutions.swing.docking.Dockable)
          */

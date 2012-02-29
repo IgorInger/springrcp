@@ -6,27 +6,34 @@ import org.springframework.richclient.application.ApplicationWindowFactory;
 import org.springframework.richclient.application.config.ApplicationLifecycleAdvisor;
 import org.springframework.richclient.command.AbstractCommand;
 
-public class TaskPaneNavigatorApplicationWindowFactory implements ApplicationWindowFactory {
+public class TaskPaneNavigatorApplicationWindowFactory implements ApplicationWindowFactory
+{
     private IconGenerator<AbstractCommand> taskPaneIconGenerator;
 
-    public ApplicationWindow createApplicationWindow() {
+    public ApplicationWindow createApplicationWindow()
+    {
         ApplicationLifecycleAdvisor lifecycleAdvisor = Application.instance().getLifecycleAdvisor();
-        if (lifecycleAdvisor instanceof TaskPaneNavigatorApplicationLifecycleAdvisor) {
+        if (lifecycleAdvisor instanceof TaskPaneNavigatorApplicationLifecycleAdvisor)
+        {
             TaskPaneNavigatorApplicationLifecycleAdvisor taskPaneNavigatorApplicationLifecycleAdvisor = (TaskPaneNavigatorApplicationLifecycleAdvisor) lifecycleAdvisor;
             TaskPaneNavigatorApplicationWindow window = new TaskPaneNavigatorApplicationWindow();
             window.setTaskPaneIconGenerator(getTaskPaneIconGenerator());
             window.setOnlyOneExpanded(taskPaneNavigatorApplicationLifecycleAdvisor.hasOnlyOneExpanded());
             return window;
-        } else {
+        }
+        else
+        {
             throw new IllegalArgumentException();
         }
     }
 
-    public IconGenerator<AbstractCommand> getTaskPaneIconGenerator() {
+    public IconGenerator<AbstractCommand> getTaskPaneIconGenerator()
+    {
         return taskPaneIconGenerator;
     }
 
-    public void setTaskPaneIconGenerator(IconGenerator<AbstractCommand> taskPaneIconGenerator) {
+    public void setTaskPaneIconGenerator(IconGenerator<AbstractCommand> taskPaneIconGenerator)
+    {
         this.taskPaneIconGenerator = taskPaneIconGenerator;
     }
 }

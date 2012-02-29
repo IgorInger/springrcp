@@ -6,7 +6,7 @@ package org.springframework.richclient.exceptionhandling;
  * @since 0.3
  */
 public abstract class AbstractRegisterableExceptionHandler implements Thread.UncaughtExceptionHandler,
-    RegisterableExceptionHandler {
+        RegisterableExceptionHandler {
 
     /**
      * Registers the exception handler for all threads and the event thread specifically.

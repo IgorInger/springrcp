@@ -27,30 +27,31 @@ import org.springframework.util.comparator.NullSafeComparator;
  */
 public class ValidationMessageComparator implements Comparator {
 
-    /**
-     * A shared default instance of this comparator.
-     */
-    public static Comparator INSTANCE = new NullSafeComparator(new ValidationMessageComparator(), true);
+	/**
+	 * A shared default instance of this comparator.
+	 */
+	public static Comparator INSTANCE = new NullSafeComparator(new ValidationMessageComparator(), true);
 
-    protected ValidationMessageComparator() {
-    }
+	protected ValidationMessageComparator() {
+	}
 
-    public int compare(Object o1, Object o2) {
-        ValidationMessage m1 = (ValidationMessage) o1;
-        ValidationMessage m2 = (ValidationMessage) o2;
-        int c;
-        if (m1.getTimestamp() == m2.getTimestamp()) {
-            c = NullSafeComparator.NULLS_HIGH.compare(m1.getProperty(), m2.getProperty());
-            if (c == 0) {
-                c = m1.getSeverity().compareTo(m2.getSeverity());
-                if (c == 0) {
-                    c = m1.getMessage().compareTo(m2.getMessage());
-                }
-            }
-        } else {
-            c = (m1.getTimestamp() > m2.getTimestamp()) ? -1 : 1;
-        }
-        return c;
-    }
+	public int compare(Object o1, Object o2) {
+		ValidationMessage m1 = (ValidationMessage) o1;
+		ValidationMessage m2 = (ValidationMessage) o2;
+		int c;
+		if (m1.getTimestamp() == m2.getTimestamp()) {
+			c = NullSafeComparator.NULLS_HIGH.compare(m1.getProperty(), m2.getProperty());
+			if (c == 0) {
+				c = m1.getSeverity().compareTo(m2.getSeverity());
+				if (c == 0) {
+					c = m1.getMessage().compareTo(m2.getMessage());
+				}
+			}
+		}
+		else {
+			c = (m1.getTimestamp() > m2.getTimestamp()) ? -1 : 1;
+		}
+		return c;
+	}
 
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy
  * of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -29,15 +29,14 @@ import java.util.List;
 /**
  * This converter converts collection values from Object, Object[], Collection, List to Collection.class, List.class,
  * Object[].class types
- *
+ * 
  * @author Mathias Broekelmann
- *
+ * 
  */
 public class CollectionConverter extends AbstractConverter implements Converter {
 
     private static final Class[] SOURCE_CLASSES = new Class[] { Object.class, Collection.class, List.class,
-            Object[].class
-                                                              };
+            Object[].class };
 
     private static final Class[] TARGET_CLASSES = new Class[] { Collection.class, List.class, Object[].class };
 

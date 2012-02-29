@@ -4,15 +4,16 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * Writer interface: extends the {@link Accessor} to allow write-access.
- *
+ * 
  * @author Jan Hoskens
  * @since 0.5.0
  */
-public interface Writer extends Accessor {
+public interface Writer extends Accessor
+{
 
     /**
      * Set the value on a specific target entity.
-     *
+     * 
      * @param toEntity
      *            the entity on which the property has to be changed.
      * @param newValue

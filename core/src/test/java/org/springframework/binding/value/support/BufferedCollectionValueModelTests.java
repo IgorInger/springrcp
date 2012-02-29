@@ -48,19 +48,22 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
         try {
             getBufferedCollectionValueModel(null, null);
             fail("NULL wrappedType should not be supported");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             // expected
         }
         try {
             getBufferedCollectionValueModel(null, Object.class);
             fail("wrappedType can only be an instance Collection or an array");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             // expected
         }
         try {
             getBufferedCollectionValueModel(null, int[].class);
             fail("wrappedType can not be a primitive array");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             // expected
         }
         for (int i = 0; i < supportedIterfaces.length; i++) {
@@ -69,7 +72,8 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
         try {
             getBufferedCollectionValueModel(null, CustomCollectionInterface.class);
             fail("if wrappedType is an interface it must one of the standard JDK Collection interfaces");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             // expected
         }
         getBufferedCollectionValueModel(null, Object[].class);
@@ -90,7 +94,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
 
         vm.getWrappedValueModel().setValue(null);
         assertEquals("ListListModel must have no elements when backing collection is NULL",
-                     ((ListListModel)vm.getValue()).size(), 0);
+                ((ListListModel)vm.getValue()).size(), 0);
 
         for (int i = 0; i < supportedClasses.length; i++) {
             Collection backingCollection = getCollection(supportedClasses[i], i);
@@ -103,7 +107,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
 
             vm.getWrappedValueModel().setValue(null);
             assertEquals("ListListModel must have no elements when backing collection is NULL",
-                         ((ListListModel)vm.getValue()).size(), 0);
+                    ((ListListModel)vm.getValue()).size(), 0);
         }
     }
 
@@ -131,7 +135,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
         ListListModel llm = (ListListModel)vm.getValue();
         llm.clear();
         assertEquals("changes to ListListModel should be not be made to backing array unless commit is called",
-                     vm.getWrappedValueModel().getValue(), backingArray);
+                vm.getWrappedValueModel().getValue(), backingArray);
 
         backingArray = getArray(101);
         vm.getWrappedValueModel().setValue(backingArray);
@@ -157,7 +161,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
         llm.clear();
         vm.commit();
         assertEquals("if backingCollection is NULL then a commit of an empty LLM should also be NULL",
-                     vm.getWrappedValueModel().getValue(), null);
+                vm.getWrappedValueModel().getValue(), null);
 
         llm.add(newValue);
         vm.commit();
@@ -173,7 +177,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
             ListListModel llm = (ListListModel)vm.getValue();
             llm.clear();
             assertEquals("changes to LLM should be not be made to backing collection unless commit is called",
-                         vm.getWrappedValueModel().getValue(), backingCollection);
+                    vm.getWrappedValueModel().getValue(), backingCollection);
 
             backingCollection = getCollection(supportedClasses[i], 201 + i);
             vm.getWrappedValueModel().setValue(backingCollection);
@@ -184,7 +188,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
             vm.commit();
             Collection newBackingCollection = (Collection)vm.getWrappedValueModel().getValue();
             assertTrue("change should not have been committed back to original array",
-                       !backingCollection.contains(newValue));
+                    !backingCollection.contains(newValue));
             assertTrue(newBackingCollection.contains(newValue));
             assertTrue(orgSize == newBackingCollection.size());
 
@@ -207,7 +211,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
             vm.commit();
             newBackingCollection = (Collection)vm.getWrappedValueModel().getValue();
             assertEquals("if backingCollection is NULL then a commit of an empty LLM should also be NULL",
-                         newBackingCollection, null);
+                    newBackingCollection, null);
 
             llm.add(newValue);
             vm.commit();
@@ -236,7 +240,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
         assertTrue(((Comparable)llm.get(0)).compareTo(llm.get(1)) > 0);
         vm.commit();
         assertTrue("LLM should be sorted the same way as backingCollection",
-                   ((Comparable)llm.get(0)).compareTo(llm.get(1)) < 0);
+                ((Comparable)llm.get(0)).compareTo(llm.get(1)) < 0);
         assertHasSameStructure(llm, backingCollection);
 
         backingCollection = new TreeSet(new Comparator() {
@@ -253,7 +257,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
         assertTrue(((Comparable)llm.get(0)).compareTo(llm.get(1)) < 0);
         vm.commit();
         assertTrue("LLM should be sorted the same way as backingCollection",
-                   ((Comparable)llm.get(0)).compareTo(llm.get(1)) > 0);
+                ((Comparable)llm.get(0)).compareTo(llm.get(1)) > 0);
         assertHasSameStructure(llm, backingCollection);
     }
 
@@ -261,13 +265,15 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
         try {
             getBufferedCollectionValueModel(new ArrayList(), Set.class);
             fail("backing object must be assignable to backingCollectionClass");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             // expected
         }
         try {
             getBufferedCollectionValueModel(new Double[0], Integer[].class);
             fail("backing object must be assignable to backingCollectionClass");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             // expected
         }
     }
@@ -337,8 +343,7 @@ public class BufferedCollectionValueModelTests extends SpringRichTestCase {
     private Object[] getArray(long randomSeed) {
         Random random = new Random(randomSeed);
         return new Number[] {new Integer(random.nextInt()), new Integer(random.nextInt()),
-                   new Integer(random.nextInt())
-        };
+                new Integer(random.nextInt())};
     }
 
     private Collection getCollection(Class collectionClass, long randomSeed) {

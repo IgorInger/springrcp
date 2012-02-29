@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,12 +27,12 @@ import org.springframework.util.Assert;
 /**
  * A value model that wraps another value model; delaying or buffering changes
  * until a commit is triggered.
- *
+ * 
  * TODO: more class docs...
- *
+ * 
  * @author Karsten Lentzsch
  * @author Keith Donald
- * @author Oliver Hutchison
+ * @author Oliver Hutchison  
  */
 public class BufferedValueModel extends AbstractValueModel implements ValueModelWrapper {
 
@@ -54,8 +54,8 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
     private boolean buffering;
 
     /**
-     * Constructs a <code>BufferedValueHolder</code> that wraps the given wrappedModel.
-     *
+     * Constructs a <code>BufferedValueHolder</code> that wraps the given wrappedModel.  
+     * 
      * @param wrappedModel the value model to be buffered
      */
     public BufferedValueModel(ValueModel wrappedModel) {
@@ -64,8 +64,8 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
 
     /**
      * Constructs a <code>BufferedValueHolder</code> that wraps the given wrappedModel
-     * and listens to the provided commitTrigger for commit and revert events.
-     *
+     * and listens to the provided commitTrigger for commit and revert events.  
+     * 
      * @param wrappedModel the value model to be buffered
      * @param commitTrigger the commit trigger that triggers the commit or flush event
      */
@@ -80,7 +80,7 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
 
     /**
      * Returns the CommitTrigger that is used to trigger commit and flush events.
-     *
+     * 
      * @return the CommitTrigger that is used to trigger commit and flush events
      */
     public final CommitTrigger getCommitTrigger() {
@@ -89,9 +89,9 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
 
     /**
      * Sets the <code>CommitTrigger</code> that triggers the commit and flush events.
-     *
-     * @param commitTrigger  the commit trigger; or null to deregister the
-     * existing trigger.
+     *  
+     * @param commitTrigger  the commit trigger; or null to deregister the 
+     * existing trigger. 
      */
     public final void setCommitTrigger(CommitTrigger commitTrigger) {
         if (this.commitTrigger == commitTrigger) {
@@ -112,8 +112,8 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
 
     /**
      * Returns whether this model buffers a value or not, that is, whether
-     * a value has been assigned since the last commit or flush.
-     *
+     * a value has been assigned since the last commit or flush. 
+     * 
      * @return true if a value has been assigned since the last commit or revert
      */
     public boolean isBuffering() {
@@ -123,7 +123,7 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
     /**
      * Returns the wrappedModel value if no value has been set since the last
      * commit or flush, and returns the buffered value otherwise.
-     *
+     * 
      * @return the buffered value
      */
     public Object getValue() {
@@ -148,23 +148,23 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
     }
 
     /**
-     * Returns the wrappedModel, i.e. the underlying ValueModel that provides
+     * Returns the wrappedModel, i.e. the underlying ValueModel that provides 
      * the unbuffered value.
-     *
-     * @return the ValueModel that provides the unbuffered value
+     * 
+     * @return the ValueModel that provides the unbuffered value  
      */
     public final ValueModel getWrappedValueModel() {
         return wrappedModel;
     }
-
+    
     /**
-     * Returns the inner most wrappedModel; i.e. the root ValueModel that provides
+     * Returns the inner most wrappedModel; i.e. the root ValueModel that provides 
      * the unbuffered value. This is found by repeatedly unwrapping any ValueModelWrappers
      * until we find the inner most value model.
-     *
+     * 
      * @return the inner most ValueModel that provides the unbuffered value
-     *
-     * @see ValueModelWrapper#getInnerMostWrappedValueModel()
+     * 
+     * @see ValueModelWrapper#getInnerMostWrappedValueModel()  
      */
     public final ValueModel getInnerMostWrappedValueModel() {
         if (wrappedModel instanceof ValueModelWrapper)
@@ -184,18 +184,19 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
     }
 
     /**
-     * Commits the value buffered by this value model back to the
-     * wrapped value model.
+     * Commits the value buffered by this value model back to the 
+     * wrapped value model. 
      */
     public void commit() {
         if (isBuffering()) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Committing buffered value '" + getValue() + "' to wrapped value model '" + wrappedModel
-                             + "'");
+                        + "'");
             }
             wrappedModel.setValueSilently(getValueToCommit(), wrappedModelChangeHandler);
             setValue(wrappedModel.getValue()); // check if the wrapped model changed the committed value
-        } else {
+        }
+        else {
             if (logger.isDebugEnabled()) {
                 logger.debug("No buffered edit to commit; nothing to do...");
             }
@@ -203,15 +204,15 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
     }
 
     /**
-     * Provides a hook that allows for modification of the value that is committed
-     * to the underlying value model.
+     * Provides a hook that allows for modification of the value that is committed 
+     * to the underlying value model. 
      */
     protected Object getValueToCommit() {
         return bufferedValue;
     }
 
     /**
-     * Updates the value of the buffering property. Fires a property change event
+     * Updates the value of the buffering property. Fires a property change event 
      * if there's been a change.
      */
     private void updateBuffering() {
@@ -221,7 +222,7 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
     }
 
     /**
-     * Reverts the value held by the value model back to the value held by the
+     * Reverts the value held by the value model back to the value held by the 
      * wrapped value model.
      */
     public final void revert() {
@@ -230,7 +231,8 @@ public class BufferedValueModel extends AbstractValueModel implements ValueModel
                 logger.debug("Reverting buffered value '" + getValue() + "' to value '" + wrappedModel.getValue() + "'");
             }
             setValue(wrappedModel.getValue());
-        } else {
+        }
+        else {
             if (logger.isDebugEnabled()) {
                 logger.debug("No buffered edit to commit; nothing to do...");
             }

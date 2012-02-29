@@ -28,7 +28,7 @@ import javax.swing.JInternalFrame;
  * left or bottom, providing the MDIDesktopPane is in a ScrollPane.
  */
 public class ScrollingDesktopPane extends JDesktopPane {
-    private static int FRAME_OFFSET = 20;
+	private static int FRAME_OFFSET = 20;
 
     private ScrollingDesktopManager manager;
 
@@ -52,7 +52,8 @@ public class ScrollingDesktopPane extends JDesktopPane {
             p = array[0].getLocation();
             p.x = p.x + FRAME_OFFSET;
             p.y = p.y + FRAME_OFFSET;
-        } else {
+        }
+        else {
             p = new Point(0, 0);
         }
         frame.setLocation(p.x, p.y);
@@ -61,7 +62,8 @@ public class ScrollingDesktopPane extends JDesktopPane {
         frame.setVisible(true);
         try {
             frame.setSelected(true);
-        } catch (PropertyVetoException e) {
+        }
+        catch (PropertyVetoException e) {
             frame.toBack();
         }
         return retval;

@@ -24,37 +24,37 @@ import org.springframework.rules.constraint.Constraint;
  * @author Keith Donald
  */
 public class IfBlock extends Block {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Block of code to execute if object passes test.
-     */
-    private Closure closure;
+	/**
+	 * Block of code to execute if object passes test.
+	 */
+	private Closure closure;
 
-    /**
-     * Constraint to test against.
-     */
-    private Constraint constraint;
+	/**
+	 * Constraint to test against.
+	 */
+	private Constraint constraint;
 
-    /**
-     * Constructor.
-     *
-     * @param constraint Constraint to test against.
-     * @param closure closure to be executed if object passes the test.
-     */
-    public IfBlock(Constraint constraint, Closure closure) {
-        this.constraint = constraint;
-        this.closure = closure;
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param constraint Constraint to test against.
+	 * @param closure closure to be executed if object passes the test.
+	 */
+	public IfBlock(Constraint constraint, Closure closure) {
+		this.constraint = constraint;
+		this.closure = closure;
+	}
 
-    /**
-     * Only invoke the wrapped closure against the provided argument if the
-     * constraint permits, else take no action.
-     */
-    protected void handle(Object argument) {
-        if (constraint.test(argument)) {
-            closure.call(argument);
-        }
-    }
+	/**
+	 * Only invoke the wrapped closure against the provided argument if the
+	 * constraint permits, else take no action.
+	 */
+	protected void handle(Object argument) {
+		if (constraint.test(argument)) {
+			closure.call(argument);
+		}
+	}
 
 }

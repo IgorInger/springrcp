@@ -21,21 +21,21 @@ import org.springframework.richclient.test.SpringRichTestCase;
 
 /**
  * Test for <code>DefaultApplicationPageFactory</code>
- *
+ * 
  * @author Peter De Bruycker
  */
 public class DefaultApplicationPageFactoryTests extends SpringRichTestCase {
 
-    public void testCreate() {
-        DefaultApplicationPageFactory factory = new DefaultApplicationPageFactory();
-
-        ApplicationWindow window = (ApplicationWindow) EasyMock.createMock(ApplicationWindow.class);
-        SingleViewPageDescriptor descriptor= new SingleViewPageDescriptor(new DefaultViewDescriptor());
-
-        DefaultApplicationPage page = (DefaultApplicationPage) factory.createApplicationPage(window, descriptor);
-        assertNotNull("page cannot be null", page);
-        assertEquals(window, page.getWindow());
-        assertEquals(descriptor, page.getPageDescriptor());
-    }
-
+	public void testCreate() {
+		DefaultApplicationPageFactory factory = new DefaultApplicationPageFactory();
+		
+		ApplicationWindow window = (ApplicationWindow) EasyMock.createMock(ApplicationWindow.class);
+		SingleViewPageDescriptor descriptor= new SingleViewPageDescriptor(new DefaultViewDescriptor());
+		
+		DefaultApplicationPage page = (DefaultApplicationPage) factory.createApplicationPage(window, descriptor);
+		assertNotNull("page cannot be null", page);
+		assertEquals(window, page.getWindow());
+		assertEquals(descriptor, page.getPageDescriptor());
+	}
+	
 }

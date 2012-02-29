@@ -9,7 +9,8 @@ package org.springframework.binding.form;
  * @author Jan Hoskens
  *
  */
-public interface NewFormObjectAware {
+public interface NewFormObjectAware
+{
 
     /**
      * Specific method to use when setting a new formObject. This can be <code>null</code>, a base object

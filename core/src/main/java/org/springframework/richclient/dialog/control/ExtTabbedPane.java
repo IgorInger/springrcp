@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2007 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -33,7 +33,7 @@ import org.springframework.richclient.util.EventListenerListHelper;
  * ui, and vice versa.
  * <p>
  * TODO: move this to another package?
- *
+ * 
  * @author Peter De Bruycker
  */
 public class ExtTabbedPane implements ControlFactory {
@@ -171,7 +171,8 @@ public class ExtTabbedPane implements ControlFactory {
     private void updateTabVisibility(Tab tab) {
         if (tab.isVisible()) {
             tabbedPane.insertTab(tab.getTitle(), tab.getIcon(), tab.getComponent(), tab.getTooltip(), getUIIndex(tab));
-        } else {
+        }
+        else {
             tabbedPane.removeTabAt(getUIIndex(tab));
 
         }

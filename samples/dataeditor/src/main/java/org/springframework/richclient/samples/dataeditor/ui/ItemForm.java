@@ -6,12 +6,15 @@ import org.springframework.richclient.form.TabbedForm;
 import org.springframework.richclient.form.builder.FormLayoutFormBuilder;
 import org.springframework.richclient.samples.dataeditor.domain.Item;
 
-public class ItemForm extends TabbedForm {
-    public ItemForm() {
+public class ItemForm extends TabbedForm
+{
+    public ItemForm()
+    {
         super(FormModelHelper.createFormModel(new Item(), "itemForm"));
     }
 
-    protected Tab[] getTabs() {
+    protected Tab[] getTabs()
+    {
         FormLayout layout = new FormLayout("default, 3dlu, fill:pref:nogrow, 3dlu, 100dlu", "default");
         FormLayoutFormBuilder builder = new FormLayoutFormBuilder(getBindingFactory(), layout);
         setFocusControl(builder.addPropertyAndLabel("name")[1]);

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -45,7 +45,7 @@ public class CommandFaceButtonManager implements PropertyChangeListener {
         private WeakReference buttonHolder;
 
         private CommandButtonConfigurer buttonConfigurer;
-
+        
         private int hashCode;
 
         public ManagedButton(AbstractButton button, CommandButtonConfigurer buttonConfigurer) {
@@ -59,9 +59,9 @@ public class CommandFaceButtonManager implements PropertyChangeListener {
         }
 
         public boolean equals(Object o) {
-            if (o == null) {
-                return false;
-            }
+        	if (o == null) {
+        		return false;
+        	}
             if (this == o) {
                 return true;
             }
@@ -212,7 +212,8 @@ public class CommandFaceButtonManager implements PropertyChangeListener {
             Assert.notNull(mb, "Managed button reference cannot be null");
             if (mb.getButton() == null) {
                 it.remove();
-            } else {
+            }
+            else {
                 configure(mb.getButton(), mb.buttonConfigurer);
             }
         }
@@ -220,8 +221,8 @@ public class CommandFaceButtonManager implements PropertyChangeListener {
 
     public String toString() {
         return new ToStringCreator(this).append("commandId", command.getId())
-               .append("faceDescriptor", faceDescriptor)
-               .append("attachedButtonCount", buttons.size())
-               .toString();
+                .append("faceDescriptor", faceDescriptor)
+                .append("attachedButtonCount", buttons.size())
+                .toString();
     }
 }

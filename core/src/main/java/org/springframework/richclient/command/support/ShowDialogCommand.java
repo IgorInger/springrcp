@@ -9,27 +9,32 @@ import org.springframework.richclient.util.RcpSupport;
  *
  * @author ldo
  */
-public class ShowDialogCommand extends ActionCommand {
+public class ShowDialogCommand extends ActionCommand
+{
 
     private final ApplicationDialog dialog;
     private String actionCluster;
 
-    public ShowDialogCommand(String id, ApplicationDialog dialog) {
+    public ShowDialogCommand(String id, ApplicationDialog dialog)
+    {
         super(id);
         this.dialog = dialog;
         RcpSupport.configure(this);
     }
 
     @Override
-    protected void doExecuteCommand() {
+    protected void doExecuteCommand()
+    {
         dialog.showDialog();
     }
 
-    public String getActionCluster() {
+    public String getActionCluster()
+    {
         return actionCluster;
     }
 
-    public void setActionCluster(String actionCluster) {
+    public void setActionCluster(String actionCluster)
+    {
         this.actionCluster = actionCluster;
 
     }

@@ -23,13 +23,13 @@ import org.springframework.security.providers.UsernamePasswordAuthenticationToke
  * object as its form object to collect the user name and password to use in an
  * authentication request.
  * <p>
- * The actual authentication request is handled here, in the {@link #login()} method.
- *
+ * The actual authentication request is handled here, in the {@link #login()} method.  
+ * 
  * <P>
  * Temporarily stores the username and password provided by the user.
- *
+ * 
  * @deprecated by the creation of new {@link ApplicationSecurityManager}
- *
+ * 
  * @author Ben Alex
  * @see ClientSecurityEvent
  * @see LoginCommand
@@ -53,10 +53,10 @@ public class SessionDetails implements Serializable, PropertyConstraintProvider 
     public SessionDetails() {
         // Retrieve any existing login information from the
         // ContextHolder
-        if (SecurityContextHolder.getContext().getAuthentication() != null) {
-            setUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+    	if (SecurityContextHolder.getContext().getAuthentication() != null) {
+    		setUsername(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
             setPassword(SecurityContextHolder.getContext().getAuthentication().getCredentials().toString());
-        }
+    	}
         initRules();
     }
 
@@ -118,7 +118,7 @@ public class SessionDetails implements Serializable, PropertyConstraintProvider 
 
             // Fire application event to advise of failed login
             appCtx.publishEvent( new AuthenticationFailedEvent(request, e));
-
+            
             // And rethrow the exception to prevent the dialog from closing
             throw e;
         }

@@ -60,7 +60,7 @@ import com.jgoodies.forms.layout.RowSpec;
  * keep track of row or column indexes for grouping. This also makes grouping
  * less fragile when the table layout changes</li>
  * </ul>
- * <strong>Example: </strong> <br>
+ * <strong>Example: </strong> <br> 
  * <pre>
  * TableLayoutBuilder table = new TableLayoutBuilder();
  * table
@@ -88,10 +88,10 @@ import com.jgoodies.forms.layout.RowSpec;
  *  .row()
  *      .cell(new JLabel(&quot;D [mm]&quot;))
  *      .cell(new JFormattedTextField())
- *      .cell();
+ *      .cell(); 
  * table.getPanel();
  * </pre>
- *
+ * 
  * @author oliverh
  */
 public class TableLayoutBuilder implements LayoutBuilder {
@@ -113,10 +113,10 @@ public class TableLayoutBuilder implements LayoutBuilder {
     public static final String ROWGROUPID = "rowGrId";
 
     public static final String COLGROUPID = "colGrId";
-
+    
     /** Constant indicating column major focus traversal order. */
     public static final int COLUMN_MAJOR_FOCUS_ORDER = 1;
-
+    
     /** Constant indicating row major focus traversal order. */
     public static final int ROW_MAJOR_FOCUS_ORDER = 2;
 
@@ -165,7 +165,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
 
     /**
      * Creates a new TableLayoutBuilder which will perform it's layout
-     * in the supplied JPanel. Note that any components that are already
+     * in the supplied JPanel. Note that any components that are already 
      * contained by the panel will be removed.
      */
     public TableLayoutBuilder(JPanel panel) {
@@ -177,7 +177,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
     /**
      * Returns the {@link ComponentFactory}that this uses to create things like
      * labels.
-     *
+     * 
      * @return if not explicitly set, this uses the {@link Application}'s
      */
     public ComponentFactory getComponentFactory() {
@@ -335,7 +335,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
 
     /**
      * Inserts a separator with the given label.
-     *
+     * 
      * @deprecated this is a layout builder, creating components should be done elsewhere, use cell() methods instead
      */
     public TableLayoutBuilder separator(String labelKey) {
@@ -345,7 +345,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
     /**
      * Inserts a separator with the given label. Attributes my be zero or more of
      * rowSpec, columnSpec, colGrId, rowGrId, align and valign.
-     *
+     * 
      * @deprecated this is a layout builder, creating components should be done elsewhere, use cell() methods instead
      */
     public TableLayoutBuilder separator(String labelKey, String attributes) {
@@ -372,7 +372,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
     /**
      * Creates and returns a JPanel with all the given components in it, using
      * the "hints" that were provided to the builder.
-     *
+     * 
      * @return a new JPanel with the components laid-out in it
      */
     public JPanel getPanel() {
@@ -383,7 +383,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
         fixColSpans();
         fillInGaps();
         fillPanel();
-
+        
         if( focusOrder != null ) {
             installFocusOrder( focusOrder );
         }
@@ -457,12 +457,12 @@ public class TableLayoutBuilder implements LayoutBuilder {
     private RowSpec getRowSpec(String rowSpec) {
         if (StringUtils.hasText(rowSpec))
             return new RowSpec(rowSpec);
-
+        
         return null;
     }
 
     private ColumnSpec getColumnSpec(String columnSpec) {
-        if (StringUtils.hasText(columnSpec))
+        if (StringUtils.hasText(columnSpec)) 
             return new ColumnSpec(columnSpec);
 
         return null;
@@ -480,7 +480,8 @@ public class TableLayoutBuilder implements LayoutBuilder {
         // now find the first unoccupied column
         do {
             ++currentCol;
-        } while (getOccupier(currentRow, currentCol) != null);
+        }
+        while (getOccupier(currentRow, currentCol) != null);
     }
 
     private Cell getOccupier(int row, int col) {
@@ -527,13 +528,15 @@ public class TableLayoutBuilder implements LayoutBuilder {
         int colSpan;
         try {
             colSpan = Integer.parseInt(getAttribute(COLSPAN, attributes, "-1"));
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e) {
             throw new IllegalArgumentException("Attribute 'colspan' must be an integer.");
         }
         int rowSpan;
         try {
             rowSpan = Integer.parseInt(getAttribute(ROWSPAN, attributes, "1"));
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e) {
             throw new IllegalArgumentException("Attribute 'rowspan' must be an integer.");
         }
 
@@ -615,8 +618,8 @@ public class TableLayoutBuilder implements LayoutBuilder {
      */
     public void setFocusTraversalOrder( int traversalOrder ) {
         Assert.isTrue( traversalOrder == COLUMN_MAJOR_FOCUS_ORDER || traversalOrder == ROW_MAJOR_FOCUS_ORDER,
-                       "traversalOrder must be one of COLUMN_MAJOR_FOCUS_ORDER or ROW_MAJOR_FOCUS_ORDER");
-
+            "traversalOrder must be one of COLUMN_MAJOR_FOCUS_ORDER or ROW_MAJOR_FOCUS_ORDER");
+        
         List focusOrder = new ArrayList(items.size());
 
         if( traversalOrder == ROW_MAJOR_FOCUS_ORDER ) {
@@ -638,7 +641,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
                 }
             }
         }
-
+        
         setCustomFocusTraversalOrder( focusOrder );
     }
 
@@ -719,7 +722,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
     private Map getAttributes(String attributes) {
         if(!StringUtils.hasText(attributes))
             return Collections.EMPTY_MAP;
-
+        
         Map attributeMap = new HashMap();
         try {
             StreamTokenizer st = new StreamTokenizer(new StringReader(attributes));
@@ -741,20 +744,24 @@ public class TableLayoutBuilder implements LayoutBuilder {
                         throw new IllegalArgumentException("Attribute name '" + name + "' not recognised.");
                     }
                     needEquals = true;
-                } else if (needEquals && st.ttype == '=') {
+                }
+                else if (needEquals && st.ttype == '=') {
                     needEquals = false;
-                } else if (name != null && (st.ttype == StreamTokenizer.TT_WORD || st.ttype == '\'' | st.ttype == '"')) {
+                }
+                else if (name != null && (st.ttype == StreamTokenizer.TT_WORD || st.ttype == '\'' | st.ttype == '"')) {
                     attributeMap.put(name.toLowerCase(), st.sval);
                     name = null;
-                } else {
+                }
+                else {
                     throw new IllegalArgumentException("Expecting '=' but found '" + st.sval + "'");
                 }
             }
             if (needEquals || name != null) {
                 throw new IllegalArgumentException("Premature end of string. Expecting "
-                                                   + (needEquals ? " '='." : " value for attribute '" + name + "'."));
+                        + (needEquals ? " '='." : " value for attribute '" + name + "'."));
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new UnsupportedOperationException("Encountered unexpected IOException. " + e.getMessage());
         }
 
@@ -789,7 +796,7 @@ public class TableLayoutBuilder implements LayoutBuilder {
 
         public CellConstraints getCellConstraints() {
             return new CellConstraints().xywh(startCol, startRow + 1, endCol - startCol + 1, endRow - startRow + 1,
-                                              align);
+                    align);
         }
     }
 }

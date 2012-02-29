@@ -37,7 +37,7 @@ import org.springframework.util.Assert;
 
 /**
  * @author Mathias Broekelmann
- *
+ * 
  */
 public abstract class AbstractListBinding extends AbstractBinding {
 
@@ -58,7 +58,7 @@ public abstract class AbstractListBinding extends AbstractBinding {
     private AbstractFilteredListModel filteredModel;
 
     public AbstractListBinding(JComponent component, FormModel formModel, String formPropertyPath,
-                               Class requiredSourceClass) {
+            Class requiredSourceClass) {
         super(formModel, formPropertyPath, requiredSourceClass);
         this.component = component;
     }
@@ -140,13 +140,13 @@ public abstract class AbstractListBinding extends AbstractBinding {
 
     /**
      * Converts the given object value into the given targetClass
-     *
+     * 
      * @param value
      *            the value to convert
      * @param targetClass
      *            the target class to convert the value to
      * @return the converted value
-     *
+     * 
      * @throws ConversionException
      *             if the value can not be converted
      */
@@ -166,7 +166,7 @@ public abstract class AbstractListBinding extends AbstractBinding {
 
         ListModel visit(ValueModel valueModel) {
             Assert.notNull(valueModel.getValue(),
-                           "value of ValueModel must not be null. Use an empty Collection or Array");
+                    "value of ValueModel must not be null. Use an empty Collection or Array");
             ListModel model = (ListModel) visitorHelper.invokeVisit(this, valueModel.getValue());
             return new ValueModelFilteredListModel(model, valueModel);
         }

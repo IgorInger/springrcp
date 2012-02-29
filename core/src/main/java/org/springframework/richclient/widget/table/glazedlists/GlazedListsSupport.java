@@ -11,13 +11,16 @@ import java.util.Comparator;
 /**
  * GlazedListsSupport
  */
-public class GlazedListsSupport {
-    interface AdvancedWritableTableFormat extends AdvancedTableFormat, WritableTableFormat {
+public class GlazedListsSupport
+{
+    interface AdvancedWritableTableFormat extends AdvancedTableFormat, WritableTableFormat
+    {
     }
 
     private static Comparator lowerCaseStringComparator = null;
 
-    public static String[] makeFilterProperties(TableDescription desc) {
+    public static String[] makeFilterProperties(TableDescription desc)
+    {
         return desc.getPropertiesInTextFilter();
     }
 
@@ -27,13 +30,17 @@ public class GlazedListsSupport {
      * @param desc
      * @return AdvancedWritableTableFormat
      */
-    public static TableFormat makeTableFormat(final TableDescription desc) {
-        return new AdvancedWritableTableFormat() {
-            public Class getColumnClass(int i) {
+    public static TableFormat makeTableFormat(final TableDescription desc)
+    {
+        return new AdvancedWritableTableFormat()
+        {
+            public Class getColumnClass(int i)
+            {
                 return desc.getType(i);
             }
 
-            public Comparator getColumnComparator(int i) {
+            public Comparator getColumnComparator(int i)
+            {
                 Comparator comp = desc.getColumnComparator(i);
                 if (comp != null)
                     return comp;
@@ -49,45 +56,57 @@ public class GlazedListsSupport {
                     return null;
             }
 
-            public int getColumnCount() {
+            public int getColumnCount()
+            {
                 return desc.getColumnCount();
             }
 
-            public String getColumnName(int i) {
+            public String getColumnName(int i)
+            {
                 return desc.getHeader(i);
             }
 
-            public Object getColumnValue(Object obj, int i) {
+            public Object getColumnValue(Object obj, int i)
+            {
                 return desc.getValue(obj, i);
             }
 
-            public boolean isEditable(Object baseObject, int column) {
+            public boolean isEditable(Object baseObject, int column)
+            {
                 return desc.getColumnEditor(column) != null;
             }
 
-            public Object setColumnValue(Object baseObject, Object editedValue, int column) {
+            public Object setColumnValue(Object baseObject, Object editedValue, int column)
+            {
                 desc.setValue(baseObject, column, editedValue);
                 return baseObject;
             }
         };
     }
 
-    public static Comparator getLowerCaseStringComparator() {
+    public static Comparator getLowerCaseStringComparator()
+    {
         if (lowerCaseStringComparator == null)
             lowerCaseStringComparator = createLowerCaseStringComparator();
         return lowerCaseStringComparator;
     }
 
-    private static Comparator createLowerCaseStringComparator() {
-        return new Comparator() {
-            public int compare(Object o1, Object o2) {
+    private static Comparator createLowerCaseStringComparator()
+    {
+        return new Comparator()
+        {
+            public int compare(Object o1, Object o2)
+            {
                 String str1 = (String) o1;
                 String str2 = (String) o2;
-                if (str1 == null) {
+                if (str1 == null)
+                {
                     if (str2 == null)
                         return 0;
                     return -1;
-                } else if (str2 == null) {
+                }
+                else if (str2 == null)
+                {
                     return 1;
                 }
 

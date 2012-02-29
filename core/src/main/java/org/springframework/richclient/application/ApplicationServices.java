@@ -22,24 +22,24 @@ package org.springframework.richclient.application;
  */
 public interface ApplicationServices {
 
-    /**
-     * Returns the application service of the requested type (class).
-     *
-     * @param serviceType Type of service to locate
-     * @return A service implementation of the requested type. Never null.
-     * @throws IllegalArgumentException if {@code serviceType} is null.
-     * @throws ServiceNotFoundException if there is no service known for the
-     * given serviceType.
-     */
-    Object getService(Class serviceType);
+	/**
+	 * Returns the application service of the requested type (class).
+	 *
+	 * @param serviceType Type of service to locate
+	 * @return A service implementation of the requested type. Never null.
+	 * @throws IllegalArgumentException if {@code serviceType} is null.
+	 * @throws ServiceNotFoundException if there is no service known for the
+	 * given serviceType.
+	 */
+	Object getService(Class serviceType);
 
-    /**
-     * Determine if a service of the requested type is available.
-     *
-     * @param serviceType Type of service to locate
-     * @return true if service is available, false if not
-     * @throws IllegalArgumentException if {@code serviceType} is null.
-     */
-    boolean containsService(Class serviceType);
+	/**
+	 * Determine if a service of the requested type is available.
+	 *
+	 * @param serviceType Type of service to locate
+	 * @return true if service is available, false if not
+	 * @throws IllegalArgumentException if {@code serviceType} is null.
+	 */
+	boolean containsService(Class serviceType);
 
 }

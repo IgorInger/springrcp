@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -32,7 +32,7 @@ import org.springframework.util.Assert;
 
 /**
  * A TableFormBuilder builds a form by using a {@link TableLayoutBuilder}
- *
+ * 
  * @author oliverh
  * @author Mathias Broekelmann
  */
@@ -46,7 +46,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Creates an instances of the TableFormBuilder by using a {@link BindingFactory}
-     *
+     * 
      * @param bindingFactory
      *            the binding factory to use to create field bindings.
      */
@@ -56,7 +56,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Creates an instances of the TableFormBuilder by using a {@link BindingFactory} and a given {@ TableLayoutBuilder}
-     *
+     * 
      * @param bindingFactory
      *            the binding factory to use to create field bindings.
      */
@@ -74,7 +74,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field to the form. {@link #createDefaultBinding(String)} is used to create the binding for the field
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param attributes
@@ -87,7 +87,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field binding to the form.
-     *
+     * 
      * @param binding
      *            the field binding to add
      * @return an array containing the label and the component of the binding which where added to the form
@@ -98,7 +98,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field to the form. {@link #createDefaultBinding(String)} is used to create the binding for the field
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param attributes
@@ -111,7 +111,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field binding to the form.
-     *
+     * 
      * @param binding
      *            the field binding to add
      * @param attributes
@@ -124,7 +124,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field to the form by using the provided component.
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param component
@@ -138,7 +138,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
     /**
      * Adds the field to the form by using the provided component. {@link #createBinding(String, JComponent)} is used to
      * create the binding of the field
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param component
@@ -154,13 +154,13 @@ public class TableFormBuilder extends AbstractFormBuilder {
     /**
      * Adds the field to the form by using a selector component. {@link #createSelector(String, Constraint)} is used to
      * create the component for the selector
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param filter
      *            optional filter constraint for the items of the selector
      * @return an array containing the label and the selector component which where added to the form
-     *
+     * 
      * @see #createSelector(String, org.springframework.rules.constraint.Constraint)
      */
     public JComponent[] addSelector(String fieldName, Constraint filter) {
@@ -169,7 +169,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field to the form by using a selector component.
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param filter
@@ -178,23 +178,23 @@ public class TableFormBuilder extends AbstractFormBuilder {
      *            optional layout attributes for the selector component. See {@link TableLayoutBuilder} for syntax
      *            details
      * @return an array containing the label and the selector component which where added to the form
-     *
+     * 
      */
     public JComponent[] addSelector(String fieldName, Constraint filter, String attributes) {
         Map context = new HashMap();
         context.put(ComboBoxBinder.FILTER_KEY, filter);
         return addBinding(getBindingFactory().createBinding(JComboBox.class, fieldName), attributes,
-                          getLabelAttributes());
+                getLabelAttributes());
     }
 
     /**
      * Adds the field to the form by using a password component. {@link #createPasswordField(String)} is used to create
      * the component for the password field
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @return an array containing the label and the password component which where added to the form
-     *
+     * 
      * @see #createPasswordField(String)
      */
     public JComponent[] addPasswordField(String fieldName) {
@@ -204,14 +204,14 @@ public class TableFormBuilder extends AbstractFormBuilder {
     /**
      * Adds the field to the form by using a password component. {@link #createPasswordField(String)} is used to create
      * the component for the password field
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param attributes
      *            optional layout attributes for the password component. See {@link TableLayoutBuilder} for syntax
      *            details
      * @return an array containing the label and the password component which where added to the form
-     *
+     * 
      * @see #createPasswordField(String)
      */
     public JComponent[] addPasswordField(String fieldName, String attributes) {
@@ -223,11 +223,11 @@ public class TableFormBuilder extends AbstractFormBuilder {
      * <p>
      * Note: this method ensures that the the label of the textarea has a top vertical alignment if <code>valign</code>
      * is not defined in the default label attributes
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @return an array containing the label, the textarea and the scrollpane which where added to the form
-     *
+     * 
      * @see #createTextArea(String)
      */
     public JComponent[] addTextArea(String fieldName) {
@@ -240,13 +240,13 @@ public class TableFormBuilder extends AbstractFormBuilder {
      * <p>
      * Note: this method ensures that the the label of the textarea has a top vertical alignment if <code>valign</code>
      * is not defined in the default label attributes
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param attributes
      *            optional layout attributes for the scrollpane. See {@link TableLayoutBuilder} for syntax details
      * @return an array containing the label, the textarea and the scrollpane and which where added to the form
-     *
+     * 
      * @see #createTextArea(String)
      */
     public JComponent[] addTextArea(String fieldName, String attributes) {
@@ -262,7 +262,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field to the form by using the default binding. The component will be placed inside a scrollpane.
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @return an array containing the label, the component of the field binding and the scrollpane which where added to
@@ -274,14 +274,14 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field to the form by using the default binding. The component will be placed inside a scrollpane.
-     *
+     * 
      * @param fieldName
      *            the name of the field to add
      * @param attributes
      *            optional layout attributes for the scrollpane. See {@link TableLayoutBuilder} for syntax details
      * @return an array containing the label, the component of the field binding and the scrollpane binding which where
      *         added to the form
-     *
+     * 
      * @see #createScrollPane(String, JComponent)
      */
     public JComponent[] addInScrollPane(String fieldName, String attributes) {
@@ -290,12 +290,12 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Adds the field binding to the form. The component will be placed inside a scrollpane.
-     *
+     * 
      * @param binding
      *            the binding to use
      * @return an array containing the label, the component of the field binding and the scrollpane and the component of
      *         the binding which where added to the form
-     *
+     * 
      * @see #createScrollPane(String, JComponent)
      */
     public JComponent[] addInScrollPane(Binding binding) {
@@ -305,35 +305,35 @@ public class TableFormBuilder extends AbstractFormBuilder {
     /**
      * Adds the field binding to the form. The component will be placed inside a scrollpane.
      * {@link #createScrollPane(String, JComponent)} is used to create the component for the scrollpane
-     *
+     * 
      * @param binding
      *            the binding to use
      * @param attributes
      *            optional layout attributes for the scrollpane. See {@link TableLayoutBuilder} for syntax details
      * @return an array containing the label, the component of the field binding and the scrollpane and the component of
      *         the binding which where added to the form
-     *
+     * 
      * @see #createScrollPane(String, JComponent)
      */
     public JComponent[] addInScrollPane(Binding binding, String attributes) {
         Assert.isTrue(getFormModel() == binding.getFormModel(),
-                      "Binding's form model must match FormBuilder's form model");
+                "Binding's form model must match FormBuilder's form model");
         return add(binding.getProperty(), createScrollPane(binding.getProperty(), binding.getControl()), attributes);
     }
 
     /**
      * Adds a labeled separator to the form.
-     *
+     * 
      * @param text
      *            the key for the label. Must not be null
      */
     public JComponent addSeparator(String text) {
-        return addSeparator(text, "");
+		return addSeparator(text, "");
     }
 
     /**
      * Adds a labeled separator to the form
-     *
+     * 
      * @param text
      *            the key for the label. Must not be null
      * @param attributes
@@ -341,13 +341,13 @@ public class TableFormBuilder extends AbstractFormBuilder {
      */
     public JComponent addSeparator(String text, String attributes) {
         JComponent separator = getComponentFactory().createLabeledSeparator(text);
-        getLayoutBuilder().cell(separator, attributes);
-        return separator;
+		getLayoutBuilder().cell(separator, attributes);
+		return separator;
     }
 
     /**
      * Returns the layout builder which is used to build the layout of the added fields and labels
-     *
+     * 
      * @return The form containing the added fields, components and labels in the defined layout. Not null
      */
     public TableLayoutBuilder getLayoutBuilder() {
@@ -359,7 +359,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * Returns the form which has been created by this builder
-     *
+     * 
      * @return The form containing the added fields and labels in the defined layout. Not null
      */
     public JComponent getForm() {
@@ -369,7 +369,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * returns the default label layout attributes for the form.
-     *
+     * 
      * @return layout attributes for the labels, can be null.
      */
     public String getLabelAttributes() {
@@ -378,7 +378,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * defines the default label layout attributes for the form.
-     *
+     * 
      * @param labelAttributes
      *            layout attributes for the labels, if null no layout attributes will be applied to the labels. See
      *            {@link TableLayoutBuilder} for syntax details.
@@ -390,7 +390,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
     /**
      * adds a field binding to the form. This method does not use the default label attributes which may have been set
      * through {@link #setLabelAttributes(String)}
-     *
+     * 
      * @param binding
      *            the binding of the field
      * @param attributes
@@ -404,7 +404,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * adds a field binding to the form
-     *
+     * 
      * @param binding
      *            the binding of the field
      * @param wrappedControl
@@ -421,7 +421,7 @@ public class TableFormBuilder extends AbstractFormBuilder {
 
     /**
      * adds a field binding to the form
-     *
+     * 
      * @param binding
      *            the binding of the field
      * @param wrappedComponent
@@ -436,10 +436,10 @@ public class TableFormBuilder extends AbstractFormBuilder {
      * @return an array containing the label, the component of the field binding and the wrapped component
      */
     public JComponent[] addBinding(Binding binding, JComponent wrappedComponent, String attributes,
-                                   String labelAttributes) {
+            String labelAttributes) {
         Assert.notNull(binding, "binding is null");
         Assert.isTrue(getFormModel() == binding.getFormModel(),
-                      "Binding's form model must match FormBuilder's form model");
+                "Binding's form model must match FormBuilder's form model");
         JComponent component = binding.getControl();
         final JLabel label = createLabelFor(binding.getProperty(), component);
         if (wrappedComponent == null) {

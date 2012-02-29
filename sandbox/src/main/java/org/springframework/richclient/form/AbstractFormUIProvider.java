@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
 /**
  * Abstract <code>FormUIProvider</code> implementation. Extenders only need to implement
  * the <code>createControl()</code> and <code>getComponent(String id)</code> methods.
- *
+ * 
  * @author Peter De Bruycker
  */
 public abstract class AbstractFormUIProvider extends AbstractControlFactory implements FormUIProvider {

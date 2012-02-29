@@ -39,13 +39,13 @@ import org.springframework.richclient.test.SpringRichTestCase;
  * @author Peter De Bruycker
  */
 public class DirtyIndicatorInterceptorTests extends SpringRichTestCase {
-    /**
-     * FIXME: this test will not run in a headless environment
-     */
+	/**
+	 * FIXME: this test will not run in a headless environment
+	 */
     public void testProcessComponent() throws InterruptedException {
-        if (GraphicsEnvironment.isHeadless()) {
-            return;
-        }
+    	if (GraphicsEnvironment.isHeadless()) {
+			return;
+		}
         TestBean bean = new TestBean();
         bean.setProperty("original value");
 
@@ -77,7 +77,7 @@ public class DirtyIndicatorInterceptorTests extends SpringRichTestCase {
 
         // find a reference to the overlay component
         JLayeredPane layeredPane = frame.getRootPane().getLayeredPane();
-        assertEquals("sanity check: assume the layered pane only has one component, and that it is a panel and the overlay",
+        assertEquals("sanity check: assume the layered pane only has one component, and that it is a panel and the overlay", 
                      2, layeredPane.getComponentCount());
         // the overlay is the first component
         JComponent overlay = (JComponent)layeredPane.getComponent(0);

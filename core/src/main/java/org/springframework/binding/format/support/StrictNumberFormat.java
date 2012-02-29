@@ -19,105 +19,105 @@ import java.util.Currency;
  *
  */
 public class StrictNumberFormat extends NumberFormat {
-    NumberFormat inner;
+	NumberFormat inner;
 
-    public StrictNumberFormat(NumberFormat instance) {
-        inner = instance;
-    }
+	public StrictNumberFormat(NumberFormat instance) {
+		inner = instance;
+	}
 
-    public StringBuffer format(double number, StringBuffer toAppendTo, FieldPosition pos) {
-        return inner.format(number, toAppendTo, pos);
-    }
+	public StringBuffer format(double number, StringBuffer toAppendTo, FieldPosition pos) {
+		return inner.format(number, toAppendTo, pos);
+	}
 
-    public StringBuffer format(long number, StringBuffer toAppendTo, FieldPosition pos) {
-        return inner.format(number, toAppendTo, pos);
-    }
+	public StringBuffer format(long number, StringBuffer toAppendTo, FieldPosition pos) {
+		return inner.format(number, toAppendTo, pos);
+	}
 
-    public StringBuffer format(Object number, StringBuffer toAppendTo, FieldPosition pos) {
-        return inner.format(number, toAppendTo, pos);
-    }
+	public StringBuffer format(Object number, StringBuffer toAppendTo, FieldPosition pos) {
+		return inner.format(number, toAppendTo, pos);
+	}
 
-    public AttributedCharacterIterator formatToCharacterIterator(Object obj) {
-        return inner.formatToCharacterIterator(obj);
-    }
+	public AttributedCharacterIterator formatToCharacterIterator(Object obj) {
+		return inner.formatToCharacterIterator(obj);
+	}
 
-    public Currency getCurrency() {
-        return inner.getCurrency();
-    }
+	public Currency getCurrency() {
+		return inner.getCurrency();
+	}
 
-    public int getMaximumFractionDigits() {
-        return inner.getMaximumFractionDigits();
-    }
+	public int getMaximumFractionDigits() {
+		return inner.getMaximumFractionDigits();
+	}
 
-    public int getMaximumIntegerDigits() {
-        return inner.getMaximumIntegerDigits();
-    }
+	public int getMaximumIntegerDigits() {
+		return inner.getMaximumIntegerDigits();
+	}
 
-    public int getMinimumFractionDigits() {
-        return inner.getMinimumFractionDigits();
-    }
+	public int getMinimumFractionDigits() {
+		return inner.getMinimumFractionDigits();
+	}
 
-    public int getMinimumIntegerDigits() {
-        return inner.getMinimumIntegerDigits();
-    }
+	public int getMinimumIntegerDigits() {
+		return inner.getMinimumIntegerDigits();
+	}
 
-    public int hashCode() {
-        return inner.hashCode();
-    }
+	public int hashCode() {
+		return inner.hashCode();
+	}
 
-    public boolean isGroupingUsed() {
-        return inner.isGroupingUsed();
-    }
+	public boolean isGroupingUsed() {
+		return inner.isGroupingUsed();
+	}
 
-    public boolean isParseIntegerOnly() {
-        return inner.isParseIntegerOnly();
-    }
+	public boolean isParseIntegerOnly() {
+		return inner.isParseIntegerOnly();
+	}
 
-    public Number parse(String source, ParsePosition parsePosition) {
-        return inner.parse(source, parsePosition);
-    }
+	public Number parse(String source, ParsePosition parsePosition) {
+		return inner.parse(source, parsePosition);
+	}
 
-    public Number parse(String source) throws ParseException {
-        // idea taken from
-        // org.apache.commons.validator.routines.AbstractFormatValidator
-        ParsePosition parsePosition = new ParsePosition(0);
-        Number result = inner.parse(source, parsePosition);
-        if (parsePosition.getErrorIndex() > -1)
-            throw new ParseException("Invalid format", parsePosition.getIndex());
-        if (parsePosition.getIndex() < source.length())
-            throw new ParseException("Invalid format[ii]", parsePosition.getIndex());
-        return result;
-    }
+	public Number parse(String source) throws ParseException {
+		// idea taken from
+		// org.apache.commons.validator.routines.AbstractFormatValidator
+		ParsePosition parsePosition = new ParsePosition(0);
+		Number result = inner.parse(source, parsePosition);
+		if (parsePosition.getErrorIndex() > -1)
+			throw new ParseException("Invalid format", parsePosition.getIndex());
+		if (parsePosition.getIndex() < source.length())
+			throw new ParseException("Invalid format[ii]", parsePosition.getIndex());
+		return result;
+	}
 
-    public Object parseObject(String source) throws ParseException {
-        return inner.parseObject(source);
-    }
+	public Object parseObject(String source) throws ParseException {
+		return inner.parseObject(source);
+	}
 
-    public void setCurrency(Currency currency) {
-        inner.setCurrency(currency);
-    }
+	public void setCurrency(Currency currency) {
+		inner.setCurrency(currency);
+	}
 
-    public void setGroupingUsed(boolean newValue) {
-        inner.setGroupingUsed(newValue);
-    }
+	public void setGroupingUsed(boolean newValue) {
+		inner.setGroupingUsed(newValue);
+	}
 
-    public void setMaximumFractionDigits(int newValue) {
-        inner.setMaximumFractionDigits(newValue);
-    }
+	public void setMaximumFractionDigits(int newValue) {
+		inner.setMaximumFractionDigits(newValue);
+	}
 
-    public void setMaximumIntegerDigits(int newValue) {
-        inner.setMaximumIntegerDigits(newValue);
-    }
+	public void setMaximumIntegerDigits(int newValue) {
+		inner.setMaximumIntegerDigits(newValue);
+	}
 
-    public void setMinimumFractionDigits(int newValue) {
-        inner.setMinimumFractionDigits(newValue);
-    }
+	public void setMinimumFractionDigits(int newValue) {
+		inner.setMinimumFractionDigits(newValue);
+	}
 
-    public void setMinimumIntegerDigits(int newValue) {
-        inner.setMinimumIntegerDigits(newValue);
-    }
+	public void setMinimumIntegerDigits(int newValue) {
+		inner.setMinimumIntegerDigits(newValue);
+	}
 
-    public void setParseIntegerOnly(boolean value) {
-        inner.setParseIntegerOnly(value);
-    }
+	public void setParseIntegerOnly(boolean value) {
+		inner.setParseIntegerOnly(value);
+	}
 }

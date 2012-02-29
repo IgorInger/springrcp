@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
 /**
  * Decorates an existing {@link ListModel} by applying a constraint. The constraint can implement {@link Observable} to
  * notify a change of the filter condition.
- *
+ * 
  * @author Keith Donald
  * @author Mathias Broekelmann
  */
@@ -41,12 +41,12 @@ public class FilteredListModel extends AbstractFilteredListModel implements Obse
 
     /**
      * Constructs a new instance
-     *
+     * 
      * @param listModel
      *            the list model to filter.
      * @param constraint
      *            the constraint which is applied to the list model elements
-     *
+     * 
      * @throws IllegalArgumentException
      *             if list model or constraint parameters where null
      */
@@ -62,10 +62,10 @@ public class FilteredListModel extends AbstractFilteredListModel implements Obse
 
     /**
      * Defines the constraint which is applied to the list model elements
-     *
+     * 
      * @param constraint
      *            the constraint to set
-     *
+     * 
      * @throws IllegalArgumentException
      *             if constraint is null
      */
@@ -124,7 +124,7 @@ public class FilteredListModel extends AbstractFilteredListModel implements Obse
 
     /**
      * Called to notify that an element has matched the filter constraint. This implementation does nothing.
-     *
+     * 
      * @param element
      *            the element which was accepted by the filter
      */
@@ -148,7 +148,7 @@ public class FilteredListModel extends AbstractFilteredListModel implements Obse
 
     /**
      * Returns the element index for a filtered index
-     *
+     * 
      * @param filteredIndex
      *            the filtered index
      * @return the unfiltered index of the filtered model

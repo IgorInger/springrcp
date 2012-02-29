@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -51,7 +51,7 @@ import org.springframework.richclient.util.PopupMenuMouseListener;
  * <dd>To specify the properties for the table columns</dd>
  * <dt>{@link AbstractMasterForm#createDetailForm}</dt>
  * <dd>To construct the detail half of this master/detail form pair</dd>
- *
+ * 
  * @author Larry Streepy
  */
 public abstract class AbstractTableMasterForm extends AbstractMasterForm {
@@ -69,7 +69,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
      * DeepCopyBufferedCollectionValueModel on top of it. Unless
      * {@link AbstractMasterForm#getListListModel()} has been overriden, the table will
      * contain all the elements in the domain object referenced by <code>property</code>.
-     *
+     * 
      * @param parentFormModel Parent form model to access for this form's data
      * @param property Property containing this forms data (must be a collection or an
      *            array)
@@ -77,7 +77,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
      * @param detailType Type of detail object managed by this master form
      */
     public AbstractTableMasterForm(HierarchicalFormModel parentFormModel, String property, String formId,
-                                   Class detailType) {
+            Class detailType) {
         super( parentFormModel, property, formId, detailType );
     }
 
@@ -85,7 +85,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
      * Set the <code>Matcher</code> to be used in filtering the elements of the master
      * set. Note that only one of a Matcher or MatcherEditor may be used, not both. If
      * both are specified, then the Matcher will take precedence.
-     *
+     * 
      * @param matcher The Matcher to use to filter elements in the master set.
      */
     public void setFilterMatcher(Matcher matcher) {
@@ -95,7 +95,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
     /**
      * Get the <code>Matcher</code> to be used in filtering the elements of the master
      * set.
-     *
+     * 
      * @return matcher
      */
     public Matcher getFilterMatcher() {
@@ -106,7 +106,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
      * Set the <code>MatcherEditor</code> to be used in filtering the elements of the
      * master set. Note that only one of a Matcher or MatcherEditor may be used, not both.
      * If both are specified, then the Matcher will take precedence.
-     *
+     * 
      * @param matcherEditor The MatcherEditor to use to filter elements in the master set.
      */
     public void setFilterMatcherEditor(MatcherEditor matcherEditor) {
@@ -116,7 +116,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
     /**
      * Get the <code>MatcherEditor</code> to be used in filtering the elements of the
      * master set.
-     *
+     * 
      * @return matcherEditor
      */
     public MatcherEditor getFilterMatcherEditor() {
@@ -125,7 +125,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
 
     /**
      * Set the comparator to use for sorting the table.
-     *
+     * 
      * @param comparator to use for sorting the table
      */
     public void setSortComparator(Comparator comparator) {
@@ -134,7 +134,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
 
     /**
      * Get the comparator to use for sorting the table.
-     *
+     * 
      * @return comparator to use for sorting the table
      */
     public Comparator getSortComparator() {
@@ -144,7 +144,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
     /**
      * Set the name of the property on which to compare for sorting elements in the master
      * table.
-     *
+     * 
      * @param propertyName Name of the property on which to sort.
      */
     public void setSortProperty(String propertyName) {
@@ -159,10 +159,10 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
     protected boolean useSortedList() {
         return false;
     }
-
+    
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.springframework.richclient.form.AbstractForm#createFormControl()
      */
     protected JComponent createFormControl() {
@@ -233,7 +233,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
 
         return formBuilder.getForm();
     }
-
+    
     /**
      * Override this method is one needs to re-size/change the splitter details.
      * @param splitter
@@ -272,7 +272,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
      * Get the preferred size of the master table. The current (requested) size is
      * provided for reference. This default implementation just returns the provided
      * current size.
-     *
+     * 
      * @param currentSize Current (requested) preferred size of the master table
      * @return preferred size
      */
@@ -282,7 +282,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
 
     /**
      * Get the selection model for the master list representation.
-     *
+     * 
      * @return selection model or null if master table has not been constructed yet
      */
     protected ListSelectionModel getSelectionModel() {
@@ -291,7 +291,7 @@ public abstract class AbstractTableMasterForm extends AbstractMasterForm {
 
     /**
      * Get the property names to show in columns of the master table.
-     *
+     * 
      * @return String[] array of property names
      */
     protected abstract String[] getColumnPropertyNames();

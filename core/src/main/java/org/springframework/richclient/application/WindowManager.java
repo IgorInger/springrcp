@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -37,7 +37,7 @@ import org.springframework.binding.value.PropertyChangePublisher;
  * Associating a window with a window manager is done with
  * <code>WindowManager.add(Window)</code>. A window is automatically removed
  * from its window manager as a side effect of closing the window.
- *
+ * 
  * @see Window
  */
 public class WindowManager extends Observable implements PropertyChangePublisher {
@@ -58,12 +58,12 @@ public class WindowManager extends Observable implements PropertyChangePublisher
      * (element type: <code>WindowManager</code>).
      */
     private List subManagers;
-
+    
     /**
      * Holds the currently active window.
      */
     private ApplicationWindow activeWindow;
-
+    
     private final PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     /**
@@ -75,7 +75,7 @@ public class WindowManager extends Observable implements PropertyChangePublisher
 
     /**
      * Creates an empty window manager with the given window manager as parent.
-     *
+     * 
      * @param parent
      *            the parent window manager
      */
@@ -88,14 +88,14 @@ public class WindowManager extends Observable implements PropertyChangePublisher
      * Adds the given window to the set of windows managed by this window
      * manager. Does nothing is this window is already managed by this window
      * manager.
-     *
+     * 
      * @param window
      *            the window
      */
     public void add(ApplicationWindow window) {
         if (activeWindow == null) // first window will be set as activeWindow
             setActiveWindow(window);
-
+        
         if (!windows.contains(window)) {
             windows.add(window);
             window.setWindowManager(this);
@@ -107,7 +107,7 @@ public class WindowManager extends Observable implements PropertyChangePublisher
     /**
      * Adds the given window manager to the list of window managers that have
      * this one as a parent.
-     *
+     * 
      * @param wm
      *            the child window manager
      */
@@ -124,7 +124,7 @@ public class WindowManager extends Observable implements PropertyChangePublisher
     /**
      * Attempts to close all windows managed by this window manager, as well as
      * windows managed by any descendent window managers.
-     *
+     * 
      * @return <code>true</code> if all windows were sucessfully closed, and
      *         <code>false</code> if any window refused to close
      */
@@ -133,17 +133,13 @@ public class WindowManager extends Observable implements PropertyChangePublisher
         Iterator e = t.iterator();
         while (e.hasNext()) {
             ApplicationWindow window = (ApplicationWindow)e.next();
-            if (!window.close()) {
-                return false;
-            }
+            if (!window.close()) { return false; }
         }
         if (subManagers != null) {
             e = subManagers.iterator();
             while (e.hasNext()) {
                 WindowManager wm = (WindowManager)e.next();
-                if (!wm.close()) {
-                    return false;
-                }
+                if (!wm.close()) { return false; }
             }
         }
         return true;
@@ -151,7 +147,7 @@ public class WindowManager extends Observable implements PropertyChangePublisher
 
     /**
      * Returns this window manager's set of windows.
-     *
+     * 
      * @return a possibly empty list of window
      */
     public ApplicationWindow[] getWindows() {
@@ -171,7 +167,7 @@ public class WindowManager extends Observable implements PropertyChangePublisher
      * Removes the given window from the set of windows managed by this window
      * manager. Does nothing is this window is not managed by this window
      * manager.
-     *
+     * 
      * @param window
      *            the window
      */
@@ -187,39 +183,41 @@ public class WindowManager extends Observable implements PropertyChangePublisher
     /**
      * Set the currently active window. When a window gets focus, it will set itself
      * as the current window of it's manager.
-     *
+     * 
      * @param window
      */
-    public final void setActiveWindow(ApplicationWindow window) {
+    public final void setActiveWindow(ApplicationWindow window)
+    {
         final ApplicationWindow old = this.activeWindow;
         this.activeWindow = window;
         if (getParent() != null) // let things ripple up
             getParent().setActiveWindow(window);
         getChangeSupport().firePropertyChange("activeWindow", old, window);
     }
-
+    
     /**
      * @return the active window.
      */
-    public final ApplicationWindow getActiveWindow() {
+    public final ApplicationWindow getActiveWindow()
+    {
         return this.activeWindow;
     }
-
+    
     /**
      * @return Number of windows managed by this instance.
      */
     public int size() {
         return windows.size();
     }
-
-
+    
+    
     protected PropertyChangeSupport getChangeSupport() {
         return changeSupport;
     }
 
-
-
-
+    
+    
+    
     //
     // METHODS FROM INTERFACE PropertyChangePublisher
     //

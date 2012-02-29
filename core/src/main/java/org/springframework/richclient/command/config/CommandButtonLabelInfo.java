@@ -108,15 +108,16 @@ public final class CommandButtonLabelInfo implements ButtonConfigurer {
 
                 }
 
-            } else if (currentChar == '@') {
+            }
+            else if (currentChar == '@') {
                 //we've found the accelerator indicator
 
                 if (i + 1 == labelDescriptor.length()) {
                     throw new IllegalArgumentException(
-                        "The label descriptor ["
-                        + labelDescriptor
-                        + "] does not specify a valid accelerator after the last "
-                        + "non-espaced @ symbol.");
+                            "The label descriptor ["
+                            + labelDescriptor
+                            + "] does not specify a valid accelerator after the last "
+                            + "non-espaced @ symbol.");
                 }
 
                 String acceleratorStr = labelDescriptor.substring(i + 1);
@@ -124,16 +125,17 @@ public final class CommandButtonLabelInfo implements ButtonConfigurer {
 
                 if (keyStroke == null) {
                     throw new IllegalArgumentException(
-                        "The keystroke accelerator string ["
-                        + acceleratorStr
-                        + "] from the label descriptor ["
-                        + labelDescriptor
-                        + "] is not a valid keystroke format.");
+                            "The keystroke accelerator string ["
+                            + acceleratorStr
+                            + "] from the label descriptor ["
+                            + labelDescriptor
+                            + "] is not a valid keystroke format.");
                 }
 
                 break;
 
-            } else {
+            }
+            else {
                 labelInfoBuffer.append(currentChar);
             }
 
@@ -274,9 +276,9 @@ public final class CommandButtonLabelInfo implements ButtonConfigurer {
      */
     public String toString() {
         return new ToStringCreator(this)
-               .append("labelInfo", this.labelInfo)
-               .append("accelerator", this.accelerator)
-               .toString();
+                .append("labelInfo", this.labelInfo)
+                .append("accelerator", this.accelerator)
+                .toString();
     }
 
 }

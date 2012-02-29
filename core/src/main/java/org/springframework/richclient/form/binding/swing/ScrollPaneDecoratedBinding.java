@@ -26,7 +26,7 @@ import org.springframework.richclient.form.binding.support.DecoratedControlBindi
  * A convenience class that decorates the component produced from a source
  * Binding with a JScrollPane.  Useful for placing JList (and JTextArea)
  * bindings, among others, in a scroll pane when needed.
- *
+ * 
  * @author Andy DePue
  */
 public class ScrollPaneDecoratedBinding extends DecoratedControlBinding {

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2007 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -65,7 +65,8 @@ public abstract class BeanTableModel extends BaseTableModel {
         if (messages != null) {
             this.messages = new MessageSourceAccessor(messages);
             createColumnInfo();
-        } else {
+        }
+        else {
             this.messages = null;
         }
     }
@@ -88,7 +89,7 @@ public abstract class BeanTableModel extends BaseTableModel {
                 columnNames[i] = messages.getMessage(className + "." + columnPropertyName);
             } catch(NoSuchMessageException e) {
                 columnNames[i] = messages.getMessage(columnPropertyName, columnPropertyName);
-            }
+            }            
         }
         return columnNames;
     }
@@ -111,8 +112,8 @@ public abstract class BeanTableModel extends BaseTableModel {
         return beanWrapper.isWritableProperty(getColumnPropertyName(columnIndex));
     }
 
-    protected void setValueAtInternal(Object value, Object bean, int columnIndex) {
+    protected void setValueAtInternal(Object value, Object bean, int columnIndex) {        
         beanWrapper.setWrappedInstance(bean);
-        beanWrapper.setPropertyValue(getColumnPropertyName(columnIndex), value);
+        beanWrapper.setPropertyValue(getColumnPropertyName(columnIndex), value);        
     }
 }

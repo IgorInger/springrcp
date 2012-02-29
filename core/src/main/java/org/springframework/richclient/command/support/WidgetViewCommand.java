@@ -5,7 +5,8 @@ import org.springframework.richclient.application.support.WidgetViewDescriptor;
 /**
  * Widget command that shows a widget in a view
  */
-public class WidgetViewCommand extends AbstractWidgetCommand {
+public class WidgetViewCommand extends AbstractWidgetCommand
+{
 
     protected WidgetViewDescriptor widgetViewDescriptor;
 
@@ -14,7 +15,8 @@ public class WidgetViewCommand extends AbstractWidgetCommand {
     /**
      * Shows the widget in the view
      */
-    protected void doExecuteCommand() {
+    protected void doExecuteCommand()
+    {
         if (this.widgetViewDescriptor == null)
             this.widgetViewDescriptor = createWidgetViewDescriptor();
 
@@ -22,11 +24,13 @@ public class WidgetViewCommand extends AbstractWidgetCommand {
 
     }
 
-    public void setWidgetViewDescriptorId(String widgetViewDescriptorId) {
+    public void setWidgetViewDescriptorId(String widgetViewDescriptorId)
+    {
         this.widgetViewDescriptorId = widgetViewDescriptorId;
     }
 
-    protected WidgetViewDescriptor createWidgetViewDescriptor() {
+    protected WidgetViewDescriptor createWidgetViewDescriptor()
+    {
         if (this.widgetViewDescriptorId != null)
             return (WidgetViewDescriptor)getApplicationContext().getBean(this.widgetViewDescriptorId);
 
@@ -34,7 +38,8 @@ public class WidgetViewCommand extends AbstractWidgetCommand {
     }
 
     @Override
-    public void setAuthorized(boolean authorized) {
+    public void setAuthorized(boolean authorized)
+    {
         super.setAuthorized(authorized);
         if ((this.widgetViewDescriptor != null) && !authorized)
             if (this.widgetViewDescriptor.getId().equals(getApplicationWindow().getPage().getActiveComponent().getId()))

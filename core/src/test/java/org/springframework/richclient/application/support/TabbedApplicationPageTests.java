@@ -19,7 +19,7 @@ import org.springframework.richclient.application.ApplicationPage;
 
 /**
  * Testcase for {@link TabbedApplicationPage}
- *
+ * 
  * @author Peter De Bruycker
  */
 public class TabbedApplicationPageTests extends AbstractApplicationPageTestCase {

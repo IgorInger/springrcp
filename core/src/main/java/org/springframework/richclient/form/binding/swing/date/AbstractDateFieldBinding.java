@@ -22,22 +22,22 @@ import org.springframework.richclient.form.binding.support.CustomBinding;
 
 /**
  * Abstract base class for <code>java.util.Date</code> bindings
- *
+ * 
  * @author Peter De Bruycker
  */
-public abstract class AbstractDateFieldBinding extends CustomBinding {
+public abstract class AbstractDateFieldBinding extends CustomBinding{
 
-    private String dateFormat;
+	private String dateFormat;
 
-    public AbstractDateFieldBinding(FormModel formModel, String formPropertyPath) {
-        super(formModel, formPropertyPath, Date.class);
-    }
+	public AbstractDateFieldBinding(FormModel formModel, String formPropertyPath) {
+		super(formModel, formPropertyPath, Date.class);
+	}
 
-    public String getDateFormat() {
-        return dateFormat;
-    }
+	public String getDateFormat() {
+		return dateFormat;
+	}
 
-    public void setDateFormat(String dateFormat) {
-        this.dateFormat = dateFormat;
-    }
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
+	}
 }

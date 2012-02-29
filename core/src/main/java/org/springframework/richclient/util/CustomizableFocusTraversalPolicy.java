@@ -31,7 +31,7 @@ import javax.swing.LayoutFocusTraversalPolicy;
 /**
  * A LayoutFocusTraversalPolicy that allows for individual containers to have a
  * custom focus order.
- *
+ * 
  * @author oliverh
  */
 public class CustomizableFocusTraversalPolicy extends LayoutFocusTraversalPolicy {
@@ -44,7 +44,7 @@ public class CustomizableFocusTraversalPolicy extends LayoutFocusTraversalPolicy
      */
     public static void installCustomizableFocusTraversalPolicy() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().setDefaultFocusTraversalPolicy(
-            new CustomizableFocusTraversalPolicy());
+                new CustomizableFocusTraversalPolicy());
     }
 
     /**
@@ -52,7 +52,7 @@ public class CustomizableFocusTraversalPolicy extends LayoutFocusTraversalPolicy
      * components for which there is no order specified will receive focus after
      * components that do have an order specified in the standard "layout"
      * order.
-     *
+     * 
      * @param container
      *            the container
      * @param componentsInOrder
@@ -101,9 +101,11 @@ public class CustomizableFocusTraversalPolicy extends LayoutFocusTraversalPolicy
             Map order = getFocusOrder(comp1);
             if (order != null && comp1.getParent() == comp2.getParent()) {
                 return compareSameParent(order, comp1, comp2);
-            } else if (comp1.getParent() != comp2.getParent()) {
+            }
+            else if (comp1.getParent() != comp2.getParent()) {
                 return compareClosestAncestor(comp1, comp2);
-            } else {
+            }
+            else {
                 return layoutComparator.compare(comp1, comp2);
             }
         }
@@ -111,7 +113,7 @@ public class CustomizableFocusTraversalPolicy extends LayoutFocusTraversalPolicy
         private Map getFocusOrder(Component comp) {
             Component parent = comp.getParent();
             return (Map)((parent instanceof JComponent) ? ((JComponent)parent)
-                         .getClientProperty(FOCUS_ORDER_PROPERTY_NAME) : null);
+                    .getClientProperty(FOCUS_ORDER_PROPERTY_NAME) : null);
         }
 
         private int compareSameParent(Map order, Component comp1, Component comp2) {
@@ -119,11 +121,14 @@ public class CustomizableFocusTraversalPolicy extends LayoutFocusTraversalPolicy
             Integer index2 = (Integer)order.get(comp2);
             if (index1 != null && index2 != null) {
                 return index1.intValue() - index2.intValue();
-            } else if (index1 != null) {
+            }
+            else if (index1 != null) {
                 return -1;
-            } else if (index2 != null) {
+            }
+            else if (index2 != null) {
                 return 1;
-            } else {
+            }
+            else {
                 return layoutComparator.compare(comp1, comp2);
             }
         }
@@ -136,12 +141,14 @@ public class CustomizableFocusTraversalPolicy extends LayoutFocusTraversalPolicy
             while (true) {
                 if (index1 > 0) {
                     comp1 = (Component)comp1Ancestors.get(--index1);
-                } else {
+                }
+                else {
                     return -1;
                 }
                 if (index2 > 0) {
                     comp2 = (Component)comp2Ancestors.get(--index2);
-                } else {
+                }
+                else {
                     return 1;
                 }
                 if (comp1 != comp2) {

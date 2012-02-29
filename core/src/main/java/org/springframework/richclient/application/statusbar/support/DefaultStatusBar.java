@@ -137,7 +137,8 @@ public class DefaultStatusBar extends AbstractControlFactory implements StatusBa
 
             this.errorMessage = null;
             setMessage(message);
-        } else {
+        }
+        else {
             logger.debug("Setting the status bar messsage color to red");
             messageLabel.setForeground(Color.RED);
 
@@ -158,7 +159,7 @@ public class DefaultStatusBar extends AbstractControlFactory implements StatusBa
         JLabel messageLabel = new JLabel(" ");
         messageLabel.setName("message");
         Border bevelBorder = BorderFactory.createBevelBorder(BevelBorder.LOWERED, UIManager
-                             .getColor("controlHighlight"), UIManager.getColor("controlShadow"));
+                .getColor("controlHighlight"), UIManager.getColor("controlShadow"));
         Border emptyBorder = BorderFactory.createEmptyBorder(1, 3, 1, 3);
         messageLabel.setBorder(BorderFactory.createCompoundBorder(bevelBorder, emptyBorder));
 

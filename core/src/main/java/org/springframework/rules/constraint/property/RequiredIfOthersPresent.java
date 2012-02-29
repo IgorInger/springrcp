@@ -28,7 +28,7 @@ public class RequiredIfOthersPresent extends RequiredIfTrue {
     /**
      * Tests that the property is required if all "other properties" are present. Present
      * means they are "non null."
-     *
+     * 
      * @param otherPropertyNames to test
      */
     public RequiredIfOthersPresent( String propertyName, String[] otherPropertyNames ) {
@@ -41,7 +41,7 @@ public class RequiredIfOthersPresent extends RequiredIfTrue {
      * property names is handled. If AND, then all must be present before the primary
      * proeprty will be required. If OR, then if any of the other properties are present,
      * then the primary property will be required. the logical operator, either AND or OR.
-     *
+     * 
      * @param otherPropertyNames to test
      * @param operator Either AND or OR.
      */
@@ -62,7 +62,7 @@ public class RequiredIfOthersPresent extends RequiredIfTrue {
     /**
      * Tests that the property is required if all "other properties" are present. Present
      * means they are "non null."
-     *
+     * 
      * @param otherPropertyNames one or more other properties, delimited by commas.
      */
     public RequiredIfOthersPresent( String propertyName, String otherPropertyNames ) {
@@ -72,7 +72,7 @@ public class RequiredIfOthersPresent extends RequiredIfTrue {
     /**
      * Tests that the property is required if all or any of the "other properties" are
      * present.
-     *
+     * 
      * @param otherPropertyNames one or more other properties, delimited by commas.
      * @param operator the logical operator, either AND or OR.
      */
@@ -82,7 +82,7 @@ public class RequiredIfOthersPresent extends RequiredIfTrue {
 
     public boolean isDependentOn( String propertyName ) {
         return getPropertyName().equals(propertyName)
-               || ((CompoundPropertyConstraint) getConstraint()).isDependentOn(propertyName);
+                || ((CompoundPropertyConstraint) getConstraint()).isDependentOn(propertyName);
     }
 
     public boolean isCompoundRule() {

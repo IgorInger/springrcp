@@ -24,7 +24,7 @@ package org.springframework.rules.reporting;
  */
 public interface BeanPropertyNameRenderer {
 
-    public String renderQualifiedName(String qualifiedName);
+	public String renderQualifiedName(String qualifiedName);
 
-    public String renderShortName(String shortName);
+	public String renderShortName(String shortName);
 }

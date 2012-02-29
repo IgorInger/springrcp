@@ -22,7 +22,7 @@ import org.springframework.richclient.test.SpringRichTestCase;
 
 /**
  * @author Mathias Broekelmann
- *
+ * 
  */
 public class ProtectedFieldTests extends SpringRichTestCase {
 

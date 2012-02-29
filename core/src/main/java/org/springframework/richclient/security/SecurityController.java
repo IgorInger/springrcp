@@ -28,9 +28,9 @@ import org.springframework.security.AccessDecisionManager;
  * <p>
  * The access decision manager is responsible for making the decision to authorize the
  * controlled objects.
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public interface SecurityController extends AuthenticationAware {
 

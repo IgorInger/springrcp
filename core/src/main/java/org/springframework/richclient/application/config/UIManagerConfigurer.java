@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,7 +27,7 @@ import java.util.Properties;
 
 /**
  * Configuerer for specifying global UIManager defaults.
- *
+ * 
  * @author Keith Donald
  */
 public class UIManagerConfigurer {
@@ -46,7 +46,8 @@ public class UIManagerConfigurer {
         }
         try {
             doInstallCustomDefaults();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new ApplicationException("Unable to install subclass custom defaults", e);
         }
     }
@@ -54,7 +55,7 @@ public class UIManagerConfigurer {
     /**
      * Template method subclasses may override to install custom look and feels
      * or UIManager defaults.
-     *
+     * 
      * @throws Exception
      */
     protected void doInstallCustomDefaults() throws Exception {
@@ -74,7 +75,8 @@ public class UIManagerConfigurer {
             UIManager.put("Tree.closedIcon", null);
             UIManager.put("Tree.openIcon", null);
             UIManager.put("Tree.rightChildIndent", new Integer(10));
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new ApplicationException("Unable to set defaults", e);
         }
     }
@@ -95,10 +97,12 @@ public class UIManagerConfigurer {
             String className;
             if (feels.length == 1) {
                 className = feels[0];
-            } else if (feels.length > 1) {
+            }
+            else if (feels.length > 1) {
                 name = feels[0];
                 className = feels[1];
-            } else {
+            }
+            else {
                 throw new RuntimeException("Should not happen");
             }
             UIManager.installLookAndFeel(name, className);
@@ -112,7 +116,8 @@ public class UIManagerConfigurer {
     public void setLookAndFeel(String className) {
         try {
             UIManager.setLookAndFeel(className);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new ApplicationException("Unable to set look and feel", e);
         }
     }
@@ -121,18 +126,23 @@ public class UIManagerConfigurer {
         try {
             if (lookAndFeelName.equalsIgnoreCase(SYSTEM_LOOK_AND_FEEL_NAME)) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            } else if (lookAndFeelName.equalsIgnoreCase(CROSS_PLATFORM_LOOK_AND_FEEL_NAME)) {
+            }
+            else if (lookAndFeelName.equalsIgnoreCase(CROSS_PLATFORM_LOOK_AND_FEEL_NAME)) {
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            } else {
+            }
+            else {
                 LookAndFeelInfo[] feels = UIManager.getInstalledLookAndFeels();
-                for (LookAndFeelInfo feel : feels) {
-                    if (feel.getName().equalsIgnoreCase(lookAndFeelName)) {
+                for (LookAndFeelInfo feel : feels)
+                {
+                    if (feel.getName().equalsIgnoreCase(lookAndFeelName))
+                    {
                         UIManager.setLookAndFeel(feel.getClassName());
                         break;
                     }
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new ApplicationException("Unable to set look and feel", e);
         }
     }

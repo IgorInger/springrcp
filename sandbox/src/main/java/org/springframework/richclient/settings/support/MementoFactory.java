@@ -4,5 +4,5 @@ import javax.swing.JComponent;
 
 
 public interface MementoFactory {
-    Memento createMemento(JComponent component, String key);
+	Memento createMemento(JComponent component, String key);
 }

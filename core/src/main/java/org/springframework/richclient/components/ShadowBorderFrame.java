@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -29,7 +29,7 @@ import javax.swing.JFrame;
 
 /**
  * Idea originally from http://jroller.com/page/gfx?entry=better_shadow
- *
+ * 
  * @author Romain Guy
  * @author Peter De Bruycker
  */
@@ -59,7 +59,8 @@ public class ShadowBorderFrame extends JFrame {
                 robot.createScreenCapture(
                     new Rectangle(getX(), getY(), getWidth() + SHADOW_WIDTH, getHeight() + SHADOW_WIDTH));
             g2.drawImage(capture, null, 0, 0);
-        } catch (AWTException e) {
+        }
+        catch (AWTException e) {
             e.printStackTrace();
         }
 
@@ -71,7 +72,7 @@ public class ShadowBorderFrame extends JFrame {
 
         g2.drawImage(shadow, getBlurOp(7), 0, 0);
     }
-
+    
 
     private ConvolveOp getBlurOp(int size) {
         float[] data = new float[size * size];

@@ -40,10 +40,10 @@ public class ApplicationException extends RuntimeException {
     }
 
     /**
-     * Creates a new {@code ApplicationException} with the specified message.
-     *
-     * @param message The detail message.
-     */
+	 * Creates a new {@code ApplicationException} with the specified message.
+	 *
+	 * @param message The detail message.
+	 */
     public ApplicationException(String message) {
         super(message);
     }

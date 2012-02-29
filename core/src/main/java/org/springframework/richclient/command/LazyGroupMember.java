@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,7 +26,7 @@ import org.springframework.richclient.util.Assert;
  *
  */
 public class LazyGroupMember extends GroupMember {
-
+    
     private final CommandGroup parentGroup;
 
     private final String lazyCommandId;
@@ -34,29 +34,29 @@ public class LazyGroupMember extends GroupMember {
     private boolean addedLazily;
 
     private GroupMember loadedMember;
-
+    
     /**
      * Creates a new {@code LazyGroupMember} belonging to the given command group and managing
      * a lazily initialized command with the given id.
      *
      * @param parentGroup The command group that this member belongs to.
      * @param lazyCommandId The id of the command that this group member represents.
-     *
+     * 
      * @throws IllegalArgumentException if either argument is null.
      */
     public LazyGroupMember(CommandGroup parentGroup, String lazyCommandId) {
-
+        
         Assert.required(parentGroup, "parentGroup");
         Assert.required(lazyCommandId, "lazyCommandId");
-
+        
         if (logger.isDebugEnabled()) {
-            logger.debug("Lazy group member '"
-                         + lazyCommandId
-                         + "' instantiated for group '"
+            logger.debug("Lazy group member '" 
+                         + lazyCommandId 
+                         + "' instantiated for group '" 
                          + parentGroup.getId()
                          + "'");
         }
-
+        
         this.parentGroup = parentGroup;
         this.lazyCommandId = lazyCommandId;
     }
@@ -71,17 +71,17 @@ public class LazyGroupMember extends GroupMember {
         }
     }
 
-    protected void fill(GroupContainerPopulator parentContainerPopulator,
+    protected void fill(GroupContainerPopulator parentContainerPopulator, 
                         Object controlFactory,
-                        CommandButtonConfigurer buttonConfigurer,
+                        CommandButtonConfigurer buttonConfigurer, 
                         List previousButtons) {
-
+        
         loadIfNecessary();
-
+        
         if (loadedMember != null) {
             loadedMember.fill(parentContainerPopulator, controlFactory, buttonConfigurer, previousButtons);
         }
-
+        
     }
 
     /**
@@ -89,36 +89,38 @@ public class LazyGroupMember extends GroupMember {
      * only if it hasn't already been loaded.
      */
     private void loadIfNecessary() {
-
+        
         if (loadedMember != null) {
             return;
         }
-
+        
         CommandRegistry commandRegistry = parentGroup.getCommandRegistry();
 
         Assert.isTrue(parentGroup.getCommandRegistry() != null, "Command registry must be set for group '"
-                      + parentGroup.getId() + "' in order to load lazy command '" + lazyCommandId + "'.");
+                + parentGroup.getId() + "' in order to load lazy command '" + lazyCommandId + "'.");
 
         if (commandRegistry.containsCommandGroup(lazyCommandId)) {
             CommandGroup group = commandRegistry.getCommandGroup(lazyCommandId);
             loadedMember = new SimpleGroupMember(parentGroup, group);
-        } else if (commandRegistry.containsActionCommand(lazyCommandId)) {
+        }
+        else if (commandRegistry.containsActionCommand(lazyCommandId)) {
             ActionCommand command = commandRegistry.getActionCommand(lazyCommandId);
             loadedMember = new SimpleGroupMember(parentGroup, command);
-        } else {
-
+        }
+        else {
+            
             if (logger.isWarnEnabled()) {
-                logger.warn("Lazy command '"
+                logger.warn("Lazy command '" 
                             + lazyCommandId
                             + "' was asked to display; however, no backing command instance exists in registry.");
             }
-
+            
         }
 
         if (addedLazily && loadedMember != null) {
             loadedMember.onAdded();
         }
-
+        
     }
 
     /**
@@ -135,7 +137,8 @@ public class LazyGroupMember extends GroupMember {
     protected void onAdded() {
         if (loadedMember != null) {
             loadedMember.onAdded();
-        } else {
+        }
+        else {
             addedLazily = true;
         }
     }
@@ -146,7 +149,8 @@ public class LazyGroupMember extends GroupMember {
     protected void onRemoved() {
         if (loadedMember != null) {
             loadedMember.onRemoved();
-        } else {
+        }
+        else {
             addedLazily = false;
         }
     }

@@ -23,7 +23,7 @@ import org.springframework.util.ObjectUtils;
 
 /**
  * @author Mathias Broekelmann
- *
+ * 
  */
 public class DefaultMessageCodeStrategyTests extends TestCase {
 
@@ -50,29 +50,27 @@ public class DefaultMessageCodeStrategyTests extends TestCase {
     public final void testGetMessageCodesNullContextNullSuffixes() {
         assertEquals(new String[] { "simpleField" }, strategy.getMessageCodes(null, "simpleField", null));
         assertEquals(new String[] { "fieldbase.simpleField", "simpleField" }, strategy.getMessageCodes(null,
-                     "fieldbase.simpleField", null));
+                "fieldbase.simpleField", null));
     }
 
     public final void testGetMessageCodesWithContext() {
         assertEquals(new String[] { "context.fieldbase.simpleField", "context.simpleField", "fieldbase.simpleField",
-                                    "simpleField"
-                                  }, strategy.getMessageCodes("context", "fieldbase.simpleField", null));
+                "simpleField" }, strategy.getMessageCodes("context", "fieldbase.simpleField", null));
     }
 
     public final void testGetMessageCodesWithSuffix() {
         assertEquals(new String[] { "simpleField.suffix" }, strategy.getMessageCodes(null, "simpleField",
-                     new String[] { "suffix" }));
+                new String[] { "suffix" }));
         assertEquals(new String[] { "simpleField.suffix1", "simpleField" }, strategy.getMessageCodes(null,
-                     "simpleField", new String[] { "suffix1", "" }));
+                "simpleField", new String[] { "suffix1", "" }));
         assertEquals(new String[] { "simpleField.suffix1", "simpleField.suffix2" }, strategy.getMessageCodes(null,
-                     "simpleField", new String[] { "suffix1", "suffix2" }));
+                "simpleField", new String[] { "suffix1", "suffix2" }));
     }
 
     public final void testGetMessageCodesWithContextAndSuffix() {
         assertEquals(new String[] { "context.fieldbase.simpleField.suffix", "context.simpleField.suffix",
-                                    "fieldbase.simpleField.suffix", "simpleField.suffix"
-                                  }, strategy.getMessageCodes("context",
-                                          "fieldbase.simpleField", new String[] { "suffix" }));
+                "fieldbase.simpleField.suffix", "simpleField.suffix" }, strategy.getMessageCodes("context",
+                "fieldbase.simpleField", new String[] { "suffix" }));
     }
 
     protected void assertEquals(Object[] expected, Object[] actual) {

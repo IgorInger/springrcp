@@ -12,9 +12,9 @@ import org.springframework.richclient.exceptionhandling.MessagesDialogExceptionH
  */
 public class MessagesDialogExceptionHandlerCommand extends ActionCommand {
 
-    @Override
-    protected void doExecuteCommand() {
-        throw new MessagesDialogException();
-    }
+	@Override
+	protected void doExecuteCommand() {
+		throw new MessagesDialogException();
+	}
 
 }

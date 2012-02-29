@@ -22,7 +22,7 @@ import junit.framework.TestCase;
 
 /**
  * Tests class {@link CommitTrigger}.
- *
+ * 
  * @author Oliver Hutchison
  */
 public class CommitTriggerTests extends TestCase {
@@ -45,13 +45,13 @@ public class CommitTriggerTests extends TestCase {
         ct.revert();
         assertEquals(2, l.commits);
         assertEquals(1, l.reverts);
-
+        
         ct.removeCommitTriggerListener(l);
-
+        
         ct.commit();
         assertEquals(2, l.commits);
         ct.revert();
-        assertEquals(1, l.reverts);
+        assertEquals(1, l.reverts);        
     }
 
     private class TestCommitTriggerListener implements CommitTriggerListener {

@@ -24,9 +24,9 @@ import java.util.Map;
  */
 public interface BeanValidationResults {
 
-    public Map getResults();
+	public Map getResults();
 
-    public int getViolatedCount();
+	public int getViolatedCount();
 
-    public PropertyResults getResults(String propertyName);
+	public PropertyResults getResults(String propertyName);
 }

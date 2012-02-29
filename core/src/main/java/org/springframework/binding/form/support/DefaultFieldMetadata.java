@@ -123,17 +123,17 @@ public class DefaultFieldMetadata extends AbstractPropertyChangePublisher implem
         return userMetadata;
     }
 
-    /**
-       * Sets custom metadata to be associated with this property.  A property
-       * change event will be fired (from this FieldMetadata, not from the
-       * associated form property) if <code>value</code> differs from the
-       * current value of the specified <code>key</code>.  The property change
-       * event will use the value of <code>key</code> as the property name in
-       * the property change event.
-       *
-       * @param key
-       * @param value
-       */
+  /**
+     * Sets custom metadata to be associated with this property.  A property
+     * change event will be fired (from this FieldMetadata, not from the
+     * associated form property) if <code>value</code> differs from the
+     * current value of the specified <code>key</code>.  The property change
+     * event will use the value of <code>key</code> as the property name in
+     * the property change event.
+     *
+     * @param key
+     * @param value
+     */
     public void setUserMetadata(final String key, final Object value) {
         final Object old = userMetadata.put(key, value);
         firePropertyChange(key, old, value);
@@ -154,7 +154,7 @@ public class DefaultFieldMetadata extends AbstractPropertyChangePublisher implem
         // if any PropertyChangeListeners should modify user metadata during
         // clear operation.
         final Object[] keys = userMetadata.keySet().toArray();
-        for(int i = keys.length - 1; i >= 0; i--) {
+        for(int i = keys.length - 1;i >= 0;i--) {
             final Object old = userMetadata.remove(keys[i]);
             if(old != null) {
                 firePropertyChange((String)keys[i], old, null);
@@ -162,11 +162,11 @@ public class DefaultFieldMetadata extends AbstractPropertyChangePublisher implem
         }
     }
 
-    /**
-       * Propagates dirty changes from the value model on to
-       * the dirty change listeners attached to this class.
-       */
-    private class DirtyChangeHandler extends CommitListenerAdapter implements PropertyChangeListener {
+  /**
+     * Propagates dirty changes from the value model on to
+     * the dirty change listeners attached to this class.
+     */
+  private class DirtyChangeHandler extends CommitListenerAdapter implements PropertyChangeListener {
 
         public void propertyChange(PropertyChangeEvent evt) {
             firePropertyChange(DIRTY_PROPERTY, evt.getOldValue(), evt.getNewValue());
@@ -182,7 +182,8 @@ public class DefaultFieldMetadata extends AbstractPropertyChangePublisher implem
             if (FormModel.ENABLED_PROPERTY.equals(evt.getPropertyName())) {
                 firePropertyChange(ENABLED_PROPERTY, Boolean.valueOf(oldEnabled), Boolean.valueOf(isEnabled()));
                 oldEnabled = isEnabled();
-            } else if (FormModel.READONLY_PROPERTY.equals(evt.getPropertyName())) {
+            }
+            else if (FormModel.READONLY_PROPERTY.equals(evt.getPropertyName())) {
                 firePropertyChange(READ_ONLY_PROPERTY, Boolean.valueOf(oldReadOnly), Boolean.valueOf(isReadOnly()));
                 oldReadOnly = isReadOnly();
             }

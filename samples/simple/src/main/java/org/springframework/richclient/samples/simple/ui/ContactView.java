@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -59,7 +59,8 @@ import java.util.Arrays;
  *
  * @author Larry Streepy
  */
-public class ContactView extends AbstractView implements ApplicationListener {
+public class ContactView extends AbstractView implements ApplicationListener
+{
 
     /**
      * The object table holding our contacts.
@@ -95,20 +96,23 @@ public class ContactView extends AbstractView implements ApplicationListener {
     /**
      * Default constructor.
      */
-    public ContactView() {
+    public ContactView()
+    {
     }
 
     /**
      * @return the contactDataStore
      */
-    protected ContactDataStore getContactDataStore() {
+    protected ContactDataStore getContactDataStore()
+    {
         return contactDataStore;
     }
 
     /**
      * @param contactDataStore the contactDataStore to set
      */
-    public void setContactDataStore(ContactDataStore contactDataStore) {
+    public void setContactDataStore(ContactDataStore contactDataStore)
+    {
         this.contactDataStore = contactDataStore;
     }
 
@@ -118,7 +122,8 @@ public class ContactView extends AbstractView implements ApplicationListener {
      *
      * @return component holding this view
      */
-    protected JComponent createControl() {
+    protected JComponent createControl()
+    {
         PropertyColumnTableDescription desc = new PropertyColumnTableDescription("contactViewTable", Contact.class);
         desc.addPropertyColumn("lastName").withMinWidth(150);
         desc.addPropertyColumn("firstName").withMinWidth(150);
@@ -138,13 +143,17 @@ public class ContactView extends AbstractView implements ApplicationListener {
         popup.add((ActionCommand) getWindowCommandManager().getCommand("propertiesCommand", ActionCommand.class));
         JPopupMenu popupMenu = popup.createPopupMenu();
 
-        widget.getTable().addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e) {
+        widget.getTable().addMouseListener(new MouseAdapter()
+        {
+            public void mousePressed(MouseEvent e)
+            {
                 // If the user right clicks on a row other than the selection,
                 // then move the selection to the current row
-                if (e.getButton() == MouseEvent.BUTTON3) {
+                if (e.getButton() == MouseEvent.BUTTON3)
+                {
                     int rowUnderMouse = widget.getTable().rowAtPoint(e.getPoint());
-                    if (rowUnderMouse != -1 && !widget.getTable().isRowSelected(rowUnderMouse)) {
+                    if (rowUnderMouse != -1 && !widget.getTable().isRowSelected(rowUnderMouse))
+                    {
                         // Select the row under the mouse
                         widget.getTable().getSelectionModel().setSelectionInterval(rowUnderMouse, rowUnderMouse);
                     }
@@ -152,8 +161,10 @@ public class ContactView extends AbstractView implements ApplicationListener {
             }
 
             @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() >= 2) {
+            public void mouseClicked(MouseEvent e)
+            {
+                if (e.getClickCount() >= 2)
+                {
                     if (propertiesExecutor.isEnabled())
                         propertiesExecutor.execute();
                 }
@@ -197,7 +208,8 @@ public class ContactView extends AbstractView implements ApplicationListener {
      * Register the local command executors to be associated with named commands. This is called by the platform prior
      * to making the view visible.
      */
-    protected void registerLocalCommandExecutors(PageComponentContext context) {
+    protected void registerLocalCommandExecutors(PageComponentContext context)
+    {
         context.register("newContactCommand", newContactExecutor);
         context.register(GlobalCommandIds.PROPERTIES, propertiesExecutor);
         context.register(GlobalCommandIds.DELETE, deleteExecutor);
@@ -208,8 +220,10 @@ public class ContactView extends AbstractView implements ApplicationListener {
      * within this view. Prior to calling this method the setContactTable(ContactTable) will have already been
      * called as part of the context bean creation.
      */
-    private class ContactTableFactory {
-        public ContactTable createContactTable() {
+    private class ContactTableFactory
+    {
+        public ContactTable createContactTable()
+        {
             ContactTable contactTable = new ContactTable(contactDataStore);
 
             // Get the table instance from our factory
@@ -223,7 +237,7 @@ public class ContactView extends AbstractView implements ApplicationListener {
             // in the lastName and address.address1 properties of the contacts in the table.
             // The GlazedLists filtered lists is used to accomplish this.
             EventList baseList = contactTable.getBaseEventList();
-            TextFilterator filterator = GlazedLists.textFilterator(new String[] {"lastName", "address.address1"});
+            TextFilterator filterator = GlazedLists.textFilterator(new String[]{"lastName", "address.address1"});
             FilterList filterList = new FilterList(baseList, new TextComponentMatcherEditor(filterField, filterator));
 
             // Install the fully constructed (layered) list into the table
@@ -256,8 +270,10 @@ public class ContactView extends AbstractView implements ApplicationListener {
     /**
      * Private inner class to create a new contact.
      */
-    private class NewContactExecutor implements ActionCommandExecutor {
-        public void execute() {
+    private class NewContactExecutor implements ActionCommandExecutor
+    {
+        public void execute()
+        {
             new ContactPropertiesDialog(getContactDataStore()).showDialog();
         }
     }
@@ -265,8 +281,10 @@ public class ContactView extends AbstractView implements ApplicationListener {
     /**
      * Private inner class to handle the properties form display.
      */
-    private class PropertiesExecutor extends AbstractActionCommandExecutor {
-        public void execute() {
+    private class PropertiesExecutor extends AbstractActionCommandExecutor
+    {
+        public void execute()
+        {
             for (Object selected : widget.getSelectedRows())
                 new ContactPropertiesDialog((Contact) selected, getContactDataStore()).showDialog();
         }
@@ -277,19 +295,24 @@ public class ContactView extends AbstractView implements ApplicationListener {
      * enabled when exactly one contact is selected in the table. Thus, we don't have to protect against being executed
      * with an incorrect state.
      */
-    private class DeleteExecutor extends AbstractActionCommandExecutor {
-        public void execute() {
+    private class DeleteExecutor extends AbstractActionCommandExecutor
+    {
+        public void execute()
+        {
             String title = getMessage("contact.confirmDelete.title");
             String message = getMessage("contact.confirmDelete.message");
-            ConfirmationDialog dlg = new ConfirmationDialog(title, message) {
-                protected void onConfirm() {
-                    for (Object selected : widget.getSelectedRows()) {
+            ConfirmationDialog dlg = new ConfirmationDialog(title, message)
+            {
+                protected void onConfirm()
+                {
+                    for (Object selected : widget.getSelectedRows())
+                    {
                         Contact contact = (Contact) selected;
                         // Delete the object from the persistent store.
                         getContactDataStore().delete(contact);
                         // And notify the rest of the application of the change
                         getApplicationContext().publishEvent(
-                            new LifecycleApplicationEvent(LifecycleApplicationEvent.DELETED, contact));
+                                new LifecycleApplicationEvent(LifecycleApplicationEvent.DELETED, contact));
                     }
                 }
             };
@@ -303,7 +326,8 @@ public class ContactView extends AbstractView implements ApplicationListener {
      *
      * @param e event to process
      */
-    public void onApplicationEvent(ApplicationEvent e) {
+    public void onApplicationEvent(ApplicationEvent e)
+    {
         contactTable.onApplicationEvent(e);
     }
 }

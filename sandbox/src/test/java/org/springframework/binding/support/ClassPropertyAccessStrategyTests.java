@@ -25,38 +25,38 @@ import org.springframework.binding.PropertyMetadataAccessStrategy;
  */
 public class ClassPropertyAccessStrategyTests extends AbstractPropertyAccessStrategyTests {
 
-    protected AbstractPropertyAccessStrategy createPropertyAccessStrategy(Object target) {
-        return new ClassPropertyAccessStrategy(target.getClass());
-    }
+	protected AbstractPropertyAccessStrategy createPropertyAccessStrategy(Object target) {
+		return new ClassPropertyAccessStrategy(target.getClass());
+	}
 
-    protected boolean isStrictNullHandlingEnabled() {
-        return false;
-    }
+	protected boolean isStrictNullHandlingEnabled() {
+		return false;
+	}
 
-    protected void doSetUp() throws Exception {
-        super.doSetUp();
-        pas.getDomainObjectHolder().setValue(testBean);
-    }
+	protected void doSetUp() throws Exception {
+		super.doSetUp();
+		pas.getDomainObjectHolder().setValue(testBean);
+	}
 
-    /**
-     * Test the metadata on type/readability/writeability.
-     */
-    public void testMetaData() {
-        PropertyMetadataAccessStrategy mas = pas.getMetadataAccessStrategy();
+	/**
+	 * Test the metadata on type/readability/writeability.
+	 */
+	public void testMetaData() {
+		PropertyMetadataAccessStrategy mas = pas.getMetadataAccessStrategy();
 
-        assertPropertyMetadata(mas, "simpleProperty", String.class, true, true);
-        assertPropertyMetadata(mas, "mapProperty", Map.class, true, true);
-        assertPropertyMetadata(mas, "listProperty", List.class, true, true);
-        assertPropertyMetadata(mas, "readOnly", Object.class, true, false);
-        assertPropertyMetadata(mas, "writeOnly", Object.class, false, true);
+		assertPropertyMetadata(mas, "simpleProperty", String.class, true, true);
+		assertPropertyMetadata(mas, "mapProperty", Map.class, true, true);
+		assertPropertyMetadata(mas, "listProperty", List.class, true, true);
+		assertPropertyMetadata(mas, "readOnly", Object.class, true, false);
+		assertPropertyMetadata(mas, "writeOnly", Object.class, false, true);
 
-        // type/readable/writeable depend not on the property being not null
-        assertPropertyMetadata(mas, "nestedProperty.simpleProperty", String.class, true, true);
+		// type/readable/writeable depend not on the property being not null
+		assertPropertyMetadata(mas, "nestedProperty.simpleProperty", String.class, true, true);
 
-    }
+	}
 
-    public void testBeanThatImplementsPropertyChangePublisher() {
-        pas = new ClassPropertyAccessStrategy(TestBeanWithPCP.class);
-        super.testBeanThatImplementsPropertyChangePublisher();
-    }
+	public void testBeanThatImplementsPropertyChangePublisher() {
+		pas = new ClassPropertyAccessStrategy(TestBeanWithPCP.class);
+		super.testBeanThatImplementsPropertyChangePublisher();
+	}
 }

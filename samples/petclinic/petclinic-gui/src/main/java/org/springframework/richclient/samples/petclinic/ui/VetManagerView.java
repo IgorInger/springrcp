@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -104,16 +104,18 @@ public class VetManagerView extends AbstractView {
 
     private DefaultTreeCellRenderer treeCellRenderer = new FocusableTreeCellRenderer() {
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
-        boolean leaf, int row, boolean hasFocus) {
+                boolean leaf, int row, boolean hasFocus) {
             super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
             DefaultMutableTreeNode node = (DefaultMutableTreeNode)value;
             if (node.isRoot()) {
                 this.setIcon(getIconSource().getIcon("folder.icon"));
-            } else if (node.getUserObject() instanceof Vet) {
+            }
+            else if (node.getUserObject() instanceof Vet) {
                 Vet o = (Vet)node.getUserObject();
                 this.setText(o.getFirstName() + " " + o.getLastName());
                 this.setIcon(getIconSource().getIcon("owner.bullet"));
-            } else {
+            }
+            else {
                 Specialty o = (Specialty)node.getUserObject();
                 this.setText(o.getName());
                 this.setIcon(getIconSource().getIcon("specialty.bullet"));

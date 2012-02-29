@@ -14,10 +14,10 @@ import org.springframework.binding.format.Formatter;
  * @author Jan Hoskens
  */
 public class StrictNumberFormatterFactory extends SimpleFormatterFactory {
-    public Formatter getNumberFormatter(Class numberClass) {
-        Locale locale = getLocale();
-        NumberFormat instance = NumberFormat.getInstance(locale);
-        NumberFormat wrappedInstance = new StrictNumberFormat(instance);
-        return new NumberFormatter(wrappedInstance);
-    }
+	public Formatter getNumberFormatter(Class numberClass) {
+		Locale locale = getLocale();
+		NumberFormat instance = NumberFormat.getInstance(locale);
+		NumberFormat wrappedInstance = new StrictNumberFormat(instance);
+		return new NumberFormatter(wrappedInstance);
+	}
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -34,7 +34,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * A default rules source implementation which is simply a in-memory registry for bean validation rules backed by a map.
- *
+ * 
  * @author Keith Donald
  */
 public class DefaultRulesSource extends ConstraintsAccessor implements RulesSource {
@@ -50,7 +50,7 @@ public class DefaultRulesSource extends ConstraintsAccessor implements RulesSour
 
     /**
      * Add or update the rules for a single bean class.
-     *
+     * 
      * @param rules
      *            The rules.
      */
@@ -75,7 +75,7 @@ public class DefaultRulesSource extends ConstraintsAccessor implements RulesSour
     /**
      * Set the list of rules retrievable by this source, where each item in the list is a <code>Rules</code> object
      * which maintains validation rules for a bean class.
-     *
+     * 
      * @param rules
      *            The list of rules.
      */
@@ -109,7 +109,7 @@ public class DefaultRulesSource extends ConstraintsAccessor implements RulesSour
     public PropertyConstraint getPropertyConstraint(Class bean, String propertyName, String contextId) {
         if (logger.isDebugEnabled()) {
             logger.debug("Retrieving rules for bean '" + bean + "', context = " + contextId + ", property '"
-                         + propertyName + "'");
+                    + propertyName + "'");
         }
         Rules rules = getRules(bean, contextId);
         if (rules != null)

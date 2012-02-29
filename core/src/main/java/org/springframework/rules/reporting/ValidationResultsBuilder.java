@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -28,7 +28,7 @@ import org.springframework.rules.constraint.*;
  */
 public abstract class ValidationResultsBuilder {
     protected static final Log logger = LogFactory
-                                        .getLog(ValidationResultsBuilder.class);
+            .getLog(ValidationResultsBuilder.class);
     private Constraint top;
     private Stack levels = new Stack();
 
@@ -57,7 +57,7 @@ public abstract class ValidationResultsBuilder {
             } else {
                 if (logger.isDebugEnabled()) {
                     logger.debug("Aggregating nested predicate [" + predicate
-                                 + "]");
+                            + "]");
                 }
                 ((CompoundConstraint)this.top).add(predicate);
             }
@@ -91,7 +91,7 @@ public abstract class ValidationResultsBuilder {
         Constraint p = (Constraint)levels.pop();
         if (logger.isDebugEnabled()) {
             logger.debug("Top [" + p + "] popped; result was " + result
-                         + "; stack now has " + levels.size() + " elements");
+                    + "; stack now has " + levels.size() + " elements");
         }
         if (levels.isEmpty()) {
             if (!result) {
@@ -105,7 +105,7 @@ public abstract class ValidationResultsBuilder {
             if (result) {
                 if (logger.isDebugEnabled()) {
                     logger.debug("Removing compound predicate [" + p
-                                 + "]; tested true.");
+                            + "]; tested true.");
                 }
                 ((CompoundConstraint)this.top).remove(p);
             }
@@ -123,7 +123,7 @@ public abstract class ValidationResultsBuilder {
         }
         return peek() instanceof Not;
     }
-
+    
     private Constraint peek() {
         return (Constraint)levels.peek();
     }
@@ -133,7 +133,7 @@ public abstract class ValidationResultsBuilder {
 
     public String toString() {
         return new ToStringCreator(this).append("topOfStack", top).append(
-                   "levelsStack", levels).toString();
+                "levelsStack", levels).toString();
     }
 
 }

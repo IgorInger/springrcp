@@ -23,7 +23,7 @@ public interface PageListener {
 
     /**
      * Notifies this listener that the given page has been opened.
-     *
+     * 
      * @param page
      *            the page that was opened
      */
@@ -31,7 +31,7 @@ public interface PageListener {
 
     /**
      * Notifies this listener that the given page has been closed.
-     *
+     * 
      * @param page
      *            the page that was closed
      */

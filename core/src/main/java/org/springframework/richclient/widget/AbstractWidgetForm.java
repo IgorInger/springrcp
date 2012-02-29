@@ -13,7 +13,8 @@ import java.util.Collections;
 /**
  * Provides an easy way to create widgets based on an AbstractForm.
  */
-public abstract class AbstractWidgetForm extends AbstractForm implements Widget {
+public abstract class AbstractWidgetForm extends AbstractForm implements Widget
+{
     /** Id for the undo command. */
     public static final String UNDO_CMD_ID = "undo";
 
@@ -50,37 +51,45 @@ public abstract class AbstractWidgetForm extends AbstractForm implements Widget 
         super(parentFormModel, formId, childFormObjectHolder);
     }
 
-    public boolean canClose() {
+    public boolean canClose()
+    {
         return true;
     }
 
-    public List<? extends AbstractCommand> getCommands() {
+    public List<? extends AbstractCommand> getCommands()
+    {
         return Collections.emptyList();
     }
 
-    public JComponent getComponent() {
+    public JComponent getComponent()
+    {
         return getControl();
     }
 
-    public void onAboutToHide() {
+    public void onAboutToHide()
+    {
         showing = false;
     }
 
-    public void onAboutToShow() {
+    public void onAboutToShow()
+    {
         showing = true;
     }
 
-    public boolean isShowing() {
+    public boolean isShowing()
+    {
         return showing;
     }
 
     @Override
-    protected String getCommitCommandFaceDescriptorId() {
+    protected String getCommitCommandFaceDescriptorId()
+    {
         return SAVE_CMD_ID;
     }
 
     @Override
-    protected String getRevertCommandFaceDescriptorId() {
+    protected String getRevertCommandFaceDescriptorId()
+    {
         return UNDO_CMD_ID;
     }
 }

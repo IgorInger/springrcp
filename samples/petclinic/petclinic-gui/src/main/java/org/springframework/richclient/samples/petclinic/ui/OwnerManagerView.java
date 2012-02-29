@@ -210,11 +210,13 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
             renameExecutor.setEnabled(false);
             deleteExecutor.setEnabled(false);
             propertiesExecutor.setEnabled(false);
-        } else if (treeSelectionCount == 1) {
+        }
+        else if (treeSelectionCount == 1) {
             renameExecutor.setEnabled(true);
             deleteExecutor.setEnabled(true);
             propertiesExecutor.setEnabled(true);
-        } else if (treeSelectionCount > 1) {
+        }
+        else if (treeSelectionCount > 1) {
             renameExecutor.setEnabled(false);
             deleteExecutor.setEnabled(true);
             propertiesExecutor.setEnabled(false);
@@ -224,24 +226,26 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
 
     private boolean isRootOrNothingSelected() {
         return ownersTree.getSelectionCount() == 0
-               || (ownersTree.getSelectionCount() == 1 && ownersTree.isRowSelected(0));
+                || (ownersTree.getSelectionCount() == 1 && ownersTree.isRowSelected(0));
     }
 
     private DefaultTreeCellRenderer treeCellRenderer = new FocusableTreeCellRenderer() {
 
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
-        boolean leaf, int row, boolean hasFocus) {
+                boolean leaf, int row, boolean hasFocus) {
             super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
             DefaultMutableTreeNode node = (DefaultMutableTreeNode)value;
             if (node.isRoot()) {
                 this.setIcon(getIconSource().getIcon("folder.icon"));
-            } else {
+            }
+            else {
                 Object userObject = node.getUserObject();
                 if (userObject instanceof Owner) {
                     Owner o = (Owner)userObject;
                     this.setText(o.getFirstName() + " " + o.getLastName());
                     this.setIcon(getIconSource().getIcon("owner.bullet"));
-                } else if (userObject instanceof Pet) {
+                }
+                else if (userObject instanceof Pet) {
                     Pet p = (Pet)userObject;
                     this.setText("<html>" + p.getName() + " <i>(" + p.getType().getName() + ")");
                     this.setIcon(getIconSource().getIcon("pet.bullet"));
@@ -258,17 +262,16 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
     private JPopupMenu createOwnerPopupContextMenu() {
         // rename, separator, delete, addPet separator, properties
         CommandGroup group = getWindowCommandManager().createCommandGroup(
-                                 "ownerViewTableOwnerCommandGroup",
-                                 new Object[] {"renameCommand", "separator", "deleteCommand", "separator", newPetCommand, "separator",
-                                               "propertiesCommand"
-                                              });
+                "ownerViewTableOwnerCommandGroup",
+                new Object[] {"renameCommand", "separator", "deleteCommand", "separator", newPetCommand, "separator",
+                        "propertiesCommand"});
         return group.createPopupMenu();
     }
 
     private JPopupMenu createPetPopupContextMenu() {
         // rename, separator, delete, separator, properties
         CommandGroup group = getWindowCommandManager().createCommandGroup("ownerViewTablePetCommandGroup",
-                             new Object[] {"renameCommand", "separator", "deleteCommand", "separator", "propertiesCommand"});
+                new Object[] {"renameCommand", "separator", "deleteCommand", "separator", "propertiesCommand"});
         return group.createPopupMenu();
     }
 
@@ -289,7 +292,8 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
         public void execute() {
             if (getSelectedOwner() != null) {
                 renameOwnerExecutor.execute();
-            } else {
+            }
+            else {
                 renamePetExecutor.execute();
             }
         }
@@ -299,7 +303,8 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
         public void execute() {
             if (getSelectedOwner() != null) {
                 ownerPropertiesExecutor.execute();
-            } else {
+            }
+            else {
                 petPropertiesExecutor.execute();
             }
         }
@@ -318,7 +323,8 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
                 }
                 if (node.getUserObject() instanceof Owner) {
                     ownerCount++;
-                } else {
+                }
+                else {
                     petCount++;
                 }
                 nodesToDelete.add(node);
@@ -331,7 +337,8 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
                         ownersTreeModel.removeNodeFromParent(node);
                         if (node.getUserObject() instanceof Owner) {
                             // clinic.deleteOwner((Owner) node.getUserObject());
-                        } else {
+                        }
+                        else {
                             // clinic.deletePet((Pet) node.getUserObject());
                         }
                     }
@@ -345,10 +352,12 @@ public class OwnerManagerView extends AbstractView implements ApplicationListene
             if (ownerCount > 0 && petCount > 0) {
                 dialog.setTitle(getMessage("confirmDeleteOwnerAndPetDialog.title"));
                 dialog.setConfirmationMessage(getMessage("confirmDeleteOwnerAndPetDialog.label"));
-            } else if (ownerCount > 0) {
+            }
+            else if (ownerCount > 0) {
                 dialog.setTitle(getMessage("confirmDeleteOwnerDialog.title"));
                 dialog.setConfirmationMessage(getMessage("confirmDeleteOwnerDialog.label"));
-            } else {
+            }
+            else {
                 dialog.setTitle(getMessage("confirmDeletePetDialog.title"));
                 dialog.setConfirmationMessage(getMessage("confirmDeletePetDialog.label"));
             }

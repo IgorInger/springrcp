@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -30,7 +30,7 @@ import org.springframework.richclient.settings.AbstractSettings;
 import org.springframework.richclient.settings.Settings;
 
 /**
- *
+ * 
  * @author Peter De Bruycker
  */
 public class JdbcSettings extends AbstractSettings {
@@ -123,8 +123,7 @@ public class JdbcSettings extends AbstractSettings {
         if( id == null ) {
             JdbcSettings parent = (JdbcSettings) getParent();
             template.update( "INSERT INTO SETTINGS (KEY, PARENT, USER) VALUES (?, ?, ?)", new Object[] { getName(),
-                             parent == null ? null : parent.getId(), user
-                                                                                                       } );
+                    parent == null ? null : parent.getId(), user } );
             id = Integer.valueOf( template.queryForInt( "SELECT MAX(ID) FROM SETTINGS" ) );
         } else {
             for( Iterator iter = remove.iterator(); iter.hasNext(); ) {
@@ -134,16 +133,14 @@ public class JdbcSettings extends AbstractSettings {
             for( Iterator iter = update.iterator(); iter.hasNext(); ) {
                 String key = (String) iter.next();
                 template.update( "UPDATE SETTINGS_VALUES SET VALUE=? WHERE SETTINGS_ID=? AND KEY=?", new Object[] {
-                                     values.get( key ), id, key
-                                 } );
+                        values.get( key ), id, key } );
             }
         }
 
         for( Iterator iter = add.iterator(); iter.hasNext(); ) {
             String key = (String) iter.next();
             template.update( "INSERT INTO SETTINGS_VALUES (SETTINGS_ID, KEY, VALUE) VALUES (?, ?, ?)", new Object[] {
-                                 id, key, values.get( key )
-                             } );
+                    id, key, values.get( key ) } );
         }
 
         remove.clear();
@@ -158,7 +155,7 @@ public class JdbcSettings extends AbstractSettings {
 
         JdbcTemplate template = new JdbcTemplate( dataSource );
         List entries = template.queryForList( "SELECT KEY, VALUE FROM SETTINGS_VALUES WHERE SETTINGS_ID=?",
-                                              new Object[] { id } );
+                new Object[] { id } );
         for( Iterator iter = entries.iterator(); iter.hasNext(); ) {
             Map entry = (Map) iter.next();
             values.put(entry.get( "KEY" ), entry.get( "VALUE" ));

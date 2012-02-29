@@ -26,14 +26,14 @@ package org.springframework.binding.value;
  */
 public interface DerivedValueModel extends ValueModel {
 
-    /**
-     * Returns an array of all values models that are used to derive the value
-     * represented by this value model.
-     */
-    ValueModel[] getSourceValueModels();
+	/**
+	 * Returns an array of all values models that are used to derive the value
+	 * represented by this value model.
+	 */
+	ValueModel[] getSourceValueModels();
 
-    /**
-     * Returns true if the implementation does not support calls setValue.
-     */
-    boolean isReadOnly();
+	/**
+	 * Returns true if the implementation does not support calls setValue.
+	 */
+	boolean isReadOnly();
 }

@@ -10,7 +10,8 @@ import org.springframework.util.Assert;
 import javax.swing.*;
 import java.util.Map;
 
-public abstract class AbstractLookupBinder implements Binder {
+public abstract class AbstractLookupBinder implements Binder
+{
     private int autoPopupDialog = AbstractLookupBinding.AUTOPOPUPDIALOG_NO_UNIQUE_MATCH;
     private boolean revertValueOnFocusLost = true;
     private String selectDialogId = AbstractLookupBinding.DEFAULT_SELECTDIALOG_ID;
@@ -22,37 +23,45 @@ public abstract class AbstractLookupBinder implements Binder {
     private boolean loadDetailedObject = false;
 
 
-    public boolean isLoadDetailedObject() {
+    public boolean isLoadDetailedObject()
+    {
         return loadDetailedObject;
     }
 
 
-    public void setLoadDetailedObject(boolean loadDetailedObject) {
+    public void setLoadDetailedObject(boolean loadDetailedObject)
+    {
         this.loadDetailedObject = loadDetailedObject;
     }
 
-    public AbstractLookupBinder(String dataEditorId) {
+    public AbstractLookupBinder(String dataEditorId)
+    {
         this.dataEditorId = dataEditorId;
         enableViewCommand = false;
     }
 
-    public void setAutoPopupDialog(int autoPopupDialog) {
+    public void setAutoPopupDialog(int autoPopupDialog)
+    {
         this.autoPopupDialog = autoPopupDialog;
     }
 
-    public void setRevertValueOnFocusLost(boolean revertValueOnFocusLost) {
+    public void setRevertValueOnFocusLost(boolean revertValueOnFocusLost)
+    {
         this.revertValueOnFocusLost = revertValueOnFocusLost;
     }
 
-    public void setSelectDialogId(String selectDialogId) {
+    public void setSelectDialogId(String selectDialogId)
+    {
         this.selectDialogId = selectDialogId;
     }
 
-    public void setSelectDialogCommandId(String selectDialogCommandId) {
+    public void setSelectDialogCommandId(String selectDialogCommandId)
+    {
         this.selectDialogCommandId = selectDialogCommandId;
     }
 
-    public Binding bind(FormModel formModel, String formPropertyPath, Map context) {
+    public Binding bind(FormModel formModel, String formPropertyPath, Map context)
+    {
         AbstractLookupBinding referableBinding = getLookupBinding(formModel, formPropertyPath, context);
         referableBinding.setAutoPopupdialog(getAutoPopupDialog());
         referableBinding.setRevertValueOnFocusLost(isRevertValueOnFocusLost());
@@ -67,53 +76,65 @@ public abstract class AbstractLookupBinder implements Binder {
 
     protected abstract AbstractLookupBinding getLookupBinding(FormModel formModel, String formPropertyPath, Map context);
 
-    public Binding bind(JComponent control, FormModel formModel, String formPropertyPath, Map context) {
+    public Binding bind(JComponent control, FormModel formModel, String formPropertyPath, Map context)
+    {
         throw new UnsupportedOperationException("This binder needs a special component that cannot be given");
     }
 
-    protected int getAutoPopupDialog() {
+    protected int getAutoPopupDialog()
+    {
         return autoPopupDialog;
     }
 
-    protected DefaultDataEditorWidget getDataEditor() {
+    protected DefaultDataEditorWidget getDataEditor()
+    {
         Object dataEditor = RcpSupport.getBean(dataEditorId);
         Assert.isInstanceOf(DefaultDataEditorWidget.class, dataEditor);
         return (DefaultDataEditorWidget) dataEditor;
     }
 
-    protected boolean isRevertValueOnFocusLost() {
+    protected boolean isRevertValueOnFocusLost()
+    {
         return revertValueOnFocusLost;
     }
 
-    protected String getSelectDialogCommandId() {
+    protected String getSelectDialogCommandId()
+    {
         return selectDialogCommandId;
     }
 
-    protected String getSelectDialogId() {
+    protected String getSelectDialogId()
+    {
         return selectDialogId;
     }
 
-    public void setDataEditorViewCommandId(String dataEditorViewCommandId) {
+    public void setDataEditorViewCommandId(String dataEditorViewCommandId)
+    {
         this.dataEditorViewCommandId = dataEditorViewCommandId;
     }
 
-    public void setEnableViewCommand(boolean enableViewCommand) {
+    public void setEnableViewCommand(boolean enableViewCommand)
+    {
         this.enableViewCommand = enableViewCommand;
     }
 
-    public void setFilter(Object filter) {
+    public void setFilter(Object filter)
+    {
         this.filter = filter;
     }
 
-    public String getDataEditorViewCommandId() {
+    public String getDataEditorViewCommandId()
+    {
         return dataEditorViewCommandId;
     }
 
-    public Object getFilter() {
+    public Object getFilter()
+    {
         return filter;
     }
 
-    public boolean isEnableViewCommand() {
+    public boolean isEnableViewCommand()
+    {
         return enableViewCommand;
     }
 }

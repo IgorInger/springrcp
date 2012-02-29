@@ -28,9 +28,9 @@ import org.springframework.binding.PropertyMetadataAccessStrategy;
  */
 public class BeanPropertyAccessStrategyTests extends AbstractPropertyAccessStrategyTests {
 
-    protected AbstractPropertyAccessStrategy createPropertyAccessStrategy(Object target) {
-        return new BeanPropertyAccessStrategy(target);
-    }
+	protected AbstractPropertyAccessStrategy createPropertyAccessStrategy(Object target) {
+		return new BeanPropertyAccessStrategy(target);
+	}
 
     /**
      * Test the metadata on type/readability/writeability.

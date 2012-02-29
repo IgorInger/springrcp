@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -34,7 +34,7 @@ import org.springframework.richclient.core.VisualizedElement;
 import org.springframework.util.Assert;
 
 /**
- *
+ * 
  * @author Keith Donald
  */
 public class BeanTreeCellRenderer extends FocusableTreeCellRenderer {
@@ -54,7 +54,8 @@ public class BeanTreeCellRenderer extends FocusableTreeCellRenderer {
         Assert.notNull(beanClass);
         try {
             this.beanInfo = Introspector.getBeanInfo(beanClass);
-        } catch (IntrospectionException e) {
+        }
+        catch (IntrospectionException e) {
             throw new RuntimeException(e);
         }
         this.propertyName = propertyName;
@@ -75,13 +76,15 @@ public class BeanTreeCellRenderer extends FocusableTreeCellRenderer {
                     DescribedElement element = (DescribedElement)bean;
                     setText(element.getDisplayName());
                     setToolTipText(element.getCaption());
-                } else {
+                }
+                else {
                     BeanWrapper wrapper = new BeanWrapperImpl(bean);
                     try {
                         Object text = propertyName != null ? wrapper.getPropertyValue(propertyName) : wrapper
-                                      .getPropertyValue("name");
+                                .getPropertyValue("name");
                         setText(String.valueOf(text));
-                    } catch (FatalBeanException e) {
+                    }
+                    catch (FatalBeanException e) {
 
                     }
                 }
@@ -89,7 +92,8 @@ public class BeanTreeCellRenderer extends FocusableTreeCellRenderer {
                 if (bean instanceof VisualizedElement) {
                     VisualizedElement element = (VisualizedElement) bean;
                     setIcon(element.getIcon());
-                } else {
+                }
+                else {
                     if (beanInfo != null) {
                         Image icon = beanInfo.getIcon(BeanInfo.ICON_COLOR_16x16);
                         if (icon != null) {
@@ -97,7 +101,7 @@ public class BeanTreeCellRenderer extends FocusableTreeCellRenderer {
                         }
                     }
                 }
-
+                
             }
         }
         return this;

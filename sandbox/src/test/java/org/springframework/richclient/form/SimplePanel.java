@@ -41,12 +41,12 @@ public class SimplePanel extends JPanel {
         builder.relatedGapRow();
         builder.cell(checkBox);
         builder.relatedGapRow();
-
+        
         JPanel nestedPanel =new JPanel();
         nestedField = new JTextField("test");
         nestedField.setName("nestedField");
         nestedPanel.add(nestedField);
-
+        
         builder.cell(nestedPanel);
 
         builder.getPanel();
@@ -74,7 +74,7 @@ public class SimplePanel extends JPanel {
     public JCheckBox getCheckBox() {
         return checkBox;
     }
-
+    
     public JTextField getNestedField() {
         return nestedField;
     }

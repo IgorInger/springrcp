@@ -27,10 +27,10 @@ import org.springframework.richclient.form.binding.support.AbstractBinder;
 import org.springframework.util.Assert;
 
 /**
- * A binder that binds a scroll pane and the scroll pane's view. If the
+ * A binder that binds a scroll pane and the scroll pane's view. If the 
  * scroll pane does not have a view a default binding will be created and
  * set as the scroll pane's view.
- *
+ * 
  * @author Oliver Hutchison
  */
 public class ScrollPaneBinder extends AbstractBinder {
@@ -41,11 +41,11 @@ public class ScrollPaneBinder extends AbstractBinder {
 
     /**
      * Constructs a new ScrollPaneBinder
-     *
-     * @param viewBinderSelectionStrategy the {@link BinderSelectionStrategy} which will be used
+     * 
+     * @param viewBinderSelectionStrategy the {@link BinderSelectionStrategy} which will be used 
      * to select a Binder for the scrollpane's view component.
-     * @param defaultViewType the type of the component that will be created and bound if the
-     * scroll pane does not already have a view
+     * @param defaultViewType the type of the component that will be created and bound if the 
+     * scroll pane does not already have a view    
      */
     public ScrollPaneBinder(BinderSelectionStrategy viewBinderSelectionStrategy, Class defaultViewType) {
         super(null);
@@ -68,7 +68,7 @@ public class ScrollPaneBinder extends AbstractBinder {
         JComponent view = (JComponent)scrollPane.getViewport().getView();
         if (view == null) {
             Binding viewBinding = viewBinderSelectionStrategy.selectBinder(defaultViewType, formModel, formPropertyPath)
-                                  .bind(formModel, formPropertyPath, context);
+                    .bind(formModel, formPropertyPath, context);
             scrollPane.setViewportView(viewBinding.getControl());
             return viewBinding;
         }
@@ -77,7 +77,7 @@ public class ScrollPaneBinder extends AbstractBinder {
             return existingBinding;
         }
         return viewBinderSelectionStrategy.selectBinder(view.getClass(), formModel, formPropertyPath).bind(
-                   view, formModel, formPropertyPath, context);
+                view, formModel, formPropertyPath, context);
     }
 
     protected void validateContextKeys(Map context) {

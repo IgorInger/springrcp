@@ -17,7 +17,8 @@ import java.awt.*;
  * @author Jan Hoskens
  *
  */
-public abstract class AbstractFocussableForm extends AbstractWidgetForm implements Focussable { //, SecurityControllable
+public abstract class AbstractFocussableForm extends AbstractWidgetForm implements Focussable//, SecurityControllable
+{
 
     public static final String UNSAVEDCHANGES_WARNING_ID = "unsavedchanges.warning";
 
@@ -25,9 +26,11 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
 
     private JComponent focusControl;
 
-    private final Runnable focusRequestRunnable = new Runnable() {
+    private final Runnable focusRequestRunnable = new Runnable()
+    {
 
-        public void run() {
+        public void run()
+        {
             if (focusControl != null)
                 focusControl.requestFocusInWindow();
         }
@@ -38,7 +41,8 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
      * define default commands.
      */
     @Override
-    protected void handleEnabledChange(boolean enabled) {
+    protected void handleEnabledChange(boolean enabled)
+    {
     }
 
     /**
@@ -46,11 +50,13 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
      *
      * @see #grabFocus
      */
-    public void setFocusControl(JComponent field) {
+    public void setFocusControl(JComponent field)
+    {
         this.focusControl = field;
     }
 
-    public void grabFocus() {
+    public void grabFocus()
+    {
         if (this.focusControl != null)
             EventQueue.invokeLater(focusRequestRunnable);
     }
@@ -58,21 +64,24 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
     /**
      * @inheritDoc
      */
-    public AbstractFocussableForm() {
+    public AbstractFocussableForm()
+    {
         super();
     }
 
     /**
      * @inheritDoc
      */
-    public AbstractFocussableForm(FormModel formModel, String formId) {
+    public AbstractFocussableForm(FormModel formModel, String formId)
+    {
         super(formModel, formId);
     }
 
     /**
      * @inheritDoc
      */
-    public AbstractFocussableForm(FormModel pageFormModel) {
+    public AbstractFocussableForm(FormModel pageFormModel)
+    {
         super(pageFormModel);
     }
 
@@ -80,7 +89,8 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
      * @inheritDoc
      */
     public AbstractFocussableForm(HierarchicalFormModel parentFormModel, String formId,
-                                  String childFormObjectPropertyPath) {
+            String childFormObjectPropertyPath)
+    {
         super(parentFormModel, formId, childFormObjectPropertyPath);
     }
 
@@ -88,60 +98,68 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
      * @inheritDoc
      */
     public AbstractFocussableForm(HierarchicalFormModel parentFormModel, String formId,
-                                  ValueModel childFormObjectHolder) {
+            ValueModel childFormObjectHolder)
+    {
         super(parentFormModel, formId, childFormObjectHolder);
     }
 
     /**
      * @inheritDoc
      */
-    public AbstractFocussableForm(HierarchicalFormModel parentFormModel, String formId) {
+    public AbstractFocussableForm(HierarchicalFormModel parentFormModel, String formId)
+    {
         super(parentFormModel, formId);
     }
 
     /**
      * @inheritDoc
      */
-    public AbstractFocussableForm(Object formObject) {
+    public AbstractFocussableForm(Object formObject)
+    {
         super(formObject);
     }
 
     /**
      * @inheritDoc
      */
-    public AbstractFocussableForm(String formId) {
+    public AbstractFocussableForm(String formId)
+    {
         super(formId);
     }
 
-    public boolean canClose() {
+    public boolean canClose()
+    {
         boolean userBreak = false;
         int answer = JOptionPane.NO_OPTION; // by default no save is required.
 
         // unless of course there are unsaved changes and we can commit (isAuthorized)
         if (this.getFormModel().isEnabled() && this.getFormModel().isDirty()
-                && this.getCommitCommand().isAuthorized()) {
-            // then we ask the user to save the mess first: yes/no/cancel
+                && this.getCommitCommand().isAuthorized())
+        { // then we ask the user to save the mess first: yes/no/cancel
             answer = RcpSupport.showWarningDialog(this.getControl(), UNSAVEDCHANGES_WARNING_ID,
-                                                  JOptionPane.YES_NO_CANCEL_OPTION);
+                    JOptionPane.YES_NO_CANCEL_OPTION);
 
-            switch (answer) {
-            case JOptionPane.CANCEL_OPTION :
-                // backup the selection change so table and detail keep in sync
-                // gives problems (asks unsavedchanges twice)
-                userBreak = true;
-                break;
-            case JOptionPane.YES_OPTION :
-                if (this.getFormModel().getHasErrors() == true) {
-                    RcpSupport.showWarningDialog(this.getControl(), UNSAVEDCHANGES_HASERRORS_WARNING_ID);
+            switch (answer)
+            {
+                case JOptionPane.CANCEL_OPTION :
+                    // backup the selection change so table and detail keep in sync
+                    // gives problems (asks unsavedchanges twice)
                     userBreak = true;
                     break;
+                case JOptionPane.YES_OPTION :
+                    if (this.getFormModel().getHasErrors() == true)
+                    {
+                        RcpSupport.showWarningDialog(this.getControl(), UNSAVEDCHANGES_HASERRORS_WARNING_ID);
+                        userBreak = true;
+                        break;
+                    }
+                    this.getCommitCommand().execute();
+                    break;
+                case JOptionPane.NO_OPTION :
+                {
+                    this.revert(); // revert so no strange things happen (hopefully)
+                    break;
                 }
-                this.getCommitCommand().execute();
-                break;
-            case JOptionPane.NO_OPTION : {
-                this.revert(); // revert so no strange things happen (hopefully)
-                break;
-            }
             }
         }
 
@@ -149,7 +167,8 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
     }
 
     @Override
-    protected void init() {
+    protected void init()
+    {
         // eerst wordt parent object constructor opgeroepen waarin deze init
         // wordt opgeroepen. Gewone fields zijn dan nog niet gezet dus doe dat
         // hier expliciet ipv in velddeclaratie.
@@ -157,7 +176,7 @@ public abstract class AbstractFocussableForm extends AbstractWidgetForm implemen
 //        enabled = true;
 //        setSecurityControllerId(getId() + ".authorize");
         ((ApplicationObjectConfigurer) getApplicationServices().getService(ApplicationObjectConfigurer.class))
-        .configure(this, getId());
+                .configure(this, getId());
     }
 }
 

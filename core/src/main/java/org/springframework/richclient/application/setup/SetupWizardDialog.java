@@ -68,7 +68,8 @@ public class SetupWizardDialog extends WizardDialog {
             pageControlBackup = getDialogContentPane();
             firstPageControl.add(page.getControl(), BorderLayout.CENTER);
             this.getDialog().setContentPane(firstPageControl);
-        } else {
+        }
+        else {
             if (pageControlBackup != null) {
                 getDialog().setContentPane(pageControlBackup);
                 //stop adding the content pane in future

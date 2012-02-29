@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2008 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -28,7 +28,7 @@ import ca.odell.glazedlists.EventList;
  * Creates a bridge between a <code>ValueModel</code> and an <code>EventList</code>. This means that when the
  * <code>ValueModel</code> value changes, it's copied into the EventList. There's also a {@link #synchronize()} method
  * that manually copies the values.
- *
+ * 
  * @author Peter De Bruycker
  */
 public class ValueModel2EventListBridge {
@@ -45,7 +45,7 @@ public class ValueModel2EventListBridge {
     /**
      * Same as calling {@link #ValueModel2EventListBridge(ValueModel, EventList, boolean)} with
      * <code>manualSynchronize = false</code>.
-     *
+     * 
      * @param valueModel
      *            the ValueModel, cannot be <code>null</code>
      * @param eventList
@@ -58,7 +58,7 @@ public class ValueModel2EventListBridge {
 
     /**
      * Creates a <code>ValueModel2EventListBridge</code> for the given ValueModel and EventList.
-     *
+     * 
      * @param valueModel
      *            the ValueModel, cannot be <code>null</code>
      * @param eventList
@@ -109,7 +109,7 @@ public class ValueModel2EventListBridge {
 
     /**
      * Returns the ValueModel.
-     *
+     * 
      * @return the ValueModel
      */
     public ValueModel getValueModel() {
@@ -118,7 +118,7 @@ public class ValueModel2EventListBridge {
 
     /**
      * Returns the EventList.
-     *
+     * 
      * @return the EventLists
      */
     public EventList getEventList() {

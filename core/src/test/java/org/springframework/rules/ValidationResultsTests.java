@@ -18,71 +18,70 @@ import org.springframework.rules.reporting.BeanValidationResults;
 import org.springframework.rules.reporting.BeanValidationResultsCollector;
 
 /**
- *
+ * 
  * @author Keith Donald
  */
 public class ValidationResultsTests extends SpringRichTestCase {
 
-    static RulesSource rulesSource;
-    static Rules rules;
+	static RulesSource rulesSource;
+	static Rules rules;
 
-    private static final Constraints constraints = Constraints.instance();
+	private static final Constraints constraints = Constraints.instance();
+	
+	protected void registerAdditionalServices(DefaultApplicationServices applicationServices) {
+		applicationServices.setRulesSourceId("rulesSource");
+	}
+	
+	protected void doSetUp() throws Exception {
+		rulesSource = (RulesSource) applicationServices.getService(RulesSource.class);
+		rules = rulesSource.getRules(Person.class);
+	}
 
-    protected void registerAdditionalServices(DefaultApplicationServices applicationServices) {
-        applicationServices.setRulesSourceId("rulesSource");
-    }
+	protected ConfigurableApplicationContext createApplicationContext() {
+		return new ClassPathXmlApplicationContext("org/springframework/rules/rules-context.xml");
+	}
 
-    protected void doSetUp() throws Exception {
-        rulesSource = (RulesSource) applicationServices.getService(RulesSource.class);
-        rules = rulesSource.getRules(Person.class);
-    }
+	public void testValidationResultsCollector() {
+		Person p = new Person();
+		BeanValidationResultsCollector c = new BeanValidationResultsCollector(p);
+		BeanValidationResults r =
+				c.collectResults(rulesSource.getRules(Person.class));
+		assertEquals(2, r.getViolatedCount());
+	}
 
-    protected ConfigurableApplicationContext createApplicationContext() {
-        return new ClassPathXmlApplicationContext("org/springframework/rules/rules-context.xml");
-    }
+	public void testValidationResultsCollectorCollectAllErrors() {
+		Person p = new Person();
+		BeanValidationResultsCollector c = new BeanValidationResultsCollector(p);
+		c.setCollectAllErrors(true);
+		BeanValidationResults r =
+				c.collectResults(rulesSource.getRules(Person.class));
+		assertEquals(2, r.getViolatedCount());
+	}
 
-    public void testValidationResultsCollector() {
-        Person p = new Person();
-        BeanValidationResultsCollector c = new BeanValidationResultsCollector(p);
-        BeanValidationResults r =
-            c.collectResults(rulesSource.getRules(Person.class));
-        assertEquals(2, r.getViolatedCount());
-    }
+	public void testNestedValidationResultsPropertyConstraint() {
+		Person p = new Person();
 
-    public void testValidationResultsCollectorCollectAllErrors() {
-        Person p = new Person();
-        BeanValidationResultsCollector c = new BeanValidationResultsCollector(p);
-        c.setCollectAllErrors(true);
-        BeanValidationResults r =
-            c.collectResults(rulesSource.getRules(Person.class));
-        assertEquals(2, r.getViolatedCount());
-    }
-
-    public void testNestedValidationResultsPropertyConstraint() {
-        Person p = new Person();
-
-        Rules rules = new Rules(Person.class);
-        CompoundConstraint constraint =
-            constraints.or(
-                constraints.all(
-                    "firstName",
-                    new Constraint[] {
-                        constraints.required(),
-                        constraints.minLength(2)
-                    }),
-                constraints.not(
-                    constraints.eqProperty("firstName", "lastName")));
-        rules.add(new CompoundPropertyConstraint(constraint));
-        BeanValidationResultsCollector c = new BeanValidationResultsCollector(p);
-        c.setCollectAllErrors(true);
-        BeanValidationResults r = c.collectResults(rules);
-        assertEquals(3, r.getViolatedCount());
-        String message =
-            r.getResults("firstName").buildMessage(Locale.getDefault());
-        System.out.println(message);
-        assertEquals(
-            "First Name must have text and must be at least 2 characters or must *not* equal Last Name.",
-            message);
-    }
-
+		Rules rules = new Rules(Person.class);
+		CompoundConstraint constraint =
+				constraints.or(
+						constraints.all(
+								"firstName",
+								new Constraint[]{
+									constraints.required(),
+									constraints.minLength(2)}),
+						constraints.not(
+								constraints.eqProperty("firstName", "lastName")));
+		rules.add(new CompoundPropertyConstraint(constraint));
+		BeanValidationResultsCollector c = new BeanValidationResultsCollector(p);
+		c.setCollectAllErrors(true);
+		BeanValidationResults r = c.collectResults(rules);
+		assertEquals(3, r.getViolatedCount());
+		String message =
+				r.getResults("firstName").buildMessage(Locale.getDefault());
+		System.out.println(message);
+		assertEquals(
+				"First Name must have text and must be at least 2 characters or must *not* equal Last Name.",
+				message);
+	}
+	
 }

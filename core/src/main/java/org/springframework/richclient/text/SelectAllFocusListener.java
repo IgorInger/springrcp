@@ -16,7 +16,7 @@ public class SelectAllFocusListener implements FocusListener {
     /**
      * Create a SelectAllFocusListener to select all text upon entering the given JTextComponent.
      *
-     * @param textComponent the JTextComponent that needs the select all upon entering.
+     * @param textComponent the JTextComponent that needs the select all upon entering. 
      */
     public SelectAllFocusListener(JTextComponent textComponent) {
         this.textComponent = textComponent;

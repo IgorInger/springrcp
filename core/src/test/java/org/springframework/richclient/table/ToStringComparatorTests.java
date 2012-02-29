@@ -21,9 +21,9 @@ import junit.framework.TestCase;
 
 /**
  * Testcase for {@link ToStringComparator}
- *
+ * 
  * @author Peter De Bruycker
- *
+ * 
  */
 public class ToStringComparatorTests extends TestCase {
 

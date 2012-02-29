@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache LicenseVersion 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writingsoftware
  * distributed under the License is distributed on an "AS IS" BASISWITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KINDeither express or implied. See the
@@ -22,7 +22,7 @@ import org.springframework.richclient.test.SpringRichTestCase;
 
 /**
  * Test cases for {@link FocusLostTextComponentAdapter}
- *
+ * 
  * @author Oliver Hutchison
  */
 public class FocusLostTextComponentAdapterTests extends SpringRichTestCase {

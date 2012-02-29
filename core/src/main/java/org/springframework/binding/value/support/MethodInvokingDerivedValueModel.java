@@ -21,12 +21,12 @@ import org.springframework.binding.value.ValueModel;
 import org.springframework.util.Assert;
 
 /**
- * A value model that derives it's value from the result of invoking a method.
+ * A value model that derives it's value from the result of invoking a method. 
  * The parameters for the method invocation are generated from a list of
  * "source" value models. Should any of the "source" values change the method
- * will be invoked and if the return value has changed the value held by
+ * will be invoked and if the return value has changed the value held by 
  * this class will be updated.
- *
+ *  
  * @author  Oliver Hutchison
  */
 public final class MethodInvokingDerivedValueModel extends AbstractDerivedValueModel {
@@ -42,7 +42,7 @@ public final class MethodInvokingDerivedValueModel extends AbstractDerivedValueM
         this.target = target;
         this.method = getPropertyMethod(target, methodName, paramSourceValueModels.length);
         Assert.notNull(method, "No method with name [" + methodName + "] and " + paramSourceValueModels.length
-                       + " parameters found on class.");
+                + " parameters found on class.");
         sourceValuesChanged();
     }
 
@@ -51,7 +51,8 @@ public final class MethodInvokingDerivedValueModel extends AbstractDerivedValueM
         try {
             value = method.invoke(target, getSourceValues());
             fireValueChange(oldValue, value);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -68,7 +69,7 @@ public final class MethodInvokingDerivedValueModel extends AbstractDerivedValueM
             if (method.getName().equals(methodName) && method.getParameterTypes().length == numberOfParams) {
                 if (propertyMethod != null) {
                     throw new UnsupportedOperationException("Found than one method with name '" + methodName + "' and "
-                                                            + numberOfParams + " parameters on class '" + target.getClass().getName() + "'.");
+                            + numberOfParams + " parameters on class '" + target.getClass().getName() + "'.");
                 }
                 propertyMethod = method;
             }

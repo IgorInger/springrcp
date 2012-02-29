@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
 
 /**
  * A directional arrow icon; the direction can either be UP or DOWN.
- *
+ * 
  * @author Keith Donald
  * @see ArrowIcon.Direction
  */
@@ -37,7 +37,7 @@ public class ArrowIcon implements Icon {
      * <p>
      * Currently only up and down are supported since this is primarily designed
      * to be a table column sort indicator.
-     *
+     * 
      * @author Keith Donald
      */
     public static class Direction {
@@ -69,7 +69,7 @@ public class ArrowIcon implements Icon {
     /**
      * Creates a ArrowIcon in the specified direction with the default size and
      * color.
-     *
+     * 
      * @param direction
      *            The icon direction.
      */
@@ -82,7 +82,7 @@ public class ArrowIcon implements Icon {
     /**
      * Creates a ArrowIcon pointing in the specified direction with the
      * specified size and color.
-     *
+     * 
      * @param direction
      *            the direction the arrow should point.
      * @param size
@@ -102,7 +102,8 @@ public class ArrowIcon implements Icon {
         for (int i = 0; i < size; i++) {
             if (direction == Direction.UP) {
                 g.drawLine(x + (size - (i + 1)), y + i, x + (size + i), y + i);
-            } else {
+            }
+            else {
                 g.drawLine(x + i, y + i, x + (size * 2 - (i + 1)), y + i);
             }
         }
@@ -140,7 +141,7 @@ public class ArrowIcon implements Icon {
 
     public String toString() {
         StringBuffer buf = new StringBuffer("[ArrowIcon").append(" direction=").append(direction).append(" size=")
-        .append(size).append(" color=").append(color);
+                .append(size).append(" color=").append(color);
         return buf.toString();
     }
 

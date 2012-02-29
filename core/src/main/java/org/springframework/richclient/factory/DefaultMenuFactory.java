@@ -2,7 +2,7 @@
  * $Header$
  * $Revision$
  * $Date$
- *
+ * 
  * Copyright Computer Science Innovations (CSI), 2004. All rights reserved.
  */
 package org.springframework.richclient.factory;

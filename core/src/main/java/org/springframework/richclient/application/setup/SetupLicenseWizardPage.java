@@ -41,92 +41,93 @@ import org.springframework.util.FileCopyUtils;
  * @author Claudio Romano
  */
 public class SetupLicenseWizardPage extends AbstractWizardPage {
-    /** Pane holding the license text. */
-    private HtmlPane licenseTextPane;
+	/** Pane holding the license text. */
+	private HtmlPane licenseTextPane;
 
-    /** The license text. */
-    private Resource licenseTextLocation;
+	/** The license text. */
+	private Resource licenseTextLocation;
 
-    /**
-     * Default constructor. License Resource can be added later.
-     */
-    public SetupLicenseWizardPage() {
-        this(null);
-    }
+	/**
+	 * Default constructor. License Resource can be added later.
+	 */
+	public SetupLicenseWizardPage() {
+		this(null);
+	}
 
-    /**
-     * Convenience constructor which sets the license resource.
-     *
-     * @see #setLicenseTextLocation(Resource)
-     */
-    public SetupLicenseWizardPage(Resource licenseTextLocation) {
-        super("license");
-        setLicenseTextLocation(licenseTextLocation);
-    }
+	/**
+	 * Convenience constructor which sets the license resource.
+	 *
+	 * @see #setLicenseTextLocation(Resource)
+	 */
+	public SetupLicenseWizardPage(Resource licenseTextLocation) {
+		super("license");
+		setLicenseTextLocation(licenseTextLocation);
+	}
 
-    /**
-     * Set the {@link Resource} to use as license text.
-     */
-    public final void setLicenseTextLocation(Resource location) {
-        this.licenseTextLocation = location;
-        if (licenseTextPane != null) {
-            updateLicenseTextPane();
-        }
-    }
+	/**
+	 * Set the {@link Resource} to use as license text.
+	 */
+	public final void setLicenseTextLocation(Resource location) {
+		this.licenseTextLocation = location;
+		if (licenseTextPane != null) {
+			updateLicenseTextPane();
+		}
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    protected JComponent createControl() {
-        initLicenseTextPane();
+	/**
+	 * {@inheritDoc}
+	 */
+	protected JComponent createControl() {
+		initLicenseTextPane();
 
-        ToggleCommand acceptCommand = new ToggleCommand("acceptLicenseCommand") {
-            protected void onSelection() {
-                SetupLicenseWizardPage.this.setEnabled(true);
-            }
-        };
+		ToggleCommand acceptCommand = new ToggleCommand("acceptLicenseCommand") {
+			protected void onSelection() {
+				SetupLicenseWizardPage.this.setEnabled(true);
+			}
+		};
 
-        ToggleCommand doNotAcceptCommand = new ToggleCommand("doNotAcceptLicenseCommand") {
-            protected void onSelection() {
-                SetupLicenseWizardPage.this.setEnabled(false);
-            }
-        };
-        doNotAcceptCommand.setSelected(true);
+		ToggleCommand doNotAcceptCommand = new ToggleCommand("doNotAcceptLicenseCommand") {
+			protected void onSelection() {
+				SetupLicenseWizardPage.this.setEnabled(false);
+			}
+		};
+		doNotAcceptCommand.setSelected(true);
 
-        CommandGroup.createExclusiveCommandGroup(new ToggleCommand[] { acceptCommand, doNotAcceptCommand });
+		CommandGroup.createExclusiveCommandGroup(new ToggleCommand[] { acceptCommand, doNotAcceptCommand });
 
-        GridBagLayoutBuilder formBuilder = new GridBagLayoutBuilder();
-        formBuilder.append(new JScrollPane(licenseTextPane), 1, 1, true, true);
-        formBuilder.nextLine();
-        formBuilder.append(acceptCommand.createRadioButton());
-        formBuilder.nextLine();
-        formBuilder.append(doNotAcceptCommand.createRadioButton());
-        return formBuilder.getPanel();
-    }
+		GridBagLayoutBuilder formBuilder = new GridBagLayoutBuilder();
+		formBuilder.append(new JScrollPane(licenseTextPane), 1, 1, true, true);
+		formBuilder.nextLine();
+		formBuilder.append(acceptCommand.createRadioButton());
+		formBuilder.nextLine();
+		formBuilder.append(doNotAcceptCommand.createRadioButton());
+		return formBuilder.getPanel();
+	}
 
-    /**
-     * Create the html pane and update its contents.
-     */
-    protected void initLicenseTextPane() {
-        this.licenseTextPane = new HtmlPane();
-        updateLicenseTextPane();
-    }
+	/**
+	 * Create the html pane and update its contents.
+	 */
+	protected void initLicenseTextPane() {
+		this.licenseTextPane = new HtmlPane();
+		updateLicenseTextPane();
+	}
 
-    /**
-     * Updates the text in the html pane.
-     */
-    private void updateLicenseTextPane() {
-        try {
-            Assert.state(licenseTextLocation != null, "License text location is not set");
-            String text = FileCopyUtils.copyToString(new BufferedReader(new InputStreamReader(licenseTextLocation
-                          .getInputStream())));
-            licenseTextPane.setText(LabelUtils.htmlBlock(text));
-        } catch (IOException e) {
-            final IllegalStateException exp = new IllegalStateException("License text not accessible: "
-                    + e.getMessage());
-            exp.setStackTrace(e.getStackTrace());
-            throw exp;
-        }
-    }
+	/**
+	 * Updates the text in the html pane.
+	 */
+	private void updateLicenseTextPane() {
+		try {
+			Assert.state(licenseTextLocation != null, "License text location is not set");
+			String text = FileCopyUtils.copyToString(new BufferedReader(new InputStreamReader(licenseTextLocation
+					.getInputStream())));
+			licenseTextPane.setText(LabelUtils.htmlBlock(text));
+		}
+		catch (IOException e) {
+			final IllegalStateException exp = new IllegalStateException("License text not accessible: "
+					+ e.getMessage());
+			exp.setStackTrace(e.getStackTrace());
+			throw exp;
+		}
+	}
 
 }

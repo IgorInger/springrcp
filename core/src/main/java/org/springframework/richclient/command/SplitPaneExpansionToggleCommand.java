@@ -12,49 +12,58 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.*;
 
-public class SplitPaneExpansionToggleCommand extends ActionCommand {
+public class SplitPaneExpansionToggleCommand extends ActionCommand
+{
 
     private DefaultButtonModel model;
 
-    public SplitPaneExpansionToggleCommand(String commandId, JSplitPane splitPane, boolean switchedAway) {
+    public SplitPaneExpansionToggleCommand(String commandId, JSplitPane splitPane, boolean switchedAway)
+    {
         super(commandId);
         this.model = new SplitPaneExpansionButtonModel(splitPane, switchedAway);
         ((CommandConfigurer) Application.services().getService(CommandConfigurer.class)).configure(this);
     }
 
 
-    protected void doExecuteCommand() {
+    protected void doExecuteCommand()
+    {
         //toggle
         this.model.setSelected(!this.model.isSelected());
 
     }
 
-    public void doHide() {
+    public void doHide()
+    {
         this.model.setSelected(false);
     }
 
-    public void doShow() {
+    public void doShow()
+    {
         this.model.setSelected(true);
     }
 
     public AbstractButton createButton(String faceDescriptorId, ButtonFactory buttonFactory,
-                                       CommandButtonConfigurer configurer) {
+                                       CommandButtonConfigurer configurer)
+    {
         AbstractButton button = buttonFactory.createToggleButton();
         attach(button, faceDescriptorId, configurer);
         return button;
     }
 
     public void attach(AbstractButton button, String faceDescriptorId,
-                       CommandButtonConfigurer configurer) {
+                       CommandButtonConfigurer configurer)
+    {
         super.attach(button, faceDescriptorId, configurer);
         button.setModel(this.model);
     }
 
-    public static class SplitPaneExpansionButtonModel extends DefaultButtonModel {
+    public static class SplitPaneExpansionButtonModel extends DefaultButtonModel
+    {
 
         private final JSplitPane splitPane;
 
-        private enum SWITCH_STATE {
+        private enum SWITCH_STATE
+        {
             NO_ACTION, SWITCHED_AWAY, SWITCHED_AWAY_AND_MOVED
         }
 
@@ -62,8 +71,10 @@ public class SplitPaneExpansionToggleCommand extends ActionCommand {
 
         private SWITCH_STATE state = SWITCH_STATE.NO_ACTION;
 
-        private transient PropertyChangeListener listener = new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
+        private transient PropertyChangeListener listener = new PropertyChangeListener()
+        {
+            public void propertyChange(PropertyChangeEvent evt)
+            {
                 fireStateChanged();
 
                 if (state == SWITCH_STATE.SWITCHED_AWAY)
@@ -73,16 +84,19 @@ public class SplitPaneExpansionToggleCommand extends ActionCommand {
             }
         };
 
-        public SplitPaneExpansionButtonModel(JSplitPane mySplitPane, boolean switchedAway) {
+        public SplitPaneExpansionButtonModel(JSplitPane mySplitPane, boolean switchedAway)
+        {
             super();
             this.splitPane = mySplitPane;
 
             this.splitPane.addPropertyChangeListener(JSplitPane.DIVIDER_LOCATION_PROPERTY,
                     listener);
 
-            this.splitPane.addComponentListener(new ComponentAdapter() {
+            this.splitPane.addComponentListener(new ComponentAdapter()
+            {
                 @Override
-                public void componentResized(ComponentEvent e) {
+                public void componentResized(ComponentEvent e)
+                {
                     if (state == SWITCH_STATE.SWITCHED_AWAY || state == SWITCH_STATE.SWITCHED_AWAY_AND_MOVED)
                         hidePanel();
                 }
@@ -93,30 +107,38 @@ public class SplitPaneExpansionToggleCommand extends ActionCommand {
                 this.state = SWITCH_STATE.SWITCHED_AWAY;
         }
 
-        public boolean isSelected() {
+        public boolean isSelected()
+        {
             return isShown();
         }
 
-        public void setSelected(boolean makeVisible) {
+        public void setSelected(boolean makeVisible)
+        {
             super.setSelected(makeVisible);
-            if (makeVisible) {
+            if (makeVisible)
+            {
                 splitPane.resetToPreferredSizes();
                 state = SWITCH_STATE.NO_ACTION;
-            } else {
+            }
+            else
+            {
                 hidePanel();
             }
         }
 
-        private void hidePanel() {
+        private void hidePanel()
+        {
             splitPane.setDividerLocation(getHideRightComponentDividerLocation());
             state = SWITCH_STATE.SWITCHED_AWAY;
         }
 
-        private boolean isShown() {
+        private boolean isShown()
+        {
             return splitPane.getDividerLocation() < (getHideRightComponentDividerLocation());
         }
 
-        private int getHideRightComponentDividerLocation() {
+        private int getHideRightComponentDividerLocation()
+        {
             Dimension size = splitPane.getSize();
             int max = getRelevantDimensionpart(size);
             Insets insets = splitPane.getInsets();
@@ -125,19 +147,21 @@ public class SplitPaneExpansionToggleCommand extends ActionCommand {
             return max - (relevantInset + dividerSize);
         }
 
-        private int getRelevantInsetpart(Insets insets) {
+        private int getRelevantInsetpart(Insets insets)
+        {
             int orientation = splitPane.getOrientation();
             int result = (orientation == JSplitPane.VERTICAL_SPLIT) ? // for vertical
-                         (insets.bottom) : //take the height
-                         (insets.right); //  else the width
+                    (insets.bottom) : //take the height
+                    (insets.right); //  else the width
             return result;
         }
 
-        private int getRelevantDimensionpart(Dimension size) {
+        private int getRelevantDimensionpart(Dimension size)
+        {
             int orientation = splitPane.getOrientation();
             int result = (orientation == JSplitPane.VERTICAL_SPLIT) ? // for vertical
-                         (int) Math.ceil(size.getHeight()) : //take the height
-                         (int) Math.ceil(size.getWidth()); //  else the width
+                    (int) Math.ceil(size.getHeight()) : //take the height
+                    (int) Math.ceil(size.getWidth()); //  else the width
             return result;
         }
     }

@@ -38,8 +38,8 @@ import org.springframework.util.Assert;
 public abstract class AbstractBinder extends ApplicationServicesAccessor implements Binder {
 
     /**
-     * The client property key that is used to save a copy of a binding in its bound
-     * component's client property set. This can be used to locate the binding
+     * The client property key that is used to save a copy of a binding in its bound 
+     * component's client property set. This can be used to locate the binding 
      * that has bound a given component.
      * @see JComponent#getClientProperty(java.lang.Object)
      */
@@ -72,7 +72,7 @@ public abstract class AbstractBinder extends ApplicationServicesAccessor impleme
             }
         }
     }
-
+    
     public Class getRequiredSourceClass() {
         return requiredSourceClass;
     }

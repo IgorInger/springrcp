@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -29,10 +29,10 @@ import org.springframework.security.Authentication;
  * This bean provides basic constraints for the username and password properties. Each is
  * required to be at least 2 characters long. If you need more specific constraints, then
  * you should implement a subtype and override the initRules method.
- *
+ * 
  * @author Larry Streepy
  * @author Ben Alex
- *
+ * 
  */
 public class LoginDetails implements PropertyConstraintProvider {
 

@@ -23,9 +23,9 @@ import javax.swing.*;
 import java.util.*;
 /**
  * Tests for ListBinder and ListBinding
- *
+ * 
  * @author  Oliver Hutchison
- * @author  Andy DePue
+ * @author  Andy DePue 
  */
 public abstract class ListBinderAbstractTests extends BindingAbstractTests {
     private ListBinder lb;
@@ -44,8 +44,7 @@ public abstract class ListBinderAbstractTests extends BindingAbstractTests {
         context = new HashMap();
 
         selectableItems = Arrays.asList(new Object[] {new Item("A"), new Item("B"), new Item("C"), new Item("D"),
-                            new Item("E")
-        });
+                new Item("E")});
 
         context.put(ListBinder.SELECTABLE_ITEMS_KEY, selectableItems);
         context.put(ListBinder.RENDERER_KEY, new BeanPropertyValueListRenderer("name"));
@@ -142,7 +141,8 @@ public abstract class ListBinderAbstractTests extends BindingAbstractTests {
         try {
             doMultipleSelectionBinding();
             fail("INVALID_SELECTION should have caused IllegalArgumentException");
-        } catch (IllegalArgumentException iae) {
+        }
+        catch (IllegalArgumentException iae) {
             // Test passed
         }
     }
@@ -161,7 +161,7 @@ public abstract class ListBinderAbstractTests extends BindingAbstractTests {
         multipleSelectionBinding();
         assertEquals(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION, c.getSelectionMode());
         assertTrue("Expected empty selection in list.", c.getSelectedValues() == null
-                   || c.getSelectedValues().length == 0);
+                || c.getSelectedValues().length == 0);
     }
 
     public void testNoInitialSingleSelection() {
@@ -262,7 +262,8 @@ public abstract class ListBinderAbstractTests extends BindingAbstractTests {
         if (original == null || original.size() == 0) {
             assertTrue(selected == null || selected.length == 0);
             assertTrue(selectedValue == null || selectedValue.size() == 0);
-        } else {
+        }
+        else {
             assertNotNull(selected);
             assertNotNull(selectedValue);
             assertEquals(original.size(), selected.length);

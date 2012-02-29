@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,7 +24,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Tests the "image:" URL protocol handler.
- *
+ * 
  * @author oliverh
  */
 public class HandlerTestsIgnored extends TestCase {
@@ -52,12 +52,13 @@ public class HandlerTestsIgnored extends TestCase {
 
         // test install
         ImageSource urlHandlerImageSource = (ImageSource) new ClassPathXmlApplicationContext(
-                                                "org/springframework/richclient/image/application-context.xml").getBean("imageSource");
+                "org/springframework/richclient/image/application-context.xml").getBean("imageSource");
         // Handler.installImageUrlHandler(urlHandlerImageSource); is not needed because imageSource calls it itself
         try {
             url = new URL("image:test");
             imageHasNotBeenInstalledInThisJVM = false;
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e) {
             fail("protocol was not installed");
         }
 
@@ -66,7 +67,8 @@ public class HandlerTestsIgnored extends TestCase {
         try {
             url.openConnection();
             fail();
-        } catch (NoSuchImageResourceException e) {
+        }
+        catch (NoSuchImageResourceException e) {
             // expected
         }
 

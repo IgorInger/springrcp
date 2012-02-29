@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,7 +27,7 @@ import org.springframework.util.Assert;
 /**
  * Listens to a sort list for changes and when they happen, sorts a sortable
  * table model in a separate worker thread.
- *
+ * 
  * @author Keith Donald
  */
 public class SortTableCommand extends ActionCommand implements Observer {
@@ -41,8 +41,8 @@ public class SortTableCommand extends ActionCommand implements Observer {
         super("sortCommand");
         this.table = table;
         Assert
-        .isTrue((table.getModel() instanceof SortableTableModel),
-                "The specified table's model must be sortable!");
+                .isTrue((table.getModel() instanceof SortableTableModel),
+                        "The specified table's model must be sortable!");
         this.sortableTableModel = (SortableTableModel)table.getModel();
         this.sortList = sortList;
         this.sortList.addObserver(this);
@@ -63,7 +63,7 @@ public class SortTableCommand extends ActionCommand implements Observer {
             final int[] preSortSelectedRows = table.getSelectedRows();
 
             int[] postSortSelectedRows = sortableTableModel
-                                         .sortByColumns(sortList.getSortLevels(), preSortSelectedRows);
+                    .sortByColumns(sortList.getSortLevels(), preSortSelectedRows);
 
             for (int i = 0; i < postSortSelectedRows.length; i++) {
                 table.addRowSelectionInterval(postSortSelectedRows[i], postSortSelectedRows[i]);
@@ -72,7 +72,8 @@ public class SortTableCommand extends ActionCommand implements Observer {
             if (postSortSelectedRows.length > 0) {
                 TableUtils.scrollToRow(table, postSortSelectedRows[0]);
             }
-        } finally {
+        }
+        finally {
             BusyIndicator.clearAt(table);
         }
     }

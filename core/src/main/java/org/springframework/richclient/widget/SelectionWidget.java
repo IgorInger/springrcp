@@ -7,7 +7,8 @@ import org.springframework.richclient.command.ActionCommand;
  *
  * @author jh
  */
-public interface SelectionWidget extends Widget {
+public interface SelectionWidget extends Widget
+{
     /**
      * Command called to set the selection for the widget. I.e. a double-click listener on the table
      * that selects the current selected row and closes the view to the table.sluiten

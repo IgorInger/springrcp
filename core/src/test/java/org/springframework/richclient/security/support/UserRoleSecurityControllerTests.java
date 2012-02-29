@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package org.springframework.richclient.security.support;
 
@@ -16,7 +16,7 @@ import org.springframework.security.providers.TestingAuthenticationToken;
 
 /**
  * @author Larry Streepy
- *
+ * 
  */
 public class UserRoleSecurityControllerTests extends TestCase {
 
@@ -61,7 +61,7 @@ public class UserRoleSecurityControllerTests extends TestCase {
 
         // Now set the authentication token so that it contains one of these roles
         Authentication auth = new TestingAuthenticationToken( "USER1", "FOO",
-        new GrantedAuthority[] { new GrantedAuthorityImpl( "ROLE_1" ) } );
+            new GrantedAuthority[] { new GrantedAuthorityImpl( "ROLE_1" ) } );
         controller.setAuthenticationToken( auth );
 
         assertTrue( "Object should be authorized", a1.isAuthorized() );
@@ -69,8 +69,7 @@ public class UserRoleSecurityControllerTests extends TestCase {
 
         // Now to a token that does not contain one of the roles
         auth = new TestingAuthenticationToken( "USER1", "FOO", new GrantedAuthority[] { new GrantedAuthorityImpl(
-                "ROLE_NOTFOUND" )
-        } );
+            "ROLE_NOTFOUND" ) } );
         controller.setAuthenticationToken( auth );
 
         assertFalse( "Object should not be authorized", a1.isAuthorized() );

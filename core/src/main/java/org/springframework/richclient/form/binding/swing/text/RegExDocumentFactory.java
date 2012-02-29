@@ -107,7 +107,8 @@ public class RegExDocumentFactory implements DocumentFactory {
             char[] upper = str.toCharArray();
             StringBuilder builder = new StringBuilder();
             char character;
-            for (int i = 0; i < upper.length; i++) {
+            for (int i = 0; i < upper.length; i++)
+            {
                 if (convertToUppercase)
                     character = Character.toUpperCase(upper[i]);
                 else

@@ -2,46 +2,56 @@ package org.springframework.richclient.form;
 
 import org.springframework.richclient.core.TitleConfigurable;
 
-public abstract class FilterForm extends AbstractForm implements TitleConfigurable {
+public abstract class FilterForm extends AbstractForm implements TitleConfigurable
+{
     private String title;
 
-    protected FilterForm() {
+    protected FilterForm()
+    {
     }
 
-    protected FilterForm(String id) {
+    protected FilterForm(String id)
+    {
         super(id);
     }
 
     @Override
-    protected void init() {
+    protected void init()
+    {
         Object filterModel = newFormObject();
         setFormModel(FormModelHelper.createFormModel(filterModel));
         getFormModel().setId(getId());
         getObjectConfigurer().configure(this, getId());
     }
 
-    public Object getFilterCriteria() {
+    public Object getFilterCriteria()
+    {
         return getFormObject();
     }
 
-    public void resetCriteria() {
+    public void resetCriteria()
+    {
         this.setFormObject(newFormObject());
     }
 
-    protected Object newFormObject() {
+    protected Object newFormObject()
+    {
         return null;
     }
 
-    public void setDefaultCriteria() {
+    public void setDefaultCriteria()
+    {
         Object newFormObject = newFormObject();
         setFormObject(newFormObject);
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         this.title = title;
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 }

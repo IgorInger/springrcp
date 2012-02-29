@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -27,13 +27,13 @@ import org.springframework.util.Assert;
 
 /**
  * A lightweight splash-screen for displaying the progress of a GUI application startup process.
- *
+ * 
  * <p>
  * The splash screen produced by this class will be an undecorated, centered frame containing an image above a progress
  * bar. It minimizes class loading so it is displayed immediately once the application is started.
  * </p>
- *
- *
+ * 
+ * 
  * @author Peter De Bruycker
  */
 public class ProgressSplashScreen extends SimpleSplashScreen implements MonitoringSplashScreen {
@@ -54,7 +54,7 @@ public class ProgressSplashScreen extends SimpleSplashScreen implements Monitori
     /**
      * Returns the flag that determines whether or not the progress bar will display updated textual info as it is
      * provided by the progress monitor.
-     *
+     * 
      * @return The showProgressLabel flag.
      */
     public boolean isShowProgressLabel() {
@@ -64,7 +64,7 @@ public class ProgressSplashScreen extends SimpleSplashScreen implements Monitori
     /**
      * Sets the flag that determines whether or not the progress bar will display updated textual info as it is provided
      * by the progress monitor.
-     *
+     * 
      * @param showProgressLabel
      */
     public void setShowProgressLabel(boolean showProgressLabel) {
@@ -73,7 +73,7 @@ public class ProgressSplashScreen extends SimpleSplashScreen implements Monitori
 
     /**
      * Returns a component that displays an image above a progress bar.
-     *
+     * 
      * @return A splash screen containing an image and a progress bar, never null.
      */
     protected Component createContentPane() {
@@ -100,7 +100,7 @@ public class ProgressSplashScreen extends SimpleSplashScreen implements Monitori
 
     /**
      * Sets the progress monitor used by this splash screen.
-     *
+     * 
      * @param progressMonitor
      *            The progress monitor.
      */
@@ -110,7 +110,7 @@ public class ProgressSplashScreen extends SimpleSplashScreen implements Monitori
 
     /**
      * Returns the progress bar.
-     *
+     * 
      * @return not null
      */
     protected JProgressBar getProgressBar() {
@@ -120,7 +120,7 @@ public class ProgressSplashScreen extends SimpleSplashScreen implements Monitori
         }
         return progressBar;
     }
-
+    
     protected JProgressBar createProgressBar() {
         return new JProgressBar();
     }
@@ -131,7 +131,7 @@ public class ProgressSplashScreen extends SimpleSplashScreen implements Monitori
 
     /**
      * Determines whether the progress bar is in determinate or indeterminate mode. Default is true
-     *
+     * 
      * @param indeterminate
      *            <code>true</code> if the progress bar should change to indeterminate mode; <code>false</code> if
      *            it should revert to normal.

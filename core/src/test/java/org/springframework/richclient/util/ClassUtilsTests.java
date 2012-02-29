@@ -114,7 +114,7 @@ public class ClassUtilsTests extends TestCase {
 
     public void testQualifier() {
         assertEquals("org.springframework.richclient.util.ClassUtilsTests", ClassUtils
-                     .qualifier("org.springframework.richclient.util.ClassUtilsTests.property"));
+                .qualifier("org.springframework.richclient.util.ClassUtilsTests.property"));
         assertEquals("java.lang", ClassUtils.qualifier("java.lang.String"));
         assertEquals("", ClassUtils.qualifier(""));
         assertEquals("", ClassUtils.qualifier("test"));
@@ -136,9 +136,9 @@ public class ClassUtilsTests extends TestCase {
 
     public void testGetClassFieldNameWithValue() {
         assertEquals("org.springframework.richclient.util.ClassUtilsTests$D.VALUE1", ClassUtils
-                     .getClassFieldNameWithValue(D.class, "value1"));
+                .getClassFieldNameWithValue(D.class, "value1"));
         assertEquals("org.springframework.richclient.util.ClassUtilsTests$D.VALUE2", ClassUtils
-                     .getClassFieldNameWithValue(D.class, new Integer(5)));
+                .getClassFieldNameWithValue(D.class, new Integer(5)));
 
         assertNull(ClassUtils.getClassFieldNameWithValue(D.class, "noSuchFieldWithValue"));
     }
@@ -147,7 +147,7 @@ public class ClassUtilsTests extends TestCase {
         assertEquals("ClassUtilsTests", ClassUtils.unqualify("org.springframework.richclient.util.ClassUtilsTests"));
         assertEquals("ClassUtilsTests", ClassUtils.unqualify(ClassUtilsTests.class));
         assertEquals("ClassUtilsTests", ClassUtils
-                     .unqualify("org/springframework/richclient/util/ClassUtilsTests", '/'));
+                .unqualify("org/springframework/richclient/util/ClassUtilsTests", '/'));
     }
 
 }

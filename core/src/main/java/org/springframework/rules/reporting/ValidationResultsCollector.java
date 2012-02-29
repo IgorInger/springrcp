@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -33,7 +33,7 @@ import org.springframework.rules.constraint.Or;
  */
 public class ValidationResultsCollector {
     protected static final Log logger = LogFactory
-                                        .getLog(ValidationResultsCollector.class);
+            .getLog(ValidationResultsCollector.class);
 
     protected ReflectiveVisitorHelper visitorSupport = new ReflectiveVisitorHelper();
 
@@ -49,7 +49,7 @@ public class ValidationResultsCollector {
     }
 
     public ValidationResults collect(final Object argument,
-                                     final Constraint constraint) {
+            final Constraint constraint) {
         this.resultsBuilder = new ValidationResultsBuilder() {
             public void constraintSatisfied() {
             }
@@ -73,7 +73,7 @@ public class ValidationResultsCollector {
     protected ValidationResultsBuilder getResultsBuilder() {
         return resultsBuilder;
     }
-
+    
     protected void setResultsBuilder(ValidationResultsBuilder resultsBuilder) {
         this.resultsBuilder = resultsBuilder;
     }
@@ -91,7 +91,7 @@ public class ValidationResultsCollector {
         Iterator it = and.iterator();
         while (it.hasNext()) {
             boolean test = ((Boolean)visitorSupport.invokeVisit(
-                                ValidationResultsCollector.this, it.next())).booleanValue();
+                    ValidationResultsCollector.this, it.next())).booleanValue();
             if (!test) {
                 if (!collectAllErrors) {
                     resultsBuilder.pop(false);
@@ -118,7 +118,7 @@ public class ValidationResultsCollector {
         Iterator it = or.iterator();
         while (it.hasNext()) {
             boolean result = ((Boolean)visitorSupport.invokeVisit(
-                                  ValidationResultsCollector.this, it.next())).booleanValue();
+                    ValidationResultsCollector.this, it.next())).booleanValue();
             if (result) {
                 resultsBuilder.pop(result);
                 return true;
@@ -137,7 +137,7 @@ public class ValidationResultsCollector {
             logger.debug("Starting [not]...");
         }
         Boolean result = (Boolean)visitorSupport.invokeVisit(this, not
-                         .getConstraint());
+                .getConstraint());
         if (logger.isDebugEnabled()) {
             logger.debug("Finished [not]...");
         }
@@ -158,7 +158,7 @@ public class ValidationResultsCollector {
     boolean visit(Constraint constraint) {
         if (logger.isDebugEnabled()) {
             logger.debug("Testing constraint [" + constraint + "] with argument '"
-                         + argument + "']");
+                    + argument + "']");
         }
         boolean result = constraint.test(argument);
         result = applyAnyNegation(result);
@@ -167,7 +167,7 @@ public class ValidationResultsCollector {
         }
         if (logger.isDebugEnabled()) {
             logger.debug("Constraint [" + constraint + "] "
-                         + (result ? "passed" : "failed"));
+                    + (result ? "passed" : "failed"));
         }
         return result;
     }
@@ -177,7 +177,8 @@ public class ValidationResultsCollector {
         if (logger.isDebugEnabled()) {
             if (negated) {
                 logger.debug("[negate result]");
-            } else {
+            }
+            else {
                 logger.debug("[no negation]");
             }
         }
@@ -186,8 +187,8 @@ public class ValidationResultsCollector {
 
     public String toString() {
         return new ToStringCreator(this).append("collectAllErrors",
-                                                collectAllErrors).append("validationResultsBuilder",
-                                                        resultsBuilder).toString();
+                collectAllErrors).append("validationResultsBuilder",
+                resultsBuilder).toString();
     }
 
 }

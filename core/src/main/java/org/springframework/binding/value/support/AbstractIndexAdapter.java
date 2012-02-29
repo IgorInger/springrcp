@@ -23,18 +23,18 @@ import org.springframework.binding.value.IndexAdapter;
  */
 public abstract class AbstractIndexAdapter extends AbstractValueModel implements IndexAdapter {
 
-    private int index;
+	private int index;
 
-    public int getIndex() {
-        return index;
-    }
+	public int getIndex() {
+		return index;
+	}
 
-    public void setIndex(int index) {
-        if (hasChanged(this.index, index)) {
-            int oldValue = this.index;
-            this.index = index;
-            firePropertyChange("index", oldValue, this.index);
-        }
-    }
+	public void setIndex(int index) {
+		if (hasChanged(this.index, index)) {
+			int oldValue = this.index;
+			this.index = index;
+			firePropertyChange("index", oldValue, this.index);
+		}
+	}
 
 }

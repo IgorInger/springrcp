@@ -34,16 +34,16 @@ public class DefaultRegisterableExceptionHandler implements RegisterableExceptio
         String exceptionMessage;
         if (throwable instanceof MessageSourceResolvable) {
             exceptionMessage = ((MessageSourceAccessor) ApplicationServicesLocator.services()
-                                .getService(MessageSourceAccessor.class))
-                               .getMessage((MessageSourceResolvable) throwable);
+                    .getService(MessageSourceAccessor.class))
+                    .getMessage((MessageSourceResolvable) throwable);
         } else {
             exceptionMessage = throwable.getLocalizedMessage();
         }
         if (!StringUtils.hasText(exceptionMessage)) {
             String defaultMessage = "An application exception occurred.\nPlease contact your administrator.";
             exceptionMessage = ((MessageSourceAccessor) ApplicationServicesLocator.services()
-                                .getService(MessageSourceAccessor.class))
-                               .getMessage("applicationDialog.defaultException", defaultMessage);
+                    .getService(MessageSourceAccessor.class))
+                    .getMessage("applicationDialog.defaultException", defaultMessage);
         }
 
         Message message = new DefaultMessage(exceptionMessage, Severity.ERROR);

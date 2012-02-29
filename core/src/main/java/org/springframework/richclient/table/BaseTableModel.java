@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -26,21 +26,21 @@ import org.springframework.richclient.util.Assert;
 
 /**
  * A skeleton {@link TableModel} implementation that adds to the {@link AbstractTableModel} class
- * from the core Java API by providing the functionality to manage the underlying collection
+ * from the core Java API by providing the functionality to manage the underlying collection 
  * of data for the table.
- *
+ * 
  * @author Keith Donald
  */
 public abstract class BaseTableModel extends AbstractTableModel implements MutableTableModel {
-
+    
     private Class[] columnClasses;
 
     /** The names for the column headers. Must never be null. */
     private String[] columnNames;
 
-    /**
-     * The collection of objects that represent the rows of the table.
-     * Class invariant; this must never be null.
+    /** 
+     * The collection of objects that represent the rows of the table. 
+     * Class invariant; this must never be null. 
      */
     private List rows;
 
@@ -61,17 +61,18 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
     public BaseTableModel(List rows) {
         if (rows == null) {
             this.rows = new ArrayList();
-        } else {
+        }
+        else {
             this.rows =  rows;
         }
-
+        
     }
 
     /**
      * Overwrites the existing table rows with the given collection and fires an appropriate event
      * to all registered listeners.
      *
-     * @param rows The collection of rows that will overwrite the existing collection. May be
+     * @param rows The collection of rows that will overwrite the existing collection. May be 
      * null or empty.
      */
     public void setRows(List rows) {
@@ -111,14 +112,14 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
     }
 
     /**
-     * Creates the required column information based on the value provided by the
+     * Creates the required column information based on the value provided by the 
      * {@link #createColumnClasses()} and {@link #createColumnNames()} methods.
      */
     protected void createColumnInfo() {
-
+    
         Class[] newColumnClasses = createColumnClasses();
         String[] newColumnNames = createColumnNames();
-
+        
         if (rowNumbers) {
             // modify columns to add rowNo as first column
             this.columnClasses = new Class[newColumnClasses.length + 1];
@@ -128,12 +129,13 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
             this.columnNames = new String[newColumnNames.length + 1];
             this.columnNames[0] = " ";
             System.arraycopy(newColumnNames, 0, this.columnNames, 1, newColumnNames.length);
-        } else {
+        }
+        else {
             // take columns as they are
             this.columnClasses = newColumnClasses;
             this.columnNames = newColumnNames;
         }
-
+        
     }
 
     /**
@@ -161,9 +163,9 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
 
     /**
      * Returns the type of the object to be displayed in the given column.
-     *
+     * 
      * @param columnIndex The zero-based index of the column whose type will be returned.
-     *
+     * 
      * @throws IndexOutOfBoundsException if {@code columnIndex} is not within the bounds of the
      * column range for a row of the table.
      */
@@ -173,10 +175,10 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
 
     /**
      * Returns the name to be displayed in the header for the column at the given position.
-     *
+     * 
      * @param columnIndex The zero-based index of the column whose name will be returned.
-     *
-     * @throws IndexOutOfBoundsException if {@code columnInde} is not within the bounds of the
+     * 
+     * @throws IndexOutOfBoundsException if {@code columnInde} is not within the bounds of the 
      * column range for a row of the table.
      */
     public String getColumnName(int columnIndex) {
@@ -199,9 +201,9 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
      * @return The column headers, not including the row number column. Never null.
      */
     public String[] getDataColumnHeaders() {
-
+        
         String[] headers = getColumnHeaders();
-
+        
         if (!hasRowNumbers()) {
             return headers;
         }
@@ -209,7 +211,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
         String[] dataHeaders = new String[headers.length - 1];
         System.arraycopy(headers, 1, dataHeaders, 0, headers.length - 1);
         return dataHeaders;
-
+        
     }
 
     /**
@@ -226,7 +228,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
     }
 
     /**
-     * Subclasses must implement this method to return the value at the given column index for
+     * Subclasses must implement this method to return the value at the given column index for 
      * the given object.
      *
      * @param row The object representing a row of data from the table.
@@ -240,20 +242,20 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
      */
     //FIXME this method should probably become a template method by making it final
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-
+       
         if (rowNumbers) {
             if (columnIndex == 0) {
                 return false;
             }
             columnIndex--;
         }
-
+        
         return isCellEditableInternal(rows.get(rowIndex), columnIndex);
-
+        
     }
 
     /**
-     * Subclasses may override this method to determine if the cell at the specified row and
+     * Subclasses may override this method to determine if the cell at the specified row and 
      * column position can be edited. Default behaviour is to always return false.
      *
      * @param row The object representing the table row.
@@ -279,8 +281,8 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
     }
 
     /**
-     * Subclasses may implement this method to set the given value on the property at the given
-     * column index of the given row object. The default implementation is to do nothing.
+     * Subclasses may implement this method to set the given value on the property at the given 
+     * column index of the given row object. The default implementation is to do nothing. 
      *
      * @param value The value to be set.
      * @param row The object representing the row in the table.
@@ -295,8 +297,8 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
      *
      * @param rowIndex The zero-based index of the row whose object should be returned.
      * @return The object for the given row.
-     *
-     * @throws IndexOutOfBoundsException if {@code rowIndex} is not within the bounds of the
+     * 
+     * @throws IndexOutOfBoundsException if {@code rowIndex} is not within the bounds of the 
      * collection of rows for this table model.
      */
     public Object getRow(int rowIndex) {
@@ -317,14 +319,14 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
      *
      * @param column The zero-based index of the column whose data should be returned.
      * @return The collection of data from the given column.
-     *
-     * @throws IndexOutOfBoundsException if the given column is not within the bounds of the
+     * 
+     * @throws IndexOutOfBoundsException if the given column is not within the bounds of the 
      * number of columns for the rows in this table model.
      */
     public List getColumnData(int column) {
-
+        
         int columnCount = getColumnCount();
-
+        
         if (column < 0 || column >= columnCount) {
             throw new IndexOutOfBoundsException("The given column index ["
                                                 + column
@@ -332,46 +334,46 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
                                                 + columnCount
                                                 + "] in the rows of this table model.");
         }
-
+        
         if (columnCount == 1) {
             return rows;
         }
 
         List colData = new ArrayList(getRowCount());
-
+        
         for (int i = 0; i < getRowCount(); i++) {
             colData.add(getValueAt(i, column));
         }
-
+        
         return colData;
-
+        
     }
 
     /**
-     *  Returns the index of the first row containing the specified element, or -1 if this table
+     *  Returns the index of the first row containing the specified element, or -1 if this table 
      *  model does not contain this element.
      *
      * @param obj The object whose row number will be returned.
-     * @return The index of the first row containing the given object, or -1 if the table model
+     * @return The index of the first row containing the given object, or -1 if the table model 
      * does not contain the object.
      */
     public int rowOf(Object obj) {
-
+        
         if (obj == null) {
             return -1;
         }
-
+        
         return rows.indexOf(obj);
-
+        
     }
 
     /**
      * {@inheritDoc}
      */
     public void addRow(Object row) {
-
+        
         Assert.required(row, "row");
-
+        
         this.rows.add(row);
         int index = this.rows.size() - 1;
         fireTableRowsInserted(index, index);
@@ -382,11 +384,11 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
      */
     public void addRows(List newRows) {
         Assert.required(newRows, "newRows");
-
+        
         if (newRows.isEmpty()) {
             return;
         }
-
+        
         int firstRow = this.rows.size();
         this.rows.addAll(newRows);
         int lastRow = this.rows.size() - 1;
@@ -405,7 +407,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
      * {@inheritDoc}
      */
     public void remove(int firstIndex, int lastIndex) {
-
+        
         if (lastIndex < firstIndex) {
             throw new IllegalArgumentException("lastIndex ["
                                                + lastIndex
@@ -413,7 +415,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
                                                + firstIndex
                                                + "]");
         }
-
+        
         if (firstIndex < 0 || firstIndex >= this.rows.size()) {
             throw new IndexOutOfBoundsException("The specified starting index ["
                                                 + firstIndex
@@ -422,7 +424,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
                                                 + this.rows.size()
                                                 + "] elements.");
         }
-
+        
         if (lastIndex >= this.rows.size()) {
             throw new IndexOutOfBoundsException("The specified end index ["
                                                 + lastIndex
@@ -431,31 +433,31 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
                                                 + this.rows.size()
                                                 + "] elements.");
         }
-
+        
         int rowCount = lastIndex - firstIndex + 1;
-
+        
         for (int i = 0; i < rowCount; i++) {
             rows.remove(firstIndex);
         }
-
+        
         fireTableRowsDeleted(firstIndex, lastIndex);
-
+        
     }
 
     /**
      * {@inheritDoc}
      */
     public void remove(int[] indexes) {
-
+        
         Assert.required(indexes, "indexes");
-
+        
         if (indexes.length == 0) {
             return;
         }
 
         // must sort the indexes first!!!
         Arrays.sort(indexes);
-
+        
         if (indexes[0] < 0 || indexes[0] >= this.rows.size()) {
             throw new IndexOutOfBoundsException("The specified index ["
                                                 + indexes[0]
@@ -464,7 +466,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
                                                 + this.rows.size()
                                                 + "] elements.");
         }
-
+        
         if ((indexes[indexes.length -1]) >= this.rows.size()) {
             throw new IndexOutOfBoundsException("The specified end index ["
                                                 + indexes[indexes.length -1]
@@ -473,7 +475,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
                                                 + this.rows.size()
                                                 + "] elements.");
         }
-
+        
         int firstIndex = indexes[0];
         int lastIndex = indexes[0];
         int i = 0;
@@ -483,7 +485,8 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
         while (i < indexes.length - 1) {
             if (indexes[i + 1] == (lastIndex + 1)) {
                 lastIndex++;
-            } else {
+            }
+            else {
                 remove(firstIndex - shift, lastIndex - shift);
                 shift += lastIndex - firstIndex + 1;
                 firstIndex = indexes[i + 1];
@@ -521,7 +524,7 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
     }
 
     /**
-     * Subclasses must implement this method to return the array of class types for the columns
+     * Subclasses must implement this method to return the array of class types for the columns 
      * displayed by this table model.
      *
      * @return The array of column class types, never null.
@@ -529,9 +532,9 @@ public abstract class BaseTableModel extends AbstractTableModel implements Mutab
     protected abstract Class[] createColumnClasses();
 
     /**
-     * Subclasses must implement this method to return the array of column headers for the
+     * Subclasses must implement this method to return the array of column headers for the 
      * columns to be displayed by this table model.
-     *
+     * 
      * @return The array of column headers, never null.
      */
     protected abstract String[] createColumnNames();

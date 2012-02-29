@@ -48,11 +48,11 @@ import org.springframework.util.Assert;
  * <dt><code>FORM_ID</code></dt>
  * <dd>to specify formId in which this ShuttleList appears, this allow
  * form-specific settings like the texts and icon.</dd>
- *
+ * 
  * In order to have this Binder selected properly when adding ShuttleList
  * components to a form, you will need to have the following context
  * configuration:
- *
+ * 
  * <pre>
  * &lt;bean id=&quot;binderSelectionStrategy&quot; class=&quot;org.springframework.richclient.form.binding.swing.SwingBinderSelectionStrategy&quot;&gt;
  *     &lt;property name=&quot;bindersForControlTypes&quot;&gt;
@@ -67,23 +67,23 @@ import org.springframework.util.Assert;
  *     &lt;/property&gt;
  * &lt;/bean&gt;
  * </pre>
- *
+ * 
  * <p>
  * Also, see {@link SwingBindingFactoryProvider} and
  * {@link SwingBindingFactoryProvider} for how to configure and use that binding
  * factory, which offers convenience methods for constructing a bound shuttle
  * list. With the provider, factory, and binder registered, the following code
  * can be used to add a bound shuttle list to a form:
- *
+ * 
  * <pre>
  * final SandboxSwingBindingFactory bf = (SandboxSwingBindingFactory) getBindingFactory();
  * TableFormBuilder formBuilder = new TableFormBuilder( bf );
  * ...
  * String[] languages = new String[] { &quot;java&quot;, &quot;perl&quot;, &quot;ruby&quot;, &quot;C#&quot; };
- * List languagesList = Arrays.asList( languages );
+ * List languagesList = Arrays.asList( languages ); 
  * formBuilder.add( bf.createBoundShuttleList( &quot;languageSkills&quot;, languagesList ), &quot;align=left&quot; );
  * </pre>
- *
+ * 
  * @author Larry Streepy
  * @author Benoit Xhenseval
  */
@@ -126,7 +126,7 @@ public class ShuttleListBinder extends AbstractBinder {
      * preselect items in the list - if <code>selectionFormProperty</code> is
      * not empty when the list is bound, then its content will be used for the
      * initial selection.
-     *
+     * 
      * @param selectionFormProperty form property to hold user's selection. This
      *        property must be a <code>Collection</code> or array type.
      * @param selectableItemsHolder <code>ValueModel</code> containing the
@@ -137,7 +137,7 @@ public class ShuttleListBinder extends AbstractBinder {
      *        rendered as strings.
      */
     public static Map createBindingContext( FormModel formModel, String selectionFormProperty,
-                                            ValueModel selectableItemsHolder, String renderedProperty ) {
+            ValueModel selectableItemsHolder, String renderedProperty ) {
 
         final Map context = new HashMap(4);
 
@@ -166,14 +166,13 @@ public class ShuttleListBinder extends AbstractBinder {
      */
     public ShuttleListBinder() {
         super(null, new String[] { SELECTABLE_ITEMS_HOLDER_KEY, SELECTED_ITEMS_HOLDER_KEY, SELECTED_ITEM_TYPE_KEY,
-                                   MODEL_KEY, COMPARATOR_KEY, RENDERER_KEY, FORM_ID
-                                 });
+                MODEL_KEY, COMPARATOR_KEY, RENDERER_KEY, FORM_ID });
     }
 
     /**
      * Constructor allowing the specification of additional/alternate context keys.  This
      * is for use by derived classes.
-     *
+     * 
      * @param supportedContextKeys Context keys supported by subclass
      */
     protected ShuttleListBinder( final String[] supportedContextKeys ) {
@@ -192,7 +191,7 @@ public class ShuttleListBinder extends AbstractBinder {
 
     /**
      * Apply the values from the context to the specified binding.
-     *
+     * 
      * @param binding Binding to update
      * @param context Map of context values to apply to the binding
      */

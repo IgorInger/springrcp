@@ -38,7 +38,7 @@ import org.springframework.binding.value.ValueModel;
  * developers having to subclass <code>GeneratedForm</code>, many convenience
  * constructors are provided, along with making the
  * {@link #setFormModel(ValidatingFormModel)} and {@link #setId(String)}
- * methods public.
+ * methods public. 
  *
  * @author Andy DePue
  * @author Peter De Bruycker
@@ -113,7 +113,7 @@ public class GeneratedForm extends AbstractForm implements InitializingBean {
         super(parentFormModel, formId, childFormObjectHolder);
         this.formUIProvider = formUIProvider;
     }
-
+    
 
     //
     // METHODS FROM CLASS AbstractForm
@@ -142,11 +142,11 @@ public class GeneratedForm extends AbstractForm implements InitializingBean {
     public void setId(String formId) {
         super.setId(formId);
     }
-
-
-
-
-
+    
+    
+    
+    
+    
 
     //
     // METHODS FROM INTERFACE InitializingBean

@@ -40,7 +40,8 @@ public class DefaultValidationResults implements ValidationResults {
                 ValidationMessage message = (ValidationMessage)i.next();
                 if (key instanceof Severity && message.getSeverity().equals(key)) {
                     messagesSubSet.add(message);
-                } else if (ObjectUtils.nullSafeEquals(message.getProperty(), key)) {
+                }
+                else if (ObjectUtils.nullSafeEquals(message.getProperty(), key)) {
                     messagesSubSet.add(message);
                 }
             }
@@ -130,7 +131,8 @@ public class DefaultValidationResults implements ValidationResults {
      *
      * @see RulesValidator#clearMessages()
      */
-    public void clearMessages() {
+    public void clearMessages()
+    {
         messages.clear();
         messagesSubSets.clear();
     }
@@ -139,10 +141,10 @@ public class DefaultValidationResults implements ValidationResults {
      * Clear all messages of the given fieldName.
      */
     public void clearMessages(String fieldName) {
-        Set messagesForFieldName = getMessages(fieldName);
-        for (Iterator mi = messagesForFieldName.iterator(); mi.hasNext();) {
-            messages.remove(mi.next());
-        }
-        messagesSubSets.clear();
+    	Set messagesForFieldName = getMessages(fieldName);
+    	for (Iterator mi = messagesForFieldName.iterator(); mi.hasNext();) {
+			messages.remove(mi.next());
+		}
+    	messagesSubSets.clear();
     }
 }

@@ -110,7 +110,7 @@ public abstract class AbstractMasterForm extends AbstractForm {
 
         collectionVM = new DirtyTrackingDCBCVM( propertyVM, collectionType );
         ValidatingFormModel formModel = FormModelHelper.createChildPageFormModel( parentFormModel, formId,
-                                        collectionVM);
+                collectionVM);
         setFormModel( formModel );
 
         // Install a handler to detect when the parents form model changes
@@ -315,8 +315,7 @@ public abstract class AbstractMasterForm extends AbstractForm {
     protected CommandGroup getCommandGroup() {
         if( commandGroup == null ) {
             commandGroup = CommandGroup.createCommandGroup( null, new AbstractCommand[] { getDeleteCommand(),
-                           getNewFormObjectCommand()
-                                                                                        } );
+                    getNewFormObjectCommand() } );
         }
         return commandGroup;
     }

@@ -52,9 +52,9 @@ import org.springframework.util.Assert;
  * Subclasses must implement {@link #createListBinding(JComponent, FormModel, String)} which creates the instance for
  * {@link AbstractListBinding}. {@link #applyContext(AbstractListBinding, Map)} can be overwritten to apply additional
  * context values
- *
+ * 
  * @author Mathias Broekelmann
- *
+ * 
  */
 public abstract class AbstractListBinder extends AbstractBinder {
 
@@ -84,7 +84,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
     /**
      * Creates a new instance by defining a type for the form fields and using the default context keys
      * <code>SELECTABLE_ITEMS_KEY</code>, <code>COMPARATOR_KEY</code> and <code>FILTER_KEY</code>
-     *
+     * 
      * @param requiredSourceClass
      *            the type of the form fields to bind, if null form fields can have any type
      */
@@ -94,12 +94,12 @@ public abstract class AbstractListBinder extends AbstractBinder {
 
     /**
      * Creates a new instance by defining a type for the form fields and using the given context keys
-     *
+     * 
      * @param requiredSourceClass
      *            the type of the form fields to bind, if null form fields can have any type
      * @param supportedContextKeys
      *            the keys which can be defined as context values
-     *
+     * 
      * @throws NullPointerException
      *             if supportedContextKeys is null
      */
@@ -110,7 +110,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
     /**
      * Returns the {@link Comparator} which is used for bindings. The value can be overwritten with a context value for
      * <code>COMPARATOR_KEY</code>
-     *
+     * 
      * @return the comparator. If null no comparator is defined
      */
     public Comparator getComparator() {
@@ -120,7 +120,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
     /**
      * Defines the {@link Comparator} which is used for bindings. The value can be overwritten with a context value for
      * <code>COMPARATOR_KEY</code>
-     *
+     * 
      * @param comparator
      *            the comparator. If null no comparator will be used
      */
@@ -131,7 +131,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
     /**
      * Returns the {@link Constraint} which is used as a filter for the selectable items. The value can be overwritten
      * with a context value for <code>FILTER_KEY</code>
-     *
+     * 
      * @return the filter. If null no filter is defined
      */
     public Constraint getFilter() {
@@ -141,7 +141,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
     /**
      * Defines the {@link org.springframework.rules.constraint.Constraint} which is used as a filter for the selectable items. The value can be overwritten
      * with a context value for <code>FILTER_KEY</code>
-     *
+     * 
      * @param filter
      *            the filter constraint. If null no filter will be used
      */
@@ -152,7 +152,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
     /**
      * Returns the selectable items which where used as a source for the selectable items. The value can be overwritten
      * with a context value for <code>SELECTABLE_ITEMS_KEY</code>
-     *
+     * 
      * @return the selectable items. If null no selectable items will be used
      */
     public Object getSelectableItems() {
@@ -162,7 +162,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
     /**
      * Defines the selectable items which where used as a source for the selectable items. The value can be overwritten
      * with a context value for <code>SELECTABLE_ITEMS_KEY</code>
-     *
+     * 
      * @param selectableItems
      *            the selectable items. If null no selectable items will be used
      */
@@ -182,7 +182,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
 
     /**
      * Called to create the binding instance
-     *
+     * 
      * @param control
      *            the control to bind
      * @param formModel
@@ -196,7 +196,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
 
     /**
      * Applies any context or preset value.
-     *
+     * 
      * @param binding
      *            the binding to apply the values
      * @param context
@@ -222,7 +222,7 @@ public abstract class AbstractListBinder extends AbstractBinder {
 
     /**
      * Decorates an object instance if the <code>closure</code> value is an instance of {@link Closure}.
-     *
+     * 
      * @param closure
      *            the closure which is used to decorate the object.
      * @param object

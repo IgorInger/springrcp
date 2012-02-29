@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2004 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -38,13 +38,13 @@ public class CommandButtonLabelInfoTests extends TestCase {
     private LabelInfo labelInfo;
 
     private KeyStroke accelerator;
-
+    
     private Map invalidLabelDescriptors;
 
     public static void pass() {
         // test passes
     }
-
+    
     /**
      * Creates a new {@code LabelInfoTests}.
      */
@@ -97,7 +97,8 @@ public class CommandButtonLabelInfoTests extends TestCase {
         try {
             new CommandButtonLabelInfo(null, accelerator);
             fail("Should throw IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             pass();
         }
     }
@@ -107,7 +108,8 @@ public class CommandButtonLabelInfoTests extends TestCase {
         try {
             info.configure(null);
             fail("Should throw IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             pass();
         }
     }
@@ -136,7 +138,7 @@ public class CommandButtonLabelInfoTests extends TestCase {
         assertEquals(info.getMnemonicIndex(), button.getDisplayedMnemonicIndex());
         assertEquals(accelerator, button.getAccelerator());
     }
-
+    
 
     public void testCreateButtonLabelInfoNoAccelerator() {
         CommandButtonLabelInfo info = CommandButtonLabelInfo.valueOf("S\\&ave with an \\@ &as");
@@ -159,39 +161,41 @@ public class CommandButtonLabelInfoTests extends TestCase {
     }
 
     public void testCreateButtonLabelInfoInvalidAccelerator() {
-
+        
         try {
             CommandButtonLabelInfo.valueOf("Save &as@Bogus keystroke");
             Assert.fail("Should have thrown an IllegalArgumentException for invalid KeyStroke format");
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             //do nothing, test succeeded
         }
 
     }
-
+    
     /**
      * Confirms that exceptions are thrown for label descriptors that violate the syntax rules.
      */
     public void testInvalidSyntax() {
-
+        
         Iterator entryIterator = this.invalidLabelDescriptors.entrySet().iterator();
-
+        
         while (entryIterator.hasNext()) {
-
+            
             Map.Entry entry = (Map.Entry) entryIterator.next();
-
+            
             try {
                 CommandButtonLabelInfo.valueOf((String) entry.getKey());
-                Assert.fail("Should have thrown an IllegalArgumentException for label descriptor ["
+                Assert.fail("Should have thrown an IllegalArgumentException for label descriptor [" 
                             + entry.getKey()
                             + "] due to "
                             + entry.getValue());
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 //do nothing, test succeeded
             }
-
+            
         }
-
+        
     }
 
 }

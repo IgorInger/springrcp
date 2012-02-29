@@ -25,81 +25,82 @@ import org.springframework.util.StringUtils;
  */
 public class BasicRegExpConstraintDialog extends TitledApplicationDialog {
 
-    /**
-     * This object is used as formObject. It contains a value to set, the
-     * regular expression that should be used while validating that value and
-     * the logic to get the {@link PropertyConstraint} for the value based on
-     * the regexp.
-     */
-    private class RegExpValue implements PropertyConstraintProvider {
-        private String regExp = "";
+	/**
+	 * This object is used as formObject. It contains a value to set, the
+	 * regular expression that should be used while validating that value and
+	 * the logic to get the {@link PropertyConstraint} for the value based on
+	 * the regexp.
+	 */
+	private class RegExpValue implements PropertyConstraintProvider {
+		private String regExp = "";
 
-        private String value = "";
+		private String value = "";
 
-        public String getRegExp() {
-            return regExp;
-        }
+		public String getRegExp() {
+			return regExp;
+		}
 
-        public void setRegExp(String regExp) {
-            this.regExp = regExp;
-        }
+		public void setRegExp(String regExp) {
+			this.regExp = regExp;
+		}
 
-        public String getValue() {
-            return value;
-        }
+		public String getValue() {
+			return value;
+		}
 
-        public void setValue(String value) {
-            this.value = value;
-        }
+		public void setValue(String value) {
+			this.value = value;
+		}
 
-        public PropertyConstraint getPropertyConstraint(String propertyName) {
-            if (StringUtils.hasText(regExp)) {
-                if ((propertyName == null) || ("value".equals(propertyName))) {
-                    return new PropertyValueConstraint("value", new RegexpConstraint(regExp, "regExpViolated"));
-                }
-            }
-            return null;
-        }
+		public PropertyConstraint getPropertyConstraint(String propertyName) {
+			if (StringUtils.hasText(regExp))
+			{
+				if ((propertyName == null) || ("value".equals(propertyName))) {
+					return new PropertyValueConstraint("value", new RegexpConstraint(regExp, "regExpViolated"));
+				}
+			}
+			return null;
+		}
 
-    }
+	}
 
-    private class RegExpForm extends AbstractForm {
+	private class RegExpForm extends AbstractForm {
 
-        public RegExpForm() {
-            super(FormModelHelper.createFormModel(new RegExpValue(), false));
-        }
+		public RegExpForm() {
+			super(FormModelHelper.createFormModel(new RegExpValue(), false));
+		}
 
-        protected JComponent createFormControl() {
-            TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
-            builder.add("regExp");
-            builder.row();
-            builder.add("value");
-            newSingleLineResultsReporter(BasicRegExpConstraintDialog.this);
-            JPanel panel = new JPanel();
-            panel.add(builder.getForm());
-            panel.add(createValidateCommand().createButton());
-            return panel;
-        }
+		protected JComponent createFormControl() {
+			TableFormBuilder builder = new TableFormBuilder(getBindingFactory());
+			builder.add("regExp");
+			builder.row();
+			builder.add("value");
+			newSingleLineResultsReporter(BasicRegExpConstraintDialog.this);
+			JPanel panel = new JPanel();
+			panel.add(builder.getForm());
+			panel.add(createValidateCommand().createButton());
+			return panel;
+		}
 
-        private ActionCommand createValidateCommand() {
-            ActionCommand validateCommand = new ActionCommand("validateCommand") {
+		private ActionCommand createValidateCommand() {
+			ActionCommand validateCommand = new ActionCommand("validateCommand") {
 
-                protected void doExecuteCommand() {
-                    getFormModel().validate();
-                }
-            };
-            ((CommandConfigurer) ApplicationServicesLocator.services().getService(CommandConfigurer.class))
-            .configure(validateCommand);
-            return validateCommand;
-        }
-    }
+				protected void doExecuteCommand() {
+					getFormModel().validate();
+				}
+			};
+			((CommandConfigurer) ApplicationServicesLocator.services().getService(CommandConfigurer.class))
+					.configure(validateCommand);
+			return validateCommand;
+		}
+	}
 
-    protected JComponent createTitledDialogContentPane() {
-        return new RegExpForm().getControl();
-    }
+	protected JComponent createTitledDialogContentPane() {
+		return new RegExpForm().getControl();
+	}
 
-    protected boolean onFinish() {
-        return true;
-    }
+	protected boolean onFinish() {
+		return true;
+	}
 
 }

@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2008 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -31,7 +31,7 @@ import ca.odell.glazedlists.swing.TextComponentMatcherEditor;
 
 /**
  * Filtered <code>ListSelectionDialog</code>.
- *
+ * 
  * @author Peter De Bruycker
  */
 public class FilterListSelectionDialog extends ListSelectionDialog {
@@ -72,7 +72,8 @@ public class FilterListSelectionDialog extends ListSelectionDialog {
                 if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     // transfer focus to list
                     getList().requestFocusInWindow();
-                } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if (getFinishCommand().isEnabled())
                         getFinishCommand().execute();
                 }

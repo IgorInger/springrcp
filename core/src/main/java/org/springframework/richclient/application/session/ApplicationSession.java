@@ -20,7 +20,8 @@ import java.util.Map;
  * @author Jan Hoskens
  *
  */
-public final class ApplicationSession implements ApplicationListener {
+public final class ApplicationSession implements ApplicationListener
+{
 
     /** Holds the singleton instance. */
     private static final ApplicationSession INSTANCE = new ApplicationSession();
@@ -50,7 +51,8 @@ public final class ApplicationSession implements ApplicationListener {
     /**
      * Private constructor: Singleton Pattern.
      */
-    private ApplicationSession() {
+    private ApplicationSession()
+    {
     }
 
     /**
@@ -58,14 +60,16 @@ public final class ApplicationSession implements ApplicationListener {
      *
      * @return the ApplicationSession.
      */
-    public static ApplicationSession getSession() {
+    public static ApplicationSession getSession()
+    {
         return INSTANCE;
     }
 
     /**
      * Handle events that influence the session/user context.
      */
-    public void onApplicationEvent(ApplicationEvent event) {
+    public void onApplicationEvent(ApplicationEvent event)
+    {
         if ((event instanceof LoginEvent)
                 && (event.getSource() != LoginEvent.NO_AUTHENTICATION))
             handleLoginEvent((LoginEvent) event);
@@ -80,12 +84,15 @@ public final class ApplicationSession implements ApplicationListener {
      * @param event
      *            the loginEvent that triggered this handler.
      */
-    protected void handleLoginEvent(LoginEvent event) {
+    protected void handleLoginEvent(LoginEvent event)
+    {
         ApplicationSessionInitializer asi = getApplicationSessionInitializer();
-        if (asi != null) {
+        if (asi != null)
+        {
             asi.initializeUser();
             Map<String, Object> userAttributes = asi.getUserAttributes();
-            if (userAttributes != null) {
+            if (userAttributes != null)
+            {
                 setUserAttributes(userAttributes);
             }
         }
@@ -100,7 +107,8 @@ public final class ApplicationSession implements ApplicationListener {
      * @param event
      *            the logoutEvent that triggered this handler.
      */
-    protected void handleLogoutEvent(LogoutEvent event) {
+    protected void handleLogoutEvent(LogoutEvent event)
+    {
         clearUser();
         Authentication auth = (Authentication) event.getSource();
         propertyChangeSupport.firePropertyChange(USER, auth, null);
@@ -111,17 +119,20 @@ public final class ApplicationSession implements ApplicationListener {
      *
      * @param applicationSessionInitializer The application session initializer
      */
-    public void setApplicationSessionInitializer(ApplicationSessionInitializer applicationSessionInitializer) {
+    public void setApplicationSessionInitializer(ApplicationSessionInitializer applicationSessionInitializer)
+    {
         this.applicationSessionInitializer = applicationSessionInitializer;
     }
 
     /**
      * @return the applicationSessionInitializer.
      */
-    public ApplicationSessionInitializer getApplicationSessionInitializer() {
-        if (applicationSessionInitializer == null) {
+    public ApplicationSessionInitializer getApplicationSessionInitializer()
+    {
+        if (applicationSessionInitializer == null)
+        {
             applicationSessionInitializer = Application.instance()
-                                            .getLifecycleAdvisor().getApplicationSessionInitializer();
+                    .getLifecycleAdvisor().getApplicationSessionInitializer();
         }
         return applicationSessionInitializer;
     }
@@ -134,7 +145,8 @@ public final class ApplicationSession implements ApplicationListener {
      * @param listener
      *            PropertyChangeListener to add.
      */
-    public void addPropertyChangeListener(String property, PropertyChangeListener listener) {
+    public void addPropertyChangeListener(String property, PropertyChangeListener listener)
+    {
         propertyChangeSupport.addPropertyChangeListener(property, listener);
     }
 
@@ -146,20 +158,24 @@ public final class ApplicationSession implements ApplicationListener {
      * @param listener
      *            PropertyChangeListener to remove.
      */
-    public void removePropertyChangeListener(String property, PropertyChangeListener listener) {
+    public void removePropertyChangeListener(String property, PropertyChangeListener listener)
+    {
         propertyChangeSupport.removePropertyChangeListener(property, listener);
     }
 
     /**
      * Initialize the session attributes.
      */
-    public void initializeSession() {
+    public void initializeSession()
+    {
         ApplicationSessionInitializer asi = getApplicationSessionInitializer();
-        if (asi != null) {
+        if (asi != null)
+        {
             asi.initializeSession();
             Map<String, Object> sessionAttributes = asi.getSessionAttributes();
-            if (sessionAttributes != null) {
-                setSessionAttributes(sessionAttributes);
+            if (sessionAttributes != null)
+            {
+                    setSessionAttributes(sessionAttributes);
             }
             propertyChangeSupport.firePropertyChange(SESSION_ATTRIBUTES, null, sessionAttributes);
         }
@@ -172,7 +188,8 @@ public final class ApplicationSession implements ApplicationListener {
      *            name of the attribute
      * @return the attribute value (attribute values are strings)
      */
-    public Object getUserAttribute(String key) {
+    public Object getUserAttribute(String key)
+    {
         return this.getUserAttribute(key, null);
     }
 
@@ -185,7 +202,8 @@ public final class ApplicationSession implements ApplicationListener {
      *            a default value to return if no value is found.
      * @return the attribute value
      */
-    public Object getUserAttribute(String key, Object defaultValue) {
+    public Object getUserAttribute(String key, Object defaultValue)
+    {
         Object attributeValue = this.userAttributes.get(key);
         if (attributeValue == null)
             attributeValue = defaultValue;
@@ -200,7 +218,8 @@ public final class ApplicationSession implements ApplicationListener {
      * @param newValue
      *            the associated value.
      */
-    public void setUserAttribute(String key, Object newValue) {
+    public void setUserAttribute(String key, Object newValue)
+    {
         Object oldValue = userAttributes.put(key, newValue);
         propertyChangeSupport.firePropertyChange(key, oldValue, newValue);
         propertyChangeSupport.firePropertyChange(USER_ATTRIBUTES, null, userAttributes);
@@ -212,7 +231,8 @@ public final class ApplicationSession implements ApplicationListener {
      * @param attributes
      *            a map of key/value pairs.
      */
-    public void setUserAttributes(Map<String, Object> attributes) {
+    public void setUserAttributes(Map<String, Object> attributes)
+    {
         userAttributes.putAll(attributes);
         propertyChangeSupport.firePropertyChange(USER_ATTRIBUTES, null, userAttributes);
     }
@@ -220,7 +240,8 @@ public final class ApplicationSession implements ApplicationListener {
     /**
      * Clear all user attributes.
      */
-    public void clearUser() {
+    public void clearUser()
+    {
         this.userAttributes.clear();
         propertyChangeSupport.firePropertyChange(USER_ATTRIBUTES, null, null);
     }
@@ -232,7 +253,8 @@ public final class ApplicationSession implements ApplicationListener {
      *            name of the attribute
      * @return the attribute value
      */
-    public Object getSessionAttribute(String key) {
+    public Object getSessionAttribute(String key)
+    {
         return this.getSessionAttribute(key, null);
     }
 
@@ -243,7 +265,8 @@ public final class ApplicationSession implements ApplicationListener {
      * @param defaultValue the default value if not found
      * @return The session attibute or the default value if not found
      */
-    public Object getSessionAttribute(String key, Object defaultValue) {
+    public Object getSessionAttribute(String key, Object defaultValue)
+    {
         Object attributeValue = this.sessionAttributes.get(key);
         if (attributeValue == null)
             attributeValue = defaultValue;
@@ -258,7 +281,8 @@ public final class ApplicationSession implements ApplicationListener {
      * @param newValue
      *            the associated value.
      */
-    public void setSessionAttribute(String key, Object newValue) {
+    public void setSessionAttribute(String key, Object newValue)
+    {
         Object oldValue = sessionAttributes.put(key, newValue);
         propertyChangeSupport.firePropertyChange(key, oldValue, newValue);
         propertyChangeSupport.firePropertyChange(SESSION_ATTRIBUTES, null, sessionAttributes);
@@ -270,7 +294,8 @@ public final class ApplicationSession implements ApplicationListener {
      * @param attributes
      *            a map of key/value pairs.
      */
-    public void setSessionAttributes(Map<String, Object> attributes) {
+    public void setSessionAttributes(Map<String, Object> attributes)
+    {
         this.sessionAttributes.putAll(attributes);
         propertyChangeSupport.firePropertyChange(SESSION_ATTRIBUTES, null, sessionAttributes);
     }
@@ -278,7 +303,8 @@ public final class ApplicationSession implements ApplicationListener {
     /**
      * Clear all session attributes.
      */
-    public void clearSession() {
+    public void clearSession()
+    {
         this.sessionAttributes.clear();
         propertyChangeSupport.firePropertyChange(SESSION_ATTRIBUTES, null, sessionAttributes);
     }
@@ -290,7 +316,8 @@ public final class ApplicationSession implements ApplicationListener {
      *            name of the attribute
      * @return the attribute value
      */
-    public Object getAttribute(String key) {
+    public Object getAttribute(String key)
+    {
         return getAttribute(key, null);
     }
 
@@ -303,7 +330,8 @@ public final class ApplicationSession implements ApplicationListener {
      *            a default value to return if no value is found.
      * @return the attribute value
      */
-    public Object getAttribute(String key, Object defaultValue) {
+    public Object getAttribute(String key, Object defaultValue)
+    {
         Object attributeValue = getUserAttribute(key, null);
         if (attributeValue != null)
             return attributeValue;

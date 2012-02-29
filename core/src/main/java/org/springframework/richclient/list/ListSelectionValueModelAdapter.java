@@ -1,12 +1,12 @@
 /*
  * Copyright 2002-2006 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -24,7 +24,7 @@ import org.springframework.binding.value.support.AbstractValueModel;
 /**
  * Class to adapt the selection model of a list into a value model. This allows
  * it to be used in conjunction with various Guard implementations.
- *
+ * 
  * @author Larry Streepy
  * @see ListSingleSelectionGuard
  * @see ListMultipleSelectionGuard
@@ -37,7 +37,7 @@ public class ListSelectionValueModelAdapter extends AbstractValueModel implement
 
     /**
      * Constructor.
-     *
+     * 
      * @param model selection model to adapt
      */
     public ListSelectionValueModelAdapter( ListSelectionModel model ) {
@@ -47,7 +47,7 @@ public class ListSelectionValueModelAdapter extends AbstractValueModel implement
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
      */
     public void valueChanged( ListSelectionEvent e ) {
@@ -64,7 +64,7 @@ public class ListSelectionValueModelAdapter extends AbstractValueModel implement
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.springframework.binding.value.ValueModel#getValue()
      */
     public Object getValue() {
@@ -73,7 +73,7 @@ public class ListSelectionValueModelAdapter extends AbstractValueModel implement
 
     /**
      * Set the selection value.
-     *
+     * 
      * @param newValue must be an integer array (int[])
      */
     public void setValue( Object newValue ) {
@@ -127,7 +127,7 @@ public class ListSelectionValueModelAdapter extends AbstractValueModel implement
 
     /**
      * Returns the indices of all selected rows in the model.
-     *
+     * 
      * @return an array of integers containing the indices of all selected rows,
      *         or an empty array if no row is selected
      */

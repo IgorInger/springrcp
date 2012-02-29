@@ -1,12 +1,12 @@
 /*
  * Copyright (c) 2002-2005 the original author or authors.
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -32,9 +32,9 @@ import org.springframework.security.SpringSecurityException;
 
 /**
  * Test cases for the DefaultApplicationSecurityManager implementation.
- *
+ * 
  * @author Larry Streepy
- *
+ * 
  */
 public class DefaultApplicationSecurityManagerTests extends TestCase {
 
@@ -63,12 +63,12 @@ public class DefaultApplicationSecurityManagerTests extends TestCase {
         Object am = ac.getBean( "authenticationManager" );
 
         assertTrue( "securityManager must implement ApplicationSecurityManager",
-                    asm instanceof ApplicationSecurityManager );
+            asm instanceof ApplicationSecurityManager );
         assertTrue( "securityManager must be instance of DefaultApplicationSecurityManager",
-                    asm instanceof DefaultApplicationSecurityManager );
+            asm instanceof DefaultApplicationSecurityManager );
         assertTrue( "authenticationManager must implement AuthenticationManager", am instanceof AuthenticationManager );
         assertTrue( "authenticationManager must be instance of TestAuthenticationManager",
-                    am instanceof TestAuthenticationManager );
+            am instanceof TestAuthenticationManager );
         assertEquals( asm, ApplicationServicesLocator.services().getService(ApplicationSecurityManager.class) );
     }
 
@@ -82,7 +82,7 @@ public class DefaultApplicationSecurityManagerTests extends TestCase {
         testCounters( 1, 0, 1, 0 );
         assertTrue( "User should be logged in now", asm.isUserLoggedIn() );
         assertEquals( "Authentiation token should be == VALID_USER1", asm.getAuthentication(),
-                      TestAuthenticationManager.VALID_USER1 );
+            TestAuthenticationManager.VALID_USER1 );
 
         // Test various failed logins, current login shouldn't be affected
         doOneFailed( TestAuthenticationManager.BAD_CREDENTIALS, BadCredentialsException.class );
@@ -119,7 +119,7 @@ public class DefaultApplicationSecurityManagerTests extends TestCase {
         testCounters( 1, 0, 1, 0 );
         assertTrue( "User should be logged in now", asm.isUserLoggedIn() );
         assertEquals( "Authentiation token should be == VALID_USER2", asm.getAuthentication(),
-                      TestAuthenticationManager.VALID_USER2 );
+            TestAuthenticationManager.VALID_USER2 );
     }
 
     public void testAutoConfigurationOnNew() {
@@ -174,7 +174,7 @@ public class DefaultApplicationSecurityManagerTests extends TestCase {
         } catch( SpringSecurityException e ) {
             // We expect an exception
             assertTrue( "Wrong exception thrown; expecting: " + exceptionType.getName(), exceptionType
-                        .isAssignableFrom( e.getClass() ) );
+                .isAssignableFrom( e.getClass() ) );
             testCounters( 0, 1, 0, 0 );
             assertTrue( "User should still be logged in now", asm.isUserLoggedIn() );
             // Shouldn't have changed

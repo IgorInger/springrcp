@@ -1,5 +1,5 @@
 /**
- *
+ * 
  */
 package org.springframework.richclient.table;
 
