@@ -14,12 +14,12 @@
     Integration of the JIDE components and the Spring RCP project
   </description>
   <modules>
-    <module>action</module>
-    <module>binding</module>
-    <module>components</module>
-    <module>docking</module>
-    <module>archetype</module>
-    <module>samples</module>
+    <module>spring-richclient-jide-action</module>
+    <module>spring-richclient-jide-binding</module>
+    <module>spring-richclient-jide-components</module>
+    <module>spring-richclient-jide-docking</module>
+    <module>spring-richclient-jide-archetype</module>
+    <module>spring-richclient-jide-samples</module>
   </modules>
   <properties>
     <jide.version>[2.2.0, 3.0.0)</jide.version>

@@ -14,6 +14,6 @@
     Integration samples of the JIDE components and the Spring RCP project
   </description>
   <modules>
-    <module>google</module>
+    <module>spring-richclient-jide-sample-google</module>
   </modules>
 </project>
