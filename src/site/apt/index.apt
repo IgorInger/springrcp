@@ -14,9 +14,9 @@ What is spring-richclient?
 
 News
 
-    * <<2009-03-20>>: Release 1.1.0 available: see {{{download.html}download}}
+    * <<2009-03-20>>: Release 1.1.0 available: see {{{./download.html}download}}
 
-    * <<2008-03-17>>: Release 1.0.0 available: see {{{download.html}download}}
+    * <<2008-03-17>>: Release 1.0.0 available: see {{{./download.html}download}}
 
 ~~ Remove news items older then 1 year.
 
@@ -79,4 +79,4 @@ Abstract
     and a limited number of design best practices.
     The goal of spring-richclient is to provide that.
 
-    \- {{{team-list.html}The spring-richclient team}}
+    \- {{{./team-list.html}The spring-richclient team}}

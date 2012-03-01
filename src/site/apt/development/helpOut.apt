@@ -30,7 +30,7 @@ Well-formed patches are more welcome
     * All modifications should only apply to the current issue:
     make sure to separate patches for different issues.
 
-    * Follow {{{conventions.html}our conventions}}.
+    * Follow {{{./conventions.html}our conventions}}.
 
     * Test the modifications thoroughly:
     bouncing a patch back and forth due to small bugs slows down the contribution process.

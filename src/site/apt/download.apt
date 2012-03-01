@@ -57,7 +57,7 @@ Nightly builds (unstable)
 
     * You can build the latest snapshots from source (RECOMMENDED).
 	
-    Checkout spring-richclient from {{{source-repository.html}the source repository}},
+    Checkout spring-richclient from {{{./source-repository.html}the source repository}},
     build it with <<<mvn -Dmaven.test.skip=true install>>>
     and then optionally deploy it to your internal repo if other team members need it:
 	
@@ -66,4 +66,4 @@ mvn -Dmaven.skip.test -DaltDeploymentRepository=myOwn::default::scp://myRepoIp/m
 +--
 
     This way you'll only update to the latest snapshot when you're ready (and have read the upgrading guide).
-	More information in the {{{development/developmentSetup.html}the development guide}}.
+	More information in the {{{./development/developmentSetup.html}the development guide}}.

@@ -111,7 +111,7 @@ mvn install
     try switching to a mirror of Ibiblio (see developer FAQ).
     Ignoring the multiple runs, the initial download of all these files
     will take a while. Run it again afterwards to see how fast it really is.
-    Then take a look at the {{faq.html}} to run it even faster.
+    Then take a look at the {{./faq.html}} to run it even faster.
 
     Once a multiproject install has been run, it's possible (not required) to build a single module
     with the same command in a module root.

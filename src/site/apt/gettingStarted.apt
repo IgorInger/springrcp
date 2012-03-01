@@ -6,20 +6,20 @@
 
 Getting started
 
-    * {{{download.html}Download}} the release and try out the sample applications: simple and petclinic.
+    * {{{./download.html}Download}} the release and try out the sample applications: simple and petclinic.
 
-    * The {{{user/articles.html}articles}} page contains a link to a good beginner tutorial.
+    * The {{{./user/articles.html}articles}} page contains a link to a good beginner tutorial.
 
     * Take a look at the source of the samples.
 
-    * Take a look at {{{user/userGuide.html}the user guide}}.
+    * Take a look at {{{./user/userGuide.html}the user guide}}.
 
 Snapshots better then releases?
 
     Because spring-richclient is still alpha,
     many users prefer to work with a development snapshot instead of the release.
 
-    Take a look at {{development/developmentSetup.html}}.
+    Take a look at {{./development/developmentSetup.html}}.
     It also explains how to get the latest examples running.
 
 Creating your first project based on an archetype
@@ -27,7 +27,7 @@ Creating your first project based on an archetype
 	In order to simplify the process of getting your first Spring Rich Client project started,
 	a maven archetype has been created to do just that.
 
-  * See {{development/developmentSetup.html}} to install Maven 2, checkout the project and run
+  * See {{./development/developmentSetup.html}} to install Maven 2, checkout the project and run
 
 +--
 mvn install
