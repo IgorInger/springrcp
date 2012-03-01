@@ -239,6 +239,8 @@
         <enabled>true</enabled>
       </snapshots>
     </repository>
+    <!-- DEPRECATED -->
+    <!--
     <repository>
       <id>jboss</id>
       <url>http://repository.jboss.com/maven2/</url>
@@ -246,6 +248,7 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
+    -->
   </repositories>
   <pluginRepositories>
     <!-- currently only needed to use jdepend report -->
@@ -257,6 +260,8 @@
       <name>Snapshot repository from codehaus</name>
       <url>http://snapshots.maven.codehaus.org/maven2</url>
     </pluginRepository>
+    <!-- DEPRECATED -->
+    <!--
     <pluginRepository>
       <id>jboss</id>
       <url>http://repository.jboss.com/maven2/</url>
@@ -264,6 +269,7 @@
         <enabled>false</enabled>
       </snapshots>
     </pluginRepository>
+    -->
   </pluginRepositories>
   <build>
     <pluginManagement>
