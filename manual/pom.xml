@@ -38,8 +38,8 @@
           <chunkedOutput>true</chunkedOutput>
           <htmlStylesheet>css/html.css</htmlStylesheet>
           <xincludeSupported>true</xincludeSupported>
-          <htmlCustomization>src/docbkx/resources/xsl/html_chunk.xsl</htmlCustomization>
-          <foCustomization>src/docbkx/resources/xsl/fopdf.xsl</foCustomization>
+          <htmlCustomization>${basedir}/src/docbkx/resources/xsl/html_chunk.xsl</htmlCustomization>
+          <foCustomization>${basedir}/src/docbkx/resources/xsl/fopdf.xsl</foCustomization>
           <entities>
             <entity>
               <name>version</name>
@@ -53,7 +53,7 @@
                 <include name="**/*.pdf"/>
               </fileset>
             </copy>
-            <copy todir="target/site/reference/html">
+            <copy todir="target/site/reference/html/index">
               <fileset dir="src/docbkx/resources">
                 <include name="**/*.css"/>
                 <include name="**/*.png"/>
