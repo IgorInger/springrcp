@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <bean class="org.springframework.richclient.form.builder.support.ColorValidationInterceptorFactory">
-        <property name="errorColor" value="255,200,200"/>
+  <property name="errorColor" value="255,200,200"/>
 </bean>

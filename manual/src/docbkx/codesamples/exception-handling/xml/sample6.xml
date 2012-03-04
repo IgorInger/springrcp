@@ -1,5 +1,5 @@
-<bean
-        class="org.springframework.richclient.exceptionhandling.delegation.SimpleExceptionHandlerDelegate">
+<?xml version="1.0"?>
+<bean class="org.springframework.richclient.exceptionhandling.delegation.SimpleExceptionHandlerDelegate">
   <property name="exceptionPurger">
     <bean class="org.springframework.richclient.exceptionhandling.delegation.DefaultExceptionPurger">
       <property name="includeThrowableClassList">

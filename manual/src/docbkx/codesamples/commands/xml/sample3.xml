@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <bean id="newMenu" class="org.springframework.richclient.command.CommandGroupFactoryBean">
   <property name="members">
     <list>

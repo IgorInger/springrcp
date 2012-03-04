@@ -1,1 +1,2 @@
-<bean class="org.springframework.richclient.form.builder.support.SelectAllInterceptorFactory" />
+<?xml version="1.0"?>
+<bean class="org.springframework.richclient.form.builder.support.SelectAllInterceptorFactory"/>

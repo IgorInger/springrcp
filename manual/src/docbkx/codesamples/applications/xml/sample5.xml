@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <bean id="lookAndFeelConfigurer" class="org.springframework.richclient.application.config.UIManagerConfigurer">
-    <property name="lookAndFeel" value="javax.swing.plaf.metal.MetalLookAndFeel" />   
+  <property name="lookAndFeel" value="javax.swing.plaf.metal.MetalLookAndFeel"/>
 </bean>

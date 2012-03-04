@@ -1,5 +1,5 @@
-<bean id="windowCommandManager"
-      class="org.springframework.richclient.application.support.ApplicationWindowCommandManager">
+<?xml version="1.0"?>
+<bean id="windowCommandManager" class="org.springframework.richclient.application.support.ApplicationWindowCommandManager">
   <property name="sharedCommandIds">
     <list>
       <value>newContactCommand</value>

@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <bean id="lifecycleAdvisor" class="org.springframework.richclient.test.CustomApplicationLifecycleAdvisor">
   <property name="windowCommandBarDefinitions" value="ui/commands-context.xml"/>
   <property name="startingPageId" value="initialView"/>

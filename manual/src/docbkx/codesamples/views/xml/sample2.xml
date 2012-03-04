@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <bean id="initialCommand" class="org.springframework.richclient.command.support.ShowViewCommand">
-  <property name="viewDescriptor" ref="initialView" />
+  <property name="viewDescriptor" ref="initialView"/>
 </bean>

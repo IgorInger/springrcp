@@ -1,5 +1,5 @@
-<bean id="formComponentInterceptorFactory"
-      class="org.springframework.richclient.form.builder.support.ChainedInterceptorFactory">
+<?xml version="1.0"?>
+<bean id="formComponentInterceptorFactory" class="org.springframework.richclient.form.builder.support.ChainedInterceptorFactory">
   <property name="interceptorFactories">
     <list>
       <bean class="org.springframework.richclient.form.builder.support.ColorValidationInterceptorFactory">

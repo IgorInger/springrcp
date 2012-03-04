@@ -1,4 +1,5 @@
+<?xml version="1.0"?>
 <bean id="newOwnerCommand" class="org.springframework.richclient.command.TargetableActionCommand">
-  <property name="commandExecutor" ref="newOwnerWizard" />
+  <property name="commandExecutor" ref="newOwnerWizard"/>
   <property name="securityControllerId" value="mySecurityController"/>
 </bean>

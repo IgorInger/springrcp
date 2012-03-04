@@ -1,5 +1,5 @@
-<bean id="applicationPageFactory" depends-on="serviceLocator"
-      class="org.springframework.richclient.application.docking.flexdock.FlexDockApplicationPageFactory">
+<?xml version="1.0"?>
+<bean id="applicationPageFactory" depends-on="serviceLocator" class="org.springframework.richclient.application.docking.flexdock.FlexDockApplicationPageFactory">
   <property name="floatingEnabled" value="true"/>
   <property name="defaultPerspective" value="defaultPerspective"/>
   <property name="perspectiveFactory">

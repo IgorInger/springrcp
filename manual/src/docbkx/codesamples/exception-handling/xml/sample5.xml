@@ -1,5 +1,5 @@
-<bean id="exceptionHandler"
-      class="org.springframework.richclient.exceptionhandling.delegation.DelegatingExceptionHandler">
+<?xml version="1.0"?>
+<bean id="exceptionHandler" class="org.springframework.richclient.exceptionhandling.delegation.DelegatingExceptionHandler">
   <property name="delegateList">
     <list>
       <bean class="org.springframework.richclient.exceptionhandling.delegation.SimpleExceptionHandlerDelegate">
@@ -21,16 +21,14 @@
           <value type="java.lang.Class">org.hibernate.validator.InvalidStateException</value>
         </property>
         <property name="exceptionHandler">
-          <bean
-                  class="org.springframework.richclient.exceptionhandling.HibernateValidatorDialogExceptionHandler">
+          <bean class="org.springframework.richclient.exceptionhandling.HibernateValidatorDialogExceptionHandler">
             <property name="logLevel" value="INFO"/>
             <property name="shutdownPolicy" value="NONE"/>
           </bean>
         </property>
       </bean>
       <!-- The order is important: if Throwable would be first then the others would be ignored -->
-      <bean
-              class="org.springframework.richclient.exceptionhandling.delegation.SimpleExceptionHandlerDelegate">
+      <bean class="org.springframework.richclient.exceptionhandling.delegation.SimpleExceptionHandlerDelegate">
         <property name="throwableClass" value="java.lang.Throwable"/>
         <property name="exceptionHandler">
           <bean class="org.springframework.richclient.exceptionhandling.MessagesDialogExceptionHandler">
