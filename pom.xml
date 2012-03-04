@@ -540,21 +540,17 @@
     </profile>
   </profiles>
   <modules>
-    <module>spring-richclient-resources</module>
-    <module>spring-richclient-core</module>
-    <!--<module>spring-richclient-binding</module>-->
-    <!--<module>spring-richclient-form</module>-->
-    <!--<module>spring-richclient-support</module>-->
-    <!--<module>spring-richclient-jdk5</module>-->
-    <module>spring-richclient-jdk6</module>
-    <module>spring-richclient-sandbox</module>
-    <module>spring-richclient-manual</module>
+    <module>resources</module>
+    <module>core</module>
+    <module>jdk6</module>
+    <module>sandbox</module>
+    <module>manual</module>
     <!-- Enabling this will petclinic common not be (re)installed on mvn install... -->
     <!-- TODO bug in maven -->
     <!--<module>spring-richclient-full</module>-->
-    <module>spring-richclient-samples</module>
-    <module>spring-richclient-archetype</module>
-    <module>spring-richclient-integrations</module>
+    <module>samples</module>
+    <module>archetype</module>
+    <module>integrations</module>
     <!-- Module release is delibertly skipped -->
   </modules>
   <dependencies>
