@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faqs title="Frequently Asked Questions">
-  <part>
-    <faq>
+  <part id="part1">
+    <faq id="faq1">
       <question>How do I build the project?</question>
       <answer>
         <p>
@@ -9,7 +9,7 @@
         </p>
       </answer>
     </faq>
-    <faq>
+    <faq id="faq2">
       <question>Can I build faster?</question>
       <answer>
         <p>
@@ -35,7 +35,7 @@
         </p>
       </answer>
     </faq>
-    <faq>
+    <faq id="faq3">
       <question>How do I add a library available in Ibiblio to the project?</question>
       <answer>
         <p>
@@ -70,7 +70,7 @@
         </p>
       </answer>
     </faq>
-    <faq>
+    <faq id="faq4">
       <question>How do I add a library not available in Ibiblio to the project?</question>
       <answer>
         <p>
@@ -85,7 +85,7 @@
         </p>
       </answer>
     </faq>
-    <faq>
+    <faq id="faq5">
       <question>Do we have our own remote repository for dependencies not in Ibiblio?</question>
       <answer>
         <p>
