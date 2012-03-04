@@ -16,16 +16,14 @@
           Yes, by:
         </p>
         <ul>
-            <li>
+          <li>
                 Using the fast build profile with <code>-Pfast</code>, that does:
-                <ul>
-                    <li>Skipping test with <code>-Dmaven.test.skip</code></li>
-                </ul>
+                <ul><li>Skipping test with <code>-Dmaven.test.skip</code></li></ul>
             </li>
-            <li>Building offline (doesn't work the first time) with <code>-o</code></li>
-            <li>Building only the module you need</li>
-            <li>Only compiling if you need nothing more with <code>mvn compile</code></li>
-            <li>
+          <li>Building offline (doesn't work the first time) with <code>-o</code></li>
+          <li>Building only the module you need</li>
+          <li>Only compiling if you need nothing more with <code>mvn compile</code></li>
+          <li>
                 Using a mirror of Ibiblio, which are a lot faster.
                 See <a href="http://maven.apache.org">Maven's documentation</a>.
             </li>
